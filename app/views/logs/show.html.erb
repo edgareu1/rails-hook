@@ -1,0 +1,7 @@
+<h1><%= "#{current_user.logs.to_a.find_index(@log) + 1}. #{@log.location.name}" %></h1>
+
+<p><%= "From #{@log.start_time} until #{@log.end_time}" %></p>
+
+<p><%= "Rating: #{@log.rating}" %></p>
+
+<p><%= "Observations: #{@log.observation}" %></p>
