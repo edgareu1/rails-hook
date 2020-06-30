@@ -1,0 +1,24 @@
+<h1><%= "#{current_user.logs.to_a.find_index(@log) + 1}. #{@log.location.name}" %></h1>
+
+<p><%= "From #{@log.start_time} until #{@log.end_time}" %></p>
+
+<p><%= "Rating: #{@log.rating}" %></p>
+
+<p><%= "Observations: #{@log.observation}" %></p>
+
+<h3>Catches</h3>
+
+<ul>
+  <% @log.catches.each do |catch| %>
+    <li>
+      <%= catch.fish.common_name %>
+      <%= catch.weight %>
+    </li>
+  <% end %>
+</ul>
+
+<%= simple_form_for [@log, @catch] do |f| %>
+  <%= f.association :fish, label_method: :common_name %>
+  <%= f.input :weight %>
+  <%= f.button :submit %>
+<% end %>
