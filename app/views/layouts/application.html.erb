@@ -13,10 +13,16 @@
     <script src="https://kit.fontawesome.com/4b1a9fac52.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
+  <body> 
+    <% unless controller_name == "users" && action_name == "show" %>
+      <%= render 'shared/navbar' %>
+    <%end%>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
+    <% if controller_name == "users" && action_name == "show" %>
+      <%= render 'shared/bottom_navbar' %>
+    <%end%>
   </body>
 </html>
