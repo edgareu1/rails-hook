@@ -16,6 +16,7 @@ class LogsController < ApplicationController
 
   def show
     @log = Log.find(params[:id])
+    @catch = Catch.new
   end
 
   private

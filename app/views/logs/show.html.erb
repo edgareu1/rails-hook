@@ -6,6 +6,8 @@
 
 <p><%= "Observations: #{@log.observation}" %></p>
 
+<h3>Catches</h3>
+
 <ul>
   <% @log.catches.each do |catch| %>
     <li>
@@ -14,3 +16,9 @@
     </li>
   <% end %>
 </ul>
+
+<%= simple_form_for [@log, @catch] do |f| %>
+  <%= f.association :fish, label_method: :common_name %>
+  <%= f.input :weight %>
+  <%= f.button :submit %>
+<% end %>
