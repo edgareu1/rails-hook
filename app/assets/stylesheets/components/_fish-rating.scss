@@ -1,0 +1,36 @@
+.fish-rating {
+  float: left;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fish-rating input[type=radio] {
+  display: none;
+}
+
+.fish-rating label {
+  box-sizing: border-box;
+  width: 20%;
+  padding-right: 2%;
+  height: 30px;
+  float: right;
+  cursor: pointer;
+}
+
+.fish-rating label:after {
+  display: block;
+  height: 50px;
+  width: 40px;
+  float: right;
+  transition: all 0.15s;
+  content: '\f578';
+  font-family: FontAwesome;
+  font-size: 24px;
+  color: rgb(160, 160, 160);
+}
+
+.fish-rating input[type=radio]:first-child + label {}
+
+.fish-rating input[type=radio]:checked ~ label:after {
+  color: rgb(24, 68, 190);
+}
