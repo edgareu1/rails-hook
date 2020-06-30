@@ -35,5 +35,5 @@
 }
 
 .fish-rating input[type=radio]:checked ~ label:after {
-  color: rgb(24, 68, 190);
+  color: $light-blue;
 }
