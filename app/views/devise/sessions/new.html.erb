@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-6 offset-3">
-      <h2 style="padding-top: 20px; padding-bottom: 10px">Log in</h2>
-
+      <h2 style="padding-top: 100px; padding-bottom: 10px">Log in</h2>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
           <%= f.input :email,
                       required: false,
                       autofocus: true,
+                      placeholder: "email",
                       input_html: { autocomplete: "email" } %>
           <%= f.input :password,
                       required: false,
@@ -15,12 +15,15 @@
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+        <div class="form-actions" style="display: flex; justify-content: center; padding-bottom: 15px">
+          
+            <%= f.button :submit,"Log in", class: "btn btn-flat" %>
+          
         </div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
+      <div style="font-size: 14px">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
