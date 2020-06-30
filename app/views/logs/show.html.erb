@@ -5,3 +5,12 @@
 <p><%= "Rating: #{@log.rating}" %></p>
 
 <p><%= "Observations: #{@log.observation}" %></p>
+
+<ul>
+  <% @log.catches.each do |catch| %>
+    <li>
+      <%= catch.fish.common_name %>
+      <%= catch.weight %>
+    </li>
+  <% end %>
+</ul>
