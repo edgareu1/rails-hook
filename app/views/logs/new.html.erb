@@ -1,0 +1,29 @@
+<h1>New Log</h1>
+
+<div class="container-log-form">
+  <%= simple_form_for @log do |f| %>
+
+    <label for="log_start_time">Starting time</label>
+    <input type="datetime-local" id="log_start_time" name="log[start_time]"
+        value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
+
+    <br>
+
+    <label for="log_end_time">Ending time</label>
+    <input type="datetime-local" id="log_end_time" name="log[end_time]"
+        value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
+
+    <div style="width: 300px; height: 40px;">
+      <div class="fish-rating">
+        <%= f.collection_radio_buttons :rating, [[5], [4], [3], [2], [1]],
+          :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+          <%= b.radio_button + b.label {''} %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.input :observation %>
+    <%= f.association :location %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
