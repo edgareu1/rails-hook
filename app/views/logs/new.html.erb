@@ -1,7 +1,36 @@
 <div style="margin: 20px">
-  <h1>New Log</h1>
 
   <%= simple_form_for @log do |f| %>
+    <div style="display: flex; height: 80px; align-items: center">
+      <h1 style="margin-right: 20px">New Log</h1>
+
+      <div class="fish-rating">
+        <img src="https://res.cloudinary.com/dvvuknsmw/image/upload/v1593641005/output-onlinepngtools_b8pvvn.png"
+          alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
+
+        <input type="hidden" name="log[rating]" value="">
+        <input type="radio" value="5" name="log[rating]" id="log_rating_5">
+        <label for="log_rating_5" class="rating5"></label>
+        <label2 class="rating5"></label2>
+
+        <input type="radio" value="4" name="log[rating]" id="log_rating_4">
+        <label for="log_rating_4" class="rating4"></label>
+        <label2 class="rating4"></label2>
+
+        <input type="radio" value="3" name="log[rating]" id="log_rating_3">
+        <label for="log_rating_3" class="rating3"></label>
+        <label2 class="rating3"></label2>
+
+        <input type="radio" value="2" name="log[rating]" id="log_rating_2">
+        <label for="log_rating_2" class="rating2"></label>
+        <label2 class="rating2"></label2>
+
+        <input type="radio" value="1" name="log[rating]" id="log_rating_1">
+        <label for="log_rating_1" class="rating1"></label>
+        <label2 class="rating1"></label2>
+      </div>
+    </div>
+
     <div class="container-log-form-new">
 
       <label for="log_start_time">Starting time</label>
@@ -14,17 +43,8 @@
       <input type="datetime-local" id="log_end_time" name="log[end_time]"
           value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
 
-      <%= f.association :location, wrapper_html: { style: "margin-top: 20px" }  %>
-
-
-      <div class="fish-rating">
-        <%= f.collection_radio_buttons :rating, [[5], [4], [3], [2], [1]],
-          :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
-          <%= b.radio_button + b.label {''} %>
-        <% end %>
-      </div>
-
-      <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin-top: 20px" } %>
+      <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }  %>
+      <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" } %>
       <%= f.button :submit, class: "btn btn-flat btn-block" %>
     </div>
   <% end %>
