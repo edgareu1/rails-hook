@@ -1,32 +1,13 @@
-<p>Here  are some fishies for you to take a look at:</p>
 
-
-<% @fish.each do |fish|  %>
-  <div class="fish-card">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-    <div class="card-product-infos">
-      <ul id="fish-list">
-        <div id="fish-names">
-          <h1><%= fish.common_name %></h1>
-          <li><%= fish.scientific_name  %></li>
-        </div>
-        <div id="fish-size">
-          <li>Minimum length: <%= fish.legal_size %>cm</li>
-          <li>Minimum  weight: <%= fish.legal_weight %>kg</li>
-        </div>
-        <p><%= fish.description %></p>
-      </ul>
+<div class="container">
+  <% @fish.each do |fish| %>
+    <div class="fish-card">
+      <img src="/assets/images/yftuna.png"/>
+      <div class="fish-card-infos">
+        <h2><%= fish.common_name %></h2>
+        <p>Minimum length: <%= fish.legal_size %>cm</p>
+        <p>Minimum  weight: <%= fish.legal_weight %>kg</p>
+      </div>
     </div>
-  </div>
-<% end %>
-
-
-
-<!-- <div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2>Product name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
-  </div>
+  <% end %>
 </div>
- -->

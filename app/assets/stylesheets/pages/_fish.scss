@@ -1,22 +1,12 @@
-#fish-list{
-  list-style: none;
-}
-
 .fish-card {
   // overflow: hidden;
   flex-direction: column;
-  height: auto;
+  height: 250px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin: 25px;
-}
-
-#fish-names{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .fish-card img {
@@ -26,34 +16,3 @@
   margin-top: 10px;
 }
 
-// .fish-card h1 {
-//   font-size: 25px;
-//   font-weight: bold;
-//   margin: 0;
-//   align-items: center;
-// }
-
-#fish-size {
- justify-content:  center;
-
-  li {
-    font-size: 14px;
-  }
-}
-
-#fish-list p {
-  font-size: 13px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-
-.fish-card .card-product-infos {
-  padding: 16px;
-}
-
-#fish-names{
-  align-items: center
-
-}
