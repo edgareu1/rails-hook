@@ -1,6 +1,10 @@
 <div style="margin: 20px">
   <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
 
+  <%= link_to log_path(@log), method: :delete, data: {confirm: "Are you sure?"} do %>
+    <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
+  <% end %>
+
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>

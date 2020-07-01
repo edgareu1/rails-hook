@@ -19,6 +19,13 @@ class LogsController < ApplicationController
     @catch = Catch.new
   end
 
+  def destroy
+    @log = Log.find(params[:id])
+    @log.destroy
+
+    redirect_to new_log_path
+  end
+
   private
 
   def log_params
