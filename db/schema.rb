@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2020_07_01_122509) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_07_01_122509) do
 
   add_foreign_key "catches", "fish"
   add_foreign_key "catches", "logs"
+  add_foreign_key "locations", "users"
   add_foreign_key "logs", "locations"
   add_foreign_key "logs", "users"
 end
