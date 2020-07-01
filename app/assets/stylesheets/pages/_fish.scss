@@ -2,17 +2,28 @@
   // overflow: hidden;
   flex-direction: column;
   height: 250px;
-  background: white;
+  background: lightgray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;
-  margin: 25px;
+  align-items: flex-start;
+  margin: 20px 10px;
+  color: black;
+  h2 {
+    font-family: $headers-font;
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+  p {
+    font-family: $body-font;
+    padding-left: 10px;
+  }
 }
 
 .fish-card img {
-  height: 100%;
-  width: 250px;
+  height: 70%;
+  width: 100%;
   object-fit: cover;
-  margin-top: 10px;
 }
 

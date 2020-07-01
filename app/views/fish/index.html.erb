@@ -2,11 +2,14 @@
 <div class="container">
   <% @fish.each do |fish| %>
     <div class="fish-card">
-      <img src="/assets/images/yftuna.png"/>
+      <%= image_tag "yftuna.png" %>
       <div class="fish-card-infos">
-        <h2><%= fish.common_name %></h2>
-        <p>Minimum length: <%= fish.legal_size %>cm</p>
-        <p>Minimum  weight: <%= fish.legal_weight %>kg</p>
+        <h2><%= fish.common_name.upcase %></h2>
+        <% if fish.legal_size == 0%>
+          <p><%= fish.legal_weight %>kg</p>
+        <% else %>
+          <p><%= fish.legal_size %>cm</p>
+        <% end %>
       </div>
     </div>
   <% end %>
