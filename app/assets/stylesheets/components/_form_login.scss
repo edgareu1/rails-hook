@@ -1,0 +1,27 @@
+.form-login {
+    background: white;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-top: 40px;
+    border-top-left-radius: 3px;   
+    border-top-right-radius: 3px;    
+
+    h2 {
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #4f4e4d;
+    }
+
+    .email, .password, .boolean {
+      color: #4f4e4d;
+    }
+
+    .btn {
+      width: 100%;
+      margin-bottom: 20px
+    }
+  }

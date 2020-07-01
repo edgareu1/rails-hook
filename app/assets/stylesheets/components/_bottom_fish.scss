@@ -1,13 +1,18 @@
-  .fish-container{
+
+  .footer {
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #010038;
-    
-    overflow: hidden;
-    .container {
-      padding-right: 0;
-    }
+    height: 100px;
    
+  
+    .fish-container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color:white;
+      overflow: hidden;
+    
+    }
   }
+
