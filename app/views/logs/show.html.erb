@@ -1,24 +1,74 @@
-<h1><%= "#{current_user.logs.to_a.find_index(@log) + 1}. #{@log.location.name}" %></h1>
+<div style="margin: 20px">
+  <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
 
-<p><%= "From #{@log.start_time} until #{@log.end_time}" %></p>
+  <!-- Date -->
+  <div style="display: flex; margin: 20px 0">
+    <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
+      <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
+      <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+        <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')} - #{@log.end_time.strftime('%I:%M %p')}" %> </span> </p>
 
-<p><%= "Rating: #{@log.rating}" %></p>
+    <% else %>
+      <i class="far fa-calendar-alt" style="font-size: 42px; margin-right: 10px"></i>
+      <div style="display: flex; flex-direction: column">
+        <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+          <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')}" %> </span></p>
+        <p style="margin: 0; font-size: 16px"> <%= "#{@log.end_time.strftime('%B %d, %Y')}" %>
+          <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.end_time.strftime('%I:%M %p')}" %> </span></p>
+      </div>
+    <% end %>
+  </div>
 
-<p><%= "Observations: #{@log.observation}" %></p>
-
-<h3>Catches</h3>
-
-<ul>
-  <% @log.catches.each do |catch| %>
-    <li>
-      <%= catch.fish.common_name %>
-      <%= catch.weight %>
-    </li>
+  <!-- Optional: rating and observations -->
+  <% unless @log.rating.nil? %>
+    <p style="font-size: 16px"> <%= "Rating: #{@log.rating}/5" %> </p>
   <% end %>
-</ul>
 
-<%= simple_form_for [@log, @catch] do |f| %>
-  <%= f.association :fish, label_method: :common_name %>
-  <%= f.input :weight %>
-  <%= f.button :submit %>
-<% end %>
+  <% unless @log.observation.empty? %>
+    <p style="font-size: 16px"> Observations: <span style="font-size: 14px"> <%= @log.observation %> </span> </p>
+  <% end %>
+
+  <!-- List of Catches -->
+  <ul class="list-catches">
+    <h3>Catches</h3>
+
+    <% if @log.catches.empty? %>
+      <p style="margin: 0"> Nothing caught </p>
+
+    <% else %>
+      <% @log.catches.each do |catch| %>
+        <li>
+          <%= "#{catch.quantity} #{catch.fish.common_name}" %>
+
+          <% unless catch.weight.nil? %>
+            <% if catch.weight < 1000 %>
+              <%= "#{catch.weight} gr" %>
+            <% else %>
+              <%= "#{catch.weight / 1000} kg" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <!-- Form for a new Catch -->
+  <%= simple_form_for [@log, @catch] do |f| %>
+    <div class="container-catch-form">
+      <table>
+        <tr>
+          <th> <%= f.label :quantity, "Qnt." %> </th>
+          <th> <%= f.label :fish, "Species name" %> </th>
+          <th> <%= f.label :weight %> </th>
+        </tr>
+
+        <tr>
+          <td style="width: 60px; padding-right: 2px"> <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || '1' } %> </td>
+          <td style="width: 280px; padding-right: 2px"> <%= f.association :fish, label_method: :common_name, label: false %> </td>
+          <td style="width: 100px; padding-right: 2px"> <%= f.input :weight, label: false, placeholder: "gr" %> </td>
+        </tr>
+      </table>
+      <%= f.button :submit, class: "btn btn-flat btn-block" %>
+    </div>
+  <% end %>
+</div>
