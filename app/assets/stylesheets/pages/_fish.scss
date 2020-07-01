@@ -1,0 +1,61 @@
+.fish-card {
+  // overflow: hidden;
+  flex-direction: column;
+  height: 250px;
+  background: lightgray;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0px;
+  color: black;
+  border-radius: $border-radius;
+  h2 {
+    font-family: $headers-font;
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+  p {
+    font-family: $body-font;
+    padding-left: 10px;
+  }
+}
+
+.fish-card img {
+  height: 70%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.fish-card-full {
+  // overflow: hidden;
+  flex-direction: column;
+  height: 500px;
+  background: lightgray;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0px;
+  color: black;
+  border-radius: $border-radius;
+  h2 {
+    font-family: $headers-font;
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+  p {
+    font-family: $body-font;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+  }
+}
+
+
+.fish-card-full img {
+  width: 100%;
+  object-fit: cover;
+}
