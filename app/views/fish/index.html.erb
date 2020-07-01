@@ -13,7 +13,7 @@
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish) do %>
     <div class="fish-card">
-      <%= image_tag "yftuna.png" %>
+      <%= image_tag fish.picture_url %>
       <div class="fish-card-infos">
         <h2><%= fish.common_name.upcase %></h2>
         <% if fish.legal_size == 0%>

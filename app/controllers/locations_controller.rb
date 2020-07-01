@@ -17,7 +17,6 @@ class LocationsController < ApplicationController
     @location.user = current_user
     @location.save
     redirect_to root_path
-
   end
 
 private
@@ -26,6 +25,8 @@ private
     params.require(:location).permit(:name)
   end
 end
+
+
 
 
 
