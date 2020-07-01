@@ -4,11 +4,11 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = current_Location.find(params[:id])
+    @location = current_Location.find(params[:name])
   end
 
   def destroy
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:name])
     @location.destroy
   end
 
