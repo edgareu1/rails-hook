@@ -18,17 +18,11 @@
       <%= render 'shared/navbar' %>
     <%end%>
     <%= render 'shared/flashes' %>
-<<<<<<< HEAD
-    <div class="content" style="padding-top: 100px">
-      <%= yield %>
-    </div>
-=======
 
     <%= yield %>
 
     <% if controller_name == "users" && action_name == "show" %>
       <%= render 'shared/bottom_navbar' %>
     <%end%>
->>>>>>> master
   </body>
 </html>
