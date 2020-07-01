@@ -1,9 +1,5 @@
-<div style="margin: 20px">
-  <h1>New Log</h1>
-
-  <%= simple_form_for @log do |f| %>
-    <div class="container-log-form-new">
-
+<%= simple_form_for(log) do |f| %>
+  <div class="container-log-form-edit">
       <label for="log_start_time">Starting time</label>
       <input type="datetime-local" id="log_start_time" name="log[start_time]"
           value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
@@ -15,17 +11,7 @@
           value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
 
       <%= f.association :location, wrapper_html: { style: "margin-top: 20px" }  %>
-
-
-      <div class="fish-rating">
-        <%= f.collection_radio_buttons :rating, [[5], [4], [3], [2], [1]],
-          :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
-          <%= b.radio_button + b.label {''} %>
-        <% end %>
-      </div>
-
       <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin-top: 20px" } %>
       <%= f.button :submit, class: "btn btn-flat btn-block" %>
     </div>
-  <% end %>
-</div>
+<% end %>

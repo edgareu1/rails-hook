@@ -1,9 +1,15 @@
 <div style="margin: 20px">
   <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
 
+  <!-- Pop-ups for Log: delete and edit -->
   <%= link_to log_path(@log), method: :delete, data: {confirm: "Are you sure?"} do %>
     <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
   <% end %>
+
+  <%= link_to "#newTag", data: { toggle: "modal", target: "#ModalEditLog" }, style: "margin-left: 10px" do %>
+    <i class="far fa-edit" style="font-size: 26px; color: white"></i>
+  <% end %>
+
 
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
@@ -75,4 +81,23 @@
       <%= f.button :submit, class: "btn btn-flat btn-block" %>
     </div>
   <% end %>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEditLog" role="dialog">
+  <div class="modal-dialog">
+
+     <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #010038">Edit Log</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <%= render "logs/edit", log: @log %>
+      </div>
+    </div>
+  </div>
 </div>

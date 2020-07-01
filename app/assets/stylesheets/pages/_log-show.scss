@@ -17,3 +17,16 @@
   flex-direction: column;
   margin-top: 20px;
 }
+
+.container-log-form-edit {
+  display: flex;
+  flex-direction: column;
+  color: #010038;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
