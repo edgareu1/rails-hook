@@ -2,11 +2,11 @@
   <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
 
   <!-- Pop-ups for Log: delete and edit -->
-  <%= link_to log_path(@log), method: :delete, data: {confirm: "Are you sure?"} do %>
+  <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
     <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
   <% end %>
 
-  <%= link_to "#newTag", data: { toggle: "modal", target: "#ModalEditLog" }, style: "margin-left: 10px" do %>
+  <%= link_to "Edit", data: { toggle: "modal", target: "#ModalEditLog" }, style: "margin-left: 10px" do %>
     <i class="far fa-edit" style="font-size: 26px; color: white"></i>
   <% end %>
 
@@ -84,19 +84,36 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modals -->
+
+<!-- Modal Edit Log Form -->
 <div class="modal fade" id="ModalEditLog" role="dialog">
   <div class="modal-dialog">
-
-     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="color: #010038">Edit Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-
       <div class="modal-body">
         <%= render "logs/edit", log: @log %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete Log Form -->
+<div class="modal fade" id="ModalDeleteLog" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div style="text-align:center; width: 100%; padding: 10px">
+        <h2 class="modal-title" style="color: #010038"> Delete Log</h2>
+        <p style="color: #010038; margin: 0">Are you sure you want to delete the log?</p>
+      </div>
+
+      <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
+        <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+        <%= link_to "Delete", log_path(@log), method: :delete, class: "btn-delete-confirm" %>
       </div>
     </div>
   </div>
