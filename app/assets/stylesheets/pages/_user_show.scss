@@ -1,0 +1,18 @@
+// Specific CSS for your home-page
+.location {
+    color: $dark-blue;
+    background-color: lightgray;
+    border-radius: 2px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.fas.fa-fish {
+  font-size: 40px;
+}
+
+hr {
+    margin-right: 3rem;
+    margin-left: 3rem;
+    border-top: 2px solid $dark-blue;
+}

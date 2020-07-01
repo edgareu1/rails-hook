@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Fish.destroy_all
+User.destroy_all
 
 Fish.create(common_name: 'Yellow Fin Tuna', scientific_name: 'Thunnus albacares', legal_weight: 2.7, legal_size: 0, description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.')
 
@@ -51,4 +53,11 @@ Fish.create(common_name: 'Common Octopus', scientific_name: 'Octopus vulgaris', 
 
 Fish.create(common_name: 'Spotted Seabass', scientific_name: 'Dicentrarchus punctatus', legal_weight: 0, legal_size: 20, description: 'The Spotted Seabass has an elongated silver-grey body with small black spots. It inhabits coastal waters ranging in  depth from 0  - 30  meters.')
 
-puts "Created "
+puts "Fish created"
+
+
+Laure = User.new(email: "laure@gmail.com", password: "123456")
+Laure.save
+
+puts "User created"
+
