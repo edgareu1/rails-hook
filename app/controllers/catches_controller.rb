@@ -3,6 +3,7 @@ class CatchesController < ApplicationController
     @catch = Catch.new(catch_params)
     @log = Log.find(params[:log_id])
     @catch.log = @log
+
     if @catch.save
       redirect_to log_path(@log)
     else
@@ -13,6 +14,6 @@ class CatchesController < ApplicationController
   private
 
   def catch_params
-    params.require(:catch).permit(:fish_id, :weight)
+    params.require(:catch).permit(:fish_id, :quantity, :weight)
   end
 end
