@@ -2,7 +2,7 @@
 <div class="container">
   <% @fish.each do |fish| %>
     <div class="fish-card">
-      <%= image_tag "yftuna.png" %>
+      <%= image_tag fish.picture_url %>
       <div class="fish-card-infos">
         <h2><%= fish.common_name.upcase %></h2>
         <% if fish.legal_size == 0%>
