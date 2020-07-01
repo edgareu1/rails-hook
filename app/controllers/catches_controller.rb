@@ -11,6 +11,14 @@ class CatchesController < ApplicationController
     end
   end
 
+  def destroy
+    @catch = Catch.find(params[:id])
+    @catch.destroy
+
+    @log = Log.find(params[:log_id])
+    redirect_to log_path(@log)
+  end
+
   private
 
   def catch_params
