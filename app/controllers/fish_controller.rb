@@ -1,5 +1,6 @@
 class FishController < ApplicationController
   def index
+    # Fish.reindex
     @fish = Fish.all
     if params[:query].present?
       @fish = Fish.where("common_name ILIKE ?", "%#{params[:query]}%")
