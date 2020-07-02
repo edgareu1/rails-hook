@@ -29,15 +29,13 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { bottom_fish } from 'bottom_fish';
-import { autoComplete } from '../plug-in/fish_auto_complete';
 
+import {initAutocomplete} from '../plugins/init_autocomplete';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  const bottomFishContainer = document.getElementById("jsi-flying-fish-container");
-  if (bottomFishContainer) {
-    bottom_fish();
-  }
-  autoComplete();
+  initAutocomplete();
+  bottom_fish();
 });
+
 
