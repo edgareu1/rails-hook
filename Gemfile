@@ -33,6 +33,7 @@ gem 'geocoder'
 gem 'cloudinary'
 
 gem 'devise'
+gem 'jquery-rails'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
