@@ -1,51 +1,19 @@
-<div style="margin: 20px">
+    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-left: 15px" do %>
+      <i class="fas fa-plus" style="font-size: 26px; color: white"></i>
+    <% end %>
 
-  <%= simple_form_for @log do |f| %>
-    <div style="display: flex; height: 80px; align-items: center">
-      <h1 style="margin-right: 20px">New Log</h1>
 
-      <div class="fish-rating">
-        <img src="https://res.cloudinary.com/dvvuknsmw/image/upload/v1593641005/output-onlinepngtools_b8pvvn.png"
-          alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
-
-        <input type="hidden" name="log[rating]" value="">
-        <input type="radio" value="5" name="log[rating]" id="log_rating_5">
-        <label for="log_rating_5" class="rating5"></label>
-        <label2 class="rating5"></label2>
-
-        <input type="radio" value="4" name="log[rating]" id="log_rating_4">
-        <label for="log_rating_4" class="rating4"></label>
-        <label2 class="rating4"></label2>
-
-        <input type="radio" value="3" name="log[rating]" id="log_rating_3">
-        <label for="log_rating_3" class="rating3"></label>
-        <label2 class="rating3"></label2>
-
-        <input type="radio" value="2" name="log[rating]" id="log_rating_2">
-        <label for="log_rating_2" class="rating2"></label>
-        <label2 class="rating2"></label2>
-
-        <input type="radio" value="1" name="log[rating]" id="log_rating_1">
-        <label for="log_rating_1" class="rating1"></label>
-        <label2 class="rating1"></label2>
+<!-- Modal Create Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #010038">New Log</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= render "logs/form", log: Log.new %>
       </div>
     </div>
-
-    <div class="container-log-form">
-
-      <label for="log_start_time">Starting time</label>
-      <input type="datetime-local" id="log_start_time" name="log[start_time]"
-          value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
-
-      <br>
-
-      <label for="log_end_time">Ending time</label>
-      <input type="datetime-local" id="log_end_time" name="log[end_time]"
-          value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
-
-      <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }  %>
-      <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" } %>
-      <%= f.button :submit, class: "btn btn-flat btn-block" %>
-    </div>
-  <% end %>
+  </div>
 </div>
