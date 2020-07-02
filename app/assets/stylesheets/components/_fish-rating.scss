@@ -1,7 +1,9 @@
 .fish-rating {
-  float: left;
   overflow: hidden;
-  width: 100%;
+  position: relative;
+  background-color: lightgray;
+  width: 112px;
+  height: 75px;
 }
 
 .fish-rating input[type=radio] {
@@ -10,30 +12,49 @@
 
 .fish-rating label {
   box-sizing: border-box;
+  position: absolute;
   width: 20%;
-  height: 40px;
+  height: 100%;
   float: right;
   cursor: pointer;
+  z-index: 10;
 }
 
-.fish-rating label:after {
-  display: block;
-  height: 40px;
-  width: 100%;
+.fish-rating label2 {
+  box-sizing: border-box;
+  position: absolute;
+  width: 20%;
+  height: 100%;
   float: right;
-  transition: all 0.15s;
-  display: flex;
-  justify-content: center;
-  content: '\f578';
-  font-family: FontAwesome;
-  font-size: 30px;
-  color: rgb(160, 160, 160);
+  cursor: pointer;
+  z-index: 0;
 }
 
-.fish-rating input[type=radio]:first-child + label {
+.rating1 {
+  left: 0;
+}
+
+.rating2 {
+  left: 20%;
+}
+
+
+.rating3 {
+  left: 40%;
+}
+
+.rating4 {
+  left: 60%;
+}
+
+.rating5 {
+  left: 80%;
+}
+
+.fish-rating input[type=radio]:first-child + label2 {
   display: none;
 }
 
-.fish-rating input[type=radio]:checked ~ label:after {
-  color: $light-blue;
+.fish-rating input[type=radio]:checked ~ label2 {
+  background-color: $light-blue;
 }

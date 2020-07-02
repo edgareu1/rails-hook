@@ -2,5 +2,5 @@ class Log < ApplicationRecord
   belongs_to :location
   belongs_to :user
 
-  has_many :catches
+  has_many :catches, dependent: :destroy
 end
