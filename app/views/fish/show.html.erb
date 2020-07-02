@@ -1,7 +1,7 @@
 <div class="container">
   <%= link_to 'Back', fish_index_path, class: "btn btn-primary mt-2" %>
     <div class="fish-card-full">
-      <%= image_tag "yftuna.png" %>
+      <%= image_tag @fish.picture_url %>
       <div class="fish-card-infos">
         <h2><%= @fish.common_name.upcase %></h2>
             <% if @fish.legal_size == 0%>
