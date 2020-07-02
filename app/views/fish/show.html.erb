@@ -4,6 +4,7 @@
       <%= image_tag "yftuna.png" %>
       <div class="fish-card-infos">
         <h2><%= @fish.common_name.upcase %></h2>
+
             <% if @fish.legal_size == 0%>
             <p><%= @fish.legal_weight %>kg</p>
             <% else %>

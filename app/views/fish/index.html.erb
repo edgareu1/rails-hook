@@ -17,9 +17,9 @@
       <div class="fish-card-infos">
         <h2><%= fish.common_name.upcase %></h2>
         <% if fish.legal_size == 0%>
-          <p><%= fish.legal_weight %>kg</p>
+          <p>Minimum Weight:  <%= fish.legal_weight %>kg</p>
         <% else %>
-          <p><%= fish.legal_size %>cm</p>
+          <p>Minimum Length:  <%= fish.legal_size %>cm</p>
         <% end %>
       </div>
     </div>
