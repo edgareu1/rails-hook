@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     @location.user = current_user
     @location.save
+
     redirect_to root_path
   end
 
@@ -25,16 +26,3 @@ private
     params.require(:location).permit(:name)
   end
 end
-
-
-
-
-
-
-#index
-#show
-#create
-#delete
-#update
-#new (show form to create new location)
-#edit (show form to upadte)

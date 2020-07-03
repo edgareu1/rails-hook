@@ -1,7 +1,8 @@
 class CatchesController < ApplicationController
+  before_action :set_log, only: [:create, :destroy]
+
   def create
     @catch = Catch.new(catch_params)
-    @log = Log.find(params[:log_id])
     @catch.log = @log
 
     if @catch.save
@@ -15,7 +16,6 @@ class CatchesController < ApplicationController
     @catch = Catch.find(params[:id])
     @catch.destroy
 
-    @log = Log.find(params[:log_id])
     redirect_to log_path(@log)
   end
 
@@ -23,5 +23,9 @@ class CatchesController < ApplicationController
 
   def catch_params
     params.require(:catch).permit(:fish_id, :quantity, :weight)
+  end
+
+  def set_log
+    @log = Log.find(params[:log_id])
   end
 end

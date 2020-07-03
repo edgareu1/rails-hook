@@ -3,31 +3,32 @@
     
   <div class="fish-card-full">
     <%= image_tag @fish.picture_url %>
+
     <div class="fish-card-infos">
       <h2><%= @fish.common_name.upcase %></h2>
 
-        <p>
-          Minimum size:
-          <% if @fish.legal_weight == 0 && @fish.legal_size == 0  %>
-            NA
-          <% end %>
+      <p>
+        Minimum size:
+        <% if @fish.legal_weight == 0 && @fish.legal_size == 0  %>
+          NA
+        <% end %>
 
-          <% unless @fish.legal_weight == 0 %>
-            <% if @fish.legal_weight < 1000 %>
-              <%= "#{@fish.legal_weight} gr" %>
-            <% else %>
-              <%= "#{@fish.legal_weight.fdiv(1000)} kg" %>
-            <% end %>
+        <% unless @fish.legal_weight == 0 %>
+          <% if @fish.legal_weight < 1000 %>
+            <%= "#{@fish.legal_weight} gr" %>
+          <% else %>
+            <%= "#{@fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %>
           <% end %>
+        <% end %>
 
-          <% if @fish.legal_weight != 0 && @fish.legal_size != 0  %>
-            <%= " / " %>
-          <% end %>
+        <% if @fish.legal_weight != 0 && @fish.legal_size != 0  %>
+          <%= " / " %>
+        <% end %>
 
-          <% unless @fish.legal_size == 0 %>
-            <%= "#{@fish.legal_size} cm" %>
-          <% end %>
-        </p>
+        <% unless @fish.legal_size == 0 %>
+          <%= "#{@fish.legal_size} cm" %>
+        <% end %>
+      </p>
 
       <p><%= @fish.description %></p>
     </div>

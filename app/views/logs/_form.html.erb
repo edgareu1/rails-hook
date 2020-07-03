@@ -33,6 +33,7 @@
             <% else %>
               <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
             <% end %>
+
           <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
           <% end %>
 
