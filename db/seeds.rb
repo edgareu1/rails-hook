@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Catch.destroy_all
 Fish.destroy_all
 Log.destroy_all
 Location.destroy_all
@@ -58,7 +59,7 @@ Fish.create(common_name: 'Spotted Seabass', scientific_name: 'Dicentrarchus punc
 puts "Fish created"
 
 
-laure = User.new(email: "laure@gmail.com", password: "123456")
+laure = User.new(username: "laure", email: "laure@gmail.com", password: "123456")
 laure.save
 
 puts "User created"
@@ -68,3 +69,7 @@ puts "location created"
 
 Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure)
 puts "created log"
+
+Catch.create(weight: 3.5, fish_id: 91, quantity: 3)
+puts "created catch"
+
