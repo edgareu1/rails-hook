@@ -1,7 +1,5 @@
 class LogsController < ApplicationController
-  def new
-    @log = Log.new
-  end
+  before_action :set_log, only: [:show, :update, :destroy]
 
   def create
     @log = Log.new(log_params)
@@ -19,19 +17,16 @@ class LogsController < ApplicationController
   end
 
   def show
-    @log = Log.find(params[:id])
     @catch = Catch.new
   end
 
   def update
-    @log = Log.find(params[:id])
     @log.update(log_params)
 
     redirect_to log_path(@log)
   end
 
   def destroy
-    @log = Log.find(params[:id])
     @log.destroy
 
     redirect_to logs_path
@@ -41,5 +36,9 @@ class LogsController < ApplicationController
 
   def log_params
     params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id)
+  end
+
+  def set_log
+    @log = Log.find(params[:id])
   end
 end
