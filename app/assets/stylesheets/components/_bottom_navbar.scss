@@ -8,13 +8,13 @@
     #bottom-nav {
       text-align: center;
       font-size: 14px;
-      color: $white;
+      color: #b3b9d1;
       padding: 0;
       box-shadow: -1px 0px 1px 1px $body-bg;
       display: flex;
       position: fixed;
       width: 100%;
-      background: white;
+      background: #b3b9d1;
       bottom: 0px;
       z-index: 99;
     }
@@ -30,9 +30,9 @@
         width: 100%;
       }
       #bottom-list > li > a {
-        color: $gray;
+        color: black;
         .far, .fas {
-          color: $gray;
+          color: black;
         }
       }
       #bottom-list > li.active {
