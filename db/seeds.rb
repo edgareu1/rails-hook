@@ -68,3 +68,6 @@ puts "location created"
 
 Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure)
 puts "created log"
+
+Catch.create(weight: 3.5, fish_id: 91, quantity: 3)
+puts "created catch"
