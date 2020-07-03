@@ -5,45 +5,22 @@
 
     <input type="hidden" name="log[rating]" value="">
 
-    <input type="radio" value="10" name="log[rating]" id="log_rating_10">
-    <label for="log_rating_10" class="rating10"></label>
-    <label2 class="rating10"></label2>
+    <% (1..10).to_a.reverse.each do |num| %>
+      <% if log.id.nil? %>
+        <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
+        <label for="log_rating_new_<%= num %>" class="rating<%= num %>"></label>
 
-        <input type="radio" value="9" name="log[rating]" id="log_rating_9">
-    <label for="log_rating_9" class="rating9"></label>
-    <label2 class="rating9"></label2>
+      <% else %>
+        <% if log.rating == num %>
+          <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>" checked>
+        <% else %>
+          <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
+        <% end %>
+      <label for="log_rating_<%= num %>" class="rating<%= num %>"></label>
+      <% end %>
 
-        <input type="radio" value="8" name="log[rating]" id="log_rating_8">
-    <label for="log_rating_8" class="rating8"></label>
-    <label2 class="rating8"></label2>
-
-    <input type="radio" value="7" name="log[rating]" id="log_rating_7">
-    <label for="log_rating_7" class="rating7"></label>
-    <label2 class="rating7"></label2>
-
-    <input type="radio" value="6" name="log[rating]" id="log_rating_6">
-    <label for="log_rating_6" class="rating6"></label>
-    <label2 class="rating6"></label2>
-
-    <input type="radio" value="5" name="log[rating]" id="log_rating_5">
-    <label for="log_rating_5" class="rating5"></label>
-    <label2 class="rating5"></label2>
-
-    <input type="radio" value="4" name="log[rating]" id="log_rating_4">
-    <label for="log_rating_4" class="rating4"></label>
-    <label2 class="rating4"></label2>
-
-    <input type="radio" value="3" name="log[rating]" id="log_rating_3">
-    <label for="log_rating_3" class="rating3"></label>
-    <label2 class="rating3"></label2>
-
-    <input type="radio" value="2" name="log[rating]" id="log_rating_2">
-    <label for="log_rating_2" class="rating2"></label>
-    <label2 class="rating2"></label2>
-
-    <input type="radio" value="1" name="log[rating]" id="log_rating_1">
-    <label for="log_rating_1" class="rating1"></label>
-    <label2 class="rating1"></label2>
+      <label2 class="rating<%= num %>"></label2>
+    <% end %>
   </div>
 
   <div class="container-log-form">
