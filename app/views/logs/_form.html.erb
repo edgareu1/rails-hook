@@ -25,7 +25,7 @@
         <% (1..10).to_a.reverse.each do |num| %>
           <% if log.id.nil? %>
             <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
-            <label for="log_rating_new_<%= num %>" class="rating<%= num %>"></label>
+            <label for="log_rating_new_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
 
           <% else %>
             <% if log.rating == num %>
