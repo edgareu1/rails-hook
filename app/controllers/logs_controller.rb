@@ -14,6 +14,10 @@ class LogsController < ApplicationController
     end
   end
 
+  def index
+    @logs = current_user.logs
+  end
+
   def show
     @log = Log.find(params[:id])
     @catch = Catch.new
