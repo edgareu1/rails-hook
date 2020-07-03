@@ -26,7 +26,7 @@
   position: absolute;
   float: right;
   height: 95%;
-  width: 10%;
+  width: 10.5%;
   margin: 1px 0;
   background-color: lightgray;
 
@@ -36,6 +36,7 @@
 
 .rating1 {
   left: 0.5%;
+  width: 10% !important;
 }
 
 .rating2 {
@@ -73,6 +74,7 @@
 
 .rating10 {
   left: 90%;
+  width: 9.8% !important;
 }
 
 .fish-rating input[type=radio]:first-child + label2 {
