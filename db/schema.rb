@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_141516) do
   enable_extension "plpgsql"
 
   create_table "catches", force: :cascade do |t|
-    t.float "weight"
+    t.integer "weight"
     t.bigint "fish_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_141516) do
     t.string "common_name"
     t.string "scientific_name"
     t.integer "legal_size"
-    t.float "legal_weight"
+    t.integer "legal_weight"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
