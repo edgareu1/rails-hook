@@ -34,7 +34,7 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
     @log.destroy
 
-    redirect_to new_log_path
+    redirect_to logs_path
   end
 
   private
