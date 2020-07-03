@@ -1,29 +1,35 @@
+<div id="log-page-title">
+  <div id="log-page-title-name">
+    <h1>- My Logs -</h1>
+  </div>
+</div>
+
+
 
 <% @logs.each do |log| %>
-  <div class="row">
-    <div class="col s8 m6">
-      <div class="log-card">
-        <div class="card-content white-text">
-          <div>
-            <h1 class="log-title"><%= "#{log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == log.location }.find_index(log) + 1)}" %></h1>
-          </div>
-          <hr>
-          <div>
-            <p id="log-card-time"><%= log.start_time.strftime("%d/%m/%Y")  %></p>
-          </div>
-          <div>
-            <p id="catch-count">Catch: <%= log.catch_count %> </p>
-          </div>
-          <div>
-             <p id="card-rating">Rating:  <%= log.rating %></p>
-          </div>
-          <hr>
-          <div class="card-action">
-            <%= link_to "View Log", log_path(log), id: "view-log-link" %>
+  <%= link_to log_path(log) do %>
+    <div class="row">
+      <div class="col s8 m6">
+        <div class="log-card">
+          <div class="card-content white-text">
+            <div>
+              <h1 class="log-title"><%= "#{log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == log.location }.find_index(log) + 1)}" %></h1>
+            </div>
+            <hr>
+            <div>
+              <p id="log-card-time"><%= log.start_time.strftime("%d/%m/%Y")  %></p>
+            </div>
+            <div>
+              <p id="catch-count">Catch: <%= log.catch_count %> </p>
+            </div>
+            <div>
+               <p id="card-rating">Rating:  <%= log.rating %></p>
+            </div>
+            <hr>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
