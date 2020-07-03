@@ -53,7 +53,7 @@
             <% if catch.weight < 1000 %>
               <%= "#{catch.weight} gr" %>
             <% else %>
-              <%= "#{catch.weight / 1000} kg" %>
+              <%= "#{catch.weight.fdiv(1000)} kg" %>
             <% end %>
           <% end %>
         </li>
