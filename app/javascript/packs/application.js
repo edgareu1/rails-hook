@@ -35,7 +35,11 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initAutocomplete();
-  bottom_fish();
+  let fishContainer = document.querySelector("#jsi-flying-fish-container");
+  if (fishContainer) {
+    bottom_fish();
+  }
 });
+
 
 
