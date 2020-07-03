@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Fish.destroy_all
+Log.destroy_all
+Location.destroy_all
 User.destroy_all
 
 Fish.create(common_name: 'Yellow Fin Tuna', scientific_name: 'Thunnus albacares', legal_weight: 2.7, legal_size: 0, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1593591264/HOOK/yftuna_n83xos.png", description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.')
@@ -56,8 +58,13 @@ Fish.create(common_name: 'Spotted Seabass', scientific_name: 'Dicentrarchus punc
 puts "Fish created"
 
 
-Laure = User.new(email: "laure@gmail.com", password: "123456")
-Laure.save
+laure = User.new(email: "laure@gmail.com", password: "123456")
+laure.save
 
 puts "User created"
 
+cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", user: laure)
+puts "location created"
+
+Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure)
+puts "created log"

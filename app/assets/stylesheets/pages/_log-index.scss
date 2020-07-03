@@ -1,0 +1,76 @@
+.log-card{
+  background-color: $intense-blue;
+  border-radius: 15px;
+  margin: 20px;
+  border-color: white;
+  padding: 10px;
+
+}
+
+#log-card-title{
+  background-color: lightgray;
+  color: $dark-blue;
+  display: flex;
+  justify-content: center;
+
+}
+
+#log-card-info{
+  background-color: lightgray;
+  color: $dark-blue;
+  display: flex;
+  justify-content: center;
+  font-family: $body-font;
+
+}
+
+.log-title {
+  font-size: 20px;
+  font-family: $body-font;
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  letter-spacing: 2px;
+}
+
+#log-card-time{
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  margin-bottom: 0.3rem;
+  font-family: $body-font;
+}
+
+#card-rating{
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  color: lightgray;
+  font-family: $body-font;
+  margin-bottom: 5px;
+}
+
+hr{
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+  margin-bottom: 5px;
+}
+
+#view-log-link{
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#catch-count{
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  color: lightgray;
+  font-family: $body-font;
+  margin-bottom: 5px;
+
+}
