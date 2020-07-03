@@ -29,8 +29,9 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { bottom_fish } from 'bottom_fish';
-
 import {initAutocomplete} from '../plugins/init_autocomplete';
+import { autoComplete } from '../plugins/fish_algolia_auto_complete';
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
@@ -38,6 +39,10 @@ document.addEventListener('turbolinks:load', () => {
   let fishContainer = document.querySelector("#jsi-flying-fish-container");
   if (fishContainer) {
     bottom_fish();
+  }
+  let searchField = document.getElementById("search-input");
+  if (searchField) {
+    autoComplete();
   }
 });
 
