@@ -2,7 +2,7 @@
 
   <div class="banner text-center">
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-    <h4><%= current_user.username%></h4>
+    <h4><%= current_user.username.capitalize%></h4>
   </div>
 
   <div class="container">
@@ -16,7 +16,7 @@
 
     <div class="buttons mt-3">
       <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
-      <h6><%= link_to "CATCH", "#", class: "btn btn-flat btn-block" %></h6>
+      <h6><%= link_to "LOG", logs_path, class: "btn btn-flat btn-block" %></h6>
     </div>
 
     <div class="location text-center">
