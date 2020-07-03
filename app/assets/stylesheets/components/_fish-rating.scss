@@ -1,8 +1,13 @@
+.fish-rating-container {
+  width: 300px;
+  margin: 0 0 10px 10px;
+}
+
 .fish-rating {
   position: relative;
   overflow: hidden;
-  width: 200px;
-  height: 45px;
+  width: 100%;
+  height: 50px;
   vertical-align: middle;
 }
 
@@ -26,7 +31,7 @@
   position: absolute;
   float: right;
   height: 95%;
-  width: 10%;
+  width: 10.5%;
   margin: 1px 0;
   background-color: lightgray;
 
@@ -35,44 +40,12 @@
 }
 
 .rating1 {
-  left: 0.5%;
-}
-
-.rating2 {
-  left: 10%;
-}
-
-
-.rating3 {
-  left: 20%;
-}
-
-.rating4 {
-  left: 30%;
-}
-
-.rating5 {
-  left: 40%;
-}
-
-.rating6 {
-  left: 50%;
-}
-
-.rating7 {
-  left: 60%;
-}
-
-.rating8 {
-  left: 70%;
-}
-
-.rating9 {
-  left: 80%;
+  left: 0.5% !important;
+  width: 10% !important;
 }
 
 .rating10 {
-  left: 90%;
+  width: 9.5% !important;
 }
 
 .fish-rating input[type=radio]:first-child + label2 {
@@ -81,4 +54,14 @@
 
 .fish-rating input[type=radio]:checked ~ label2 {
   background-color: #010038;
+}
+
+.fish-rating-bar {
+  display: flex;
+  width: 100%;
+  height: 25px;
+  position: relative;
+  border-top: 1px solid #010038;
+  margin-top: 5px;
+  padding: 5px 20px 0;
 }
