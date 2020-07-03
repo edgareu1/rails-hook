@@ -23,7 +23,7 @@
         <% end %>
       </li>
       <li class="<%= if yield(:menu) == 'logs' then ' active' end %>">
-        <%= link_to root_path do %>
+        <%= link_to logs_path do %>
           <figure>
             <i class="fas fa-book"></i>
             <figcaption>Logs</figcaption>
