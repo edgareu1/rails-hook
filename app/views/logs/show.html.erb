@@ -1,16 +1,6 @@
 <div style="margin: 20px">
   <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
 
-  <!-- Pop-ups for Log: delete and edit -->
-  <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
-    <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
-  <% end %>
-
-  <%= link_to "Edit", data: { toggle: "modal", target: "#ModalEditLog" }, style: "margin-left: 10px" do %>
-    <i class="far fa-edit" style="font-size: 26px; color: white"></i>
-  <% end %>
-
-
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
@@ -31,7 +21,7 @@
 
   <!-- Optional: rating and observations -->
   <% unless @log.rating.nil? %>
-    <p style="font-size: 16px"> <%= "Rating: #{@log.rating}/5" %> </p>
+    <p style="font-size: 16px"> <%= "Rating: #{@log.rating}/10" %> </p>
   <% end %>
 
   <% unless @log.observation.empty? %>
@@ -68,14 +58,14 @@
           <% end %>
         </li>
 
-        <!-- Modal Delete Log Form -->
+        <!-- Modal Delete Catch Form -->
         <div class="modal fade" id="ModalDeleteCatch" role="dialog">
           <div class="modal-dialog">
 
             <div class="modal-content">
               <div style="text-align:center; width: 100%; padding: 10px">
                 <h2 class="modal-title" style="color: #010038"> Delete Catch</h2>
-                <p style="color: #010038; margin: 0">Are you sure you want to delete the catch?</p>
+                <p style="color: #010038; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
               </div>
 
               <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
@@ -89,10 +79,41 @@
       <% end %>
     <% end %>
   </ul>
+
+  <!-- Pop-ups for Log: delete and edit -->
+  <div style="width: 100%; padding: 5px 10px; display: flex; justify-content: flex-end">
+    <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
+      <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
+    <% end %>
+
+    <%= link_to "Edit", data: { toggle: "modal", target: "#ModalEditLog" }, style: "margin-left: 15px" do %>
+      <i class="far fa-edit" style="font-size: 26px; color: white"></i>
+    <% end %>
+
+    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-left: 15px" do %>
+      <i class="fas fa-plus" style="font-size: 26px; color: white"></i>
+    <% end %>
+  </div>
 </div>
 
 
 <!-- Modals -->
+
+<!-- Modal Create Catch Form -->
+<div class="modal fade" id="ModalCreateCatch" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #010038">New Catch</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= render "catches/form" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal Delete Log Form -->
 <div class="modal fade" id="ModalDeleteLog" role="dialog">
@@ -121,22 +142,22 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <%= render "logs/edit", log: @log %>
+        <%= render "logs/form", log: @log %>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal Create Catch Form -->
-<div class="modal fade" id="ModalCreateCatch" role="dialog">
+<!-- Modal Create Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" style="color: #010038">New Catch</h4>
+        <h4 class="modal-title" style="color: #010038">New Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <%= render "catches/new" %>
+        <%= render "logs/form", log: Log.new %>
       </div>
     </div>
   </div>

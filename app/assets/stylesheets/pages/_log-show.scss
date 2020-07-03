@@ -12,21 +12,29 @@
   }
 }
 
-.container-catch-form {
-  display: flex;
-  flex-direction: column;
-  color: #010038;
-}
-
-.container-log-form-edit {
-  display: flex;
-  flex-direction: column;
-  color: #010038;
-}
-
+/* Style Forms */
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Style Form Log */
+.container-log-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  color: #010038;
+}
+
+input[type=datetime-local] {
+  width: 200px;
+}
+
+/* Style Form Catch */
+.container-catch-form {
+  display: flex;
+  flex-direction: column;
+  color: #010038;
 }

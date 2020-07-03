@@ -10,7 +10,7 @@ class LogsController < ApplicationController
     if @log.save
       redirect_to log_path(@log)
     else
-      render 'logs/new'
+      render 'logs'
     end
   end
 

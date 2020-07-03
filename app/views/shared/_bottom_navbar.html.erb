@@ -1,30 +1,47 @@
 <nav id="bottom-nav">
   <div class="container">
-    <ul id="bottom-list" class="flex-container">
-      <li class="<%= if yield(:menu) == 'jobs' then ' active' end %>">
+    <ul id="bottom-list" class="flex-container">    
+      <li class="<%= if yield(:menu) == 'home' then ' active' end %>">
         <%= link_to root_path do %>
+          <%= image_tag "hook-logo.png" %>
+        <% end %>
+      </li>
+      <li class="<%= if yield(:menu) == 'fish' then ' active' end %>">
+        <%= link_to fish_index_path do %>
           <figure>
-            <i class="fas fa-user-tie"></i>
-            <figcaption>Fishes</figcaption>
+            <i class="fas fa-ruler-combined"></i>
+            <figcaption>Fish</figcaption>
           </figure>
         <% end %>
       </li>
-      <li class="<%= if yield(:menu) == 'about' then ' active' end %>">
+      <li class="<%= if yield(:menu) == 'prediction' then ' active' end %>">
         <%= link_to root_path do %>
           <figure>
-            <i class="far fa-building"></i>
-            <figcaption>About</figcaption>
+            <i class="far fa-calendar-alt"></i>
+            <figcaption>Prediction</figcaption>
           </figure>
         <% end %>
       </li>
-      <li class="<%= if yield(:menu) == 'profile' then ' active' end %>">
+      <li class="<%= if yield(:menu) == 'logs' then ' active' end %>">
         <%= link_to root_path do %>
           <figure>
-            <i class="fas fa-user"></i>
-            <figcaption>Profile</figcaption>
+            <i class="fas fa-book"></i>
+            <figcaption>Logs</figcaption>
           </figure>
         <% end %>
       </li>
+      
+      <div class="navbar-expand-sm navbar-light dropdown" style="margin-top: 5px">
+        <button class="navbar-toggler " type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Profile", root_path, class: "dropdown-item" %>
+          <%= link_to "About us", "#", class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </div>
+      
     </ul>
   </div>
 </nav>
