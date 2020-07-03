@@ -18,10 +18,24 @@
       <%= image_tag fish.picture_url %>
       <div class="fish-card-infos">
         <h2><%= fish.common_name.upcase %></h2>
-        <p>Minimum size: <% if fish.legal_size == 0%><%= fish.legal_weight %>kg
-        <% else %>
-          <%= fish.legal_size %>cm</p>
-        <% end %>
+        <p>
+          Minimum size:
+          <% unless fish.legal_weight.nil? %>
+            <% if fish.legal_weight < 1000 %>
+              <%= "#{fish.legal_weight} gr" %>
+            <% else %>
+              <%= "#{fish.legal_weight / 1000} kg" %>
+            <% end %>
+          <% end %>
+
+          <% if !fish.legal_weight.nil? && !fish.legal_size.nil?  %>
+            <%= " / " %>
+          <% end %>
+
+          <% unless fish.legal_size.nil? %>
+            <%= "#{fish.legal_sizet} cm" %>
+          <% end %>
+        </p>
       </div>
     </div>
     <% end %>
