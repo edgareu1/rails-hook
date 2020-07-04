@@ -5,6 +5,14 @@ class LogsController < ApplicationController
     @log = Log.new(log_params)
     @log.user = current_user
 
+    logs_same_location = current_user.logs.to_a.select { |log| log.location == @log.location }
+
+    if logs_same_location.empty?
+      @log.tag_id = 1
+    else
+      @log.tag_id = logs_same_location.max_by { |element| element.tag_id }.tag_id + 1
+    end
+
     if @log.save
       redirect_to log_path(@log)
     else

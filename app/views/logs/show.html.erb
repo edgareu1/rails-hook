@@ -1,5 +1,5 @@
 <div style="margin: 20px">
-  <h1><%= "#{@log.location.name} \##{sprintf '%04d', (current_user.logs.to_a.select { |log| log.location == @log.location }.find_index(@log) + 1)}" %></h1>
+  <h1><%= "#{@log.location.name} \##{sprintf '%04d', (@log.tag_id)}" %></h1>
 
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
