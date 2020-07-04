@@ -67,9 +67,8 @@ puts "User created"
 cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", user: laure)
 puts "location created"
 
-Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure)
+Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure, tag_id: 1)
 puts "created log"
 
-Catch.create(weight: 3.5, fish_id: 91, quantity: 3)
+Catch.create(weight: 3500, fish_id: 3, log_id: 1, quantity: 3)
 puts "created catch"
-
