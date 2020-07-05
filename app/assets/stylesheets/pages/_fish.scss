@@ -2,7 +2,6 @@
   // overflow: hidden;
   flex-direction: column;
   height: 250px;
-  background: lightgray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: flex-start;
@@ -22,11 +21,16 @@
   }
 }
 
+.fish-card-infos {
+  background-color: lightgray;
+  width: 100%;
+}
+
 .fish-card img {
   height: 70%;
   width: 100%;
   object-fit: cover;
-  filter: opacity(.6);
+  filter: opacity(0.7);
 }
 
 .fish-card-full {
@@ -54,7 +58,6 @@
     text-align: justify;
   }
 }
-
 
 .fish-card-full img {
   width: 100%;
