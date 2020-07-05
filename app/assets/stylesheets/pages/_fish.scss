@@ -2,12 +2,13 @@
   // overflow: hidden;
   flex-direction: column;
   height: 250px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: flex-start;
   margin: 20px 0px;
   color: black;
   border-radius: $border-radius;
+
   h2 {
     font-family: $headers-font;
     font-size: 18px;
@@ -15,6 +16,7 @@
     font-weight: bold;
     padding-top: 10px;
   }
+
   p {
     font-family: $body-font;
     padding-left: 10px;
@@ -44,6 +46,7 @@
   margin: 20px 0px;
   color: black;
   border-radius: $border-radius;
+
   h2 {
     font-family: $headers-font;
     font-size: 18px;
@@ -51,6 +54,7 @@
     font-weight: bold;
     padding-top: 10px;
   }
+
   p {
     font-family: $body-font;
     padding-left: 10px;

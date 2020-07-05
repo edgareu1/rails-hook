@@ -1,61 +1,43 @@
+<div class="banner text-center">
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+  <h4><%= current_user.username.capitalize%></h4>
+</div>
 
+<div class="buttons mt-3">
+  <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
+  <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
+</div>
 
-  <div class="banner text-center">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-    <h4><%= current_user.username.capitalize%></h4>
+<div class="location text-center">
+  <h6><strong>Locations</strong></h6>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <% current_user.locations.each do |location| %>
+    <hr>
+    <h6><%= location.site.nil? ? location.name : location.site %></h6>
+  <% end %>
   </div>
-
-    <div class="buttons mt-3">
-      <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
-      <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
-    </div>
-
-    <div class="location text-center">
-    <h6><strong>LOCATIONS</strong></h6>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      <i class="fas fa-plus"></i>
-    </button>
-
-      <% current_user.locations.each do |location| %>
-        <hr>
-        <h6><%= location.name %></h6>
-      <% end %>
-
-    </div>
-  </div>
-
-
-
-<!-- Button trigger modal -->
+</div>
 
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add location</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
-          <%= simple_form_for(@location) do |f| %>
-        <div class="form-inputs">
-        <%= f.input :name, label: false, placeholder: "Carapateira" %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn btn-primary" %>
-        </div>
-      <% end %>
-
+        <%= render "locations/form", location: Location.new %>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
