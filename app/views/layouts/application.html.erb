@@ -13,12 +13,13 @@
     <script src="https://kit.fontawesome.com/4b1a9fac52.js" crossorigin="anonymous"></script>
   </head>
 
-  <body> 
-    <%= render 'shared/flashes' %>
+  <body>
+    <div style="min-height: 100%; width: 100%; padding-bottom: 52px">
+      <%= render 'shared/flashes' %>
 
-    <%= yield %>
-    <% if user_signed_in?%>
-      <%= render 'shared/bottom_navbar' %>
-    <% end %>
+      <%= yield %>
+    </div>
+
+    <%= render 'shared/bottom_navbar' if user_signed_in? %>
   </body>
 </html>
