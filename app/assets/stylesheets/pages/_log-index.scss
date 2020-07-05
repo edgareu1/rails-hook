@@ -1,111 +1,40 @@
-.log-card{
+.log-card {
   background-color: lightgray;
-  border-radius: 15px;
+  border-radius: 5px;
   margin: 20px;
-  border-color: white;
   padding: 10px;
-
 }
 
-#log-card-title{
-  background-color: lightgray;
-  color: $dark-blue;
-  display: flex;
-  justify-content: center;
-
-}
-
-#log-card-info{
-  background-color: lightgray;
-  color: $intense-blue;
-  display: flex;
-  justify-content: center;
-  font-family: $body-font;
-
-}
-
-.log-title {
-  font-size: 20px;
-  font-family: $body-font;
-  display: flex;
-  justify-content: center;
-  margin-top: 0px;
-  letter-spacing: 2px;
-  color: $dark-blue;
-  font-weight: 900;
-  margin-bottom: 0px;
-}
-
-#log-card-time{
-  display: flex;
-  justify-content: center;
-  margin-left: 15px;
-  margin-bottom: 0.3rem;
-  font-family: $body-font;
-  color: $intense-blue;
-  font-weight: 900;
-  font-size: 19px;
-}
-
-#card-rating{
-  display: flex;
-  justify-content: center;
-  margin-left: 15px;
-  color: $intense-blue;
-  font-family: $body-font;
-  margin-bottom: 5px;
-  opacity: 80%;
-
-}
-
-hr{
+hr {
   height: 1px;
-  background-color: $dark-blue;
+  background-color: #010038;
   border: none;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin: 5px 0;
 }
 
-#view-log-link{
-  color: white;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
+.card-headers {
+  margin-left: 10px;
 
-#catch-count{
-  display: flex;
-  justify-content: center;
-  margin-left: 15px;
-  color: $intense-blue;
-  font-family: $body-font;
-  margin-bottom: 5px;
-  opacity: 80%;
-}
-
-#log-page-title{
-  background-color: lightgray;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: $dark-blue;
-  font-family: $headers-font;
-  h1{
-      font-size: 25px;
-      letter-spacing: 2px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-  }
-  hr{
-    width: 100%;
-    background-color: $dark-blue;
-    display: flex;
-    justify-content: flex-start;
+  h3 {
+    font-weight: 600;
+    margin-bottom: 0;
   }
 }
 
-#log-page-title-name{
+.card-content {
   display: flex;
-  justify-content: center;
+  margin-top: 10px;
+
+  p {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+}
+
+.card-content-info {
+  width: 55%;
+}
+
+.card-content-stats {
+  width: 45%;
 }
