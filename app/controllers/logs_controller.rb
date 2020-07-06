@@ -16,11 +16,13 @@ class LogsController < ApplicationController
     if @log.save
       redirect_to log_path(@log)
     else
-      render 'logs'
+      @logs = current_user.logs
+      render :index
     end
   end
 
   def index
+    @log = Log.new
     @logs = current_user.logs
   end
 
