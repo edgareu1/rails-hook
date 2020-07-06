@@ -48,7 +48,7 @@
     <% end %>
 
     <div style="margin-left: 20px">
-      <%= will_paginate @logs %>
+      <%= will_paginate @logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "&laquo;", next_label: "&raquo;" %>
     </div>
   </div>
 

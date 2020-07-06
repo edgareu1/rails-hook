@@ -76,3 +76,4 @@ gem 'open-weather-api'
 
 # Pagination
 gem 'will_paginate', '~> 3.3.0'
+gem 'will_paginate-bootstrap4'
