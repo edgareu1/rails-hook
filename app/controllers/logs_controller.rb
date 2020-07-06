@@ -20,11 +20,28 @@ class LogsController < ApplicationController
     @log.weather_icon = weather_data["weather"][0]["icon"]
     @log.weather_description = weather_data["weather"][0]["description"]
 
+    @log.moon_phase = moon_calculation(@log.start_time, @log.end_time)
+
     if @log.save
       redirect_to log_path(@log)
     else
       @logs = current_user.logs
       render :index
+    end
+  end
+
+  def moon_calculation(start_time, end_time)
+    new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
+    moon_cycle = 29.5 * 60 * 60 * 24
+    average_time = start_time + ((end_time - start_time) / 2)
+
+    time_past_new_moon = (average_time - new_moon_base) % moon_cycle
+    moon_percentage = (time_past_new_moon / moon_cycle)
+
+    if moon_percentage < 0.5
+      return moon_percentage * 2
+    else
+      return (1 - moon_percentage) * 2
     end
   end
 
