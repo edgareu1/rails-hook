@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class LogsController < ApplicationController
   before_action :set_log, only: [:show, :update, :destroy]
 
@@ -47,7 +49,7 @@ class LogsController < ApplicationController
 
   def index
     @log = Log.new
-    @logs = current_user.logs
+    @logs = current_user.logs.to_a.sort_by { |log| log["start_time"] }.reverse.paginate(page: params[:page], per_page: 5)
   end
 
   def show
