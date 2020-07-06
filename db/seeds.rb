@@ -54,7 +54,7 @@ Fish.create(common_name: 'Squid', scientific_name: 'Loligo vulgaris', legal_weig
 
 Fish.create(common_name: 'Common Octopus', scientific_name: 'Octopus vulgaris', legal_weight: 750, legal_size: 0, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1593591265/HOOK/octopus_ydgfhp.png", description: 'The Common Octopus has a soft bag-like body, eight arms with two rows of suction cups each and a colour and texture that varies according to the state of the animal and the surroundings, due to its camouflage ability. It inhabits the coastal waters down to 200 m of depth. It feeds on crustaceans (especially crabs), molluscs and fish. It spawns throughout the year, with periods of greater intensity in spring and autumn and the female dies after laying and caring for about 500,000 eggs. The males die after the mating period.')
 
-Fish.create(common_name: 'Spotted Seabass', scientific_name: 'Dicentrarchus punctatus', legal_weight: 0, legal_size: 20, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1593591276/HOOK/baila_ovlsty.png", description: 'The Spotted Seabass has an elongated silver-grey body with small black spots. It inhabits coastal waters ranging in  depth from 0  - 30  meters.')
+Fish.create(common_name: 'Spotted Seabass', scientific_name: 'Dicentrarchus punctatus', legal_weight: 0, legal_size: 20, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1594050131/HOOK/baila.png", description: 'The Spotted Seabass has an elongated silver-grey body with small black spots. It inhabits coastal waters ranging in  depth from 0  - 30  meters.')
 
 puts "Fish created"
 
