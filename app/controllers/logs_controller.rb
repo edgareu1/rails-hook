@@ -62,7 +62,6 @@ class LogsController < ApplicationController
 
     elsif @log.location != Location.find(params["log"]["location_id"])
       max_tag = logs_same_location.max_by { |element| element.tag_id }.tag_id
-
       @log.update(tag_id: max_tag + 1)
     end
 
