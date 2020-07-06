@@ -38,9 +38,8 @@
 
             <div class="card-content-stats">
               <img style="-webkit-user-select: none; width: 50px; height: 50px" src="http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png">
-              <p><%= log.weather_description%></p>
-              <p><%= log.air_pressure%> Pa</p>
-              <p><%= log.wind_speed%> m/s</p>
+              <p><%= log.air_pressure %> Pa</p>
+              <p>Moon: <%= (log.moon_phase * 100).round %>%</p>
             </div>
           </div>
         </div>
