@@ -22,7 +22,7 @@
       <p style="margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.locations.each do |location| %>
+      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse.each do |location| %>
         <li>
           <h6><%= location.site %></h6>
         </li>
