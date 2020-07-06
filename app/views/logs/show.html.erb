@@ -1,6 +1,5 @@
 <div style="padding: 20px">
-  <h1><%= "#{@log.location.name} \##{sprintf '%04d', (@log.tag_id)}" %></h1>
-
+<h1><%= "#{@log.location.name_display} \##{sprintf '%04d', (@log.tag_id)}" %></h1>
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
