@@ -13,6 +13,11 @@ class LogsController < ApplicationController
       @log.tag_id = logs_same_location.max_by { |element| element.tag_id }.tag_id + 1
     end
 
+    weather_data = Rails.configuration.open_weather_api.current lon: @log.location.longitude , lat: @log.location.latitude
+
+    @log.air_pressure = weather_data["main"]["pressure"]
+    @log.wind_speed = weather_data["wind"]["speed"]
+
     if @log.save
       redirect_to log_path(@log)
     else
