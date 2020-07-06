@@ -17,6 +17,8 @@ class LogsController < ApplicationController
 
     @log.air_pressure = weather_data["main"]["pressure"]
     @log.wind_speed = weather_data["wind"]["speed"]
+    @log.weather_icon = weather_data["weather"][0]["icon"]
+    @log.weather_description = weather_data["weather"][0]["description"]
 
     if @log.save
       redirect_to log_path(@log)
