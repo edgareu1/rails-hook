@@ -1,5 +1,5 @@
 <div style="padding: 20px">
-<h1><%= "#{@log.location.name_display} \##{sprintf '%04d', (@log.tag_id)}" %></h1>
+<h1 style="font-size: 38px"><%= "#{@log.location.name_display} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
@@ -18,14 +18,29 @@
     <% end %>
   </div>
 
-  <!-- Optional: rating and observations -->
-  <% unless @log.rating.nil? %>
-    <p style="font-size: 16px"> <%= "Rating: #{@log.rating}/10" %> </p>
-  <% end %>
+  <div class="gray-background">
+    <h3><%= @log.weather_description.capitalize %> </h3>
 
-  <% unless @log.observation.empty? %>
-    <p style="font-size: 16px"> Observations: <span style="font-size: 14px"> <%= @log.observation %> </span> </p>
-  <% end %>
+    <div style="display: flex; width: 100%; border-top: 2px solid #010038; margin-bottom: 10px">
+      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
+      </div>
+
+      <div style="width: 65%; margin-top: 10px">
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Wind Speed: </strong> <%= @log.wind_speed %> </p>
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
+      </div>
+    </div>
+
+    <!-- Optional: rating and observations -->
+    <% unless @log.rating.nil? %>
+      <p style="font-size: 17px"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
+    <% end %>
+
+    <% unless @log.observation.empty? %>
+      <p style="font-size: 17px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
+    <% end %>
+  </div>
 
   <!-- List of Catches -->
   <ul class="list-border-top">

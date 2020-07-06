@@ -12,7 +12,7 @@
       <%= link_to log_path(log) do %>
         <div class="log-card">
           <div class="card-headers">
-            <h3><%= "#{log.location.name} \##{sprintf '%04d', (log.tag_id)}" %></h3>
+            <h3><%= "#{log.location.name} \##{sprintf '%03d', (log.tag_id)}" %></h3>
           </div>
 
           <hr>
