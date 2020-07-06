@@ -1,3 +1,7 @@
+require 'json'
+require 'open-uri'
+require 'byebug'
+
 class FishController < ApplicationController
   def index
     @fish = Fish.all
@@ -16,4 +20,6 @@ class FishController < ApplicationController
   def show
     @fish = Fish.find(params[:id])
   end
+
+
 end
