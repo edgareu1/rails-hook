@@ -39,8 +39,8 @@
             <div class="card-content-stats">
               <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 50px; height: 50px; margin-bottom: 8px">
               </div>
-              <p> <%= log.air_pressure %> Pa</p>
               <p> <strong style="font-size: 17px">Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
+              <p> <%= log.air_pressure %> Pa</p>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <%= render "logs/form", log: @log %>
+          <%= render "logs/form-new", log: @log %>
         </div>
       </div>
     </div>
