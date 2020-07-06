@@ -47,7 +47,7 @@ class LogsController < ApplicationController
 
   def index
     @log = Log.new
-    @logs = current_user.logs
+    @logs = current_user.logs.to_a.sort_by { |log| log["start_time"] }.reverse
   end
 
   def show
