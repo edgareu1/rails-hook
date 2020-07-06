@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_140532) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "picture_url"
+    t.string "url"
   end
 
   create_table "locations", force: :cascade do |t|
