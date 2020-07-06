@@ -144,6 +144,8 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    open-weather-api (0.0.7)
+      rest-client (~> 2.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
     pry (0.13.1)
@@ -280,6 +282,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
+  open-weather-api
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
