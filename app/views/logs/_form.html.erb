@@ -10,7 +10,7 @@
     <input type="datetime-local" id="log_end_time" name="log[end_time]"
         value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
 
-    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: lambda { |location| location.name_display } %>
+    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
     <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" }, placeholder: "Leave an observation" %>
 
     <p style="font-size: 1rem; color: #010038">How was your session?</p>

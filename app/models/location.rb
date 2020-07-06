@@ -5,7 +5,5 @@ class Location < ApplicationRecord
 
   has_many :logs, dependent: :destroy
 
-  def name_display
-    site.empty? ? name : site
-  end
+  validates :site, presence: true, uniqueness: true, :length => { :maximum => 12, :message => "Maximum of 12 characters"}
 end

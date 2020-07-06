@@ -1,5 +1,6 @@
 <div style="padding: 20px">
-<h1 style="font-size: 38px"><%= "#{@log.location.name_display} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+  <h1 style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+
   <!-- Date -->
   <div style="display: flex; margin: 20px 0">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
@@ -19,7 +20,7 @@
   </div>
 
   <div class="gray-background">
-    <h3><%= @log.weather_description.capitalize %> </h3>
+    <h3 style="margin-left: 10px"><%= @log.weather_description.capitalize %> </h3>
 
     <div style="display: flex; width: 100%; border-top: 2px solid #010038; margin-bottom: 10px">
       <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
@@ -45,7 +46,7 @@
   <!-- List of Catches -->
   <ul class="list-border-top">
     <div style="display: flex; justify-content: space-between">
-      <h3>Catches</h3>
+      <h3 style="margin-left: 10px">Catches</h3>
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: #010038" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
