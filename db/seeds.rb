@@ -64,7 +64,7 @@ laure.save
 
 puts "User created"
 
-cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", user: laure)
+cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", site: "Cool rock in 3A", user: laure)
 puts "location created"
 
 Log.create(start_time: Time.now, end_time: Time.now, rating: 2, observation: "goos sesh", location: cascais, user: laure, tag_id: 1)

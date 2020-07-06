@@ -3,28 +3,37 @@
   <h4><%= current_user.username.capitalize%></h4>
 </div>
 
-<div class="buttons mt-3">
-  <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
-  <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
-</div>
-
-<div class="location text-center">
-  <h6><strong>Locations</strong></h6>
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    <i class="fas fa-plus"></i>
-  </button>
-
-  <% current_user.locations.each do |location| %>
-    <hr>
-    <h6><%= location.site.nil? ? location.name : location.site %></h6>
-  <% end %>
+<div style="padding: 20px">
+  <div class="buttons mt-3">
+    <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
+    <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
   </div>
+
+  <ul class="list-border-top">
+    <div style="display: flex; justify-content: space-between">
+      <h3>Locations</h3>
+
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #010038" do %>
+        <i class="fas fa-plus" style="font-size: 30px"></i>
+      <% end %>
+    </div>
+
+    <% if current_user.locations.empty? %>
+      <p style="margin: 0">No locations saved yet</p>
+
+    <% else %>
+      <% current_user.locations.each do |location| %>
+        <li>
+          <h6><%= location.name_display %></h6>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalCreateLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
        <div class="modal-header">
