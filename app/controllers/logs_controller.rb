@@ -2,7 +2,7 @@ class LogsController < ApplicationController
   before_action :set_log, only: [:show, :update, :destroy]
 
   def create
-    @log = Log.new(log_params)
+    @log = Log.new(log_params_new)
     @log.user = current_user
 
     logs_same_location = current_user.logs.to_a.select { |log| log.location == @log.location }
@@ -55,7 +55,20 @@ class LogsController < ApplicationController
   end
 
   def update
-    @log.update(log_params)
+    logs_same_location = current_user.logs.to_a.select { |log| log.location == Location.find(params["log"]["location_id"]) }
+
+    if logs_same_location.empty?
+      @log.update(tag_id: 1)
+
+    elsif @log.location != Location.find(params["log"]["location_id"])
+      max_tag = logs_same_location.max_by { |element| element.tag_id }.tag_id
+
+      @log.update(tag_id: max_tag + 1)
+    end
+
+    @log.update(log_params_edit)
+
+    @log.update(moon_phase: moon_calculation(@log.start_time, @log.end_time))
 
     redirect_to log_path(@log)
   end
@@ -68,8 +81,12 @@ class LogsController < ApplicationController
 
   private
 
-  def log_params
+  def log_params_new
     params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id)
+  end
+
+  def log_params_edit
+    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id, :air_pressure, :wind_speed)
   end
 
   def set_log
