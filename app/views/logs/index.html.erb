@@ -37,9 +37,10 @@
             </div>
 
             <div class="card-content-stats">
-              <p>Lunar Cycle</p>
-              <p>Air Pressure</p>
-              <p>Temperature</p>
+              <img style="-webkit-user-select: none; width: 50px; height: 50px" src="http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png">
+              <p><%= log.weather_description%></p>
+              <p><%= log.air_pressure%> Pa</p>
+              <p><%= log.wind_speed%> m/s</p>
             </div>
           </div>
         </div>
@@ -62,10 +63,11 @@
     </div>
   </div>
 </div>
+
 <% if @log.errors.any? %>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("modal-button").click();
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("modal-button").click();
+    });
+  </script>
 <% end %>

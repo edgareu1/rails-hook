@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_124229) do
+ActiveRecord::Schema.define(version: 2020_07_06_140532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_124229) do
     t.float "wind_speed"
     t.string "weather_icon"
     t.string "weather_description"
+    t.float "moon_phase"
     t.index ["location_id"], name: "index_logs_on_location_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
