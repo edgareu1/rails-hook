@@ -1,7 +1,3 @@
-require 'json'
-require 'open-uri'
-require 'byebug'
-
 class FishController < ApplicationController
   def index
     @fish = Fish.all
