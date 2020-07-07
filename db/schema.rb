@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_115455) do
+ActiveRecord::Schema.define(version: 2020_07_06_140532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_115455) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "picture_url"
+    t.string "url"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -58,6 +59,11 @@ ActiveRecord::Schema.define(version: 2020_07_05_115455) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "tag_id"
+    t.integer "air_pressure"
+    t.float "wind_speed"
+    t.string "weather_icon"
+    t.string "weather_description"
+    t.float "moon_phase"
     t.index ["location_id"], name: "index_logs_on_location_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
   end

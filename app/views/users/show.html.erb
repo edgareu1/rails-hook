@@ -22,9 +22,9 @@
       <p style="margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.locations.each do |location| %>
+      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..4].each do |location| %>
         <li>
-          <h6><%= location.name_display %></h6>
+          <h6><%= location.logs.count.zero? ? "No logs yet - #{location.site}" : "Logs #{location.logs.count} - #{location.site}" %></h6>
         </li>
       <% end %>
     <% end %>
