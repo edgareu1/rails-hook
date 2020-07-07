@@ -1,7 +1,8 @@
 <div style="padding: 20px">
-<h1><%= "#{@log.location.name_display} \##{sprintf '%04d', (@log.tag_id)}" %></h1>
+  <h1 style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+
   <!-- Date -->
-  <div style="display: flex; margin: 20px 0">
+  <div style="display: flex; margin: 25px 10px">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
       <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
@@ -18,19 +19,34 @@
     <% end %>
   </div>
 
-  <!-- Optional: rating and observations -->
-  <% unless @log.rating.nil? %>
-    <p style="font-size: 16px"> <%= "Rating: #{@log.rating}/10" %> </p>
-  <% end %>
+  <div class="gray-background">
+    <h3 style="margin-left: 10px"><%= @log.weather_description.capitalize %> </h3>
 
-  <% unless @log.observation.empty? %>
-    <p style="font-size: 16px"> Observations: <span style="font-size: 14px"> <%= @log.observation %> </span> </p>
-  <% end %>
+    <div style="display: flex; width: 100%; border-top: 2px solid #010038; margin-bottom: 10px">
+      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
+      </div>
+
+      <div style="width: 65%; margin-top: 10px">
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Wind Speed: </strong> <%= @log.wind_speed %> m/s</p>
+        <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
+      </div>
+    </div>
+
+    <!-- Optional: rating and observations -->
+    <% unless @log.rating.nil? %>
+      <p style="font-size: 17px"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
+    <% end %>
+
+    <% unless @log.observation.empty? %>
+      <p style="font-size: 17px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
+    <% end %>
+  </div>
 
   <!-- List of Catches -->
-  <ul class="list-border-top">
+  <ul class="list-border-top" style="margin-top: 25px">
     <div style="display: flex; justify-content: space-between">
-      <h3>Catches</h3>
+      <h3 style="margin-left: 10px">Catches</h3>
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: #010038" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
@@ -46,7 +62,10 @@
             <i class="far fa-trash-alt" style="font-size: 18px; color: #010038; margin-right: 5px"></i>
           <% end %>
 
-          <%= "#{catch.quantity} #{catch.fish.common_name}" %>
+          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
+            <%= "#{catch.quantity} #{catch.fish.common_name}" %>
+          </a>
+          <%= render "modal", catch: catch %>
 
 
 
@@ -57,11 +76,9 @@
               <%= "#{catch.weight.fdiv(1000).tap { |num| break num.to_i == num ? num.to_i : num }} kg" %>
             <% end %>
           <% end %>
-
-
-
-
         </li>
+
+
 
         <!-- Modal Delete Catch Form -->
         <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
@@ -147,7 +164,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <%= render "logs/form", log: @log %>
+        <%= render "logs/form-edit", log: @log %>
       </div>
     </div>
   </div>
@@ -162,7 +179,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <%= render "logs/form", log: Log.new %>
+        <%= render "logs/form-new", log: Log.new %>
       </div>
     </div>
   </div>

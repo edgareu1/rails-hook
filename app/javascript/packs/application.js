@@ -29,6 +29,7 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { bottom_fish } from 'bottom_fish';
+import { background_profile } from 'background_profile';
 import {initAutocomplete} from '../plugins/init_autocomplete';
 import { autoComplete } from '../plugins/fish_algolia_auto_complete';
 
@@ -40,6 +41,12 @@ document.addEventListener('turbolinks:load', () => {
   if (fishContainer) {
     bottom_fish();
   }
+
+  let fishTank = document.querySelector("#fishtank");
+  if (fishTank) {
+    background_profile();
+  }
+
   let searchField = document.getElementById("search-input");
   if (searchField) {
     autoComplete();

@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div class="modal fade" id="Modal-<%= catch.fish.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= catch.fish.common_name.upcase%></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="fish-card-infos">
+            <div class="fish-card-full">
+                <%= image_tag catch.fish.picture_url %>
+                <br>
+                Minimum size:
+                <% if catch.fish.legal_weight == 0 && catch.fish.legal_size == 0  %>
+                NA
+                <% end %>
+
+                <% unless catch.fish.legal_weight == 0 %>
+                <% if catch.fish.legal_weight < 1000 %>
+                    <%= "#{catch.fish.legal_weight} gr" %>
+                <% else %>
+                    <%= "#{catch.fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %>
+                <% end %>
+                <% end %>
+
+                <% if catch.fish.legal_weight != 0 && catch.fish.legal_size != 0  %>
+                <%= " / " %>
+                <% end %>
+
+                <% unless catch.fish.legal_size == 0 %>
+                <%= "#{catch.fish.legal_size} cm" %>
+                <% end %>
+            <br>
+            <br>
+
+            <%= catch.fish.description %>
+            </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
