@@ -12,7 +12,6 @@ Log.destroy_all
 Location.destroy_all
 User.destroy_all
 
-
 Fish.create(common_name: 'Yellow Fin Tuna', good_weight: 25000, scientific_name: 'Thunnus albacares', legal_weight: 2700, legal_size: 0, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1593591264/HOOK/yftuna_n83xos.png", description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.', url: 'https://en.wikipedia.org/wiki/Yellowfin_tuna')
 
 Fish.create(common_name: 'Bluemouth', good_weight: 600, scientific_name: 'Helicolenus dactylopterus', legal_weight: 0, legal_size: 0, picture_url: "https://res.cloudinary.com/tomfishson/image/upload/v1593591264/HOOK/bluemouth_sbjocv.png", description: 'It dwells on the seabed between 200-1,000 m, often around underwater wrecks. It is a solitary species and aggregate only at the time of reproduction, which occurs in summer. It feeds on fish, crustaceans and some cephalopods.', url: 'https://en.wikipedia.org/wiki/Blackbelly_rosefish')
@@ -59,7 +58,6 @@ Fish.create(common_name: 'Spotted Seabass', good_weight: 1000, scientific_name: 
 
 puts "Fish created"
 
-
 laure = User.new(username: "laure", email: "laure@gmail.com", password: "123456")
 laure.save
 
@@ -67,5 +65,3 @@ puts "User created"
 
 cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", site: "Cool rock in 3A", user: laure)
 puts "location created"
-
-
