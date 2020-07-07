@@ -32,32 +32,40 @@ class Ranking
           sum_gr_catches += catch.weight
         end
 
-        sum_location_classification += ranking_log(sum_num_catches, sum_gr_catches, log.moon_phase, air_pressure_indicator(log.air_pressure), wind_speed_indicator(log.wind_speed))
-        
         sum_location_hours += (log.end_time - log.start_time).fdiv(60 * 60).round(1)
         sum_location_num_catches += sum_num_catches
         sum_location_weight_catches += sum_gr_catches
       end
 
       all_ranking_hash[location.first.location_id] = {
-        classification: sum_location_classification / sum_location_hours,
         number_hour: sum_location_num_catches / sum_location_hours,
         weight_hour: sum_location_weight_catches / sum_location_hours,
       }
     end
 
-    
-    top_ones = all_ranking_hash.delete_if { |k, v| v[:classification].zero? }.each do |k, v|
+
+    top_ones = all_ranking_hash.each do |k, v|
       weather_data = Rails.configuration.open_weather_api.current lon: Location.find(k).longitude , lat: Location.find(k).latitude
 
+      moon_phase_multiple = ( ( (moon_calculation(Time.now, Time.now + (5 * 60 * 60)) - 0.5).abs * 0.8 * 2) + 1 )
+      air_pressure_multiple = air_pressure_indicator(weather_data["main"]["pressure"])
+      wind_speed_multiple = wind_speed_indicator(weather_data["wind"]["speed"])
+
+      multiple = moon_phase_multiple * air_pressure_multiple * wind_speed_multiple
+
+      num_fish_predicted = v[:number_hour] * multiple
+      weight_fish_predicted = v[:weight_hour] * multiple
+
       top_ranking_hash[k] = {
-        classification: v[:classification],
         number_hour: v[:number_hour],
         weight_hour: v[:weight_hour],
-        moon_phase: ( ( (moon_calculation(Time.now, Time.now + (5 * 60 * 60)) - 0.5).abs * 0.8 * 2) + 1 ),
-        air_pressure_indicator: air_pressure_indicator(weather_data["main"]["pressure"]),
-        wind_speed_indicator: wind_speed_indicator(weather_data["wind"]["speed"]),
-        weather_icon: weather_data["weather"][0]["icon"]
+        moon_phase: moon_phase_multiple,
+        air_pressure_indicator: air_pressure_multiple,
+        wind_speed_indicator: wind_speed_multiple,
+        weather_icon: weather_data["weather"][0]["icon"],
+        number_predicted: num_fish_predicted,
+        weight_predicted: weight_fish_predicted,
+        classification: (num_fish_predicted * 0.2) + ((weight_fish_predicted / 1000) * 0.8)
       }
     end
 
@@ -103,9 +111,5 @@ class Ranking
     else
       return 0.5
     end
-  end
-
-  def ranking_log(num_catches, weight_catches, moon_phase, air_pressure, wind_speed)
-    return  ( (num_catches * 0.2) + (weight_catches * 0.8) ).fdiv( ( ( (moon_phase - 0.5).abs * 0.8 * 2) + 1 ) * air_pressure * wind_speed)
   end
 end
