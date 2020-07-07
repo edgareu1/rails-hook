@@ -33,7 +33,7 @@ class Ranking
         sum_location_hours += (log.end_time - log.start_time).fdiv(60 * 60).round(1)
       end
 
-      ranking_hash[location.first.id] = sum_location_classification / sum_location_hours
+      ranking_hash[location.first.location_id] = sum_location_classification / sum_location_hours
     end
 
     return ranking_hash

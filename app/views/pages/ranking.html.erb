@@ -4,17 +4,24 @@
   </div>
 
   <div>
-    <% @ranking_hash.each_with_index do |log, index| %>
-      <% if index == 0 %>
-        <h3 style="font-size: 40px">
-      <% elsif index == 1 %>
-        <h3 style="font-size: 34px">
-      <% elsif index == 2 %>
-        <h3 style="font-size: 30px">
-      <% else %>
-        <h3 style="font-size: 26px">
-      <% end %>
-      <%= "#{index + 1}. #{Log.find(log[0]).location.site} - #{log[1].round}" %></h3>
+    <% @ranking_hash.each_with_index do |location, index| %>
+      <div style="display: flex">
+        <% if index == 0 %>
+          <h3 style="font-size: 36px">
+        <% elsif index == 1 %>
+          <h3 style="font-size: 32px">
+        <% elsif index == 2 %>
+          <h3 style="font-size: 28px">
+        <% else %>
+          <h3 style="font-size: 26px">
+        <% end %>
+        <%= "#{index + 1}. #{Location.find(location[0]).site} - #{location[1].round}" %></h3>
+
+        <% weather_data = Rails.configuration.open_weather_api.current lon: Location.find(location[0]).longitude , lat: Location.find(location[0]).latitude %>
+
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px; margin-left: 10px">
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
