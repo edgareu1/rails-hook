@@ -1,3 +1,5 @@
+<div class="background-container"><canvas width="375" height="812" class="fish-tank" id="fishtank"></div>
+
 <div class="banner text-center">
   <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
   <h4><%= current_user.username.capitalize%></h4>
@@ -7,11 +9,12 @@
   <div class="buttons mt-3">
     <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
     <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
+        
   </div>
 
   <ul class="list-border-top">
     <div style="display: flex; justify-content: space-between">
-      <h3>Locations</h3>
+      <h3>My locations</h3>
 
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #010038" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
@@ -50,3 +53,6 @@
     </div>
   </div>
 </div>
+</div>
+
+
