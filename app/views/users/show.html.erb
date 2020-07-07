@@ -1,3 +1,5 @@
+<div class="background-container"><canvas width="375" height="760" class="fish-tank" id="fishtank"></div>
+<div style="position: sticky">
 <div class="banner text-center">
   <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
   <h4><%= current_user.username.capitalize%></h4>
@@ -6,12 +8,16 @@
 <div style="padding: 20px">
   <div class="buttons mt-3">
     <h6><%= link_to "PREDICTION", "#", class: "btn btn-flat btn-block" %></h6>
-    <h6><%= link_to "LOGS", logs_path, class: "btn btn-flat btn-block" %></h6>
+    <%= link_to "Create",id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },  class: "btn btn-flat btn-block" do %>
+      <h6>CREATE LOG</h6>
+    <% end %>
   </div>
 
   <ul class="list-border-top">
     <div style="display: flex; justify-content: space-between">
-      <h3>Locations</h3>
+
+      <h3>My Locations</h3>
+
 
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #010038" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
@@ -22,17 +28,29 @@
       <p style="margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.locations.each do |location| %>
+      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..4].each do |location| %>
         <li>
-          <h6><%= location.name_display %></h6>
+          <h6 style="font-size: 16px">
+            <% if location.logs.count.zero? %>
+              (no logs)
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% elsif location.logs.count == 1%>
+              <%= "(#{location.logs.count} log)" %>
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% else %>
+              <%= "(#{location.logs.count} logs)" %>
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% end %>
+          </h6>
         </li>
       <% end %>
     <% end %>
   </ul>
 </div>
 
+</div>
 
-<!-- Modal -->
+<!-- Modal Create Location Form -->
 <div class="modal fade" id="ModalCreateLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -46,6 +64,21 @@
 
       <div class="modal-body">
         <%= render "locations/form", location: Location.new %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Create Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #010038">New Log</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= render "logs/form-new", log: Log.new %>
       </div>
     </div>
   </div>

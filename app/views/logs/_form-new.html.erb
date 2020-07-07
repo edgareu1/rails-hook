@@ -1,0 +1,53 @@
+<%= simple_form_for(log) do |f| %>
+  <div class="container-log-form">
+    <label for="log_start_time">Starting time</label>
+    <input type="datetime-local" id="log_start_time" name="log[start_time]"
+        value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
+
+    <br>
+
+    <label for="log_end_time">Ending time</label>
+    <input type="datetime-local" id="log_end_time" name="log[end_time]"
+        value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>">
+
+    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
+    <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" }, placeholder: "Leave an observation" %>
+
+    <p style="font-size: 1rem; color: #010038">How was your session?</p>
+
+    <div class="fish-rating-container">
+      <div class="fish-rating">
+        <img src="https://res.cloudinary.com/dvvuknsmw/image/upload/v1593697820/output-onlinepngtools_asl0qy.png"
+          alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
+
+        <input type="hidden" name="log[rating]" value="">
+
+        <% (1..10).to_a.reverse.each do |num| %>
+          <% if log.id.nil? %>
+            <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
+            <label for="log_rating_new_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+
+          <% else %>
+            <% if log.rating == num %>
+              <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>" checked>
+            <% else %>
+              <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
+            <% end %>
+
+          <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+          <% end %>
+
+          <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
+        <% end %>
+      </div>
+
+      <div class="fish-rating-bar">
+        <% (1..10).to_a.each do |num| %>
+          <div class="rating<%= num %>" style="position: absolute; font-size: 1rem; color: #010038; text-align: center; width: 10.5%; left: <%= (num - 1) * 10 %>%"><%= num %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.button :submit, class: "btn btn-flat btn-block" %>
+  </div>
+<% end %>
