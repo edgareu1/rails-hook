@@ -67,8 +67,6 @@
           </a>
           <%= render "modal", catch: catch %>
 
-
-
           <% unless catch.weight.nil? %>
             <% if catch.weight < 1000 %>
               <%= "#{catch.weight} gr" %>
@@ -76,11 +74,7 @@
               <%= "#{catch.weight.fdiv(1000).tap { |num| break num.to_i == num ? num.to_i : num }} kg" %>
             <% end %>
           <% end %>
-
-
         </li>
-
-        
 
         <!-- Modal Delete Catch Form -->
         <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
