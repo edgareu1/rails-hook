@@ -8,6 +8,6 @@ class PagesController < ApplicationController
 
   def ranking
     @ranking = Ranking.new(current_user).rank
-    @ranking_hash = @ranking.sort_by { |k, v| v }.reverse
+    @ranking_hash = @ranking.delete_if { |k, v| v.zero? }.sort_by { |k, v| v }.reverse[0..4]
   end
 end
