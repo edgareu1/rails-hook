@@ -4,7 +4,7 @@
   </div>
 
   <div>
-    <% @ranking_hash.each_with_index do |location, index| %>
+    <% @top_ranking_arr.each_with_index do |location, index| %>
       <div style="display: flex">
         <% if index == 0 %>
           <h3 style="font-size: 36px">
@@ -15,11 +15,16 @@
         <% else %>
           <h3 style="font-size: 26px">
         <% end %>
-        <%= "#{index + 1}. #{Location.find(location[0]).site} - #{location[1].round}" %></h3>
+        <%= "#{index + 1}. #{Location.find(location[0]).site} - #{location[1].round}" %>
 
-        <% weather_data = Rails.configuration.open_weather_api.current lon: Location.find(location[0]).longitude , lat: Location.find(location[0]).latitude %>
+        <% multiple = 5 * @top_ranking_hash[location[0]][:moon_phase] * @top_ranking_hash[location[0]][:air_pressure_indicator] * @top_ranking_hash[location[0]][:wind_speed_indicator] %>
+        number
+        <%= @top_ranking_hash[location[0]][:number_hour] * multiple %>
+        weight
+        <%= @top_ranking_hash[location[0]][:weight_hour] * multiple %>
+        </h3>
 
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px; margin-left: 10px">
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= @top_ranking_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px; margin-left: 10px">
         </div>
       </div>
     <% end %>

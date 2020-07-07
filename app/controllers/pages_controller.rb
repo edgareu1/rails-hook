@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def ranking
-    @ranking = Ranking.new(current_user).rank
-    @ranking_hash = @ranking.delete_if { |k, v| v.zero? }.sort_by { |k, v| v }.reverse[0..4]
+    @top_ranking_hash = Ranking.new(current_user).rank
+    @top_ranking_arr = @top_ranking_hash.map { |k, v| [k, v[:classification]] }.sort_by { |k, v| -v }[0..4]
   end
 end
