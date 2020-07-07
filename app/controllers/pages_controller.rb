@@ -1,3 +1,5 @@
+require 'ranking'
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
@@ -5,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def ranking
-    # An hash with locations and stuff
-    ranking = Ranking.new(current_user).rank
+    @ranking = Ranking.new(current_user)
   end
 end
+
