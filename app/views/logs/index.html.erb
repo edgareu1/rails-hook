@@ -12,39 +12,44 @@
       <%= link_to log_path(log) do %>
         <div class="log-card">
           <div class="card-headers">
-            <h3><%= "#{log.location.name} \##{sprintf '%04d', (log.tag_id)}" %></h3>
+            <h3><%= "#{log.location.site} \##{sprintf '%03d', (log.tag_id)}" %></h3>
           </div>
 
           <hr>
 
           <div class="card-content">
             <div class="card-content-info">
-              <p style="font-size: 17px; font-weight: 600">
+              <p style="font-size: 17px; font-weight: 600; margin-bottom: 16px">
                   <%= log.start_time.strftime('%B %d')  %> (<%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %>h)
               </p>
 
               <% if log.catch_count == 0 %>
-                <p> <strong style="font-size: 17px">Nothing caught</strong> </p>
+                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Nothing caught</strong> </p>
               <% else %>
-                <p> <strong style="font-size: 17px">Catches:</strong> <%= log.catch_count %> </p>
+                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Catches:</strong> <%= log.catch_count %> </p>
               <% end %>
 
               <% if log.rating.nil? %>
-                <p> <strong style="font-size: 17px">Not rated</strong> </p>
+                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Not rated</strong> </p>
               <% else %>
-                <p> <strong style="font-size: 17px">Rating:</strong> <%= log.rating %></p>
+                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Rating:</strong> <%= log.rating %></p>
               <% end %>
             </div>
 
             <div class="card-content-stats">
-              <p>Lunar Cycle</p>
-              <p>Air Pressure</p>
-              <p>Temperature</p>
+              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 50px; height: 50px; margin-bottom: 8px">
+              </div>
+              <p> <strong style="font-size: 17px">Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
+              <p> <%= log.air_pressure %> Pa</p>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
+
+    <div style="margin-left: 20px">
+      <%= will_paginate @logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "&laquo;", next_label: "&raquo;" %>
+    </div>
   </div>
 
   <!-- Modal Create Log Form -->
@@ -56,16 +61,17 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <%= render "logs/form", log: @log %>
+          <%= render "logs/form-new", log: @log %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <% if @log.errors.any? %>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("modal-button").click();
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("modal-button").click();
+    });
+  </script>
 <% end %>

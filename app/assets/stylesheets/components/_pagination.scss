@@ -1,0 +1,10 @@
+.page-link, .page-item.disabled .page-link {
+  color: #010038;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid darkgray;
+}
+
+.page-item.active .page-link {
+    color: rgb(230, 230, 230);
+    background-color: #010038;
+}
