@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def ranking
-    @ranking = Ranking.new(current_user)
+    @ranking = Ranking.new(current_user).rank
+    @ranking_hash = @ranking.sort_by { |k, v| v }.reverse
   end
 end
-

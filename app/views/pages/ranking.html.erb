@@ -1,2 +1,6 @@
 <h1>dsadsa</h1>
-<%= @ranking %>
+
+<% @ranking_hash.each do |log| %>
+    <%= "#{Log.find(log[0]).location.site} - #{Log.find(log[0]).start_time} #{log[1].round}" %>
+    <br>
+<% end %>
