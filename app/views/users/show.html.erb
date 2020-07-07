@@ -29,20 +29,25 @@
       <p style="margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..4].each do |location| %>
-        <li>
-          <h6 style="font-size: 16px">
+      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..2].each do |location| %>
+        <li style="display: flex">
+          <h6 style="font-size: 17px; margin: 6px 10px 0 0">
             <% if location.logs.count.zero? %>
               (no logs)
-              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
             <% elsif location.logs.count == 1%>
-              <%= "(#{location.logs.count} log)" %>
-              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+              (1 log)
             <% else %>
               <%= "(#{location.logs.count} logs)" %>
-              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
             <% end %>
+
+            <strong style="font-size: 18px"><%= location.site.capitalize %></strong>
           </h6>
+
+        <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
+
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px">
+        </div>
+
         </li>
       <% end %>
     <% end %>
