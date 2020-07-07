@@ -4,7 +4,7 @@
   </div>
 
   <div>
-    <% @ranking_hash.each_with_index do |log, index| %>
+    <% @ranking_hash.each_with_index do |location, index| %>
       <% if index == 0 %>
         <h3 style="font-size: 36px">
       <% elsif index == 1 %>
@@ -14,7 +14,7 @@
       <% else %>
         <h3 style="font-size: 26px">
       <% end %>
-      <%= "#{index + 1}. #{Log.find(log[0]).location.site} - #{log[1].round}" %></h3>
+      <%= "#{index + 1}. #{Location.find(location[0]).site} - #{location[1].round}" %></h3>
     <% end %>
   </div>
 </div>
