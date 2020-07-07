@@ -14,7 +14,9 @@
 
   <ul class="list-border-top">
     <div style="display: flex; justify-content: space-between">
-      <h3>My locations</h3>
+
+      <h3>My Locations</h3>
+
 
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #010038" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
@@ -27,7 +29,18 @@
     <% else %>
       <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..4].each do |location| %>
         <li>
-          <h6><%= location.logs.count.zero? ? "No logs yet - #{location.site}" : "Logs #{location.logs.count} - #{location.site}" %></h6>
+          <h6 style="font-size: 16px">
+            <% if location.logs.count.zero? %>
+              (no logs)
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% elsif location.logs.count == 1%>
+              <%= "(#{location.logs.count} log)" %>
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% else %>
+              <%= "(#{location.logs.count} logs)" %>
+              <strong style="font-size: 17px"><%= location.site.capitalize %></strong>
+            <% end %>
+          </h6>
         </li>
       <% end %>
     <% end %>

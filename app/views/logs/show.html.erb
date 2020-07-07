@@ -2,7 +2,7 @@
   <h1 style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
 
   <!-- Date -->
-  <div style="display: flex; margin: 20px 0">
+  <div style="display: flex; margin: 25px 10px">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
       <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
@@ -44,7 +44,7 @@
   </div>
 
   <!-- List of Catches -->
-  <ul class="list-border-top">
+  <ul class="list-border-top" style="margin-top: 25px">
     <div style="display: flex; justify-content: space-between">
       <h3 style="margin-left: 10px">Catches</h3>
       <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: #010038" do %>
