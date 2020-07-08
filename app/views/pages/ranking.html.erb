@@ -18,21 +18,22 @@
         <%= "#{index + 1}. #{Location.find(location[0]).site} - #{location[1].round(2)}" %>
         </h3>
 
-        <p>
-          Expected for a session of 5 hours: number
-          <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %>
-
-          total weight:
-          <% if (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5) >= 1000 %>
-            <%= ((@all_location_stat_hash[location[0]][:gr_predicted_per_hour] / 1000) * 5).round(1) %>kg
-          <% else %>
-            <%= (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5).round %>gr
-          <% end %>
-        </p>
-
         <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px; margin-left: 10px">
         </div>
       </div>
+        
+      <p>
+        Expected for a session of 5 hours: number
+        <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %>
+
+        total weight:
+        <% if (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5) >= 1000 %>
+          <%= ((@all_location_stat_hash[location[0]][:gr_predicted_per_hour] / 1000) * 5).round(1) %>kg
+        <% else %>
+          <%= (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5).round %>gr
+        <% end %>
+      </p>
+
     <% end %>
   </div>
 </div>
