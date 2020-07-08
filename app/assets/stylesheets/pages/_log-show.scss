@@ -18,7 +18,7 @@
 /* Style Forms */
 .modal {
   position: absolute;
-  top: 85%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -40,3 +40,18 @@ input[type=datetime-local] {
   flex-direction: column;
   color: #010038;
 }
+
+#ModalDeleteLog, #ModalCreateCatch {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#ModalCreateLocation {
+  position: fixed;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

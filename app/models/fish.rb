@@ -4,5 +4,4 @@ class Fish < ApplicationRecord
   algoliasearch do
     attribute :common_name, :id
   end
-
 end
