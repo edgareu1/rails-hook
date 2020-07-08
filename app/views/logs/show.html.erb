@@ -65,7 +65,7 @@
           <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
             <%= "#{catch.quantity} #{catch.fish.common_name}" %>
           </a>
-          <%= render "modal", catch: catch %>
+          <%= render "logs/modal", catch: catch %>
 
           <% unless catch.weight.nil? %>
             <% if catch.weight < 1000 %>
@@ -180,3 +180,11 @@
     </div>
   </div>
 </div>
+
+<% if @log.errors.any? %>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("modal-button").click();
+    });
+  </script>
+<% end %>
