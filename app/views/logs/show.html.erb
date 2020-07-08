@@ -1,8 +1,9 @@
 <div style="padding: 20px">
-  <h1 style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+  <h1 style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
+  <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400">- <%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
 
   <!-- Date -->
-  <div style="display: flex; margin: 25px 10px">
+  <div style="display: flex; margin: 30px 10px 25px">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
       <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
