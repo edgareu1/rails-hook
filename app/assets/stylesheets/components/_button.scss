@@ -1,9 +1,10 @@
 .btn-flat {
     color: white;
     padding: 8px 24px;
-    border-radius: 4px;
+    border-radius: 8px;
     background: $intense-blue;
     transition: background 0.3s ease;
+    letter-spacing: 3px;
   }
   
 .btn-flat:hover {

@@ -1,7 +1,7 @@
 <div class="background-container"><canvas width="375" height="760" class="fish-tank" id="fishtank"></div>
 <div style="position: sticky">
 <div class="banner text-center">
-  <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+  <%= image_tag "https://i.pinimg.com/564x/b5/e2/86/b5e2861637b9d93ad1c5cc7761e65834.jpg", class: "avatar-large", alt: "avatar-large" %>
   <h4 style="padding-top: 10px"><%= current_user.username.capitalize%></h4>
   <div class="user-info">
     <div class="user-numbers">
@@ -68,10 +68,10 @@
             <strong style="font-size: 18px"><%= location.site.capitalize %></strong>
           </h6>
 
-        <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
+          <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
 
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px">
-        </div>
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px">
+          </div>
 
         </li>
       <% end %>

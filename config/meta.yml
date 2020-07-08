@@ -1,0 +1,5 @@
+meta_hoook: "Hoook"
+meta_title: "Hoook - Catch the fish, change your life"
+meta_description: "The first app that records your catch and find the best spot!"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@hoook_twitter_account"   # required for Twitter Cards
