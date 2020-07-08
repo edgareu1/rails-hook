@@ -9,7 +9,7 @@ class Log < ApplicationRecord
   validates :end_time, presence: true
   validates :location, presence: true
 
-  after_save :add_weather_data
+  after_create :add_weather_data
 
   def catch_count
     sum = 0
