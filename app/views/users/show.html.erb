@@ -1,51 +1,24 @@
 <div class="background-container"><canvas width="375" height="760" class="fish-tank" id="fishtank"></div>
 <div style="position: sticky">
 <div class="banner text-center">
-  <%= image_tag "https://i.pinimg.com/564x/b5/e2/86/b5e2861637b9d93ad1c5cc7761e65834.jpg", class: "avatar-large", alt: "avatar-large" %>
-  <h4 style="padding-top: 10px"><%= current_user.username.capitalize%></h4>
-  <div class="user-info">
-    <div class="user-numbers">
-      <div>
-        <%= current_user.logs.count %>
-        <p>LOGS</p>
-      </div>
-      <div>
-        <%= current_user.logs.count %>
-        <p>CATCHES</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <ul class="feed">
-    <div>
-
-      <h5 style="text-align:center; padding-top: 10px">Did you know ?</h3>
-      <p style="text-align:center">Test test test test test test test test test test Test test test test test test test test test test</p>
-      </ul>
+  <%= image_tag "avatar.jpg", class: "avatar-large", alt: "avatar-large" %>
+  <h4 >Welcome <%= current_user.username.capitalize%> !</h4>
 
 
-<div class="container d-flex justify-content-center">
-  <div class="row ">
-    <div class="col-6">
+
       <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-user-box"  do %>
-        <h6>CREATE LOG</h6>
+        <h6 style="padding-left: 10px">CREATE LOG</h6>
+        <%= image_tag "rod.png", style:"width: 35px" %>
       <% end %>
-    </div>
-
-        <div class="col-6">
-        <h6><%= link_to "MY LOCATIONS", "ranking", class: "btn btn-user-box" %></h6>
-    </div>
-  </div>
-</div>
-
-  <ul class="list-border-top">
-    <div style="display: flex; justify-content: space-between">
-
-      <h3>My Locations</h3>
 
 
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #010038" do %>
+  <ul class="location-box">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
+      <h3 style="font-size: 22px">My Locations</h3>
+
+
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #BDEBFF; opacity: 0.7; font-size:12px; padding-bottom: 5px" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
     </div>
@@ -62,7 +35,7 @@
             <% elsif location.logs.count == 1%>
               (1 log)
             <% else %>
-              <%= "(#{location.logs.count} logs)" %>
+              <%= "(#{location.logs.count} logs)"%>
             <% end %>
 
             <strong style="font-size: 18px"><%= location.site.capitalize %></strong>
@@ -70,13 +43,43 @@
 
           <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
 
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px">
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 70px; height: 35px">
           </div>
 
         </li>
       <% end %>
     <% end %>
   </ul>
+
+  <ul class="feed">
+      <h5 style="text-align:center; padding-top: 10px">Did you know ?</h3>
+      <p style="text-align:center">Test test test test test test test test test test Test test test test test test test test test test</p>
+  </ul>
+
+    <div class="user-info">
+    <div class="user-numbers">
+      <div class="info-background">
+        <%= current_user.logs.count %>
+        <p>LOGS</p>
+      </div>
+      <div class="info-background">
+        <%= current_user.catches.count %>
+        <p>FISH</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px">
+      <h5 style="text-align:center">Most caught fish</h3>
+      <li class=top-user><p style="text-align:center">1. Fish name - Number of catch</p></li>
+      <li class=top-user><p style="text-align:center">2. Fish name - Number of catch</p></li>
+      <li class=top-user><p style="text-align:center">3. Fish name - Number of catch</p></li>
+  </ul>
+  </div>
+
+
 </div>
 </div>
 

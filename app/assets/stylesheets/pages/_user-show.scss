@@ -29,9 +29,6 @@ hr {
   color: black;
 }
 
-.user-info {
-  background-color: $opacity-blue;
-}
 
 .user-numbers {
   display: flex;
@@ -41,10 +38,37 @@ hr {
     margin: 0;
   }
 
+  .info-background {
+     background-color: $opacity-blue;
+     width: 120px;
+     padding: 5px;
+  }
+
 }
 
 .feed {
   margin: 20px; 
   height: 100px;
   box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+}
+
+.top-user {
+  border-bottom: 1px solid white;
+  
+  p {
+    margin-bottom: 0;
+    padding: 5px;
+  }
+}
+
+.location-box {
+  background-color: $opacity-blue;
+  margin: 30px;
+  padding: 10px;
+  li {
+  border-top: 1px solid white;
+  padding-bottom:5px;
+  align-items: center;
+  justify-content: center;
+  }
 }

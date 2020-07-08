@@ -1,11 +1,13 @@
 <div style="padding: 20px">
-  <div style="display: flex; justify-content: center">
-    <h1>My Logs</h1>
+  <div>
+    <h1 class="page-title" style="padding: 20px">My Logs</h1>
 
-    <%= link_to "Create",id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-left: 15px" do %>
-      <i class="fas fa-plus" style="font-size: 36px; color: white; margin: 8px 5px 5px"></i>
-    <% end %>
   </div>
+  <div style="text-align: right; margin-right: 25px">
+    <%= link_to "Create",id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-left: 15px" do %>
+      <i class="fas fa-plus" style="font-size: 30px; color: white"></i>
+    <% end %>
+    </div>
 
   <div style="margin: 10px 0">
     <% @logs.each do |log| %>
@@ -37,7 +39,7 @@
             </div>
 
             <div class="card-content-stats">
-              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 50px; height: 50px; margin-bottom: 8px">
+              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 70px; height: 50px; margin-bottom: 8px">
               </div>
               <p> <strong style="font-size: 17px">Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
               <p> <%= log.air_pressure %> Pa</p>

@@ -2,7 +2,7 @@
     color: white;
     padding: 8px 24px;
     border-radius: 8px;
-    background: $intense-blue;
+    background: rgba(155, 221, 249, 0.3);
     transition: background 0.3s ease;
     letter-spacing: 3px;
   }
@@ -39,21 +39,25 @@
   color: black;
 }
 
+
 .btn-user-box {
-  background-color: $opacity-blue;
-  height: 90px;
-  width: 140px;
+  height: 60px;
+  background-color: rgba(136, 204, 255, 0.3);
+  opacity:1;
   padding: 0;
+  margin-left: 85px;
+  margin-right: 85px;
+  margin-top: 20px;
   margin-bottom: 20px;
-  color: #88CCFF;
+  color: white;
   display:flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
-  // box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+  border-radius: 8px;
 
   h6 {
-    color: #88CCFF;
+    color: white;
+    font-size: 18px;
     margin-bottom: 0;
   }
 }

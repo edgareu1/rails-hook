@@ -1,5 +1,5 @@
 .form-login {
-    background: white;
+    background: $opacity-blue;
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 10px;
@@ -8,16 +8,21 @@
     border-top-left-radius: 3px;   
     border-top-right-radius: 3px;    
 
+    img {
+          padding-bottom: 5px;
+    width: 36px;
+    }
+
     h2 {
       font-size: 25px;
       font-weight: bold;
       margin-bottom: 30px;
       text-align: center;
-      color: #4f4e4d;
+      color: white;
     }
 
     .email, .password, .boolean, .user_login, .user_username {
-      color: #4f4e4d;
+      color: white;
     }
 
     .btn {

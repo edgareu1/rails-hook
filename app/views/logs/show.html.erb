@@ -1,19 +1,19 @@
 <div style="padding: 20px">
-  <h1 style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+  <h1 class="page-title" style="font-size: 36px"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
 
   <!-- Date -->
-  <div style="display: flex; margin: 25px 10px">
+  <div style="display: flex; justify-content: center; margin-bottom: 10px">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
-      <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+      <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
         <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')} - #{@log.end_time.strftime('%I:%M %p')}" %> </span> </p>
 
     <% else %>
       <i class="far fa-calendar-alt" style="font-size: 42px; margin-right: 10px"></i>
       <div style="display: flex; flex-direction: column">
-        <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+        <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
           <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')}" %> </span></p>
-        <p style="margin: 0; font-size: 16px"> <%= "#{@log.end_time.strftime('%B %d, %Y')}" %>
+        <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.end_time.strftime('%B %d, %Y')}" %>
           <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.end_time.strftime('%I:%M %p')}" %> </span></p>
       </div>
     <% end %>
@@ -22,7 +22,7 @@
   <div class="gray-background">
     <h3 style="margin-left: 10px"><%= @log.weather_description.capitalize %> </h3>
 
-    <div style="display: flex; width: 100%; border-top: 2px solid #010038; margin-bottom: 10px">
+    <div style="display: flex; width: 100%; border-top: 2px solid white; margin-bottom: 10px">
       <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
       </div>
 
@@ -47,7 +47,7 @@
   <ul class="list-border-top" style="margin-top: 25px">
     <div style="display: flex; justify-content: space-between">
       <h3 style="margin-left: 10px">Catches</h3>
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: #010038" do %>
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
     </div>
@@ -99,7 +99,7 @@
   </ul>
 
   <!-- Pop-ups for Log: delete and edit -->
-  <div style="width: 100%; padding: 5px 10px; display: flex; justify-content: flex-end">
+  <div style="width: 100%; display: flex; justify-content: flex-end">
     <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
       <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
     <% end %>
