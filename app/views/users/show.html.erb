@@ -28,7 +28,7 @@
 
     <% else %>
       <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..2].each do |location| %>
-        <li>
+        <li style="list-style-type: none">
           <div style="display: flex; justify-content: space-between">
             <h6 style="font-size: 16px; margin: 6px 10px 0 0">
               <% if location.logs.count.zero? %>

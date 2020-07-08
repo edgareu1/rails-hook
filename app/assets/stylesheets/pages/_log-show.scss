@@ -26,7 +26,8 @@
 .container-log-form {
   display: flex;
   flex-direction: column;
-  color: #010038;
+  color: white;
+  opacity: 0.9;
 }
 
 input[type=datetime-local] {
@@ -37,7 +38,8 @@ input[type=datetime-local] {
 .container-catch-form {
   display: flex;
   flex-direction: column;
-  color: #010038;
+  color: white;
+  opacity: 0.9;
 }
 
 #ModalDeleteLog, #ModalCreateCatch {

@@ -13,7 +13,7 @@
     <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
     <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" }, placeholder: "Leave an observation" %>
 
-    <p style="font-size: 1rem; color: #010038">How was your session?</p>
+    <p style="font-size: 1rem; color: white; opacity: 0.9">How was your session?</p>
 
     <div class="fish-rating-container">
       <div class="fish-rating">
@@ -43,7 +43,7 @@
 
       <div class="fish-rating-bar">
         <% (1..10).to_a.each do |num| %>
-          <div class="rating<%= num %>" style="position: absolute; font-size: 1rem; color: #010038; text-align: center; width: 10.5%; left: <%= (num - 1) * 10 %>%"><%= num %></div>
+          <div class="rating<%= num %>" style="position: absolute; font-size: 1rem; color: #BDEBFF; text-align: center; width: 10.5%; left: <%= (num - 1) * 10 %>%"><%= num %></div>
         <% end %>
       </div>
     </div>

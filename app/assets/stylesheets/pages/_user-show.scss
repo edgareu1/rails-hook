@@ -18,9 +18,14 @@ hr {
     border-top: 2px solid $dark-blue;
 }
 
-.modal-header h5{
-  color: $dark-blue;
+.modal-header h5, .close {
+  color: white;
+  opacity: 0.9;
 
+}
+
+.modal-content {
+  background-color: #061f35;
 }
 
 

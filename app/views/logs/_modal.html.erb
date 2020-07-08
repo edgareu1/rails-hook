@@ -10,12 +10,12 @@
       </div>
       <div class="modal-body">
         <div class="fish-card-infos">
-            <div class="fish-card-full">
+            <div class="fish-card-full" style="background-color: #061f35">
                 <%= image_tag catch.fish.picture_url %>
-                <br>
-                Minimum size:
+                
+                <p style="color: white; opacity: 0.9">Minimum size :
                 <% if catch.fish.legal_weight == 0 && catch.fish.legal_size == 0  %>
-                NA
+                NA</p>
                 <% end %>
 
                 <% unless catch.fish.legal_weight == 0 %>
@@ -33,10 +33,9 @@
                 <% unless catch.fish.legal_size == 0 %>
                 <%= "#{catch.fish.legal_size} cm" %>
                 <% end %>
-            <br>
-            <br>
 
-            <%= catch.fish.description %>
+
+            <p><%= catch.fish.description %></p>
             </div>
             </div>
       </div>
