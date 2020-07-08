@@ -37,3 +37,22 @@
   background-color: lightgray;
   color: black;
 }
+
+.btn-user-box {
+  background-color: $opacity-blue;
+  height: 90px;
+  width: 140px;
+  padding: 0;
+  margin-bottom: 20px;
+  color: #88CCFF;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  // box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+
+  h6 {
+    color: #88CCFF;
+    margin-bottom: 0;
+  }
+}

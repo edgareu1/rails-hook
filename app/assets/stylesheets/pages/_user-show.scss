@@ -28,3 +28,23 @@ hr {
 .ap-dataset-places {
   color: black;
 }
+
+.user-info {
+  background-color: $opacity-blue;
+}
+
+.user-numbers {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  p {
+    margin: 0;
+  }
+
+}
+
+.feed {
+  margin: 20px; 
+  height: 100px;
+  box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+}

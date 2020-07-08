@@ -2,17 +2,42 @@
 <div style="position: sticky">
 <div class="banner text-center">
   <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-  <h4><%= current_user.username.capitalize%></h4>
+  <h4 style="padding-top: 10px"><%= current_user.username.capitalize%></h4>
+  <div class="user-info">
+    <div class="user-numbers">
+      <div>
+        <%= current_user.logs.count %>
+        <p>LOGS</p>
+      </div>
+      <div>
+        <%= current_user.logs.count %>
+        <p>CATCHES</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div style="padding: 20px">
-  <div class="buttons mt-3">
-    <h6><%= link_to "PREDICTION", "ranking", class: "btn btn-flat btn-block" %></h6>
+  <ul class="feed">
+    <div>
 
-    <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },  class: "btn btn-flat btn-block" do %>
-      <h6>CREATE LOG</h6>
-    <% end %>
+      <h5 style="text-align:center; padding-top: 10px">Did you know ?</h3>
+      <p style="text-align:center">Test test test test test test test test test test Test test test test test test test test test test</p>
+      </ul>
+
+
+<div class="container d-flex justify-content-center">
+  <div class="row ">
+    <div class="col-6">
+      <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-user-box"  do %>
+        <h6>CREATE LOG</h6>
+      <% end %>
+    </div>
+
+        <div class="col-6">
+        <h6><%= link_to "MY LOCATIONS", "ranking", class: "btn btn-user-box" %></h6>
+    </div>
   </div>
+</div>
 
   <ul class="list-border-top">
     <div style="display: flex; justify-content: space-between">
@@ -53,8 +78,9 @@
     <% end %>
   </ul>
 </div>
-
 </div>
+
+
 
 <!-- Modal Create Location Form -->
 <div class="modal fade" id="ModalCreateLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
