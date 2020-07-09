@@ -1,12 +1,14 @@
 <nav id="bottom-nav">
   <div class="container">
     <ul id="bottom-list" class="flex-container" style="list-style-type: none">    
-      <li class="<%= if yield(:menu) == 'home' then ' active' end %>">
+      <li class="<%= 'active' if controller_name == 'users' %>">
         <%= link_to root_path do %>
-          <%= image_tag "hook-logo-nav.png" %>
+          <% if controller_name == 'users' then image_tag "newcolour_hook.png" %>
+          <% else image_tag "hook-logo-nav.png" %>
+          <% end %>
         <% end %>
       </li>
-      <li class="<%= if yield(:menu) == 'fish' then ' active' end %>">
+      <li class="<%= 'active' if controller_name == 'fish' %>">
         <%= link_to fish_index_path do %>
           <figure>
             <i class="fas fa-ruler-combined"></i>
@@ -14,7 +16,7 @@
           </figure>
         <% end %>
       </li>
-      <li class="<%= if yield(:menu) == 'prediction' then ' active' end %>">
+      <li class="<%= 'active' if controller_name == 'pages' %>">
         <%= link_to ranking_path do %>
           <figure>
             <i class="far fa-calendar-alt"></i>
@@ -22,7 +24,7 @@
           </figure>
         <% end %>
       </li>
-      <li class="<%= if yield(:menu) == 'logs' then ' active' end %>">
+      <li class="<%= 'active' if controller_name == 'logs' %>">
         <%= link_to logs_path do %>
           <figure>
             <i class="fas fa-book"></i>
