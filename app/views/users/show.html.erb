@@ -43,7 +43,7 @@
 
               
             </h6>
-             <i><p style="padding-left: 18px; font-size: 18px; margin-left: 10px; margin-bottom: 5px">- <%= location.site %></p>
+             <i><p style="padding-left: 18px; font-size: 18px; margin-left: 10px; margin-bottom: 5px"><%= location.site %></p>
              </i></div>
 
             <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
