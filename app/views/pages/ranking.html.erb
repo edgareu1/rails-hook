@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <% unless @top_5_locations.empty? %>
+    <% unless @top_3_locations.empty? %>
     <div style="margin: 15px 20px">
       <p style="font-weight: 300; font-size: 16px">Prediction of number and total weight of fish caught for a 5h session</p>
     </div>
@@ -15,14 +15,14 @@
   </div>
 
 
-  <% if @top_5_locations.empty? %>
+  <% if @top_3_locations.empty? %>
     <div class="log-card" style="color: #010038; text-align: center">
       <h3 style="font-size: 20px">No good fishing locations at the moment</h3>
       <h5 style="font-size: 16px; color: #9BDDF9">Take this opportunity to explore new spots !</h5>
     </div>
 
   <% else%>
-    <% @top_5_locations.each_with_index do |location, index| %>
+    <% @top_3_locations.each_with_index do |location, index| %>
       <div class="log-card" style="color: #010038; padding: 8px 10px; margin: 5px 20px 30px 20px">
         <div style="display: flex; justify-content: space-between; margin: 8px">
           <div>
