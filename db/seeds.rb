@@ -63,5 +63,68 @@ laure.save
 
 puts "User created"
 
-cascais = Location.create(latitude: 38.72240025, longitude: -9.396909171649877, name: "cascais", site: "Cool rock in 3A", user: laure)
+channel_spot = Location.create(name: "Cascais, Área Metropolitana de Lisboa, Portugal", latitude: 38.72240025, longitude: -9.396909171649877, site: "Channel Spot", user: laure)
+
+sargo_rock = Location.create(name: "Sesimbra, Área Metropolitana de Lisboa, Portugal", latitude: 38.4436932, longitude: -9.0996273, site: "Sargo Rock", user: laure)
+
+caparica_spot = Location.create(name: "Caparica, Setúbal, Portugal", latitude: 38.653741049999994,  longitude: -9.208969409268294, site: "Caparica Spot", user: laure)
+
+seabass_park = Location.create(name: "Porto, Norte, Portugal", latitude: 41.1494512, longitude: -8.6107884, site: "SeaBass Park", user: laure)
+
+magic_land = Location.create(name: "Faro, Algarve, Portugal", latitude:  37.0162727, longitude: -7.9351771, site: "Magic Land", user: laure)
+
 puts "location created"
+
+log1 = Log.create(start_time: Time.new(2020, 7, 9, 9, 0), end_time:Time.new(2020, 7, 9, 12, 0), rating: 4, observation: "Lots of turbidity in the water. Water color was very green", tag_id: 1, location: channel_spot, user: laure)
+log1.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "02d", weather_description: "few clouds")
+
+log2 = Log.create(start_time: Time.new(2020, 7, 10, 11, 0), end_time:Time.new(2020, 7, 10, 17, 30), rating: 8, observation: "None stop bust ups! Seems they were feeding on the smaller fish today. Consider pingalim.", tag_id: 2, location: sargo_rock, user: laure)
+log2.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "03d", weather_description: "scattered clouds")
+
+log3 = Log.create(start_time: Time.new(2020, 7, 12, 13, 0), end_time:Time.new(2020, 7, 12, 18, 0), rating: 5, observation: "Slow start, finished with an hour of activity before sunset.", tag_id: 3, location: caparica_spot, user: laure)
+log3.update(air_pressure: 1025, wind_speed: 10.0, weather_icon: "01d", weather_description: "clear sky")
+
+log4 = Log.create(start_time: Time.new(2020, 7, 8, 5, 0), end_time:Time.new(2020, 7, 8, 12, 0), rating: 8, observation: " ", tag_id: 4, location: channel_spot, user: laure)
+
+log5 = Log.create(start_time: Time.new(2020, 7, 7, 20, 0), end_time:Time.new(2020, 7, 7, 23, 0), rating: 9, observation: "soft plastics were killing it today!", tag_id: 5, location: sargo_rock, user: laure)
+
+log6 = Log.create(start_time: Time.new(2020, 7, 2, 3, 0), end_time:Time.new(2020, 7, 2, 5, 0), rating: 2, observation: "waste of time....", tag_id: 6, location: seabass_park, user: laure)
+
+log7 = Log.create(start_time: Time.new(2020, 7, 3, 22, 0), end_time:Time.new(2020, 7, 3, 24, 0), rating: 7, observation: " ", tag_id: 7, location: magic_land, user: laure)
+log7.update(air_pressure: 1012, wind_speed: 5.0, weather_icon: "04n", weather_description: "broken clouds")
+
+log8 = Log.create(start_time: Time.new(2020, 7, 4, 9, 0), end_time:Time.new(2020, 7, 4, 12, 0), rating: 8, observation: "Sardine and mussels were activating", tag_id: 8, location: sargo_rock, user: laure)
+
+log9 = Log.create(start_time: Time.new(2020, 7, 5, 6, 0), end_time:Time.new(2020, 7, 5, 9, 0), rating: 9, observation: " ", tag_id: 9, location: magic_land, user: laure)
+
+puts "logs created"
+
+Catch.create(quantity: 1, fish_id: 7, weight: 3200, log_id: 2)
+
+Catch.create(quantity: 2, fish_id: 15, weight: 2000, log_id: 5)
+
+Catch.create(quantity: 1, fish_id: 22, weight: 1200, log_id: 9)
+
+Catch.create(quantity: 3, fish_id: 10, weight: 4000, log_id: 4)
+
+Catch.create(quantity: 4, fish_id: 15, weight: 4000, log_id: 8)
+
+Catch.create(quantity: 1, fish_id: 15, weight: 2500, log_id: 5)
+
+Catch.create(quantity: 1, fish_id: 17, weight: 1500, log_id: 5)
+
+Catch.create(quantity: 1, fish_id: 15, weight: 2000, log_id: 2)
+
+Catch.create(quantity: 15, fish_id: 3, weight: 300, log_id: 7)
+
+puts "catch created"
+
+
+
+
+
+
+
+
+
+
