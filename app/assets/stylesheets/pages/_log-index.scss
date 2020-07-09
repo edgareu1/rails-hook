@@ -24,18 +24,20 @@ hr {
   display: flex;
   align-items: baseline;
   justify-content: space-around;
+  margin: 7px;
 
   p {
     font-weight: 500;
-  
     color: white;
+    margin-bottom: 0;
   }
 
   strong {
     color: #9BDDF9;
   }
-}
 
+
+}
 
 
 
