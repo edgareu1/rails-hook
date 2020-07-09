@@ -137,7 +137,13 @@
         <p>LOGS</p>
       </div>
       <div class="info-background">
-        <%= current_user.catches.count %>
+     <% @array = [] %>
+        <% current_user.logs.each do |log|%>
+            <% @fish = log.catch_count %>
+             <% @array << @fish %>
+        <% end %>
+           <%=@array.inject(0, &:+)%>
+         
         <p>FISH</p>
       </div>
     </div>
