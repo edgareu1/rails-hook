@@ -2,60 +2,63 @@
   <div style="display: flex; flex-direction: column; text-align: center">
     <div class="page-title">
       <div>
-        <p style="margin-bottom:0; margin-top: 10px; font-size: 20px; color: white; opacity: 0.9">Current</p>
+        <p style="margin-bottom:0; margin-top: 10px; font-size: 20px; color: rgba(255, 255, 255, 0.9)">Current</p>
         <h2>Best Spots</h2>
       </div>
     </div>
 
-    <% unless @top_3_locations.empty? %>
-      <p style="font-weight: 300; font-size: 18px">Prediction of number and total weight of fish caught for a 5h session</p>
+    <% unless @top_5_locations.empty? %>
+    <div style="margin: 15px 20px">
+      <p style="font-weight: 300; font-size: 16px">Prediction of number and total weight of fish caught for a 5h session</p>
+    </div>
     <% end %>
   </div>
 
 
-  <% if @top_3_locations.empty? %>
-    <div class="log-card" style="color: #010038; text-align: center; margin-bottom: 20px">
+  <% if @top_5_locations.empty? %>
+    <div class="log-card" style="color: #010038; text-align: center">
       <h3 style="font-size: 20px">No good fishing locations at the moment</h3>
       <h5 style="font-size: 16px; color: #9BDDF9">Take this opportunity to explore new spots !</h5>
     </div>
 
   <% else%>
-    <% @top_3_locations.each_with_index do |location, index| %>
-      <div class="log-card" style="color: #010038; padding: 8px 10px; margin: 15px 20px">
-        <div style="display: flex; justify-content: space-between">
+    <% @top_5_locations.each_with_index do |location, index| %>
+      <div class="log-card" style="color: #010038; padding: 8px 10px; margin: 5px 20px 30px 20px">
+        <div style="display: flex; justify-content: space-between; margin: 8px">
           <div>
             <% if index == 0 %>
-              <h3 style="font-size: 28px; margin-bottom: 2px">
+              <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "1. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 20px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
-
+              <i><h5 style="padding-left: 10px; color: #3AC4FF; font-size: 18px; margin-left: 28px"><%= " #{Location.find(location[0]).site}" %></h5>
+              </i>
             <% elsif index == 1 %>
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "2. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 19px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
-
+              <i><h5 style="padding-left: 10px; color: #3AC4FF; font-size: 18px; margin-left: 28px"><%= " #{Location.find(location[0]).site}" %></h5>
+              </i>
             <% elsif index == 2 %>
-              <h3 style="font-size: 22px; margin-bottom: 2px">
+              <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "3. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 18px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
-
+              <i><h5 style="padding-left: 10px; color: #3AC4FF; font-size: 18px; margin-left: 28px"><%= " #{Location.find(location[0]).site}" %></h5>
+              </i>
             <% else %>
-              <h3 style="font-size: 20px; margin-bottom: 2px">
+              <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "#{index + 1}. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 17px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
+              <i><h5 style="padding-left: 10px; color: #3AC4FF; font-size: 18px; margin-left: 28px"><%= " #{Location.find(location[0]).site}" %></h5>
+              </i>
             <% end %>
           </div>
 
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 35px; height: 35px; margin-left: 10px">
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 70px; height: 35px; margin-left: 10px">
           </div>
         </div>
 
         <div class="card-content" style="margin: 0">
-          <div style="display: flex; justify-content: space-around; font-weight: bold; width: 100%; padding: 0 50px">
+          <div style="margin-bottom: 15px; font-size: 20px; display: flex; justify-content: space-around; width: 100%; padding: 0 50px; color:rgba(255, 255, 255, 0.9)">
             <div>
               <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %> fish
             </div>
