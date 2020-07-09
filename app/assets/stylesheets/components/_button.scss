@@ -1,12 +1,11 @@
 .btn-flat {
-    color: white;
-    padding: 8px 24px;
-    border-radius: 8px;
-    background: rgba(155, 221, 249, 0.3);
-    transition: background 0.3s ease;
-    letter-spacing: 3px;
-  }
-  
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(155, 221, 249, 0.3);
+  transition: background 0.3s ease;
+}
+
 .btn-flat:hover {
   background: rgba(91, 234, 201, 0.5);
   color: white;

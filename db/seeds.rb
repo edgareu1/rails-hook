@@ -59,7 +59,7 @@ Fish.create(common_name: 'Spotted Seabass', good_weight: 1000, scientific_name: 
 puts "Created #{Fish.count} fish"
 
 
-laure = User.new(username: "laure", email: "laure@gmail.com", password: "123456")
+laure = User.new(username: "Thomas", email: "thomas@gmail.com", password: "123456")
 laure.save
 
 puts "Created #{User.count} user"

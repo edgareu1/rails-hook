@@ -7,20 +7,20 @@
       </div>
     </div>
 
-    <% unless @top_5_locations.empty? %>
+    <% unless @top_3_locations.empty? %>
       <p style="font-weight: 300; font-size: 18px">Prediction of number and total weight of fish caught for a 5h session</p>
     <% end %>
   </div>
 
 
-  <% if @top_5_locations.empty? %>
+  <% if @top_3_locations.empty? %>
     <div class="log-card" style="color: #010038; text-align: center; margin-bottom: 20px">
       <h3 style="font-size: 20px">No good fishing locations at the moment</h3>
       <h5 style="font-size: 16px; color: #9BDDF9">Take this opportunity to explore new spots !</h5>
     </div>
 
   <% else%>
-    <% @top_5_locations.each_with_index do |location, index| %>
+    <% @top_3_locations.each_with_index do |location, index| %>
       <div class="log-card" style="color: #010038; padding: 8px 10px; margin: 15px 20px">
         <div style="display: flex; justify-content: space-between">
           <div>
@@ -28,25 +28,25 @@
               <h3 style="font-size: 28px; margin-bottom: 2px">
                 <%= "1. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 20px; margin-left: 28px"><%= "- #{Location.find(location[0]).site}" %></h5>
+              <h5 style="font-size: 20px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
 
             <% elsif index == 1 %>
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "2. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 19px; margin-left: 28px"><%= "- #{Location.find(location[0]).site}" %></h5>
+              <h5 style="font-size: 19px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
 
             <% elsif index == 2 %>
               <h3 style="font-size: 22px; margin-bottom: 2px">
                 <%= "3. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 18px; margin-left: 28px"><%= "- #{Location.find(location[0]).site}" %></h5>
+              <h5 style="font-size: 18px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
 
             <% else %>
               <h3 style="font-size: 20px; margin-bottom: 2px">
                 <%= "#{index + 1}. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <h5 style="font-size: 17px; margin-left: 28px"><%= "- #{Location.find(location[0]).site}" %></h5>
+              <h5 style="font-size: 17px; margin-left: 28px"><%= "#{Location.find(location[0]).site}" %></h5>
             <% end %>
           </div>
 
