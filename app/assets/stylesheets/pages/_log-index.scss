@@ -6,7 +6,7 @@
 
 hr {
   height: 1px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   border: none;
   margin: 5px 0;
 }
@@ -22,13 +22,13 @@ hr {
 
 .card-content {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-around;
-  margin: 7px;
+  margin-top: 10px;
 
   p {
     font-weight: 500;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0;
   }
 
