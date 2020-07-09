@@ -1,20 +1,23 @@
 <div style="padding: 20px">
   <div style="display: flex; flex-direction: column; text-align: center">
     <div class="page-title">
-    <div>
-    <p style="margin-bottom:0; margin-top: 10px; font-size: 20px; color: white; opacity: 0.9">Actual</p>
-    <h2>Best Spots</h2>
+      <div>
+        <p style="margin-bottom:0; margin-top: 10px; font-size: 20px; color: white; opacity: 0.9">Current</p>
+        <h2>Best Spots</h2>
+      </div>
     </div>
-    </div>
-    <p style="font-weight: 300; font-size: 18px">Prediction of number and total weight of fish caught on a 5h session</h4>
+
+    <% unless @top_5_locations.empty? %>
+      <p style="font-weight: 300; font-size: 18px">Prediction of number and total weight of fish caught for a 5h session</p>
+    <% end %>
   </div>
+
 
   <% if @top_5_locations.empty? %>
     <div class="log-card" style="color: #010038; text-align: center; margin-bottom: 20px">
       <h3 style="font-size: 20px">No good fishing locations at the moment</h3>
       <h5 style="font-size: 16px; color: #9BDDF9">Take this opportunity to explore new spots !</h5>
     </div>
-
 
   <% else%>
     <% @top_5_locations.each_with_index do |location, index| %>
