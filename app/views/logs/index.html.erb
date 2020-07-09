@@ -14,16 +14,25 @@
       <%= link_to log_path(log) do %>
         <div class="log-card">
           <div class="card-headers">
-            <h3 style="font-size: 32px; margin-bottom: 2px"><%= log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
-            <h3 style="font-size: 18px; margin-left: 10px; font-weight: 400">- <%= "#{log.location.site} \##{sprintf '%03d', (log.tag_id)}" %></h1>
+          <div class="d-flex" style="justify-content: space-between">
+          <div>
+            <h3 style="font-size: 20px; margin-bottom: 2px"><%= log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
+            <i><h5 style="font-size: 18px; margin-left: 10px; font-weight: 400">- <%= "#{log.location.site} \##{sprintf '%03d', (log.tag_id)}" %></h1>
+            </i>
+            </div>
+            <div>
+              <p style="font-size: 18px; margin-bottom: 0px; color: white">
+               <%= log.start_time.strftime('%B %d')  %> (<%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %>h)
+            </p>
+            </div>
+            </div>
           </div>
 
           <hr>
    
-          <div class="d-flex" style="justify-content: space-evenly; align-items: center">
-            <p style="font-size: 17px; font-weight: 600; margin-bottom: 0px; color: white; border-bottom: 4px solid white">
-              <%= log.start_time.strftime('%B %d')  %> (<%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %>h)
-            </p>
+          <div class="d-flex" style="justify-content: center; align-items: center">
+            
+             
               <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 70px; height: 50px; margin-bottom: 8px">
               </div>
           </div>
@@ -34,21 +43,21 @@
               
 
               <% if log.catch_count == 0 %>
-                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Nothing caught</strong> </p>
+                <p> <strong style="font-size: 17px">Nothing caught</strong> </p>
               <% else %>
-                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Catches:</strong> <%= log.catch_count %> </p>
+                <p> <strong style="font-size: 17px">Catches :</strong> <%= log.catch_count %> </p>
               <% end %>
 
               <% if log.rating.nil? %>
-                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Not rated</strong> </p>
+                <p> <strong style="font-size: 17px">Not rated</strong> </p>
               <% else %>
-                <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Rating:</strong> <%= log.rating %></p>
+                <p> <strong style="font-size: 17px">Rating :</strong> <%= log.rating %></p>
               <% end %>
             </div>
 
             <div class="card-content-stats">
             
-              <p> <strong style="font-size: 17px">Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
+              <p> <strong style="font-size: 17px">Moon : </strong> <%= (log.moon_phase * 100).round %>%</p>
               <p> <%= log.air_pressure %> Pa</p>
             </div>
           </div>
