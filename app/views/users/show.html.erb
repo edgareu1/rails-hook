@@ -105,7 +105,7 @@
 
         <% current_user.top_three_fish.each_with_index do |fish, index|  %>
           <li class=top-user><p style="text-align:center">
-            <%= "#{index + 1}. #{fish.common_name} - #{fish.count_catches}" %>
+            <%= "#{index + 1}. #{fish[0].common_name} - #{fish[1]}" %>
           </p></li>
         <% end %>
 
