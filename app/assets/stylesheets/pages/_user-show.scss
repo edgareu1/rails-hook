@@ -68,10 +68,9 @@ hr {
 .location-box {
   background-color: $opacity-blue;
   margin: 30px;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   li {
   border-top: 1px solid white;
-  padding-bottom:5px;
   align-items: center;
   justify-content: center;
   }
