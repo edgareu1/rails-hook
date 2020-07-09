@@ -1,12 +1,14 @@
 .form-login {
-    background: $opacity-blue;
+    background-color: $opacity-blue;
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 30px;
-    margin-top: 40px;
+    margin-top: 100px;
     border-top-left-radius: 3px;   
     border-top-right-radius: 3px;    
+
+ 
 
     img {
     padding-bottom: 5px;
@@ -21,12 +23,18 @@
       color: white;
     }
 
-    .email, .password, .boolean, .user_login, .user_username {
-      color: white;
+    .placeholder {
+      color: #495057;
     }
 
     .btn {
       width: 100%;
       margin-bottom: 20px
     }
+
+
   }
+  .form-login  {
+    color: white;
+  }
+

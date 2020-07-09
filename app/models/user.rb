@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :locations, dependent: :destroy
   has_many :catches, through: :logs
+  
 
 
   def self.find_for_database_authentication warden_conditions

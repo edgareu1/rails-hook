@@ -15,29 +15,27 @@ hr {
   margin-left: 10px;
 
   h3 {
-    font-weight: 600;
     margin-bottom: 0;
-    color: white;
-    opacity: 0.9;
+    
   }
 }
 
 .card-content {
   display: flex;
-  margin-top: 10px;
+  align-items: baseline;
+  justify-content: space-around;
 
   p {
     font-weight: 500;
-    margin-bottom: 8px;
+  
+    color: white;
+  }
+
+  strong {
+    color: #9BDDF9;
   }
 }
 
-.card-content-info {
-  width: 65%;
-}
 
-.card-content-stats {
-  width: 35%;
-}
 
 

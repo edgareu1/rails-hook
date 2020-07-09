@@ -5,12 +5,23 @@
   border-radius: 4px;
   background-color: $opacity-blue;
   color: white;
+
+  p {
+    color: white;
+  }
+
+  strong {
+    color: #9BDDF9;
+  }
+
+ 
 }
 
 .list-border-top {
   li, p {
     padding: 10px 0;
     border-top: 2px solid white;
+    text-align: center;
   }
 }
 
@@ -26,8 +37,12 @@
 .container-log-form {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: #BDEBFF;
   opacity: 0.9;
+
+  p {
+    color: #BDEBFF;
+  }
 }
 
 input[type=datetime-local] {
@@ -38,7 +53,7 @@ input[type=datetime-local] {
 .container-catch-form {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: #BDEBFF;
   opacity: 0.9;
 }
 

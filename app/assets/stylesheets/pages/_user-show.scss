@@ -38,15 +38,13 @@ hr {
 .user-numbers {
   display: flex;
   justify-content: space-evenly;
+  background-color: $opacity-blue;
   padding: 10px;
   p {
     margin: 0;
   }
 
   .info-background {
-     background-color: $opacity-blue;
-     width: 120px;
-     padding: 5px;
      text-align:center;
   }
 

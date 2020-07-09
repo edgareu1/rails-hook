@@ -4,7 +4,8 @@
   <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400">- <%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
 </div>
   <!-- Date -->
-  <div style="display: flex; margin: 30px 10px 25px">
+  
+  <div style="display: flex; margin: 30px 10px 25px; justify-content: center; align-items: center">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
       <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
@@ -22,11 +23,14 @@
   </div>
 
   <div class="gray-background">
-    <h3 style="margin-left: 10px"><%= @log.weather_description.capitalize %> </h3>
-
-    <div style="display: flex; width: 100%; border-top: 2px solid white; margin-bottom: 10px">
+    <div style="display: flex; width: 100%; margin-bottom: 10px">
       <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
       </div>
+      <h3><%= @log.weather_description.capitalize %> </h3>
+    </div>
+
+    <div style="display: flex; width: 100%; border-top: 2px solid white; padding-left: 30px; margin-bottom: 10px; justify-content: center">
+  
 
       <div style="width: 65%; margin-top: 10px">
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
@@ -34,15 +38,19 @@
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
       </div>
     </div>
+    
 
     <!-- Optional: rating and observations -->
+    <div style="padding-left: 78px">
+    <div style="width: 70px; margin-bottom: 5px; border-bottom: 3px solid white"><p style="margin-bottom: 0">Optional :</p></div>
     <% unless @log.rating.nil? %>
-      <p style="font-size: 17px"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
+      <p style="font-size: 17px; margin-bottom: 0"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
     <% end %>
 
     <% unless @log.observation.empty? %>
       <p style="font-size: 17px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
     <% end %>
+  </div>
   </div>
 
   <!-- List of Catches -->
@@ -83,9 +91,9 @@
           <div class="modal-dialog">
 
             <div class="modal-content">
-              <div style="text-align:center; width: 100%; padding: 10px">
-                <h2 class="modal-title" style="color: #010038"> Delete Catch</h2>
-                <p style="color: #010038; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
+              <div style="text-align:center; width: 100%">
+                <h2 class="modal-title" style="color: white"> Delete Catch</h2>
+                <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
               </div>
 
               <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
@@ -174,7 +182,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" style="color: #010038">New Log</h4>
+        <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">

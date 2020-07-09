@@ -8,7 +8,7 @@
   }
   
 .btn-flat:hover {
-  background: $light-blue;
+  background: rgba(91, 234, 201, 0.5);
   color: white;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .btn-delete-confirm {
-  background-color: #f44336;
+  background-color: #e5493d;
   color: white;
 
   &:hover {
@@ -37,6 +37,7 @@
 
 .btn-cancel-confirm {
   background-color: lightgray;
+  
   color: black;
 }
 

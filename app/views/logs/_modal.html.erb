@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="Modal-<%= catch.fish.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal-<%= catch.fish.id%>" tabindex="-1" style="padding: 0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><%= catch.fish.common_name.upcase%></h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: #BDEBFF"><%= catch.fish.common_name.upcase%></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,9 +13,9 @@
             <div class="fish-card-full" style="background-color: #061f35">
                 <%= image_tag catch.fish.picture_url %>
                 
-                <p style="color: white; opacity: 0.9">Minimum size :
+                <p style="color: #BDEBFF"; font-size: 15px><i>Minimum size :
                 <% if catch.fish.legal_weight == 0 && catch.fish.legal_size == 0  %>
-                NA</p>
+                NA
                 <% end %>
 
                 <% unless catch.fish.legal_weight == 0 %>
@@ -33,15 +33,15 @@
                 <% unless catch.fish.legal_size == 0 %>
                 <%= "#{catch.fish.legal_size} cm" %>
                 <% end %>
+                </i>
+                </p>
 
 
-            <p><%= catch.fish.description %></p>
+            <p style="color: #BDEBFF"><%= catch.fish.description %></p>
             </div>
             </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+     
     </div>
   </div>
 </div>

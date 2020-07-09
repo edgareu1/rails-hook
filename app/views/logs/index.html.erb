@@ -1,11 +1,11 @@
 <div style="padding: 20px">
   <div>
-    <h1 class="page-title" style="padding: 20px">My Logs</h1>
+    <h1 class="page-title" style="padding: 20px">All Logs</h1>
 
   </div>
-  <div style="text-align: right; margin-right: 25px">
-    <%= link_to "Create",id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-left: 15px" do %>
-      <i class="fas fa-plus" style="font-size: 30px; color: white"></i>
+  <div style="text-align: left; margin-bottom: 5px">
+    <%= link_to "Create",id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, style: "margin-top: 35px; margin-left: 10px; margin-bottom:0; display: flex; align-items: baseline" do %>
+      <i class="fas fa-plus" style="font-size: 25px; color: white"></i>
     <% end %>
     </div>
 
@@ -19,12 +19,19 @@
           </div>
 
           <hr>
+   
+          <div class="d-flex" style="justify-content: space-evenly; align-items: center">
+            <p style="font-size: 17px; font-weight: 600; margin-bottom: 0px; color: white; border-bottom: 4px solid white">
+              <%= log.start_time.strftime('%B %d')  %> (<%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %>h)
+            </p>
+              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 70px; height: 50px; margin-bottom: 8px">
+              </div>
+          </div>
 
           <div class="card-content">
+       
             <div class="card-content-info">
-              <p style="font-size: 17px; font-weight: 600; margin-bottom: 16px">
-                  <%= log.start_time.strftime('%B %d')  %> (<%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %>h)
-              </p>
+              
 
               <% if log.catch_count == 0 %>
                 <p style="margin-bottom: 16px"> <strong style="font-size: 17px">Nothing caught</strong> </p>
@@ -40,8 +47,7 @@
             </div>
 
             <div class="card-content-stats">
-              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 70px; height: 50px; margin-bottom: 8px">
-              </div>
+            
               <p> <strong style="font-size: 17px">Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
               <p> <%= log.air_pressure %> Pa</p>
             </div>
