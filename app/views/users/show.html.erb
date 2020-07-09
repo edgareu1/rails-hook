@@ -29,9 +29,9 @@
     <% else %>
       <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..2].each do |location| %>
         <li style="list-style-type: none">
-          <div style="display: flex; justify-content: space-evenly; align-items: inherit">
-          <div>
-            <h6 style="margin: 10px 10px 0 0">
+          <div style="display: flex; justify-content:center; align-items:center">
+          <div style="width: 170px">
+            <h6 style="text-align: left; margin: 10px 10px 0 0">
             <strong style="font-size: 20px"><%= location.name.match(/^[^,]*/)[0].truncate(18) %></strong>
               <% if location.logs.count.zero? %>
                 – no logs
@@ -40,10 +40,8 @@
               <% else %>
                 <%= "– #{location.logs.count} logs" %>
               <% end %>
-
-              
             </h6>
-             <i><p style="padding-left: 18px; font-size: 18px; margin-left: 10px; margin-bottom: 5px"><%= location.site %></p>
+             <i><p style="color: #3AC4FF; padding-left: 8px; font-size: 18px; margin-left: 10px; margin-bottom: 5px"><%= location.site %></p>
              </i></div>
 
             <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
