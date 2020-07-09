@@ -55,59 +55,85 @@
   </div>
 
   <!-- List of Catches -->
-  <ul class="list-border-top" style="margin-top: 25px">
-    <div style="display: flex; justify-content: space-between">
-      <h3 style="margin-left: 10px">Catches</h3>
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
-        <i class="fas fa-plus" style="font-size: 30px"></i>
-      <% end %>
-    </div>
+  <div class="list-border-top" style="margin-top: 25px; padding: 10px">
+    <table style="width: 100%">
+      <% if @log.catches.empty? %>
+        <tr>
+          <th style="display: flex; flex-direction: row; justify-content: space-between">
+            <h3 style="margin-left: 10px">Catches</h3>
 
-    <% if @log.catches.empty? %>
-      <p style="margin: 0"> Nothing caught </p>
-
-    <% else %>
-      <% @log.catches.each do |catch| %>
-        <li>
-          <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
-            <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
-          <% end %>
-
-          <a href="#" class="btn btn-flat" style="padding: 5px; border-radius: 0" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
-            <%= "#{catch.quantity} #{catch.fish.common_name}" %>
-          </a>
-          <%= render "logs/modal", catch: catch %>
-
-          <% unless catch.weight.nil? %>
-            <% if catch.weight < 1000 %>
-              <%= "#{catch.weight} gr" %>
-            <% else %>
-              <%= "#{catch.weight.fdiv(1000).tap { |num| break num.to_i == num ? num.to_i : num }} kg" %>
+            <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
+              <i class="fas fa-plus" style="font-size: 30px"></i>
             <% end %>
-          <% end %>
-        </li>
+          </th>
+        </tr>
 
-        <!-- Modal Delete Catch Form -->
-        <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" style="top: 85%;" role="dialog">
-          <div class="modal-dialog">
+        <tr>
+          <td><p style="margin: 0"> Nothing caught </p></td>
+        </tr>
 
-            <div class="modal-content">
-              <div style="text-align:center; width: 100%">
-                <h2 class="modal-title" style="color: white"> Delete Catch</h2>
-                <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
-              </div>
+      <% else %>
+        <tr style="width: 100%">
+          <th style="width: 55%"><h3 style="margin-left: 10px">Catches</h3></th>
 
-              <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
-                <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
-                <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
+          <th style="width: 15%; text-align: center"><h6 style="font-size: 16px">Qnt</h6></th>
+
+          <th style="width: 15%; text-align: center"><h6 style="font-size: 16px">Kg</h6></th>
+
+          <th style="width: 15%; text-align: center">
+            <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
+              <i class="fas fa-plus" style="font-size: 26px"></i>
+            <% end %>
+          </th>
+        </tr>
+
+        <% @log.catches.each do |catch| %>
+          <tr style="height: 60px; border-top: 2px solid white; text-align: center">
+            <td style="text-align: left">
+              <a href="#" style="margin-left: 5px; font-size: 15.5px" class="btn btn-flat" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
+                <%= catch.fish.common_name %>
+              </a>
+              <%= render "logs/modal", catch: catch %>
+            </td>
+
+            <td style="font-size: 16px">
+              <%= catch.quantity %>
+            </td>
+
+            <td style="font-size: 16px">
+              <%= catch.weight.fdiv(1000).round(1).tap { |num| break num.to_i == num ? num.to_i : num } %>
+            </td>
+
+            <td>
+              <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
+                <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
+              <% end %>
+            </td>
+          </tr>
+
+
+          <!-- Modal Delete Catch Form -->
+          <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" style="top: 85%;" role="dialog">
+            <div class="modal-dialog">
+
+              <div class="modal-content">
+                <div style="text-align:center; width: 100%">
+                  <h2 class="modal-title" style="color: white"> Delete Catch</h2>
+                  <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
+                </div>
+
+                <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
+                  <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+                  <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </table>
+  </div>
+
 
   <!-- Pop-ups for Log: delete and edit -->
   <div style="width: 100%; display: flex; justify-content: flex-end">
