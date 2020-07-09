@@ -9,16 +9,14 @@
   #bottom-nav {
     text-align: center;
     font-size: 14px;
-    color: #b3b9d1;
     padding: 0;
-    box-shadow: -1px 0px 1px 1px $body-bg;
     display: flex;
     position: fixed;
     width: 100%;
-    background: #b3b9d1;
+    background: rgba(82, 111, 128, 0.7);
     bottom: 0;
     z-index: 99;
-
+    color: #BDEBFF;
 
   }
 
@@ -35,25 +33,24 @@
   }
 
   #bottom-list > li > a {
-    color: black;
+color: rgba(0, 0, 0, 0.9);
 
     .far, .fas {
-      color: black;
+      color: rgba(0, 0, 0, 0.9);
     }
   }
 
   #bottom-list > li.active {
     font-weight: 900;
-      .far, .fas {
-      color: $primary;
-    }
   }
 
   #bottom-list > li > a figure {
     margin: 0;
   }
+
 }
 
 #logo {
   width: 40px;
 }
+

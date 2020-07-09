@@ -6,7 +6,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :logs
+
   has_many :locations, dependent: :destroy
+  has_many :catches, through: :logs
+  
+
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup

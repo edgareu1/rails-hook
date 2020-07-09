@@ -9,41 +9,45 @@
         autocomplete: "off"
       %>
 
-      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%= submit_tag "Search", class: "btn btn-primary btn-flat", style:"border-radius:0; padding-bottom: 6px; border: none; margin-top:0" %>
     </div>
   <% end %>
 
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id }, class:"fish_box" do %>
       <div class="fish-card">
+      <div style="height: 220px; display:flex; align-items: center">
         <%= image_tag fish.picture_url %>
-
+      </div>
         <div class="fish-card-infos">
-          <h2><%= fish.common_name.upcase %></h2>
+          <h2 style="margin-bottom:0"><%= fish.common_name.upcase %></h2>
 
-          <p>
-            Minimum size:
+          <p style="font-size:16px; margin-bottom: 0">
+            <i>Minimum size:</i>
             <% if fish.legal_weight == 0 && fish.legal_size == 0  %>
-              NA
+              <i>NA</i>
             <% end %>
 
             <% unless fish.legal_weight == 0 %>
               <% if fish.legal_weight < 1000 %>
-                <%= "#{fish.legal_weight} gr" %>
+                <i><%= "#{fish.legal_weight} gr" %></i>
               <% else %>
-                <%= "#{fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %>
+                <i><%= "#{fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %></i>
               <% end %>
             <% end %>
 
             <% if fish.legal_weight != 0 && fish.legal_size != 0  %>
-              <%= " / " %>
+              <i><%= " / " %></i>
             <% end %>
 
             <% unless fish.legal_size == 0 %>
-              <%= "#{fish.legal_size} cm" %>
+              <i><%= "#{fish.legal_size} cm" %></i>
             <% end %>
+            
           </p>
+          <div style="font-size: 15px; padding:10px"><b><i>Learn more</i></b></div>
         </div>
+        
       </div>
     <% end %>
   <% end %>

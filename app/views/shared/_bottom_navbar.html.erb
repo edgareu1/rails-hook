@@ -1,9 +1,9 @@
 <nav id="bottom-nav">
   <div class="container">
-    <ul id="bottom-list" class="flex-container">    
+    <ul id="bottom-list" class="flex-container" style="list-style-type: none">    
       <li class="<%= if yield(:menu) == 'home' then ' active' end %>">
         <%= link_to root_path do %>
-          <%= image_tag "hook-logo.png" %>
+          <%= image_tag "hook-logo-nav.png" %>
         <% end %>
       </li>
       <li class="<%= if yield(:menu) == 'fish' then ' active' end %>">
@@ -32,8 +32,8 @@
       </li>
       
       <div class="navbar-expand-sm navbar-light dropdown" style="margin-top: 5px">
-        <button class="navbar-toggler " type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon" ></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <%= link_to "Profile", root_path, class: "dropdown-item" %>

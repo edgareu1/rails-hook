@@ -1,31 +1,36 @@
 <div style="padding: 20px">
-  <h1 style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
+<div class="page-title">
+  <h1  style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
   <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400">- <%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
-
+</div>
   <!-- Date -->
-  <div style="display: flex; margin: 30px 10px 25px">
+  
+  <div style="display: flex; margin: 30px 10px 25px; justify-content: center; align-items: center">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
-      <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+      <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
         <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')} - #{@log.end_time.strftime('%I:%M %p')}" %> </span> </p>
 
     <% else %>
       <i class="far fa-calendar-alt" style="font-size: 42px; margin-right: 10px"></i>
       <div style="display: flex; flex-direction: column">
-        <p style="margin: 0; font-size: 16px"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
+        <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.start_time.strftime('%B %d, %Y')}" %>
           <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.start_time.strftime('%I:%M %p')}" %> </span></p>
-        <p style="margin: 0; font-size: 16px"> <%= "#{@log.end_time.strftime('%B %d, %Y')}" %>
+        <p style="margin: 0; font-size: 16px; color: white"> <%= "#{@log.end_time.strftime('%B %d, %Y')}" %>
           <span style="font-size: 14px; margin-left: 5px"> <%= "#{@log.end_time.strftime('%I:%M %p')}" %> </span></p>
       </div>
     <% end %>
   </div>
 
   <div class="gray-background">
-    <h3 style="margin-left: 10px"><%= @log.weather_description.capitalize %> </h3>
-
-    <div style="display: flex; width: 100%; border-top: 2px solid #010038; margin-bottom: 10px">
+    <div style="display: flex; width: 100%; margin-bottom: 10px">
       <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
       </div>
+      <h3><%= @log.weather_description.capitalize %> </h3>
+    </div>
+
+    <div style="display: flex; width: 100%; border-top: 2px solid white; padding-left: 30px; margin-bottom: 10px; justify-content: center">
+  
 
       <div style="width: 65%; margin-top: 10px">
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
@@ -33,22 +38,26 @@
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
       </div>
     </div>
+    
 
     <!-- Optional: rating and observations -->
+    <div style="padding-left: 78px">
+    <div style="width: 70px; margin-bottom: 5px; border-bottom: 3px solid white"><p style="margin-bottom: 0">Optional :</p></div>
     <% unless @log.rating.nil? %>
-      <p style="font-size: 17px"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
+      <p style="font-size: 17px; margin-bottom: 0"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
     <% end %>
 
     <% unless @log.observation.empty? %>
       <p style="font-size: 17px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
     <% end %>
   </div>
+  </div>
 
   <!-- List of Catches -->
   <ul class="list-border-top" style="margin-top: 25px">
     <div style="display: flex; justify-content: space-between">
       <h3 style="margin-left: 10px">Catches</h3>
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: #010038" do %>
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
     </div>
@@ -60,10 +69,10 @@
       <% @log.catches.each do |catch| %>
         <li>
           <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
-            <i class="far fa-trash-alt" style="font-size: 18px; color: #010038; margin-right: 5px"></i>
+            <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
           <% end %>
 
-          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
+          <a href="#" class="btn btn-flat" style="padding: 5px; border-radius: 0" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
             <%= "#{catch.quantity} #{catch.fish.common_name}" %>
           </a>
           <%= render "logs/modal", catch: catch %>
@@ -82,9 +91,9 @@
           <div class="modal-dialog">
 
             <div class="modal-content">
-              <div style="text-align:center; width: 100%; padding: 10px">
-                <h2 class="modal-title" style="color: #010038"> Delete Catch</h2>
-                <p style="color: #010038; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
+              <div style="text-align:center; width: 100%">
+                <h2 class="modal-title" style="color: white"> Delete Catch</h2>
+                <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">Are you sure you want to delete the catch?</p>
               </div>
 
               <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
@@ -100,7 +109,7 @@
   </ul>
 
   <!-- Pop-ups for Log: delete and edit -->
-  <div style="width: 100%; padding: 5px 10px; display: flex; justify-content: flex-end">
+  <div style="width: 100%; display: flex; justify-content: flex-end">
     <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
       <i class="far fa-trash-alt" style="font-size: 26px; color: white"></i>
     <% end %>
@@ -123,7 +132,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" style="color: #010038">New Catch</h4>
+        <h4 class="modal-title" style="color: white; opacity: 0.9">New Catch</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -140,13 +149,14 @@
 
     <div class="modal-content">
       <div style="text-align:center; width: 100%; padding: 10px">
-        <h2 class="modal-title" style="color: #010038"> Delete Log</h2>
-        <p style="color: #010038; margin: 0">Are you sure you want to delete the log?</p>
-      </div>
+        <h2 class="modal-title" style="color: white; opacity: 0.9"> Delete Log</h2>
+        <p style="color: #BDEBFF; margin: 0">Are you sure you want to delete the log?</p>
 
-      <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
+   
+   <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
         <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
         <%= link_to "Delete", log_path(@log), method: :delete, class: "btn-delete-confirm" %>
+      </div>
       </div>
     </div>
   </div>
@@ -157,7 +167,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" style="color: #010038">Edit Log</h4>
+        <h4 class="modal-title" style="color: white; opacity: 0.9">Edit Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -172,7 +182,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" style="color: #010038">New Log</h4>
+        <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">

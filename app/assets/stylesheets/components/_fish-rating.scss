@@ -21,6 +21,7 @@
   float: right;
   height: 100%;
   width: 10%;
+  
 
   cursor: pointer;
   z-index: 10;
@@ -53,7 +54,7 @@
 }
 
 .fish-rating input[type=radio]:checked ~ label2 {
-  background-color: #010038;
+  background-color: #BDEBFF;
 }
 
 .fish-rating-bar {
@@ -61,7 +62,7 @@
   width: 100%;
   height: 25px;
   position: relative;
-  border-top: 1px solid #010038;
+  border-top: 1px solid #BDEBFF;
   padding: 5px 20px 0;
   margin-top: 5px;
 }
