@@ -1,10 +1,12 @@
 <div style="padding: 20px">
 <div class="page-title">
-  <h1  style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
-  <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400">- <%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+  <div>
+    <h1  style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
+    <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+  </div>
 </div>
+
   <!-- Date -->
-  
   <div style="display: flex; margin: 30px 10px 25px; justify-content: center; align-items: center">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
       <i class="far fa-calendar-alt" style="font-size: 26px; margin-right: 10px"></i>
@@ -29,28 +31,27 @@
       <h3><%= @log.weather_description.capitalize %> </h3>
     </div>
 
-    <div style="display: flex; width: 100%; border-top: 2px solid white; padding-left: 30px; margin-bottom: 10px; justify-content: center">
+    <div style="display: flex; width: 100%; border-top: 2px solid white; padding-left: 30px; justify-content: center">
   
 
-      <div style="width: 65%; margin-top: 10px">
+      <div style="width: 65%; margin: 10px 0">
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Wind Speed: </strong> <%= @log.wind_speed %> m/s</p>
         <p style="margin-bottom: 8px"> <strong style="font-size: 17px">Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
       </div>
     </div>
-    
 
-    <!-- Optional: rating and observations -->
-    <div style="padding-left: 78px">
-    <div style="width: 70px; margin-bottom: 5px; border-bottom: 3px solid white"><p style="margin-bottom: 0">Optional :</p></div>
-    <% unless @log.rating.nil? %>
-      <p style="font-size: 17px; margin-bottom: 0"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
-    <% end %>
 
-    <% unless @log.observation.empty? %>
-      <p style="font-size: 17px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
-    <% end %>
-  </div>
+      <!-- Optional: rating and observations -->
+      <div style="padding-left: 78px">
+      <% unless @log.rating.nil? %>
+        <p style="font-size: 17px; margin-bottom: 8px"> <strong> Rating: </strong> <%= "#{@log.rating}/10" %> </p>
+      <% end %>
+
+      <% unless @log.observation.empty? || @log.observation.match?(/\A\s*\Z/) %>
+        <p style="font-size: 17px; margin-bottom: 8px"> <strong>Observations: </strong> <span style="font-size: 15px"> <%= @log.observation %> </span> </p>
+      <% end %>
+    </div>
   </div>
 
   <!-- List of Catches -->
