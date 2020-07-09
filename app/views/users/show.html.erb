@@ -94,7 +94,7 @@
              <% @array << @fish %>
         <% end %>
            <%=@array.inject(0, &:+)%>
-         
+
         <p>FISH</p>
       </div>
     </div>
@@ -104,9 +104,14 @@
 <div class="d-flex justify-content-center">
   <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px; margin-top: 20px">
       <h5 style="text-align:center">Most caught fish</h3>
-      <li class=top-user><p style="text-align:center">1. Fish name - Number of catch</p></li>
-      <li class=top-user><p style="text-align:center">2. Fish name - Number of catch</p></li>
-      <li class=top-user><p style="text-align:center">3. Fish name - Number of catch</p></li>
+
+        <% current_user.top_three_fish.each_with_index do |fish, index|  %>
+          <li class=top-user><p style="text-align:center">
+            <%= "#{index + 1}. #{fish.common_name} - #{fish.count_catches}" %>
+          </p></li>
+        <% end %>
+
+
   </ul>
   </div>
 
