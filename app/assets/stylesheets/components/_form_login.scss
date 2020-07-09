@@ -20,7 +20,7 @@
       font-weight: bold;
       margin-bottom: 30px;
       text-align: center;
-      color: white;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .placeholder {
@@ -32,9 +32,14 @@
       margin-bottom: 20px
     }
 
+    
+  .text-muted {
+    color: #9BDDF9;
+  }
+
+
 
   }
   .form-login  {
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
   }
-
