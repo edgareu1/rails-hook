@@ -7,6 +7,8 @@ class Log < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validate :end_time_is_after_start_time
+
   validates :location, presence: true
 
   after_create :add_weather_data
@@ -46,6 +48,12 @@ class Log < ApplicationRecord
       return moon_percentage * 2
     else
       return (1 - moon_percentage) * 2
+    end
+  end
+
+  def end_time_is_after_start_time
+    if end_time <= start_time + ((9 * 60) + 1)
+      errors.add(:end_date, "Log cannot be less than 10min long")
     end
   end
 end
