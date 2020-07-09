@@ -9,15 +9,16 @@
         autocomplete: "off"
       %>
 
-      <%= submit_tag "Search", class: "btn btn-primary btn-flat" %>
+      <%= submit_tag "Search", class: "btn btn-primary btn-flat", style:"border-radius:0; padding-bottom: 6px; border: none; margin-top:0" %>
     </div>
   <% end %>
 
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id }, class:"fish_box" do %>
       <div class="fish-card">
+      <div style="height: 220px; display:flex; align-items: center">
         <%= image_tag fish.picture_url %>
-
+      </div>
         <div class="fish-card-infos">
           <h2><%= fish.common_name.upcase %></h2>
 

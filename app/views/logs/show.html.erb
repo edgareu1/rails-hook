@@ -1,7 +1,8 @@
 <div style="padding: 20px">
-  <h1 style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
+<div class="page-title">
+  <h1  style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
   <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400">- <%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
-
+</div>
   <!-- Date -->
   <div style="display: flex; margin: 30px 10px 25px">
     <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
