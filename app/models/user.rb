@@ -19,7 +19,14 @@ class User < ApplicationRecord
   end
 
   def top_three_fish
-    Fish.all.to_a.sort_by { |fish| - fish.count_catches }[0..2]
+    arr = []
 
+    Fish.all.to_a.each do |fish|
+      catches_sum = self.catches.to_a.select { |catch| catch.fish_id == fish.id }.inject(0) { |sum, catch| sum + catch.quantity }
+
+      arr << [fish, catches_sum]
+    end
+
+    return arr.sort_by { |fish_arr| - fish_arr[1] }[0..2]
   end
 end
