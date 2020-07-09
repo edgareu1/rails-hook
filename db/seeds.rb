@@ -56,12 +56,14 @@ Fish.create(common_name: 'Common Octopus', good_weight: 3000, scientific_name: '
 
 Fish.create(common_name: 'Spotted Seabass', good_weight: 1000, scientific_name: 'Dicentrarchus punctatus', legal_weight: 0, legal_size: 20, picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/SPOTTED_SEABASS_wpz8ue.png", description: 'The Spotted Seabass has an elongated silver-grey body with small black spots. It inhabits coastal waters ranging in  depth from 0  - 30  meters.', url: 'https://en.wikipedia.org/wiki/Spotted_seabass')
 
-puts "Fish created"
+puts "Created #{Fish.count} fish"
+
 
 laure = User.new(username: "laure", email: "laure@gmail.com", password: "123456")
 laure.save
 
-puts "User created"
+puts "Created #{User.count} user"
+
 
 channel_spot = Location.create(name: "Cascais, Área Metropolitana de Lisboa, Portugal", latitude: 38.72240025, longitude: -9.396909171649877, site: "Channel Spot", user: laure)
 
@@ -73,7 +75,8 @@ seabass_park = Location.create(name: "Porto, Norte, Portugal", latitude: 41.1494
 
 magic_land = Location.create(name: "Faro, Algarve, Portugal", latitude:  37.0162727, longitude: -7.9351771, site: "Magic Land", user: laure)
 
-puts "location created"
+puts "Created #{Location.count} locations"
+
 
 log1 = Log.create(start_time: Time.new(2020, 7, 9, 9, 0), end_time:Time.new(2020, 7, 9, 12, 0), rating: 4, observation: "Lots of turbidity in the water. Water color was very green", tag_id: 1, location: channel_spot, user: laure)
 log1.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "02d", weather_description: "few clouds")
@@ -97,34 +100,31 @@ log8 = Log.create(start_time: Time.new(2020, 7, 4, 9, 0), end_time:Time.new(2020
 
 log9 = Log.create(start_time: Time.new(2020, 7, 5, 6, 0), end_time:Time.new(2020, 7, 5, 9, 0), rating: 9, observation: " ", tag_id: 9, location: magic_land, user: laure)
 
-puts "logs created"
-
-Catch.create(quantity: 1, fish_id: 7, weight: 3200, log_id: 2)
-
-Catch.create(quantity: 2, fish_id: 15, weight: 2000, log_id: 5)
-
-Catch.create(quantity: 1, fish_id: 22, weight: 1200, log_id: 9)
-
-Catch.create(quantity: 3, fish_id: 10, weight: 4000, log_id: 4)
-
-Catch.create(quantity: 4, fish_id: 15, weight: 4000, log_id: 8)
-
-Catch.create(quantity: 1, fish_id: 15, weight: 2500, log_id: 5)
-
-Catch.create(quantity: 1, fish_id: 17, weight: 1500, log_id: 5)
-
-Catch.create(quantity: 1, fish_id: 15, weight: 2000, log_id: 2)
-
-Catch.create(quantity: 15, fish_id: 3, weight: 300, log_id: 7)
-
-puts "catch created"
+puts "Created #{Log.count} logs"
 
 
+Catch.create(quantity: 1, fish_id: 9, weight: 1200, log: log1)
 
+Catch.create(quantity: 1, fish_id: 7, weight: 3200, log: log2)
 
+Catch.create(quantity: 1, fish_id: 15, weight: 2000, log: log2)
 
+Catch.create(quantity: 3, fish_id: 7, weight: 8100, log: log3)
 
+Catch.create(quantity: 3, fish_id: 10, weight: 4000, log: log4)
 
+Catch.create(quantity: 2, fish_id: 15, weight: 2000, log: log5)
 
+Catch.create(quantity: 1, fish_id: 15, weight: 2500, log: log5)
 
+Catch.create(quantity: 1, fish_id: 17, weight: 1500, log: log5)
 
+Catch.create(quantity: 15, fish_id: 3, weight: 300, log: log7)
+
+Catch.create(quantity: 4, fish_id: 15, weight: 4000, log: log8)
+
+Catch.create(quantity: 1, fish_id: 22, weight: 1200, log: log9)
+
+Catch.create(quantity: 3, fish_id: 22, weight: 3100, log: log9)
+
+puts "Created #{Catch.count} catches"
