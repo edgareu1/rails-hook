@@ -102,29 +102,30 @@ log9 = Log.create(start_time: Time.new(2020, 7, 5, 6, 0), end_time:Time.new(2020
 
 puts "Created #{Log.count} logs"
 
+fish = Fish.all
 
-Catch.create!(quantity: 1, fish_id: 9, weight: 1200, log: log1)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 1200, log: log1)
 
-Catch.create!(quantity: 1, fish_id: 7, weight: 3200, log: log2)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 3200, log: log2)
 
-Catch.create!(quantity: 1, fish_id: 15, weight: 2000, log: log2)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 2000, log: log2)
 
-Catch.create!(quantity: 3, fish_id: 7, weight: 8100, log: log3)
+Catch.create!(fish: fish.sample, quantity: 3, weight: 8100, log: log3)
 
-Catch.create!(quantity: 3, fish_id: 10, weight: 4000, log: log4)
+Catch.create!(fish: fish.sample, quantity: 3, weight: 4000, log: log4)
 
-Catch.create!(quantity: 2, fish_id: 15, weight: 2000, log: log5)
+Catch.create!(fish: fish.sample, quantity: 2, weight: 2000, log: log5)
 
-Catch.create!(quantity: 1, fish_id: 15, weight: 2500, log: log5)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 2500, log: log5)
 
-Catch.create!(quantity: 1, fish_id: 17, weight: 1500, log: log5)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 1500, log: log5)
 
-Catch.create!(quantity: 15, fish_id: 3, weight: 300, log: log7)
+Catch.create!(fish: fish.sample, quantity: 15, weight: 300, log: log7)
 
-Catch.create!(quantity: 4, fish_id: 15, weight: 4000, log: log8)
+Catch.create!(fish: fish.sample, quantity: 4, weight: 4000, log: log8)
 
-Catch.create!(quantity: 1, fish_id: 22, weight: 1200, log: log9)
+Catch.create!(fish: fish.sample, quantity: 1, weight: 1200, log: log9)
 
-Catch.create!(quantity: 3, fish_id: 22, weight: 3100, log: log9)
+Catch.create!(fish: fish.sample, quantity: 3, weight: 3100, log: log9)
 
 puts "Created #{Catch.count} catches"
