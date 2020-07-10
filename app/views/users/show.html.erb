@@ -79,7 +79,7 @@
       <p style="text-align:justify; padding: 0 10px"><%=feed.sample %></p>
   </ul>
 
-    <div class="user-info" style="margin-bottom: 20px">
+    <div class="user-info" style="margin-bottom: 40px">
     <div class="user-numbers">
       <div class="info-background">
         <%= current_user.logs.count %>
@@ -100,7 +100,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px; margin-top: 20px">
+  <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px">
       <h5 style="text-align:center">Most caught fish</h3>
 
         <% current_user.top_three_fish.each_with_index do |fish, index|  %>
