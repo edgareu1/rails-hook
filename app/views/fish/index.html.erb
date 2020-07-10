@@ -23,25 +23,25 @@
           <h2 style="margin-bottom:0"><%= fish.common_name.upcase %></h2>
 
           <p style="font-size:16px; margin-bottom: 0">
-            <i>Minimum size:</i>
+            <i style="color: #3AC4FF">Minimum size:</i>
             <% if fish.legal_weight == 0 && fish.legal_size == 0  %>
-              <i>NA</i>
+              <i style="color: rgba(255, 255, 255, 0.9)">NA</i>
             <% end %>
 
             <% unless fish.legal_weight == 0 %>
               <% if fish.legal_weight < 1000 %>
-                <i><%= "#{fish.legal_weight} gr" %></i>
+                <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_weight} gr" %></i>
               <% else %>
-                <i><%= "#{fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %></i>
+                <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %></i>
               <% end %>
             <% end %>
 
             <% if fish.legal_weight != 0 && fish.legal_size != 0  %>
-              <i><%= " / " %></i>
+              <i style="color: rgba(255, 255, 255, 0.9)"><%= " / " %></i>
             <% end %>
 
             <% unless fish.legal_size == 0 %>
-              <i><%= "#{fish.legal_size} cm" %></i>
+              <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_size} cm" %></i>
             <% end %>
             
           </p>

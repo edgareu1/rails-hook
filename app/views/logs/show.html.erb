@@ -2,7 +2,7 @@
 <div class="page-title">
   <div>
     <h1  style="font-size: 36px; margin-bottom: 2px"><%= @log.location.name.match(/^[^,]*/)[0].truncate(18) %></h1>
-    <h1 style="font-size: 22px; margin-left: 10px; font-weight: 400"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
+    <h1 style="color: #3AC4FF; font-size: 22px; margin-left: 10px; font-weight: 400"><%= "#{@log.location.site} \##{sprintf '%03d', (@log.tag_id)}" %></h1>
   </div>
 </div>
 
@@ -25,8 +25,8 @@
   </div>
 
   <div class="gray-background">
-    <div style="display: flex; width: 100%; margin-bottom: 10px">
-      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; width: 35%">
+    <div style="display: flex; width: 100%; margin-bottom: 10px; align-items: center">
+      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png); background-position: center; background-repeat: no-repeat; -webkit-user-select: none; height: 50px; width: 35%">
       </div>
       <h3><%= @log.weather_description.capitalize %> </h3>
     </div>
