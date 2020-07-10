@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Catch.destroy_all
-Fish.destroy_all
+User.destroy_all
 Log.destroy_all
 Location.destroy_all
-User.destroy_all
+Catch.destroy_all
+Fish.destroy_all
 
 Fish.create(common_name: 'Yellow Fin Tuna', good_weight: 25000, scientific_name: 'Thunnus albacares', legal_weight: 2700, legal_size: 0, picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/YELLOW_FIN_TUNA_wo1dl0.png", description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.', url: 'https://en.wikipedia.org/wiki/Yellowfin_tuna')
 
@@ -78,54 +78,92 @@ magic_land = Location.create(name: "Faro, Algarve, Portugal", latitude:  37.0162
 puts "Created #{Location.count} locations"
 
 
-log1 = Log.create(start_time: Time.new(2020, 7, 9, 9, 0), end_time:Time.new(2020, 7, 9, 12, 0), rating: 4, observation: "Lots of turbidity in the water. Water color was very green", tag_id: 1, location: channel_spot, user: laure)
-log1.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "02d", weather_description: "few clouds")
+log1 = Log.create(start_time: Time.new(2020, 6, 20, 5, 0), end_time:Time.new(2020, 6, 20, 12, 0), rating: 8, observation: "", tag_id: 1, location: channel_spot, user: laure)
 
-log2 = Log.create(start_time: Time.new(2020, 7, 10, 11, 0), end_time:Time.new(2020, 7, 10, 17, 30), rating: 8, observation: "None stop bust ups! Seems they were feeding on the smaller fish today. Consider pingalim.", tag_id: 2, location: sargo_rock, user: laure)
-log2.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "03d", weather_description: "scattered clouds")
+log2 = Log.create(start_time: Time.new(2020, 6, 22, 9, 0), end_time:Time.new(2020, 6, 22, 12, 0), rating: 4, observation: "Lots of turbidity in the water. Water color was very green", tag_id: 2, location: channel_spot, user: laure)
+log2.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "02d", weather_description: "few clouds")
 
-log3 = Log.create(start_time: Time.new(2020, 7, 12, 13, 0), end_time:Time.new(2020, 7, 12, 18, 0), rating: 5, observation: "Slow start, finished with an hour of activity before sunset.", tag_id: 3, location: caparica_spot, user: laure)
-log3.update(air_pressure: 1025, wind_speed: 10.0, weather_icon: "01d", weather_description: "clear sky")
+log3 = Log.create(start_time: Time.new(2020, 6, 24, 11, 0), end_time:Time.new(2020, 6, 24, 17, 30), rating: 8, observation: "None stop bust ups! Seems they were feeding on the smaller fish today. Consider pingalim.", tag_id: 3, location: channel_spot, user: laure)
+log3.update(air_pressure: 1002, wind_speed: 10.0, weather_icon: "03d", weather_description: "scattered clouds")
 
-log4 = Log.create(start_time: Time.new(2020, 7, 8, 5, 0), end_time:Time.new(2020, 7, 8, 12, 0), rating: 8, observation: " ", tag_id: 4, location: channel_spot, user: laure)
+log4 = Log.create(start_time: Time.new(2020, 6, 27, 11, 0), end_time:Time.new(2020, 6, 27, 16, 0), rating: 6, observation: "", tag_id: 4, location: channel_spot, user: laure)
+log4.update(air_pressure: 1012, wind_speed: 8.3, weather_icon: "03d", weather_description: "scattered clouds")
 
-log5 = Log.create(start_time: Time.new(2020, 7, 7, 20, 0), end_time:Time.new(2020, 7, 7, 23, 0), rating: 9, observation: "soft plastics were killing it today!", tag_id: 5, location: sargo_rock, user: laure)
 
-log6 = Log.create(start_time: Time.new(2020, 7, 2, 3, 0), end_time:Time.new(2020, 7, 2, 5, 0), rating: 2, observation: "waste of time....", tag_id: 6, location: seabass_park, user: laure)
+log5 = Log.create(start_time: Time.new(2020, 7, 3, 20, 0), end_time:Time.new(2020, 7, 3, 23, 0), rating: 9, observation: "soft plastics were killing it today!", tag_id: 1, location: sargo_rock, user: laure)
 
-log7 = Log.create(start_time: Time.new(2020, 7, 3, 22, 0), end_time:Time.new(2020, 7, 3, 24, 0), rating: 7, observation: " ", tag_id: 7, location: magic_land, user: laure)
-log7.update(air_pressure: 1012, wind_speed: 5.0, weather_icon: "04n", weather_description: "broken clouds")
+log6 = Log.create(start_time: Time.new(2020, 7, 5, 11, 0), end_time:Time.new(2020, 7, 5, 17, 30), rating: 9, observation: "None stop bust ups! Seems they were feeding on the smaller fish today. Consider pingalim.", tag_id: 2, location: sargo_rock, user: laure)
+log6.update(air_pressure: 1020, wind_speed: 7.0, weather_icon: "02d", weather_description: "few clouds")
 
-log8 = Log.create(start_time: Time.new(2020, 7, 4, 9, 0), end_time:Time.new(2020, 7, 4, 12, 0), rating: 8, observation: "Sardine and mussels were activating", tag_id: 8, location: sargo_rock, user: laure)
+log7 = Log.create(start_time: Time.new(2020, 7, 6, 11, 0), end_time:Time.new(2020, 7, 6, 15, 30), rating: 5, observation: "", tag_id: 3, location: sargo_rock, user: laure)
+log7.update(air_pressure: 1025, wind_speed: 10.0, weather_icon: "01d", weather_description: "clear sky")
 
-log9 = Log.create(start_time: Time.new(2020, 7, 5, 6, 0), end_time:Time.new(2020, 7, 5, 9, 0), rating: 9, observation: " ", tag_id: 9, location: magic_land, user: laure)
+log8 = Log.create(start_time: Time.new(2020, 7, 8, 10, 0), end_time:Time.new(2020, 7, 8, 14, 0), rating: 7, observation: "To windy for me.", tag_id: 4, location: sargo_rock, user: laure)
+log8.update(air_pressure: 1011, wind_speed: 9.8, weather_icon: "04n", weather_description: "broken clouds")
+
+log9 = Log.create(start_time: Time.new(2020, 7, 8, 17, 0), end_time:Time.new(2020, 7, 8, 22, 0), rating: 5, observation: "Slow start, finished with an hour of activity before sunset.", tag_id: 5, location: sargo_rock, user: laure)
+log9.update(air_pressure: 1025, wind_speed: 10.0, weather_icon: "01d", weather_description: "clear sky")
+
+
+log10 = Log.create(start_time: Time.new(2020, 6, 2, 3, 0), end_time:Time.new(2020, 6, 2, 5, 0), rating: 2, observation: "waste of time....", tag_id: 1, location: caparica_spot, user: laure)
+
+log11 = Log.create(start_time: Time.new(2020, 6, 2, 13, 0), end_time:Time.new(2020, 6, 2, 15, 0), rating: 5, observation: "", tag_id: 2, location: caparica_spot, user: laure)
+log11.update(air_pressure: 1014, wind_speed: 4.2, weather_icon: "01d", weather_description: "clear sky")
+
+log12 = Log.create(start_time: Time.new(2020, 6, 5, 20, 0), end_time:Time.new(2020, 6, 5, 23, 0), rating: 6, observation: "", tag_id: 3, location: caparica_spot, user: laure)
+log12.update(air_pressure: 1018, wind_speed: 8.3, weather_icon: "03d", weather_description: "scattered clouds")
+
+log13 = Log.create(start_time: Time.new(2020, 6, 6, 20, 0), end_time:Time.new(2020, 6, 6, 23, 0), rating: 6, observation: "Too dark too see on this spot", tag_id: 4, location: caparica_spot, user: laure)
+log13.update(air_pressure: 1008, wind_speed: 4.3, weather_icon: "04n", weather_description: "broken clouds")
+
+log14 = Log.create(start_time: Time.new(2020, 6, 7, 10, 0), end_time:Time.new(2020, 6, 7, 13, 0), rating: 9, observation: "Prety cool", tag_id: 5, location: caparica_spot, user: laure)
+log14.update(air_pressure: 1029, wind_speed: 2.7, weather_icon: "01d", weather_description: "clear sky")
+
+log15 = Log.create(start_time: Time.new(2020, 6, 7, 20, 0), end_time:Time.new(2020, 6, 7, 22, 0), rating: 5, observation: "", tag_id: 6, location: caparica_spot, user: laure)
+log15.update(air_pressure: 1027, wind_speed: 3.3, weather_icon: "01d", weather_description: "clear sky")
+
+log16 = Log.create(start_time: Time.new(2020, 6, 8, 7, 0), end_time:Time.new(2020, 6, 8, 11, 0), rating: 8, observation: "", tag_id: 7, location: caparica_spot, user: laure)
+log16.update(air_pressure: 1015, wind_speed: 2.5, weather_icon: "01d", weather_description: "clear sky")
+
+
+log17 = Log.create(start_time: Time.new(2020, 7, 2, 3, 0), end_time:Time.new(2020, 7, 2, 5, 0), rating: 2, observation: "waste of time....", tag_id: 1, location: seabass_park, user: laure)
+
+log18 = Log.create(start_time: Time.new(2020, 7, 7, 19, 0), end_time:Time.new(2020, 7, 7, 23, 0), rating: 4, observation: "", tag_id: 2, location: seabass_park, user: laure)
+log18.update(air_pressure: 1019, wind_speed: 7.1, weather_icon: "01d", weather_description: "clear sky")
+
+
+log19 = Log.create(start_time: Time.new(2020, 6, 25, 9, 0), end_time:Time.new(2020, 6, 25, 17, 0), rating: 8, observation: "Sardine and mussels were activating", tag_id: 1, location: magic_land, user: laure)
+
+log20 = Log.create(start_time: Time.new(2020, 6, 28, 20, 0), end_time:Time.new(2020, 6, 28, 24, 0), rating: 7, observation: " ", tag_id: 2, location: magic_land, user: laure)
+log20.update(air_pressure: 1012, wind_speed: 5.0, weather_icon: "04n", weather_description: "broken clouds")
+
+log21 = Log.create(start_time: Time.new(2020, 6, 29, 6, 0), end_time:Time.new(2020, 6, 29, 14, 0), rating: 9, observation: " ", tag_id: 3, location: magic_land, user: laure)
+log21.update(air_pressure: 1030, wind_speed: 5.0, weather_icon: "04n", weather_description: "broken clouds")
+
+log22 = Log.create(start_time: Time.new(2020, 7, 1, 7, 0), end_time:Time.new(2020, 7, 1, 14, 0), rating: 6, observation: "", tag_id: 4, location: magic_land, user: laure)
+log22.update(air_pressure: 1009, wind_speed: 8.3, weather_icon: "03d", weather_description: "scattered clouds")
+
 
 puts "Created #{Log.count} logs"
 
+
 fish = Fish.all
 
-Catch.create!(fish: fish.sample, quantity: 1, weight: 1200, log: log1)
+logs = Log.all
 
-Catch.create!(fish: fish.sample, quantity: 1, weight: 3200, log: log2)
+25.times do
+  rand_num = rand(1..3)
+  Catch.create!(fish: fish.sample, quantity: rand_num, weight: rand_num * rand(3..5) * 300, log: logs.sample)
+end
 
-Catch.create!(fish: fish.sample, quantity: 1, weight: 2000, log: log2)
+8.times do
+  rand_num = rand(4..6)
+  Catch.create!(fish: fish.sample, quantity: rand_num, weight: rand_num * rand(5..8) * 200, log: logs.sample)
+end
 
-Catch.create!(fish: fish.sample, quantity: 3, weight: 8100, log: log3)
-
-Catch.create!(fish: fish.sample, quantity: 3, weight: 4000, log: log4)
-
-Catch.create!(fish: fish.sample, quantity: 2, weight: 2000, log: log5)
-
-Catch.create!(fish: fish.sample, quantity: 1, weight: 2500, log: log5)
-
-Catch.create!(fish: fish.sample, quantity: 1, weight: 1500, log: log5)
-
-Catch.create!(fish: fish.sample, quantity: 15, weight: 300, log: log7)
-
-Catch.create!(fish: fish.sample, quantity: 4, weight: 4000, log: log8)
-
-Catch.create!(fish: fish.sample, quantity: 1, weight: 1200, log: log9)
-
-Catch.create!(fish: fish.sample, quantity: 3, weight: 3100, log: log9)
+2.times do
+  rand_num = rand(1..2)
+  Catch.create!(fish: fish.sample, quantity: rand_num, weight: rand_num * rand(10..14) * 400, log: logs.sample)
+end
 
 puts "Created #{Catch.count} catches"
