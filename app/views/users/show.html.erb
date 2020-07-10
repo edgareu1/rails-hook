@@ -1,8 +1,8 @@
 <div class="background-container"><canvas width="375" height="760" class="fish-tank" id="fishtank"></div>
 <div style="position: sticky">
-<div class="banner text-center">
+<div class="banner text-center" style="margin-bottom: 40px">
   <%= image_tag "avatar.jpg", class: "avatar-large", alt: "avatar-large" %>
-  <h4 >Welcome <%= current_user.username.capitalize%> !</h4>
+  <h4 style=" color: rgba(255, 255, 255, 0.9); margin-bottom: 40px" >Welcome <%= current_user.username.capitalize%> !</h4>
 
 
 
@@ -12,7 +12,7 @@
       <% end %>
 </div>
 
-  <ul class="location-box">
+  <ul class="location-box" style="margin-bottom: 50px">
     <div style="display: flex; justify-content: space-between; align-items: center">
       <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
       <h3 style="font-size: 22px">My Locations</h3>
@@ -74,12 +74,12 @@
   'Unlike most fish, the ocean sunfish does not have a tail. A female sunfish can lay 300 million eggs each year. Each egg is smaller than the period at the end of this sentence.',
 ]%>
 
-  <ul class="feed">
+  <ul class="feed" style="margin-bottom: 50px">
       <h5 style="text-align:center; padding-top: 10px">Did you know ?</h3>
       <p style="text-align:justify; padding: 0 10px"><%=feed.sample %></p>
   </ul>
 
-    <div class="user-info">
+    <div class="user-info" style="margin-bottom: 20px">
     <div class="user-numbers">
       <div class="info-background">
         <%= current_user.logs.count %>
@@ -104,8 +104,8 @@
       <h5 style="text-align:center">Most caught fish</h3>
 
         <% current_user.top_three_fish.each_with_index do |fish, index|  %>
-          <li class=top-user><p style="text-align:center">
-            <%= "#{index + 1}. #{fish[0].common_name} - #{fish[1]}" %>
+          <li class=top-user><p style="text-align:center; color: rgba(255, 255, 255, 0.9);">
+            <%= "#{index + 1}."%> <i style="color:#9BDDF9"><%= "#{fish[0].common_name}"%></i> <%="- #{fish[1]}" %>
           </p></li>
         <% end %>
 

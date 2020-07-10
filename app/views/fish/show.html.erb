@@ -8,25 +8,25 @@
       <h2 style="margin-bottom:0"><%= @fish.common_name.upcase %></h2>
 
       <p  style="font-size: 15px">
-        <i>Minimum size:
+        <i style="color: #3AC4FF">Minimum size:</i>
         <% if @fish.legal_weight == 0 && @fish.legal_size == 0  %>
-          NA
+          <i style="color: rgba(255, 255, 255, 0.9)">NA</i>
         <% end %>
 
         <% unless @fish.legal_weight == 0 %>
           <% if @fish.legal_weight < 1000 %>
-            <%= "#{@fish.legal_weight} gr" %>
+            <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{@fish.legal_weight} gr" %></i>
           <% else %>
-            <%= "#{@fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %>
+            <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{@fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %></i>
           <% end %>
         <% end %>
 
         <% if @fish.legal_weight != 0 && @fish.legal_size != 0  %>
-          <%= " / " %>
+          <i style="color: rgba(255, 255, 255, 0.9)"><%= " / " %></i>
         <% end %>
 
         <% unless @fish.legal_size == 0 %>
-          <%= "#{@fish.legal_size} cm" %>
+          <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{@fish.legal_size} cm" %></i>
         <% end %>
         </i>
       </p>
