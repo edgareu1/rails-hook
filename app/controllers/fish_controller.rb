@@ -2,6 +2,7 @@ class FishController < ApplicationController
   def index
     @fish = Fish.all
 
+    # Option to search a fish by it's name
     if params[:query].present?
       @fish = Fish.where("common_name ILIKE ?", "%#{params[:query]}%")
     else
