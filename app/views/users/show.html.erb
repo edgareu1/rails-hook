@@ -131,7 +131,7 @@
       </div>
 
       <div class="modal-body">
-        <%= render "locations/form", location: Location.new %>
+        <%= render "locations/form" %>
       </div>
     </div>
   </div>
@@ -151,3 +151,12 @@
     </div>
   </div>
 </div>
+
+<!-- Makes sure that, if an error appears while creating a new Location, it is displayed to the user -->
+<% if @location.errors.any? %>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('[data-target="#ModalCreateLocation"]').click();
+    });
+  </script>
+<% end %>

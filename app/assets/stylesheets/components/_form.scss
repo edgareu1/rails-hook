@@ -1,7 +1,11 @@
 .form-control {
-    font-family: $body-font;
+  font-family: $body-font;
 }
 
 .logo {
-    text-align: center;
+  text-align: center;
+}
+
+.invalid-feedback {
+  display: block;
 }
