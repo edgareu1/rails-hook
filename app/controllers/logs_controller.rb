@@ -7,14 +7,7 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params_new)
     @log.user = current_user
-
-    logs_same_location = current_user.logs.to_a.select { |log| log.location == @log.location }
-
-    if logs_same_location.empty?
-      @log.tag_id = 1
-    else
-      @log.tag_id = logs_same_location.max_by { |element| element.tag_id }.tag_id + 1
-    end
+    @log.tag_id = get_tag_id(@log) unless @log.location.nil?
 
     if @log.save
       redirect_to log_path(@log)
@@ -63,6 +56,13 @@ class LogsController < ApplicationController
 
 
   private
+
+  # A num based on the tag_id of the last log with the same location
+  def get_tag_id(log)
+    location_logs = log.location.logs
+
+    return location_logs.empty? ? 1 : location_logs.map(&:tag_id).max + 1
+  end
 
   def moon_calculation(start_time, end_time)
     new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
