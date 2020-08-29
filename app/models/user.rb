@@ -1,16 +1,14 @@
 class User < ApplicationRecord
+  attr_accessor :login
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  attr_accessor :login
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :logs
-
   has_many :locations, dependent: :destroy
   has_many :catches, through: :logs
-
-
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
@@ -18,15 +16,12 @@ class User < ApplicationRecord
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
-  def top_three_fish
-    arr = []
-
-    Fish.all.to_a.each do |fish|
-      catches_sum = self.catches.to_a.select { |catch| catch.fish_id == fish.id }.inject(0) { |sum, catch| sum + catch.quantity }
-
-      arr << [fish, catches_sum]
-    end
-
-    return arr.sort_by { |fish_arr| - fish_arr[1] }[0..2]
+  # Returns an array of hashes that represent the fish most caught by the user
+  def top_fish(num)
+    catches.group_by { |catch| catch.fish.common_name }
+           .transform_values { |catches| catches.inject(0) { |sum, catch| sum + catch.quantity } }
+           .max_by(num) { |k, v| v }
+           .sort_by { |arr| - arr.last}
+           .map { |k, v| { name: k, num_catches: v } }
   end
 end
