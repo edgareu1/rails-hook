@@ -11,14 +11,14 @@ class LogsController < ApplicationController
     if @log.save
       redirect_to log_path(@log)
     else
-      @logs = index_logs_initializer(current_user)
+      @logs = init_logs_index(current_user)
       render "logs/index"
     end
   end
 
   def index
     @log = Log.new
-    @logs = index_logs_initializer(current_user)
+    @logs = init_logs_index(current_user)
   end
 
   def show
@@ -28,7 +28,7 @@ class LogsController < ApplicationController
   def update
     previous_location_id = @log.location_id
 
-    @log.update(log_params_edit)
+    successful_update = @log.update(log_params_edit)
     @log.update(moon_phase: moon_calculation(@log.start_time, @log.end_time))
 
     unless previous_location_id == @log.location_id
@@ -37,7 +37,12 @@ class LogsController < ApplicationController
       @log.update(tag_id: get_tag_id(@log))
     end
 
-    redirect_to log_path(@log)
+    if successful_update
+      redirect_to log_path(@log)
+    else
+      @catch = Catch.new
+      render "logs/show"
+    end
   end
 
   def destroy
@@ -68,7 +73,7 @@ class LogsController < ApplicationController
   end
 
   # Gets the collection of Logs to display at the Logs#index Page
-  def index_logs_initializer(user)
+  def init_logs_index(user)
     return user.logs
                .sort_by(&:start_time)
                .reverse.paginate(page: params[:page], per_page: 5)

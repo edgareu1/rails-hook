@@ -219,10 +219,20 @@
   </div>
 </div>
 
+<!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user -->
 <% if @log.errors.any? %>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById("modal-button").click();
+      document.querySelector('[data-target="#ModalEditLog"]').click();
+    });
+  </script>
+<% end %>
+
+<!-- Makes sure that, if an error appears while creating a new Catch, the error is displayed to the user -->
+<% if @catch.errors.any? %>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('[data-target="#ModalCreateCatch"]').click();
     });
   </script>
 <% end %>
