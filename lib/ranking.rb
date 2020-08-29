@@ -1,4 +1,8 @@
+require 'modules/moon-phase.rb'
+
 class Ranking
+  include MoonPhase
+
   def initialize(user)
     @user = user
   end
@@ -48,7 +52,7 @@ class Ranking
     all_location_hash.each do |k, v|
       weather_data = Rails.configuration.open_weather_api.current lon: Location.find(k).longitude , lat: Location.find(k).latitude
 
-      log_moon_phase_multiple = ((moon_calculation(Time.now, Time.now + (5 * 60 * 60)) - 0.5).abs * 2 * 0.8) + 1
+      log_moon_phase_multiple = ((get_moon_phase(Time.now) - 0.5).abs * 2 * 0.8) + 1
       log_air_pressure_multiple = air_pressure_indicator(weather_data["main"]["pressure"])
       log_wind_speed_multiple = wind_speed_indicator(weather_data["wind"]["speed"])
 
@@ -71,21 +75,6 @@ class Ranking
     end
 
     return all_location_stat_hash
-  end
-
-  def moon_calculation(start_time, end_time)
-    new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
-    moon_cycle = 29.5 * 60 * 60 * 24
-    average_time = start_time + ((end_time - start_time) / 2)
-
-    time_past_new_moon = (average_time - new_moon_base) % moon_cycle
-    moon_percentage = (time_past_new_moon / moon_cycle)
-
-    if moon_percentage < 0.5
-      return moon_percentage * 2
-    else
-      return (1 - moon_percentage) * 2
-    end
   end
 
   def air_pressure_indicator(air_pressure)

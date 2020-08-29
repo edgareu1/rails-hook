@@ -1,4 +1,8 @@
+require 'modules/moon-phase.rb'
+
 class Log < ApplicationRecord
+  include MoonPhase
+
   belongs_to :location
   belongs_to :user
 
@@ -31,24 +35,9 @@ class Log < ApplicationRecord
     self.weather_icon = weather_data["weather"][0]["icon"]
     self.weather_description = weather_data["weather"][0]["description"]
 
-    self.moon_phase = moon_calculation(self.start_time, self.end_time)
+    self.moon_phase = get_moon_phase(self.start_time)
 
     save
-  end
-
-  def moon_calculation(start_time, end_time)
-    new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
-    moon_cycle = 29.5 * 60 * 60 * 24
-    average_time = start_time + ((end_time - start_time) / 2)
-
-    time_past_new_moon = (average_time - new_moon_base) % moon_cycle
-    moon_percentage = (time_past_new_moon / moon_cycle)
-
-    if moon_percentage < 0.5
-      return moon_percentage * 2
-    else
-      return (1 - moon_percentage) * 2
-    end
   end
 
   def end_time_is_after_start_time

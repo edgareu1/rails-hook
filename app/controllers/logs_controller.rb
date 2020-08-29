@@ -1,6 +1,9 @@
 require 'will_paginate/array'
+require 'modules/moon-phase.rb'
 
 class LogsController < ApplicationController
+  include MoonPhase
+
   before_action :set_log, only: [:show, :update, :destroy]
 
   def create
@@ -29,7 +32,7 @@ class LogsController < ApplicationController
     previous_location_id = @log.location_id
 
     successful_update = @log.update(log_params_edit)
-    @log.update(moon_phase: moon_calculation(@log.start_time, @log.end_time))
+    @log.update(moon_phase: get_moon_phase(@log.start_time))
 
     unless previous_location_id == @log.location_id
       # In order to not count this same tag_id in the calculation of the new tag_id
@@ -77,20 +80,5 @@ class LogsController < ApplicationController
     return user.logs
                .sort_by(&:start_time)
                .reverse.paginate(page: params[:page], per_page: 5)
-  end
-
-  def moon_calculation(start_time, end_time)
-    new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
-    moon_cycle = 29.5 * 60 * 60 * 24
-    average_time = start_time + ((end_time - start_time) / 2)
-
-    time_past_new_moon = (average_time - new_moon_base) % moon_cycle
-    moon_percentage = (time_past_new_moon / moon_cycle)
-
-    if moon_percentage < 0.5
-      return moon_percentage * 2
-    else
-      return (1 - moon_percentage) * 2
-    end
   end
 end
