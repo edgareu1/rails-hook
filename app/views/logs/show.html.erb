@@ -62,7 +62,7 @@
           <th style="display: flex; flex-direction: row; justify-content: space-between">
             <h3 style="margin-left: 10px">Catches</h3>
 
-            <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
+            <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" }, style: "color: white; opacity: 0.9" do %>
               <i class="fas fa-plus" style="font-size: 30px"></i>
             <% end %>
           </th>
@@ -81,7 +81,7 @@
           <th style="width: 15%; text-align: center"><h6 style="font-size: 16px">Kg</h6></th>
 
           <th style="width: 15%; text-align: center">
-            <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateCatch" }, style: "color: white; opacity: 0.9" do %>
+            <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" }, style: "color: white; opacity: 0.9" do %>
               <i class="fas fa-plus" style="font-size: 26px"></i>
             <% end %>
           </th>
@@ -154,8 +154,8 @@
 
 <!-- Modals -->
 
-<!-- Modal Create Catch Form -->
-<div class="modal fade" id="ModalCreateCatch" role="dialog">
+<!-- Modal New Catch Form -->
+<div class="modal fade" id="ModalNewCatch" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -204,7 +204,7 @@
   </div>
 </div>
 
-<!-- Modal Create Log Form -->
+<!-- Modal New Log Form -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -222,7 +222,31 @@
 <!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user -->
 <% if @log.errors.any? %>
   <script>
+    function DisplayLogDateErrorMessage() {
+      let errorMessageText = `<%= @log.errors.messages[:end_date].first %>`;
+      let startTime = document.getElementById('log_start_time');
+      let endTime = document.getElementById('log_end_time');
+
+      if (errorMessageText == "") {
+        startTime.className = "form-control is-valid";
+        endTime.className = "form-control is-valid";
+      } else {
+        startTime.className = "form-control is-invalid";
+        endTime.className = "form-control is-invalid";
+
+        let errorMessage = document.createElement("div");
+        errorMessage.className = "invalid-feedback";
+        errorMessage.innerHTML = errorMessageText;
+
+        let nextElement = document.getElementsByClassName("form-group select required log_location")[0];
+        let formElement = document.getElementsByClassName("container-log-form")[0];
+
+        formElement.insertBefore(errorMessage, nextElement);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      DisplayLogDateErrorMessage();
       document.querySelector('[data-target="#ModalEditLog"]').click();
     });
   </script>
@@ -232,7 +256,7 @@
 <% if @catch.errors.any? %>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('[data-target="#ModalCreateCatch"]').click();
+      document.querySelector('[data-target="#ModalNewCatch"]').click();
     });
   </script>
 <% end %>

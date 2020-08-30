@@ -74,7 +74,7 @@
     </div>
   </div>
 
-  <!-- Modal Create Log Form -->
+  <!-- Modal New Log Form -->
   <div class="modal fade" id="ModalNewLog" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -90,10 +90,35 @@
   </div>
 </div>
 
+<!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user -->
 <% if @log.errors.any? %>
   <script>
+    function DisplayLogDateErrorMessage() {
+      let errorMessageText = `<%= @log.errors.messages[:end_date].first %>`;
+      let startTime = document.getElementById('log_start_time');
+      let endTime = document.getElementById('log_end_time');
+
+      if (errorMessageText == "") {
+        startTime.className = "form-control is-valid";
+        endTime.className = "form-control is-valid";
+      } else {
+        startTime.className = "form-control is-invalid";
+        endTime.className = "form-control is-invalid";
+
+        let errorMessage = document.createElement("div");
+        errorMessage.className = "invalid-feedback";
+        errorMessage.innerHTML = errorMessageText;
+
+        let nextElement = document.getElementsByClassName("form-group select required log_location")[0];
+        let formElement = document.getElementsByClassName("container-log-form")[0];
+
+        formElement.insertBefore(errorMessage, nextElement);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById("modal-button").click();
+      DisplayLogDateErrorMessage();
+      document.querySelector('[data-target="#ModalNewLog"]').click();
     });
   </script>
 <% end %>

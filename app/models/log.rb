@@ -11,7 +11,7 @@ class Log < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validate :end_time_is_after_start_time
+  validate :log_duration
 
   validates :location, presence: true
 
@@ -40,9 +40,13 @@ class Log < ApplicationRecord
     save
   end
 
-  def end_time_is_after_start_time
-    if end_time <= start_time + ((9 * 60) + 1)
+  def log_duration
+    if start_time >= end_time
+      errors.add(:end_date, "Log cannot end before it begins")
+    elsif start_time + (9 * 60) + 1 >= end_time
       errors.add(:end_date, "Log cannot be less than 10min long")
+    elsif start_time + (60 * 60 * 24) + 1 <= end_time
+      errors.add(:end_date, "Log cannot be longer than 24h")
     end
   end
 end
