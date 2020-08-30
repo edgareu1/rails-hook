@@ -11,22 +11,20 @@ class Log < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validate :log_duration
-
   validates :location, presence: true
+  
+  validate :log_duration
 
   after_create :add_weather_data
 
+  # Get the total number of fish caught
   def catch_count
-    sum = 0
-    catches.each do |c|
-      sum = sum + c.quantity
-    end
-    return sum
+    catches.inject(0) { |sum, catch| sum + catch.quantity }
   end
 
   private
 
+  # Update the weather variables to the ones registered at the moment
   def add_weather_data
     weather_data = Rails.configuration.open_weather_api.current lon: self.location.longitude , lat: self.location.latitude
 
@@ -40,6 +38,7 @@ class Log < ApplicationRecord
     save
   end
 
+  # Add validations to the Log duration
   def log_duration
     if start_time >= end_time
       errors.add(:end_date, "Log cannot end before it begins")
