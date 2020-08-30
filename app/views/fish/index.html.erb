@@ -5,49 +5,31 @@
         params[:query],
         class: "form-control",
         id: "search-input",
-        placeholder: "Find a fish",
+        placeholder: "Search by name",
         autocomplete: "off"
       %>
 
-      <%= submit_tag "Search", class: "btn btn-primary btn-flat", style:"border-radius:0; padding-bottom: 6px; border: none; margin-top:0" %>
+      <%= submit_tag "Search", class: "btn btn-fish-search" %>
     </div>
   <% end %>
 
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id }, class:"fish_box" do %>
       <div class="fish-card">
-      <div style="height: 220px; display:flex; align-items: center">
-        <%= image_tag fish.picture_url %>
-      </div>
+        <div style="height: 220px; display: flex; align-items: center">
+          <%= image_tag fish.picture_url %>
+        </div>
+
         <div class="fish-card-infos">
-          <h2 style="margin-bottom:0"><%= fish.common_name.upcase %></h2>
+          <h2 style="margin-bottom: 0"><%= fish.common_name.upcase %></h2>
 
-          <p style="font-size:16px; margin-bottom: 0">
+          <p style="font-size: 16px; margin-bottom: 0">
             <i style="color: #3AC4FF">Minimum size:</i>
-            <% if fish.legal_weight == 0 && fish.legal_size == 0  %>
-              <i style="color: rgba(255, 255, 255, 0.9)">NA</i>
-            <% end %>
-
-            <% unless fish.legal_weight == 0 %>
-              <% if fish.legal_weight < 1000 %>
-                <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_weight} gr" %></i>
-              <% else %>
-                <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_weight.fdiv(1000).tap{ |num| break num.to_i == num ? num.to_i : num }} kg" %></i>
-              <% end %>
-            <% end %>
-
-            <% if fish.legal_weight != 0 && fish.legal_size != 0  %>
-              <i style="color: rgba(255, 255, 255, 0.9)"><%= " / " %></i>
-            <% end %>
-
-            <% unless fish.legal_size == 0 %>
-              <i style="color: rgba(255, 255, 255, 0.9)"><%= "#{fish.legal_size} cm" %></i>
-            <% end %>
-            
+            <i style="color: rgba(255, 255, 255, 0.9)"><%= fish.display_legal_dimensions %></i>
           </p>
+
           <div style="font-size: 15px; padding:10px"><b><i>Learn more</i></b></div>
         </div>
-        
       </div>
     <% end %>
   <% end %>

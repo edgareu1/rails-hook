@@ -62,3 +62,18 @@
     margin-bottom: 0;
   }
 }
+
+.btn-fish-search {
+  color: white;
+  background: rgba(155, 221, 249, 0.3);
+  padding: 4px 8px 6px;
+  border: none;
+  border-radius: 0;
+  margin-top: 0;
+  transition: background 0.3s ease;
+
+  &:hover {
+    color: white;
+    background: rgba(91, 234, 201, 0.5);
+  }
+}
