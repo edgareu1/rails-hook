@@ -22,6 +22,12 @@ class Log < ApplicationRecord
     catches.inject(0) { |sum, catch| sum + catch.quantity }
   end
 
+  # Returns a string of the Log site followed by it's tag_id (padded with zeros)
+  # Ex: Sargo Rock #009
+  def label
+    "#{location.site} \##{sprintf '%03d', (tag_id)}"
+  end
+
   private
 
   # Update the weather variables to the ones registered at the moment
