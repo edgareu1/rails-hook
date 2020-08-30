@@ -14,7 +14,7 @@
   <% end %>
 
   <% @fish.each do |fish| %>
-    <%= link_to fish_path(fish), data: { id: fish.id }, class:"fish_box" do %>
+    <%= link_to fish_path(fish), data: { id: fish.id } do %>
       <div class="fish-card">
         <div style="height: 220px; display: flex; align-items: center">
           <%= image_tag fish.picture_url %>
