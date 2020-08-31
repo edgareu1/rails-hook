@@ -90,10 +90,10 @@
         <% @log.catches.each do |catch| %>
           <tr style="height: 60px; border-top: 2px solid white; text-align: center">
             <td style="text-align: left">
-              <a href="#" style="margin-left: 5px; font-size: 15.5px" class="btn btn-flat" data-toggle="modal" data-target="#Modal-<%= catch.fish.id%>">
+              <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" }, class: "btn btn-flat", style: "margin-left: 5px; font-size: 15.5px" do %>
                 <%= catch.fish.common_name %>
-              </a>
-              <%= render "logs/modal", catch: catch %>
+              <% end %>
+              <%= render "logs/fish-info", catch: catch %>
             </td>
 
             <td style="font-size: 16px">

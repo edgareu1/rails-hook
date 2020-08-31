@@ -8,18 +8,18 @@
       </tr>
 
       <tr>
-        <td style="width: 60px; padding-right: 2px"> <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || '1' } %> </td>
-        <td style="width: 280px; padding-right: 2px"> <%= f.association :fish, label_method: :common_name, label: false, prompt: "Please select" %> </td>
-        <td style="width: 100px; padding-right: 2px"> <%= f.input :weight, label: false, placeholder: "gr" %> </td>
+        <td style="width: 60px; padding-right: 2px">
+          <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || '1' } %>
+        </td>
+        <td style="width: 280px; padding-right: 2px">
+          <%= f.association :fish, label_method: :common_name, label: false, prompt: "Please select" %>
+        </td>
+        <td style="width: 100px; padding-right: 2px">
+          <%= f.input :weight, label: false, placeholder: "gr" %>
+        </td>
       </tr>
     </table>
+
     <%= f.button :submit, class: "btn btn-flat btn-block" %>
   </div>
 <% end %>
-
-<!--if the users_input of size/weight is less than the minimum_legal_size,
-  should appear a warningsaying  "This fish is still a baby!"
-
-  if the users_input of size/weight is 25% over the minimum_legal_size there should appear a sign Wow, now thats a keeper! -->
-
-
