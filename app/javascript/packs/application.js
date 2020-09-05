@@ -27,7 +27,7 @@ import "bootstrap";
 // Internal imports
 import { bottom_fish } from '../components/bottom_fish';
 import { background_profile } from '../components/background_profile';
-import {initAutocomplete} from '../plugins/init_autocomplete';
+import { initAutocomplete } from '../plugins/init_autocomplete';
 import { autoComplete } from '../plugins/fish_algolia_auto_complete';
 
 document.addEventListener('turbolinks:load', () => {
