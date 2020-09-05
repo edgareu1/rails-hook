@@ -1,11 +1,10 @@
 // Specific CSS for your home-page
-
 .location {
-    color: $dark-blue;
-    background-color: lightgray;
-    border-radius: 2px;
-    padding: 20px;
-    margin-top: 30px;
+  color: $dark-blue;
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 2px;
+  margin-top: 30px;
 }
 
 .fas.fa-fish {
@@ -13,33 +12,30 @@
 }
 
 hr {
-    margin-right: 3rem;
-    margin-left: 3rem;
-    border-top: 2px solid $dark-blue;
+  border-top: 2px solid $dark-blue;
+  margin-right: 3rem;
+  margin-left: 3rem;
 }
 
 .modal-header h5, .close {
   color: white;
   opacity: 0.9;
-
 }
 
 .modal-content {
   background-color: #061f35;
 }
 
-
-
 .ap-dataset-places {
   color: black;
 }
-
 
 .user-numbers {
   display: flex;
   justify-content: space-evenly;
   background-color: $opacity-blue;
   padding: 10px;
+
   p {
     margin: 0;
   }
@@ -47,7 +43,6 @@ hr {
   .info-background {
      text-align:center;
   }
-
 }
 
 .feed {
@@ -58,7 +53,7 @@ hr {
 
 .top-user {
   border-bottom: 1px solid white;
-  
+
   p {
     margin-bottom: 0;
     padding: 5px;
@@ -67,10 +62,10 @@ hr {
 
 .location-box {
   background-color: $opacity-blue;
-  margin: 20px;
   padding: 10px 10px 0 10px;
-    li {
-    border-top: 1px solid white;
+  margin: 20px;
 
-    }
+  li {
+    border-top: 1px solid white;
+  }
 }

@@ -11,13 +11,13 @@
 }
 
 .form-control.is-invalid {
+  background-color: rgba(255, 240, 240, 1);
   background-image: none;
   padding: 6px 12px;
-  background-color: rgba(255, 240, 240, 1);
 }
 
 .form-control.is-valid {
+  background-color: rgba(230, 255, 230, 1);
   background-image: none;
   padding: 6px 12px;
-  background-color: rgba(230, 255, 230, 1);
 }
