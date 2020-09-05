@@ -1,20 +1,28 @@
 <%= simple_form_for(log) do |f| %>
   <div class="container-log-form">
+    <!-- Starting Time -->
     <label for="log_start_time">Starting time</label>
     <input type="datetime-local" id="log_start_time" name="log[start_time]"
         value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>" required>
 
     <br>
 
+    <!-- Ending Time -->
     <label for="log_end_time">Ending time</label>
     <input type="datetime-local" id="log_end_time" name="log[end_time]"
         value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>" required>
 
-    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
-    <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" }, placeholder: "Leave an observation" %>
+    <!-- Location -->
+    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select",
+      label_method: :site %>
+
+    <!-- Observations -->
+    <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
+      placeholder: "Leave an observation" %>
 
     <p style="font-size: 1rem">How was your session?</p>
 
+    <!-- Rating as a dynamic filling image -->
     <div class="fish-rating-container">
       <div class="fish-rating">
         <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
@@ -34,7 +42,7 @@
               <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
             <% end %>
 
-          <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+            <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
           <% end %>
 
           <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
@@ -43,11 +51,14 @@
 
       <div class="fish-rating-bar">
         <% (1..10).to_a.each do |num| %>
-          <div class="rating<%= num %>" style="position: absolute; font-size: 1rem; color: white; text-align: center; width: 10.5%; left: <%= (num - 1) * 10 %>%"><%= num %></div>
+          <div class="rating<%= num %>" style="position: absolute; font-size: 1rem; color: white; text-align: center; width: 10.5%; left: <%= (num - 1) * 10 %>%">
+            <%= num %>
+          </div>
         <% end %>
       </div>
     </div>
 
+    <!-- Submit Button -->
     <%= f.button :submit, class: "btn btn-flat btn-block" %>
   </div>
 <% end %>
