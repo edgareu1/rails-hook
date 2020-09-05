@@ -20,9 +20,9 @@
               <h5> <%= log.label %></h5>
             </div>
 
-            <!-- Weather of the Log's Location -->
+            <!-- Image of the Weather of the Log's Location -->
             <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
-              class="img-weather-icon">
+              class="weather-icon">
             </div>
           </div>
 
@@ -56,7 +56,7 @@
 
           <!-- Card footer displaying the Log's Time -->
           <p class="log-card-footer-time">
-            <%= log.start_time.strftime('%B %d')  %> | <%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %> h
+            <%= log.start_time.strftime('%b %d')  %> | <%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %> h
           </p>
         </div>
       <% end %>
