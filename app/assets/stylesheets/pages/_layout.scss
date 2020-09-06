@@ -21,6 +21,7 @@ p {
 
 .page-title {
   display: flex;
+  flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -28,4 +29,13 @@ p {
   padding: 5px;
   border: 5px solid rgba(155, 221, 249, 0.2);
   margin: 20px 0;
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 2px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
 }

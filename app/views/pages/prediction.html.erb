@@ -1,13 +1,7 @@
 <div style="padding: 20px">
-  <div style="display: flex; flex-direction: column; text-align: center">
-    <div class="page-title" style="margin-bottom: 0">
-      <div>
-        <h2 style="margin-bottom: 0; margin-top: 10px; font-size: 20px; color: rgba(255, 255, 255, 0.9)">
-          Current
-        </h2>
-        <h2>Best Spots</h2>
-      </div>
-    </div>
+  <div class="page-title">
+    <h1 style="margin: 10px 0 0; font-size: 22px; color: rgba(255, 255, 255, 0.9)">Current</h1>
+    <h1 style="font-size: 32px">Best Spots</h1>
   </div>
 
   <% if @top_3_locations.empty? %>
@@ -21,37 +15,29 @@
       </h5>
     </div>
 
-  <% else%>
+  <% else %>
     <div class="log-card" style="background-color: transparent; text-align: center; padding: 0">
-      <p style="font-weight: 300; font-size: 16px; margin-bottom: 0">
-        Prediction of number and total weight of fish caught for a 5h session
-      </p>
+      <p>Prediction of number and total weight of fish caught for a 5h session</p>
     </div>
 
     <% @top_3_locations.each_with_index do |location, index| %>
-      <div class="log-card" style="padding: 10px">
-        <div style="display: flex; justify-content: space-around; align-items: center; padding: 0 5px">
-          <div style="display:flex; align-items: center">
-            <h2 style="font-size: 70px; padding-right: 10px"><%= index + 1 %></h2>
+      <div class="log-card">
+        <div class="prediction-card">
+          <div style="display: flex; align-items: center">
+            <h3><%= index + 1 %></h3>
 
-            <div style="border-left: 5px solid #BDEBFF; padding-left: 8px">
-              <h3 style="font-size: 24px; margin-bottom: 2px">
-                <%= Location.find(location[0]).name_to_display %>
-              </h3>
-              <h5 class="loc-site" style="margin-bottom: 2px; text-indent: 5px">
-                <%= Location.find(location[0]).site %>
-              </h5>
+            <div class="prediction-card-bordered">
+              <h3><%= Location.find(location[0]).name_to_display %></h3>
+              <h5 class="loc-site"><%= Location.find(location[0]).site %></h5>
             </div>
           </div>
- 
-          <div style="font-size: 20px; text-align: center; color: rgba(255, 255, 255, 0.9)">
-            <div>
-              <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat;-webkit-user-select: none; width: 70px; height: 50px; margin-left: 10px"></div>
-            </div>
+
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png);
+               width: 70px; height: 50px; margin-left: 10px" class="weather-icon">
           </div>
         </div>
       
-        <div style="font-size: 20px; display: flex; background-color: rgba(155, 221, 249, 0.3); justify-content: space-around; padding: 0 50px; color: rgba(255, 255, 255, 0.9)">
+        <div class="card-footer-stats">
           <div>
             <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %> fish
           </div>
