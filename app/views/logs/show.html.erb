@@ -251,8 +251,8 @@
   <script>
     function DisplayLogDateErrorMessage() {
       let errorMessageText = `<%= @log.errors.messages[:end_date].first %>`;
-      let startTime = document.getElementById('log_start_time');
-      let endTime = document.getElementById('log_end_time');
+      let startTime = document.getElementById('log_edit_start_time');
+      let endTime = document.getElementById('log_edit_end_time');
 
       if (errorMessageText == "") {
         startTime.className = "form-control is-valid";
@@ -265,8 +265,9 @@
         errorMessage.className = "invalid-feedback";
         errorMessage.innerHTML = errorMessageText;
 
-        let nextElement = document.getElementsByClassName("form-group select required log_location")[0];
-        let formElement = document.getElementsByClassName("container-log-form")[0];
+        let logEditForm = document.getElementById('ModalEditLog'); // Makes sure the Form changed is the Logs#edit
+        let nextElement = logEditForm.getElementsByClassName("form-group select required log_location")[0];
+        let formElement = logEditForm.getElementsByClassName("container-log-form")[0];
 
         formElement.insertBefore(errorMessage, nextElement);
       }
