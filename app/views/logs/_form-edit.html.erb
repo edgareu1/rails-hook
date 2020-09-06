@@ -13,8 +13,8 @@
         value="<%=log.end_time.strftime('%Y-%m-%dT%H:%M')%>">
 
     <!-- Location -->
-    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select",
-      label_method: :site %>
+    <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
+      wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
 
     <!-- Air Pressure -->
     <div style="display: flex; margin-top: 20px">

@@ -13,8 +13,8 @@
         value="<%=Time.now.strftime('%Y-%m-%dT%H:%M')%>" required>
 
     <!-- Location -->
-    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select",
-      label_method: :site %>
+    <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
+      wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
 
     <!-- Observations -->
     <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
