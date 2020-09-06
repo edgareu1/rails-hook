@@ -33,7 +33,7 @@
     </div>
 
     <% if @user_locations.empty? %>
-      <p style="margin: 0">No locations saved yet</p>
+      <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
     <% else %>
       <% current_user.top_locations(3).each do |location| %>
@@ -86,14 +86,16 @@
   </div>
 
   <!-- User Top Fish Caught -->
-  <ul class="top-fish">
-    <h5 style="text-align:center">Most caught fish</h3>
-    <% current_user.top_fish(3).each_with_index do |fish, index|  %>
-      <li>
-        <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
-      </li>
-    <% end %>
-  </ul>
+  <% unless @top_fish.empty? %>
+    <ul class="top-fish">
+      <h5 style="text-align:center">Most caught fish</h3>
+      <% @top_fish.each_with_index do |fish, index|  %>
+        <li>
+          <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
 <!-- Modals -->

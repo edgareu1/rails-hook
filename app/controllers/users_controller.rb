@@ -17,5 +17,6 @@ class UsersController < ApplicationController
       'Fish were the first vertebrates with bony skeletons to appear on Earth. Unlike today’s fish, early fish had no scales, fins, or jawbone, but they did have a dorsal fin.',
       'Unlike most fish, the ocean sunfish does not have a tail. A female sunfish can lay 300 million eggs each year. Each egg is smaller than the period at the end of this sentence.'
     ]
+    @top_fish = current_user.top_fish(3)
   end
 end

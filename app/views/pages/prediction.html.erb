@@ -8,35 +8,37 @@
         <h2>Best Spots</h2>
       </div>
     </div>
-
-    <% unless @top_3_locations.empty? %>
-      <div class="log-card" style="background-color: transparent; padding: 0">
-        <p style="font-weight: 300; font-size: 16px; margin-bottom: 0">
-          Prediction of number and total weight of fish caught for a 5h session
-        </p>
-      </div>
-    <% end %>
   </div>
 
   <% if @top_3_locations.empty? %>
-    <div class="log-card" style="color: #010038; text-align: center">
-      <h3 style="font-size: 20px">No good fishing locations at the moment</h3>
-      <h5 style="font-size: 16px; color: #9BDDF9">Take this opportunity to explore new spots !</h5>
+    <div class="log-card" style="text-align: center">
+      <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 32px">
+        No good locations at the moment
+      </h3>
+
+      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px">
+        Take this opportunity to explore new spots!
+      </h5>
     </div>
 
   <% else%>
+    <div class="log-card" style="background-color: transparent; padding: 0">
+      <p style="font-weight: 300; font-size: 16px; margin-bottom: 0">
+        Prediction of number and total weight of fish caught for a 5h session
+      </p>
+    </div>
+
     <% @top_3_locations.each_with_index do |location, index| %>
-      <div class="log-card" style="color: #010038; padding: 10px">
+      <div class="log-card" style="padding: 10px">
         <div style="display: flex; justify-content: space-around; align-items: center; padding: 0 5px">
           <div style="display:flex; align-items: center">
-            <h2 style="font-size: 70px; padding-right: 5px"><%= index + 1 %></h2>
-            <h2 style="font-size: 45px; padding-right: 3px">|</h2>
+            <h2 style="font-size: 70px; padding-right: 10px"><%= index + 1 %></h2>
 
-            <div>
+            <div style="border-left: 5px solid #BDEBFF; padding-left: 8px">
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= Location.find(location[0]).name_to_display %>
               </h3>
-              <h5 class="loc-site" style="margin-bottom: 2px">
+              <h5 class="loc-site" style="margin-bottom: 2px; text-indent: 5px">
                 <%= Location.find(location[0]).site %>
               </h5>
             </div>
