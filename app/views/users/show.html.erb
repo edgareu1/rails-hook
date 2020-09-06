@@ -6,7 +6,7 @@
 
 
 
-      <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-user-box"  do %>
+      <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-user-box" do %>
         <h6 style="padding-left: 10px">CREATE LOG</h6>
         <%= image_tag "rod.png", style:"width: 35px" %>
       <% end %>
@@ -18,7 +18,7 @@
       <h3 style="font-size: 22px">My Locations</h3>
 
 
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalCreateLocation" }, style: "color: #BDEBFF; opacity: 0.7; font-size:12px; padding-bottom: 5px" do %>
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" }, style: "color: #BDEBFF; opacity: 0.7; font-size:12px; padding-bottom: 5px" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
     </div>
@@ -103,9 +103,9 @@
   <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px">
       <h5 style="text-align:center">Most caught fish</h3>
 
-        <% current_user.top_three_fish.each_with_index do |fish, index|  %>
+        <% current_user.top_fish(3).each_with_index do |fish, index|  %>
           <li class=top-user><p style="text-align:center; color: rgba(255, 255, 255, 0.9);">
-            <%= "#{index + 1}."%> <i style="color:#9BDDF9"><%= "#{fish[0].common_name}"%></i> <%="- #{fish[1]}" %>
+            <%= "#{index + 1}."%> <i style="color:#9BDDF9"><%= "#{fish[:name]}"%></i> <%="- #{fish[:num_catches]}" %>
           </p></li>
         <% end %>
 
@@ -118,8 +118,8 @@
 
 
 
-<!-- Modal Create Location Form -->
-<div class="modal fade" id="ModalCreateLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal New Location Form -->
+<div class="modal fade" id="ModalNewLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
        <div class="modal-header">
@@ -131,13 +131,13 @@
       </div>
 
       <div class="modal-body">
-        <%= render "locations/form", location: Location.new %>
+        <%= render "locations/form" %>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal Create Log Form -->
+<!-- Modal New Log Form -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -151,3 +151,12 @@
     </div>
   </div>
 </div>
+
+<!-- Makes sure that, if an error appears while creating a new Location, the error is displayed to the user -->
+<% if @location.errors.any? %>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('[data-target="#ModalNewLocation"]').click();
+    });
+  </script>
+<% end %>

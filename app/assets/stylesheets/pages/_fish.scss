@@ -1,25 +1,29 @@
-.fish-card {
-  // overflow: hidden;
-  flex-direction: column;
-  height: 300px;
+// CSS common for both the Index and Show Pages of Fish Controller
+.fish-card, .fish-card-full {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   margin: 20px 0px;
-  border-radius: $border-radius;
 
   h2 {
     font-family: $headers-font;
     font-size: 18px;
-    padding-left: 10px;
     font-weight: bold;
     padding-top: 10px;
-    color: #BDEBFF;
+    padding-left: 10px;
   }
 
   p {
     font-family: $body-font;
-    padding-left: 10px;
   }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+a:hover {
+  color: #BDEBFF;
 }
 
 .fish-card-infos {
@@ -27,42 +31,39 @@
   width: 100%;
 }
 
-.fish-card img {
-  width: 100%;
-  object-fit: cover;
-  padding-bottom: 20px;
-}
-
-.fish-card-full {
-  // overflow: hidden;
-  flex-direction: column;
-  height: 600px;
- 
-  display: flex;
-  
-  margin: 20px 0px;
-
-  h2 {
-    font-family: $headers-font;
-    font-size: 18px;
-    padding-left: 10px;
-    font-weight: bold;
-    padding-top: 10px;
-  }
+// CSS for the Fish#index Page
+.fish-card {
+  align-items: flex-start;
+  height: 300px;
+  border-radius: $border-radius;
 
   p {
-    font-family: $body-font;
     padding-left: 10px;
-    padding-right: 10px;
-    text-align: justify;
-    border: none;
-    padding-top:0;
-    padding-bottom: 0;
+  }
+
+  img {
+    padding-bottom: 20px;
   }
 }
 
-.fish-card-full img {
-  width: 100%;
-  object-fit: cover;
-  padding-bottom: 25px;
+// CSS for the Fish#show Page
+.fish-card-full {
+  height: 600px;
+
+  p {
+    text-align: justify;
+    padding: 0 10px;
+    border: none;
+  }
+
+  img {
+    padding-bottom: 25px;
+  }
+}
+
+.fish-more-info {
+  font-size: 15px;
+  padding: 10px !important;
+  font-style: italic;
+  font-weight: bolder;
 }

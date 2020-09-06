@@ -13,8 +13,6 @@
   strong {
     color: #9BDDF9;
   }
-
- 
 }
 
 .list-border-top {
@@ -46,7 +44,7 @@
 }
 
 input[type=datetime-local] {
-  width: 200px;
+  width: 220px;
 }
 
 /* Style Form Catch */
@@ -71,3 +69,80 @@ input[type=datetime-local] {
   transform: translate(-50%, -50%);
 }
 
+.page-title-helper {
+  h1 {
+    font-size: 36px;
+    margin-bottom: 2px;
+  }
+
+  h2 {
+    color: #3AC4FF;
+    font-size: 22px;
+    font-weight: 400;
+  }
+}
+
+.date-show-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 10px 25px;
+
+  i {
+    margin-right: 10px;
+  }
+
+  p {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  span {
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}
+
+.show-page-weather-headers {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .show-page-weather-icon {
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;
+    width: 35%;
+    height: 50px;
+  }
+}
+
+.show-page-card-content {
+  width: 100%;
+  padding: 10px;
+  padding-left: 35%;
+  border-top: 2px solid white;
+
+  .show-page-card-content-weather {
+    p {
+      margin-bottom: 8px;
+
+      strong {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .show-page-card-content-info {
+    p {
+      font-size: 17px;
+      margin-bottom: 8px;
+
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+}

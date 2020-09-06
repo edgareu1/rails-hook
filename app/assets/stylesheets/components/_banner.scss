@@ -1,17 +1,18 @@
 .banner {
-    padding-top: 40px;
-    margin-bottom: 30px;
+  padding-top: 40px;
+  margin-bottom: 30px;
 
-    h4 {
-      font-weight: bold;
-      font-size: 20px;
-      margin-top: 10px;
-      margin-bottom: 0;
-      letter-spacing: 3px;
-      color: white;
-      opacity: 0.9;
-    }
-    .btn btn-flat {
-      padding: 15px 50px;
-    }
+  h4 {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.9;
+    letter-spacing: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
+
+  .btn btn-flat {
+    padding: 15px 50px;
+  }
+}

@@ -1,4 +1,8 @@
+require 'modules/moon-phase.rb'
+
 class Log < ApplicationRecord
+  include MoonPhase
+
   belongs_to :location
   belongs_to :user
 
@@ -7,22 +11,26 @@ class Log < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validate :end_time_is_after_start_time
-
   validates :location, presence: true
+  
+  validate :log_duration
 
   after_create :add_weather_data
 
+  # Get the total number of fish caught
   def catch_count
-    sum = 0
-    catches.each do |c|
-      sum = sum + c.quantity
-    end
-    return sum
+    catches.inject(0) { |sum, catch| sum + catch.quantity }
+  end
+
+  # Returns a string of the Log site followed by it's tag_id (padded with zeros)
+  # Ex: Sargo Rock #009
+  def label
+    "#{location.site} \##{sprintf '%03d', (tag_id)}"
   end
 
   private
 
+  # Update the weather variables to the ones registered at the moment
   def add_weather_data
     weather_data = Rails.configuration.open_weather_api.current lon: self.location.longitude , lat: self.location.latitude
 
@@ -31,29 +39,19 @@ class Log < ApplicationRecord
     self.weather_icon = weather_data["weather"][0]["icon"]
     self.weather_description = weather_data["weather"][0]["description"]
 
-    self.moon_phase = moon_calculation(self.start_time, self.end_time)
+    self.moon_phase = get_moon_phase(self.start_time)
 
     save
   end
 
-  def moon_calculation(start_time, end_time)
-    new_moon_base = Time.new(2020, 06, 21, 6, 41, 00)
-    moon_cycle = 29.5 * 60 * 60 * 24
-    average_time = start_time + ((end_time - start_time) / 2)
-
-    time_past_new_moon = (average_time - new_moon_base) % moon_cycle
-    moon_percentage = (time_past_new_moon / moon_cycle)
-
-    if moon_percentage < 0.5
-      return moon_percentage * 2
-    else
-      return (1 - moon_percentage) * 2
-    end
-  end
-
-  def end_time_is_after_start_time
-    if end_time <= start_time + ((9 * 60) + 1)
+  # Add validations to the Log duration
+  def log_duration
+    if start_time >= end_time
+      errors.add(:end_date, "Log cannot end before it begins")
+    elsif start_time + (9 * 60) + 1 >= end_time
       errors.add(:end_date, "Log cannot be less than 10min long")
+    elsif start_time + (60 * 60 * 24) + 1 <= end_time
+      errors.add(:end_date, "Log cannot be longer than 24h")
     end
   end
 end

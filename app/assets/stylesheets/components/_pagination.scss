@@ -1,14 +1,14 @@
 .page-link, .page-item.disabled .page-link {
   color: white;
-  border: none;
   background-color: transparent;
   opacity: 0.9;
+  border: none;
   margin-top: 15px;
 }
 
 .page-item.active .page-link {
-    color: #9BDDF9;
-    background-color: $opacity-blue;
-    border: none;
-    font-size: 18px;
+  color: #9BDDF9;
+  font-size: 18px;
+  background-color: $opacity-blue;
+  border: none;
 }

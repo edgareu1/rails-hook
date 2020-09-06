@@ -4,61 +4,71 @@
   border-radius: 4px;
   background: rgba(155, 221, 249, 0.3);
   transition: background 0.3s ease;
+
+  &:hover {
+    color: white;
+    background: rgba(91, 234, 201, 0.5);
+  }
 }
 
-.btn-flat:hover {
-  background: rgba(91, 234, 201, 0.5);
-  color: white;
-}
 
 .btn-delete-confirm, .btn-cancel-confirm {
   width: 50%;
-  float: left;
   height: 100%;
+  float: left;
   text-align: center;
-
-
   text-decoration: none;
+  padding: 8px;
   border: none;
   margin: 0;
-  padding: 8px;
 }
 
 .btn-delete-confirm {
-  background-color: #e5493d;
   color: white;
+  background-color: #e5493d;
 
   &:hover {
-    text-decoration: none;
     color: white;
+    text-decoration: none;
   }
 }
 
 .btn-cancel-confirm {
-  background-color: lightgray;
-  
   color: black;
+  background-color: lightgray;
 }
 
 
 .btn-user-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   height: 60px;
   background-color: rgba(136, 204, 255, 0.5);
   opacity:1;
   padding: 0;
-  margin-left: 85px;
-  margin-right: 85px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: white;
-  display:flex;
-  align-items: center;
-  justify-content: center;
+  margin: 20px 85px;
   border-radius: 8px;
 
   h6 {
     color: white;
     font-size: 18px;
     margin-bottom: 0;
+  }
+}
+
+.btn-fish-search {
+  color: white;
+  background: rgba(155, 221, 249, 0.3);
+  padding: 4px 8px 6px;
+  border: none;
+  border-radius: 0;
+  margin-top: 0;
+  transition: background 0.3s ease;
+
+  &:hover {
+    color: white;
+    background: rgba(91, 234, 201, 0.5);
   }
 }

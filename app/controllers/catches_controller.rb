@@ -6,8 +6,9 @@ class CatchesController < ApplicationController
     @catch.log = @log
 
     if @catch.save
+      # Display a congratulations message if a big fish is caught
       if (@catch.weight / @catch.quantity) > @catch.fish.good_weight
-        flash[:alert] = "Congratulations, that's a BIGGEN!"
+        flash[:alert] = "Congratulations, it's a BIGGEN!"
       end
       redirect_to log_path(@log)
 
