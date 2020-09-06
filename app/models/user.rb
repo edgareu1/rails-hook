@@ -29,7 +29,7 @@ class User < ApplicationRecord
   def top_locations(num)
     locations.map { |loc| { name: loc.name_to_display,
                             site: loc.site,
-                            coordinates: { lat: loc.latitude, lon: loc.longitude },
+                            weather_icon: loc.fetch_weather_data["weather"][0]["icon"],
                             num_logs: loc.logs.count
                           }
                   }
