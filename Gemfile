@@ -33,7 +33,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'geocoder'
 
-gem 'cloudinary'
+gem 'cloudinary', '~> 1.12.0'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
