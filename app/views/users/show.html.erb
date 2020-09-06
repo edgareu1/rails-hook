@@ -5,7 +5,7 @@
 
 <div style="position: sticky">
   <div class="banner text-center" style="margin-bottom: 40px">
-    <%= image_tag "avatar.jpg", class: "avatar-large", alt: "User avatar" %>
+    <%= avatar_large(current_user) %>
 
     <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
       Welcome <%= current_user.username.capitalize %> !
