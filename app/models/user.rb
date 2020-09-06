@@ -24,4 +24,21 @@ class User < ApplicationRecord
            .sort_by { |arr| - arr.last}
            .map { |k, v| { name: k, num_catches: v } }
   end
+
+  # Returns an array of hashes that represent the locations with the most Logs
+  def top_locations(num)
+    locations.map { |loc| { name: loc.name_to_display,
+                            site: loc.site,
+                            weather_icon: loc.fetch_weather_data["weather"][0]["icon"],
+                            num_logs: loc.logs.count
+                          }
+                  }
+             .sort_by { |loc| - loc[:num_logs] }
+             .first(num)
+  end
+
+  # Get the total number of fish caught by the User
+  def catch_count
+    catches.inject(0) { |sum, catch| sum + catch.quantity }
+  end
 end

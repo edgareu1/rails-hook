@@ -12,4 +12,9 @@ class Location < ApplicationRecord
   def name_to_display
     name.match(/^[^,]*/)[0].truncate(18)
   end
+
+  # Gets the current Weather Data of the Location
+  def fetch_weather_data
+    Rails.configuration.open_weather_api.current lon: longitude, lat: latitude
+  end
 end

@@ -1,3 +1,4 @@
+// Specific CSS for the Logs#show Page
 .list-border-top, .gray-background {
   list-style: none;
   margin: 20px 0;
@@ -69,19 +70,6 @@ input[type=datetime-local] {
   transform: translate(-50%, -50%);
 }
 
-.page-title-helper {
-  h1 {
-    font-size: 36px;
-    margin-bottom: 2px;
-  }
-
-  h2 {
-    color: #3AC4FF;
-    font-size: 22px;
-    font-weight: 400;
-  }
-}
-
 .date-show-page {
   display: flex;
   justify-content: center;
@@ -109,14 +97,6 @@ input[type=datetime-local] {
   width: 100%;
   align-items: center;
   margin-bottom: 10px;
-
-  .show-page-weather-icon {
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-user-select: none;
-    width: 35%;
-    height: 50px;
-  }
 }
 
 .show-page-card-content {

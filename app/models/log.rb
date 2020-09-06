@@ -17,7 +17,7 @@ class Log < ApplicationRecord
 
   after_create :add_weather_data
 
-  # Get the total number of fish caught
+  # Get the total number of fish caught in the Log
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
   end
@@ -32,7 +32,7 @@ class Log < ApplicationRecord
 
   # Update the weather variables to the ones registered at the moment
   def add_weather_data
-    weather_data = Rails.configuration.open_weather_api.current lon: self.location.longitude , lat: self.location.latitude
+    weather_data = location.fetch_weather_data
 
     self.air_pressure = weather_data["main"]["pressure"]
     self.wind_speed = weather_data["wind"]["speed"]

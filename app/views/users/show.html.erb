@@ -1,133 +1,112 @@
-<div class="background-container"><canvas width="375" height="760" class="fish-tank" id="fishtank"></div>
-<div style="position: sticky">
-<div class="banner text-center" style="margin-bottom: 40px">
-  <%= image_tag "avatar.jpg", class: "avatar-large", alt: "avatar-large" %>
-  <h4 style=" color: rgba(255, 255, 255, 0.9); margin-bottom: 40px" >Welcome <%= current_user.username.capitalize%> !</h4>
-
-
-
-      <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-user-box" do %>
-        <h6 style="padding-left: 10px">CREATE LOG</h6>
-        <%= image_tag "rod.png", style:"width: 35px" %>
-      <% end %>
+<!-- Canvas for the Background Fish Animations -->
+<div class="background-container">
+  <canvas width="375" height="760" class="fish-tank" id="fishtank">
 </div>
 
-  <ul class="location-box" style="margin-bottom: 50px">
+<div style="position: sticky">
+  <div class="banner text-center" style="margin-bottom: 40px">
+    <%= image_tag "avatar.jpg", class: "avatar-large", alt: "User avatar" %>
+
+    <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
+      Welcome <%= current_user.username.capitalize %> !
+    </h4>
+
+    <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },
+        class: "btn btn-user-box" do %>
+      <h6 style="padding-left: 10px">CREATE LOG</h6>
+
+      <%= image_tag "rod.png", style:"width: 35px" %>
+    <% end %>
+  </div>
+
+  <!-- User Top Locations -->
+  <ul class="location-box">
     <div style="display: flex; justify-content: space-between; align-items: center">
       <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
+
       <h3 style="font-size: 22px">My Locations</h3>
 
-
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" }, style: "color: #BDEBFF; opacity: 0.7; font-size:12px; padding-bottom: 5px" do %>
+      <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" },
+          style: "color: #BDEBFF; opacity: 0.7; padding-bottom: 5px" do %>
         <i class="fas fa-plus" style="font-size: 30px"></i>
       <% end %>
     </div>
 
-    <% if current_user.locations.empty? %>
-      <p style="margin: 0">No locations saved yet</p>
+    <% if @user_locations.empty? %>
+      <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.locations.to_a.sort_by { |location| location.logs.count }.reverse[0..2].each do |location| %>
-        <li style="list-style-type: none">
-          <div style="display: flex; justify-content:center; align-items:center">
+      <% current_user.top_locations(3).each do |location| %>
+        <li>
           <div style="width: 170px">
             <h6 style="text-align: left; margin: 10px 10px 0 0">
-            <strong style="font-size: 20px"><%= location.name.match(/^[^,]*/)[0].truncate(18) %></strong>
-              <% if location.logs.count.zero? %>
+              <strong style="font-size: 20px">
+                <%= location[:name] %>
+              </strong>
+
+              <% if location[:num_logs].zero? %>
                 – no logs
-              <% elsif location.logs.count == 1%>
+              <% elsif location[:num_logs] == 1 %>
                 – 1 log
               <% else %>
-                <%= "– #{location.logs.count} logs" %>
+                <%= "– #{location[:num_logs]} logs" %>
               <% end %>
             </h6>
-             <i><p style="color: #3AC4FF; padding-left: 8px; font-size: 18px; margin-left: 10px; margin-bottom: 5px"><%= location.site %></p>
-             </i></div>
 
-            <% weather_data = Rails.configuration.open_weather_api.current lon: location.longitude , lat: location.latitude %>
+            <p class="loc-site" style="font-size: 18px; margin: 0 0 5px 18px">
+              <%= location[:site] %>
+            </p>
+          </div>
 
-            <div style="background-image: url(http://openweathermap.org/img/wn/<%= weather_data["weather"][0]["icon"] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 70px; height: 35px">
-            </div>
-          
-
-         
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png);
+               width: 70px; height: 35px; background-size: 58px 58px" class="weather-icon">
+          </div>
         </li>
       <% end %>
     <% end %>
   </ul>
 
-<!-- Feed box -->
-
-<% feed = [
-  'The batfish plays dead when danger is near. It floats motionless on its side when scared, making it look like a dead leaf floating on the surface of the water.',
-  'Since a fish’s jaw is not attached to its skull, many fishes can shoot their mouths forward like a spring to catch startled prey.',
-  'Some fish, such as the herbivorous fish (grazers), often lack jaw teeth but have tooth-like grinding mills in their throats called pharyngeal teeth.',
-  'A fish does not add new scales as it grows, but the scales it has increase in size. In this way, growth rings are formed and the rings reveal the age of a fish.',
-  'On average, flying fish can glide 160 feet (50m), but have been known to glide as far as 660 feet (200 m). And they can reach heights up to 19 feet (6m).',
-  'A fish can drown in water. Like humans, fish need oxygen, so if there isn’t enough oxygen in the water, they will suffocate.',
-  'The fish in the middle of a school control the school. The fish on the outside are guided by those in the middle. Only bony fish can swim in highly coordinated groups.',
-  'The most poisonous fish in the world is the stone fish. Its sting can cause shock, paralysis, and even death if not treated within a few hours.',
-  'A male emperor angelfish lives with up to five female mates. If the emperor angelfish dies, one of the females turns into a male fish and becomes the leader of the group.',
-  'There are approximately 32,000 different kinds of fish in the world today which is more than all the other kinds of vertebrates combined.',
-  'Scientists have explored only 1% of the ocean depths. They believe millions of new kinds of animals and fish are down there, waiting to be discovered.',
-  'Fish were the first vertebrates with bony skeletons to appear on Earth. Unlike today’s fish, early fish had no scales, fins, or jawbone, but they did have a dorsal fin.',
-  'Unlike most fish, the ocean sunfish does not have a tail. A female sunfish can lay 300 million eggs each year. Each egg is smaller than the period at the end of this sentence.',
-]%>
-
-  <ul class="feed" style="margin-bottom: 50px">
-      <h5 style="text-align:center; padding-top: 10px">Did you know ?</h3>
-      <p style="text-align:justify; padding: 0 10px"><%=feed.sample %></p>
+  <!-- Feed of Curiosities -->
+  <ul class="feed">
+    <h5>Did you know ?</h3>
+    <p><%= @feed.sample %></p>
   </ul>
 
-    <div class="user-info" style="margin-bottom: 40px">
-    <div class="user-numbers">
-      <div class="info-background">
-        <%= current_user.logs.count %>
-        <p>LOGS</p>
-      </div>
-      <div class="info-background">
-     <% @array = [] %>
-        <% current_user.logs.each do |log|%>
-            <% @fish = log.catch_count %>
-             <% @array << @fish %>
-        <% end %>
-           <%=@array.inject(0, &:+)%>
+  <!-- User Stats -->
+  <div class="user-stats">
+    <div>
+      <%= current_user.logs.count %>
+      <p>LOGS</p>
+    </div>
 
-        <p>FISH</p>
-      </div>
+    <div>
+      <%= current_user.catch_count %>
+      <p>FISH</p>
     </div>
   </div>
-</div>
 
-<div class="d-flex justify-content-center">
-  <ul class="top-fish" style="width: 250px; list-style-type: none; margin-bottom:30px">
+  <!-- User Top Fish Caught -->
+  <% unless @top_fish.empty? %>
+    <ul class="top-fish">
       <h5 style="text-align:center">Most caught fish</h3>
-
-        <% current_user.top_fish(3).each_with_index do |fish, index|  %>
-          <li class=top-user><p style="text-align:center; color: rgba(255, 255, 255, 0.9);">
-            <%= "#{index + 1}."%> <i style="color:#9BDDF9"><%= "#{fish[:name]}"%></i> <%="- #{fish[:num_catches]}" %>
-          </p></li>
-        <% end %>
-
-
-  </ul>
-  </div>
-
-</div>
+      <% @top_fish.each_with_index do |fish, index|  %>
+        <li>
+          <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
-
+<!-- Modals -->
 
 <!-- Modal New Location Form -->
 <div class="modal fade" id="ModalNewLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add location</h5>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <div class="modal-body">
@@ -145,6 +124,7 @@
         <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+
       <div class="modal-body">
         <%= render "logs/form-new", log: Log.new %>
       </div>

@@ -2,19 +2,19 @@
   <div class="container-log-form">
     <!-- Starting Time -->
     <label for="log_start_time">Starting time</label>
-    <input type="datetime-local" id="log_start_time" name="log[start_time]"
+    <input type="datetime-local" id="log_edit_start_time" name="log[start_time]"
         value="<%=log.start_time.strftime('%Y-%m-%dT%H:%M')%>">
 
     <br>
 
     <!-- Ending Time -->
     <label for="log_end_time">Ending time</label>
-    <input type="datetime-local" id="log_end_time" name="log[end_time]"
+    <input type="datetime-local" id="log_edit_end_time" name="log[end_time]"
         value="<%=log.end_time.strftime('%Y-%m-%dT%H:%M')%>">
 
     <!-- Location -->
-    <%= f.association :location, wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select",
-      label_method: :site %>
+    <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
+      wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
 
     <!-- Air Pressure -->
     <div style="display: flex; margin-top: 20px">

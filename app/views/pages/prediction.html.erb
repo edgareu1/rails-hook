@@ -1,0 +1,54 @@
+<div style="padding: 20px">
+  <div class="page-title">
+    <h1 style="margin: 10px 0 0; font-size: 22px; color: rgba(255, 255, 255, 0.9)">Current</h1>
+    <h1 style="font-size: 32px">Best Spots</h1>
+  </div>
+
+  <% if @top_3_locations.empty? %>
+    <div class="log-card" style="text-align: center">
+      <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 32px">
+        No good locations at the moment
+      </h3>
+
+      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px">
+        Take this opportunity to explore new spots!
+      </h5>
+    </div>
+
+  <% else %>
+    <div class="log-card" style="background-color: transparent; text-align: center; padding: 0">
+      <p>Prediction of number and total weight of fish caught for a 5h session</p>
+    </div>
+
+    <% @top_3_locations.each_with_index do |location, index| %>
+      <div class="log-card">
+        <div class="prediction-card">
+          <div style="display: flex; align-items: center">
+            <h3><%= index + 1 %></h3>
+
+            <div class="prediction-card-bordered">
+              <h3><%= Location.find(location[0]).name_to_display %></h3>
+              <h5 class="loc-site"><%= Location.find(location[0]).site %></h5>
+            </div>
+          </div>
+
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png);
+               width: 70px; height: 50px; margin-left: 10px" class="weather-icon">
+          </div>
+        </div>
+      
+        <div class="card-footer-stats">
+          <div>
+            <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %> fish
+          </div>
+
+          <% if (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5) >= 1000 %>
+            <div><%= ((@all_location_stat_hash[location[0]][:gr_predicted_per_hour] / 1000) * 5).round(1) %> kg</div>
+          <% else %>
+            <div><%= (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5).round %> gr</div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
