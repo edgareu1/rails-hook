@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/prediction', to: 'pages#prediction'
 
   resources :fish, only: [:index, :show]
-  resources :locations
+  resources :locations, only: [:create]
 
   resources :logs do
     resources :catches, only: [:create, :destroy]
