@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :catches, through: :logs
 
+  has_one_attached :avatar
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
