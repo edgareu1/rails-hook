@@ -3,7 +3,7 @@
   <div class="page-title">
     <div class="page-title-helper">
       <h1><%= @log.location.name_to_display %></h1>
-      <h2><%= @log.label %></h2>
+      <h2 class="loc-site" ><%= @log.label %></h2>
     </div>
   </div>
 
@@ -37,8 +37,8 @@
     <!-- Card's Headers  -->
     <div class="show-page-weather-headers">
       <!-- Image of the Weather of the Log's Location -->
-      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png)"
-        class="show-page-weather-icon">
+      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png);
+           width: 35%; height: 50px" class="weather-icon">
       </div>
 
       <h3><%= @log.weather_description.capitalize %> </h3>
@@ -142,7 +142,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div style="text-align:center; width: 100%">
-                  <h2 class="modal-title" style="color: white"> Delete Catch</h2>
+                  <h2 class="modal-title" style="color: white">Delete Catch</h2>
 
                   <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">
                     Are you sure you want to delete the catch?
@@ -232,7 +232,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div style="text-align:center; width: 100%; padding: 10px">
-        <h2 class="modal-title" style="color: white; opacity: 0.9"> Delete Log</h2>
+        <h2 class="modal-title" style="color: white; opacity: 0.9">Delete Log</h2>
         <p style="color: #BDEBFF; margin: 0">Are you sure you want to delete the log?</p>
 
         <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">

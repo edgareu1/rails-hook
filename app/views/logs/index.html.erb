@@ -17,12 +17,12 @@
             <!-- Cards Headers -->
             <div>
               <h3><%= log.location.name_to_display %></h3>
-              <h5> <%= log.label %></h5>
+              <h5 class="loc-site"><%= log.label %></h5>
             </div>
 
             <!-- Image of the Weather of the Log's Location -->
-            <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
-              class="weather-icon">
+            <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png);
+                 width: 70px; height: 50px; margin-bottom: 8px" class="weather-icon">
             </div>
           </div>
 

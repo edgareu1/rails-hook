@@ -1,12 +1,13 @@
+<!-- Canvas for the Background Fish Animations -->
 <div class="background-container">
   <canvas width="375" height="760" class="fish-tank" id="fishtank">
 </div>
 
 <div style="position: sticky">
   <div class="banner text-center" style="margin-bottom: 40px">
-    <%= image_tag "avatar.jpg", class: "avatar-large", alt: "avatar-large" %>
+    <%= image_tag "avatar.jpg", class: "avatar-large", alt: "User avatar" %>
 
-    <h4 style=" color: rgba(255, 255, 255, 0.9); margin-bottom: 40px" >
+    <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
       Welcome <%= current_user.username.capitalize %> !
     </h4>
 
@@ -18,7 +19,8 @@
     <% end %>
   </div>
 
-  <ul class="location-box" style="margin-bottom: 50px">
+  <!-- User Top Locations -->
+  <ul class="location-box">
     <div style="display: flex; justify-content: space-between; align-items: center">
       <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
 
@@ -35,7 +37,7 @@
 
     <% else %>
       <% current_user.top_locations(3).each do |location| %>
-        <li style="list-style-type: none; display: flex; justify-content:center; align-items: center">
+        <li>
           <div style="width: 170px">
             <h6 style="text-align: left; margin: 10px 10px 0 0">
               <strong style="font-size: 20px">
@@ -51,50 +53,48 @@
               <% end %>
             </h6>
 
-            <p style="color: #3AC4FF; font-style: italic; font-size: 18px; padding-left: 8px; margin-left: 10px; margin-bottom: 5px">
+            <p class="loc-site" style="font-size: 18px; margin: 0 0 5px 18px">
               <%= location[:site] %>
             </p>
           </div>
 
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat; background-size: 58px 58px;-webkit-user-select: none; width: 70px; height: 35px">
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png);
+               width: 70px; height: 35px; background-size: 58px 58px" class="weather-icon">
           </div>
         </li>
       <% end %>
     <% end %>
   </ul>
 
-  <!-- Feed box -->
-  <ul class="feed" style="margin-bottom: 50px">
-    <h5 style="text-align: center; padding-top: 10px">Did you know ?</h3>
-    <p style="text-align: justify; padding: 0 10px"><%= @feed.sample %></p>
+  <!-- Feed of Curiosities -->
+  <ul class="feed">
+    <h5>Did you know ?</h3>
+    <p><%= @feed.sample %></p>
   </ul>
 
-  <div class="user-info" style="margin-bottom: 40px">
-    <div class="user-numbers">
-      <div class="info-background">
-        <%= current_user.logs.count %>
-        <p>LOGS</p>
-      </div>
+  <!-- User Stats -->
+  <div class="user-stats">
+    <div>
+      <%= current_user.logs.count %>
+      <p>LOGS</p>
+    </div>
 
-      <div class="info-background">
-        <%= current_user.catch_count %>
-        <p>FISH</p>
-      </div>
+    <div>
+      <%= current_user.catch_count %>
+      <p>FISH</p>
     </div>
   </div>
-</div>
 
-<ul class="top-fish d-flex justify-content-center"
-    style="flex-direction: column; width: 250px; margin: auto; list-style-type: none; margin-bottom:30px">
-  <h5 style="text-align:center">Most caught fish</h3>
-  <% current_user.top_fish(3).each_with_index do |fish, index|  %>
-    <li class=top-user>
-      <p style="text-align:center; color: rgba(255, 255, 255, 0.9);">
-        <%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %>
-      </p>
-    </li>
-  <% end %>
-</ul>
+  <!-- User Top Fish Caught -->
+  <ul class="top-fish">
+    <h5 style="text-align:center">Most caught fish</h3>
+    <% current_user.top_fish(3).each_with_index do |fish, index|  %>
+      <li>
+        <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <!-- Modals -->
 
@@ -103,7 +103,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add location</h5>
+        <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 

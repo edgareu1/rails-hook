@@ -34,7 +34,7 @@
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <i><h5 style="color: #3AC4FF; font-size: 19px; margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5></i>
+              <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5></i>
             </div>
           </div>
           
@@ -46,7 +46,7 @@
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <i><h5 style="color: #3AC4FF; font-size: 19px; margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
+              <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
               </i>
               </div>
             </div>
@@ -58,7 +58,7 @@
                 <h3 style="font-size: 24px; margin-bottom: 2px">
                   <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
                 </h3>
-                <i><h5 style="color: #3AC4FF; font-size: 19px; margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
+                <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
                 </i>
                 </div>
                 </div>
@@ -66,7 +66,7 @@
               <h3 style="font-size: 24px; margin-bottom: 2px">
                 <%= "#{index + 1}. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
               </h3>
-              <i><h5 style="padding-left: 10px; color: #3AC4FF; font-size: 19px; margin-bottom: 2px; margin-left: 21px"><%= " #{Location.find(location[0]).site}" %></h5>
+              <i><h5 class="loc-site" style="padding-left: 10px; margin-bottom: 2px; margin-left: 21px"><%= " #{Location.find(location[0]).site}" %></h5>
               </i>
             <% end %>
         </div>
