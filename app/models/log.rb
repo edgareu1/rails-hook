@@ -17,7 +17,7 @@ class Log < ApplicationRecord
 
   after_create :add_weather_data
 
-  # Get the total number of fish caught
+  # Get the total number of fish caught in the Log
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
   end
