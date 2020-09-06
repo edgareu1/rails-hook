@@ -1,19 +1,22 @@
 <div style="padding: 20px">
   <div style="display: flex; flex-direction: column; text-align: center">
-    <div class="page-title" style="margin-bottom:0">
+    <div class="page-title" style="margin-bottom: 0">
       <div>
-        <p style="margin-bottom:0; margin-top: 10px; font-size: 20px; color: rgba(255, 255, 255, 0.9)">Current</p>
+        <h2 style="margin-bottom: 0; margin-top: 10px; font-size: 20px; color: rgba(255, 255, 255, 0.9)">
+          Current
+        </h2>
         <h2>Best Spots</h2>
       </div>
     </div>
 
     <% unless @top_3_locations.empty? %>
-    <div class="log-card" style="background-color: transparent; padding: 0">
-      <p style="font-weight: 300; font-size: 16px; margin-bottom: 0">Prediction of number and total weight of fish caught for a 5h session</p>
-    </div>
+      <div class="log-card" style="background-color: transparent; padding: 0">
+        <p style="font-weight: 300; font-size: 16px; margin-bottom: 0">
+          Prediction of number and total weight of fish caught for a 5h session
+        </p>
+      </div>
     <% end %>
   </div>
-
 
   <% if @top_3_locations.empty? %>
     <div class="log-card" style="color: #010038; text-align: center">
@@ -24,71 +27,39 @@
   <% else%>
     <% @top_3_locations.each_with_index do |location, index| %>
       <div class="log-card" style="color: #010038; padding: 10px">
-        <div style="display:flex; justify-content: space-around; align-items: center; padding-left: 5px; padding-right:5px">
-          <div>
-            <% if index == 0 %>
-            <div style="display:flex; align-items: center">
-              <h2 style="font-size: 70px">1</h2>
-              <h2 style="font-size: 45px; padding-right: 3px">|</h2>
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 0 5px">
+          <div style="display:flex; align-items: center">
+            <h2 style="font-size: 70px; padding-right: 5px"><%= index + 1 %></h2>
+            <h2 style="font-size: 45px; padding-right: 3px">|</h2>
+
             <div>
               <h3 style="font-size: 24px; margin-bottom: 2px">
-                <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
+                <%= Location.find(location[0]).name_to_display %>
               </h3>
-              <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5></i>
+              <h5 class="loc-site" style="margin-bottom: 2px">
+                <%= Location.find(location[0]).site %>
+              </h5>
             </div>
           </div>
-          
-            <% elsif index == 1 %>
-            <div style="display:flex; align-items: center">
-              <h2 style="font-size: 70px; padding-right: 5px">2</h2>
-              <h2 style="font-size: 45px; padding-right: 3px">|</h2>
-            <div>
-              <h3 style="font-size: 24px; margin-bottom: 2px">
-                <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
-              </h3>
-              <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
-              </i>
-              </div>
-            </div>
-            <% elsif index == 2 %>
-              <div style="display:flex; align-items: center">
-                <h2 style="font-size: 70px; padding-right: 5px">3</h2>
-                <h2 style="font-size: 45px; padding-right: 3px">|</h2>
-              <div>
-                <h3 style="font-size: 24px; margin-bottom: 2px">
-                  <%= "#{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
-                </h3>
-                <i><h5 class="loc-site" style="margin-bottom: 2px"><%= " #{Location.find(location[0]).site}" %></h5>
-                </i>
-                </div>
-                </div>
-            <% else %>
-              <h3 style="font-size: 24px; margin-bottom: 2px">
-                <%= "#{index + 1}. #{Location.find(location[0]).name.match(/^[^,]*/)[0].truncate(18)}" %>
-              </h3>
-              <i><h5 class="loc-site" style="padding-left: 10px; margin-bottom: 2px; margin-left: 21px"><%= " #{Location.find(location[0]).site}" %></h5>
-              </i>
-            <% end %>
-        </div>
  
-        <div style="font-size: 20px; text-align:center; color:rgba(255, 255, 255, 0.9)">
-          <div>
-            <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat;-webkit-user-select: none; width: 70px; height: 50px; margin-left: 10px"></div>
+          <div style="font-size: 20px; text-align: center; color: rgba(255, 255, 255, 0.9)">
+            <div>
+              <div style="background-image: url(http://openweathermap.org/img/wn/<%= @all_location_stat_hash[location[0]][:weather_icon] %>@2x.png); background-position: center; background-repeat: no-repeat;-webkit-user-select: none; width: 70px; height: 50px; margin-left: 10px"></div>
+            </div>
           </div>
         </div>
-      </div>
       
-       <div style="font-size: 20px; display: flex; background-color: rgba(155, 221, 249, 0.3); justify-content: space-around; padding: 0 50px; color:rgba(255, 255, 255, 0.9)">
-        <div>
-          <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %> fish
+        <div style="font-size: 20px; display: flex; background-color: rgba(155, 221, 249, 0.3); justify-content: space-around; padding: 0 50px; color: rgba(255, 255, 255, 0.9)">
+          <div>
+            <%= (@all_location_stat_hash[location[0]][:num_predicted_per_hour] * 5).round %> fish
+          </div>
+
+          <% if (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5) >= 1000 %>
+            <div><%= ((@all_location_stat_hash[location[0]][:gr_predicted_per_hour] / 1000) * 5).round(1) %> kg</div>
+          <% else %>
+            <div><%= (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5).round %> gr</div>
+          <% end %>
         </div>
-              <% if (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5) >= 1000 %>
-                <div><%= ((@all_location_stat_hash[location[0]][:gr_predicted_per_hour] / 1000) * 5).round(1) %> kg</div>
-              <% else %>
-                <div><%= (@all_location_stat_hash[location[0]][:gr_predicted_per_hour] * 5).round %> gr</div>
-              <% end %>
-      </div>
-        
       </div>
     <% end %>
   <% end %>
