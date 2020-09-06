@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'users#show'
-  get '/ranking', to: 'pages#ranking'
+  get '/prediction', to: 'pages#prediction'
 
   resources :fish, only: [:index, :show]
   resources :locations
