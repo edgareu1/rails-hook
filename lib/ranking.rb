@@ -13,8 +13,7 @@ class Ranking
 
   def top_ranking_locations(num)
     @locations.map { |loc| { location: { name: loc.name_to_display,
-                                         site: loc.site,
-                                         num_logs: loc.logs.size
+                                         site: loc.site
                                        },
                              prediction: prediction(loc)
                            }
@@ -48,9 +47,6 @@ class Ranking
     # Train the model using the normal equation
     linear_regression.train_normal_equation
 
-    # Get the mean square error of the model
-    square_error = linear_regression.mean_square_error
-
     # Get the mean absolute percentage error of the model
     percentage_error = linear_regression.mean_absolute_percentage_error
 
@@ -62,7 +58,6 @@ class Ranking
     prediction_weight = linear_regression.predict(prediction_data).round
 
     return { weight_caught: prediction_weight,
-             square_error: square_error,
              percentage_error: percentage_error,
              weather_icon: weather_data[:weather_icon]
            }
@@ -112,33 +107,6 @@ class RubyLinearRegression
     @y = Matrix.rows( y_data.collect { |e| [e] } )
 
     @theta = Matrix.zero(@x.column_count, 1)
-  end
-
-  # Computes the mean squared error
-  def mean_square_error test_x = nil, test_y = nil
-    if not test_x.nil?
-      test_x.each_index do |row|
-        test_x[row].each_index do |i|
-          test_x[row][i] = (test_x[row][i] - @mu[i]) / @sigma[i].to_f
-        end
-      end if @normalize
-      test_x = test_x.map { |r| [1].concat(r) }
-    end
-
-    # Per default use training data to compute cost if no data is given
-    cost_x = test_x.nil? ? @x : Matrix.rows(test_x)
-    cost_y = test_y.nil? ? @y : Matrix.rows( test_y.collect { |e| [e] } )
-
-    # First use matrix multiplication and vector subtracton to find errors
-    errors = (cost_x * @theta) - cost_y
-
-    # Then square all errors
-    errors = errors.map { |e| (e.to_f ** 2) }
-
-    # Find the mean of the square errors
-    result = 0.5 * (errors.inject{ |sum, e| sum + e }.to_f / errors.row_size)
-
-    return result.round
   end
 
   # Computes the mean absolute percentage error
