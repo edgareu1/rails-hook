@@ -77,3 +77,6 @@ gem 'open-weather-api'
 # Pagination
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap4'
+
+# Linear regression analysis
+gem 'ruby_linear_regression'
