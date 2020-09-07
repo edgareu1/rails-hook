@@ -1,12 +1,10 @@
-require 'modules/moon-phase.rb'
-
 require 'ruby_linear_regression'
 
 require 'csv'
 require 'matrix'
 
 class Ranking
-  include MoonPhase
+  include MoonPhaseHelper
 
   def initialize(user)
     @user = user

@@ -1,7 +1,5 @@
-require 'modules/moon-phase.rb'
-
 class Log < ApplicationRecord
-  include MoonPhase
+  include MoonPhaseHelper
 
   belongs_to :location
   belongs_to :user

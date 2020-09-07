@@ -1,4 +1,4 @@
-module MoonPhase
+module MoonPhaseHelper
   # Get the % of the moon that is active in a certain date
   # Both this method and it's helper are based on the Git Repo of "ablwr" named "moon phases"
   def get_moon_phase(date)
@@ -14,6 +14,8 @@ module MoonPhase
       return 1 - ((phase_days % 14.7652944265) / 14.7652944265)
     end
   end
+
+  private
 
   # Convert a date in Julian
   # Helper method for the calculation of the moon phase
