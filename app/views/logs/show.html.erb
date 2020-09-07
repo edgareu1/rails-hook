@@ -56,7 +56,7 @@
           <p><strong> Rating: </strong> <%= "#{@log.rating}/10" %></p>
         <% end %>
 
-        <% unless @log.observation.empty? || @log.observation.match?(/\A\s*\Z/) %>
+        <% unless @log.observation.nil? || @log.observation.match?(/\A\s*\Z/) %>
           <p><strong>Observations: </strong> <span><%= @log.observation %></span></p>
         <% end %>
       </div>

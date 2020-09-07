@@ -6,7 +6,10 @@ module ApplicationHelper
     elsif weight < 1000
       return "#{weight} gr"
     else
-      weight_in_kg = weight.fdiv(1000).tap { |n| break n.to_i == n ? n.to_i : n }
+      weight_in_kg = weight.fdiv(1000)
+                           .tap { |n| break n.to_i == n ? n.to_i : n }
+                           .round(1)
+
       return "#{weight_in_kg} kg"
     end
   end
