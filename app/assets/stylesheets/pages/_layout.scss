@@ -39,3 +39,7 @@ p {
     font-size: 22px;
   }
 }
+
+.modal-dialog-centered {
+  min-height: calc(80% - 1rem);
+}
