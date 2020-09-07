@@ -6,7 +6,8 @@ class Location < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_name?
 
   validates :name, presence: true
-  validates :site, presence: true, uniqueness: true, length: { maximum: 20, message: "Maximum of 20 characters"}
+  validates :site, presence: true, length: { maximum: 20, message: "Maximum of 20 characters"}
+  validates_uniqueness_of :site, case_sensitive: false, scope: :user_id
 
   # Makes sure the name displayed isn't to long
   def name_to_display
