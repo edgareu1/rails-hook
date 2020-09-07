@@ -45,7 +45,8 @@
         -->
 
           <div>
-            <%= rounded_weight(loc[:prediction][:weight_caught]) %>
+            <!-- Prediction of weight of fish caught in 5 hours -->
+            <%= rounded_weight(loc[:prediction][:weight_caught] * 5) %>
           </div>
         </div>
       </div>

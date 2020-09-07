@@ -1,7 +1,6 @@
-require 'ruby_linear_regression'
-
 require 'csv'
 require 'matrix'
+require 'ruby_linear_regression'
 
 class Ranking
   include MoonPhaseHelper
@@ -29,8 +28,10 @@ class Ranking
     y_data = []
 
     location.logs.each do |log|
-      # Total weight caught in grams
-      y_data.push(log.catch_weight)
+      weight_caught_hour = log.catch_weight / log.duration
+
+      # Predicting weight of fish caught per hour
+      y_data.push(weight_caught_hour)
 
       # Analysing 'air pressure', 'wind speed' and 'moon phase'
       x_data.push( [log.air_pressure, round_element(log.wind_speed), round_element(log.moon_phase)] )

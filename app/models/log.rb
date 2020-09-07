@@ -31,6 +31,11 @@ class Log < ApplicationRecord
     "#{location.site} \##{sprintf '%03d', (tag_id)}"
   end
 
+  # Returns the Log duration in hours
+  def duration
+    (end_time - start_time) / ( 60 * 60 )
+  end
+
   private
 
   # Update the weather variables to the ones registered at the moment
