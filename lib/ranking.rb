@@ -79,8 +79,8 @@ class Ranking
 end
 
 
-# This Class is based from the Git Repo of "daugaard" named "linear-regression" having been edited
-# the mean square error method and added the mean absolute percentage error method
+# This Class is based from the Git Repo of "daugaard" named "linear-regression" having been added
+# the mean absolute percentage error method
 class RubyLinearRegression
   attr_reader :x, :y, :theta, :mu, :sigma, :lambda, :normalize
 

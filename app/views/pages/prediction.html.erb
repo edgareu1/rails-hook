@@ -39,14 +39,16 @@
       
         <div class="card-footer-stats">
           <!-- Prediction of weight of fish to be caught in a 5h session -->
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
             <%= rounded_weight(loc[:prediction][:weight_caught] * 5) %>
+            <span class="tooltiptext">prediction of weight to be caught</span>
           </p>
 
           <!-- Mean absolute percentage error of the predictive model -->
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0">
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
             <i class="fas fa-exclamation-circle" style="margin-right: 5px"></i>
             <%= "#{loc[:prediction][:percentage_error]}%" %>
+            <span class="tooltiptext">mean percentage error of the prediction</span>
           </p>
         </div>
       </div>
