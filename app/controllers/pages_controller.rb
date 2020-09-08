@@ -1,6 +1,6 @@
-require 'ranking'
-
 class PagesController < ApplicationController
+  include PredictionHelper
+
   skip_before_action :authenticate_user!, only: [:home]
 
   def prediction
