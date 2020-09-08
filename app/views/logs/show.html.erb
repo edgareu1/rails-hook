@@ -56,7 +56,7 @@
           <p><strong> Rating: </strong> <%= "#{@log.rating}/10" %></p>
         <% end %>
 
-        <% unless @log.observation.empty? || @log.observation.match?(/\A\s*\Z/) %>
+        <% unless @log.observation.nil? || @log.observation.match?(/\A\s*\Z/) %>
           <p><strong>Observations: </strong> <span><%= @log.observation %></span></p>
         <% end %>
       </div>
@@ -136,8 +136,8 @@
           </tr>
 
           <!-- Modal Delete Catch Form -->
-          <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" style="top: 85%;" role="dialog">
-            <div class="modal-dialog">
+          <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div style="text-align:center; width: 100%">
                   <h2 class="modal-title" style="color: white">Delete Catch</h2>
@@ -147,7 +147,7 @@
                   </p>
                 </div>
 
-                <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
+                <div style="width: 80%; margin: 10px auto 20px; height: 40px">
                   <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
                   <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
                 </div>
@@ -179,7 +179,7 @@
 
 <!-- Modal New Catch Form -->
 <div class="modal fade" id="ModalNewCatch" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="color: white; opacity: 0.9">New Catch</h4>
@@ -195,7 +195,7 @@
 
 <!-- Modal New Log Form -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
@@ -211,7 +211,7 @@
 
 <!-- Modal Edit Log Form -->
 <div class="modal fade" id="ModalEditLog" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="color: white; opacity: 0.9">Edit Log</h4>
@@ -227,13 +227,13 @@
 
 <!-- Modal Delete Log Form -->
 <div class="modal fade" id="ModalDeleteLog" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div style="text-align:center; width: 100%; padding: 10px">
         <h2 class="modal-title" style="color: white; opacity: 0.9">Delete Log</h2>
         <p style="color: #BDEBFF; margin: 0">Are you sure you want to delete the log?</p>
 
-        <div style="width: 80%; margin: auto; margin-bottom: 20px; height: 40px">
+        <div style="width: 80%; margin: 10px auto 20px; height: 40px">
           <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
           <%= link_to "Delete", log_path(@log), method: :delete, class: "btn-delete-confirm" %>
         </div>

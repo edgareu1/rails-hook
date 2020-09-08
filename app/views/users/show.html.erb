@@ -5,7 +5,7 @@
 
 <div style="position: sticky">
   <div class="banner text-center" style="margin-bottom: 40px">
-    <%= avatar_large(current_user) %>
+    <%= large_avatar(current_user) %>
 
     <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
       Welcome <%= current_user.username.capitalize %> !
@@ -102,7 +102,7 @@
 
 <!-- Modal New Location Form -->
 <div class="modal fade" id="ModalNewLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
        <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
@@ -118,7 +118,7 @@
 
 <!-- Modal New Log Form -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>

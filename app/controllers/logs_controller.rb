@@ -1,8 +1,7 @@
 require 'will_paginate/array'
-require 'modules/moon-phase.rb'
 
 class LogsController < ApplicationController
-  include MoonPhase
+  include MoonPhaseHelper
 
   before_action :set_log, only: [:show, :update, :destroy]
 

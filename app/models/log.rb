@@ -1,7 +1,5 @@
-require 'modules/moon-phase.rb'
-
 class Log < ApplicationRecord
-  include MoonPhase
+  include MoonPhaseHelper
 
   belongs_to :location
   belongs_to :user
@@ -17,15 +15,25 @@ class Log < ApplicationRecord
 
   after_create :add_weather_data
 
-  # Get the total number of fish caught in the Log
+  # Get the number of fish caught in the Log
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
+  end
+
+  # Get the weight of fish caught in the Log
+  def catch_weight
+    catches.inject(0) { |sum, catch| sum + catch.weight }
   end
 
   # Returns a string of the Log site followed by it's tag_id (padded with zeros)
   # Ex: Sargo Rock #009
   def label
     "#{location.site} \##{sprintf '%03d', (tag_id)}"
+  end
+
+  # Returns the Log duration in hours
+  def duration
+    (end_time - start_time) / ( 60 * 60 )
   end
 
   private

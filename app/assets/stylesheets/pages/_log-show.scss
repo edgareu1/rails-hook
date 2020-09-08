@@ -1,4 +1,29 @@
 // Specific CSS for the Logs#show Page
+// Style Log Forms
+.container-log-form {
+  display: flex;
+  flex-direction: column;
+  color: #BDEBFF;
+  opacity: 0.9;
+
+  p {
+    color: #BDEBFF;
+  }
+}
+
+input[type=datetime-local] {
+  width: 220px;
+}
+
+// Style Catch Form
+.container-catch-form {
+  display: flex;
+  flex-direction: column;
+  color: #BDEBFF;
+  opacity: 0.9;
+}
+
+// Other Elements
 .list-border-top, .gray-background {
   list-style: none;
   margin: 20px 0;
@@ -22,52 +47,6 @@
     border-top: 2px solid white;
     text-align: center;
   }
-}
-
-/* Style Forms */
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Style Form Log */
-.container-log-form {
-  display: flex;
-  flex-direction: column;
-  color: #BDEBFF;
-  opacity: 0.9;
-
-  p {
-    color: #BDEBFF;
-  }
-}
-
-input[type=datetime-local] {
-  width: 220px;
-}
-
-/* Style Form Catch */
-.container-catch-form {
-  display: flex;
-  flex-direction: column;
-  color: #BDEBFF;
-  opacity: 0.9;
-}
-
-#ModalDeleteLog, #ModalCreateCatch {
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#ModalCreateLocation {
-  position: fixed;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .date-show-page {
