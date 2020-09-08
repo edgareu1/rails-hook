@@ -115,11 +115,6 @@
                   class: "btn btn-flat", style: "margin-left: 5px; font-size: 15.5px" do %>
                 <%= catch.fish.common_name %>
               <% end %>
-
-              <!-- Modal Fish Info -->
-              <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>">
-                <%= render "logs/fish-info", catch: catch %>
-              </div>
             </td>
 
             <td style="font-size: 16px">
@@ -137,24 +132,14 @@
             </td>
           </tr>
 
-          <!-- Modal Delete Catch Form -->
+          <!-- Modal Fish Info -->
+          <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>">
+            <%= render "fish/modal-info", catch: catch %>
+          </div>
+
+          <!-- Modal Delete Catch -->
           <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div style="text-align:center; width: 100%">
-                  <h2 class="modal-title" style="color: white">Delete Catch</h2>
-
-                  <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">
-                    Are you sure you want to delete the catch?
-                  </p>
-                </div>
-
-                <div style="width: 80%; margin: 10px auto 20px; height: 40px">
-                  <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
-                  <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
-                </div>
-              </div>
-            </div>
+            <%= render "catches/modal-delete", catch: catch %>
           </div>
         <% end %>
       <% end %>
@@ -181,18 +166,7 @@
 
 <!-- Modal New Catch Form -->
 <div class="modal fade" id="ModalNewCatch" role="dialog">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" style="color: white; opacity: 0.9">New Catch</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <div class="modal-body">
-        <%= render "catches/form" %>
-      </div>
-    </div>
-  </div>
+  <%= render "catches/form-new" %>
 </div>
 
 <!-- Modal New Log Form -->

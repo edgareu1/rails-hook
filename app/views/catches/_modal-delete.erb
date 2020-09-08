@@ -1,0 +1,16 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div style="text-align:center; width: 100%">
+      <h2 class="modal-title" style="color: white">Delete Catch</h2>
+
+      <p style="color: #BDEBFF; margin: 0; padding: 0; border: none">
+        Are you sure you want to delete the catch?
+      </p>
+    </div>
+
+    <div style="width: 80%; margin: 10px auto 20px; height: 40px">
+      <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+      <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
+    </div>
+  </div>
+</div>
