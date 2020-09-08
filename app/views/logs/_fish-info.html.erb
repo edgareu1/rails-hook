@@ -1,22 +1,20 @@
-<div class="modal fade" id="ModalFishInfo-<%= catch.fish.id%>" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" style="color: #BDEBFF"><%= catch.fish.common_name.upcase%></h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: white; opacity: 0.9"> <%= catch.fish.common_name %> </h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
 
-      <div class="modal-body">
-        <div class="fish-card-infos">
-          <div class="fish-card-full" style="background-color: #061f35">
-            <%= image_tag catch.fish.picture_url %>
+    <div class="modal-body">
+      <div class="fish-card-infos">
+        <div class="fish-card-full" style="background-color: #061f35">
+          <%= image_tag catch.fish.picture_url %>
 
-            <p style="color: #BDEBFF; font-style: italic"; font-size: 15px>
-              Minimum size: <%= catch.fish.display_legal_dimensions %>
-            </p>
+          <p style="color: #BDEBFF; font-style: italic">
+            Minimum size: <%= catch.fish.display_legal_dimensions %>
+          </p>
 
-            <p style="color: #BDEBFF"><%= catch.fish.description %></p>
-          </div>
+          <p style="color: #BDEBFF"><%= catch.fish.description %></p>
         </div>
       </div>
     </div>

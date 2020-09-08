@@ -116,8 +116,10 @@
                 <%= catch.fish.common_name %>
               <% end %>
 
-              <!-- Link to the specific Fish Info -->
-              <%= render "logs/fish-info", catch: catch %>
+              <!-- Modal Fish Info -->
+              <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>">
+                <%= render "logs/fish-info", catch: catch %>
+              </div>
             </td>
 
             <td style="font-size: 16px">
