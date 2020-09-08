@@ -1,0 +1,19 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <%= simple_form_for(@location) do |f| %>
+        <%= f.input :site, label: false, placeholder: "Spot's name" %>
+        <%= f.input :name, label: false, placeholder: "Location" %>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: "btn btn-flat btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
