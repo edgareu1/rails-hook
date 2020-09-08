@@ -1,61 +1,52 @@
-// mobile bottom shortcut navbar
-@media screen and (min-width: 767px) {
-  #bottom-nav  {
-    display: none;
+#bottom-nav {
+  display: flex;
+  position: fixed;
+  color: #BDEBFF;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  background: rgba(82, 111, 128, 0.7);
+  padding: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#bottom-list {
+  display: flex;
+  padding: 0;
+  margin-bottom: 0;
+
+  li {
+    width: 100%;
+    flex-grow: 1;
+    padding: 5px 0;
+
+    a {
+      color: rgba(0, 0, 0, 0.9);
+
+      .far, .fas {
+        color: rgba(0, 0, 0, 0.9);
+      }
+
+      figure {
+        margin: 0;
+      }
+    }
+  }
+
+  li.active {
+    font-weight: 900;
+
+    a {
+      color: #BDEBFF;
+
+      .far, .fas {
+        color: #BDEBFF;
+      }
+    }
   }
 }
 
-@media (max-width: 767px) {
-  #bottom-nav {
-    display: flex;
-    position: fixed;
-    color: #BDEBFF;
-    width: 100%;
-    font-size: 14px;
-    text-align: center;
-    background: rgba(82, 111, 128, 0.7);
-    padding: 0;
-    bottom: 0;
-    z-index: 99;
-  }
-
-  #bottom-list {
-    display: flex;
-    padding: 0;
-    margin-bottom: 0;
-
-    li {
-      width: 100%;
-      flex-grow: 1;
-      padding: 5px 0;
-
-      a {
-        color: rgba(0, 0, 0, 0.9);
-
-        .far, .fas {
-          color: rgba(0, 0, 0, 0.9);
-        }
-
-        figure {
-          margin: 0;
-        }
-      }
-    }
-
-    li.active {
-      font-weight: 900;
-
-      a {
-        color: #BDEBFF;
-
-        .far, .fas {
-          color: #BDEBFF;
-        }
-      }
-    }
-  }
-
-  #logo {
-    width: 40px;
-  }
+#logo {
+  width: 40px;
 }

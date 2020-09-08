@@ -1,6 +1,6 @@
 body {
-  color: rgba(255, 255, 255, 0.9);
   height: 100%;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 html {
@@ -40,6 +40,32 @@ p {
   }
 }
 
+// App responsiveness to different device sizes and centering of the content
+.body-container {
+  width: 100%;
+  height:calc(100% - 52px);
+  overflow-y: scroll;
+}
+
+.page-container {
+  padding: 20px;
+}
+
+.background-container { // Home page Canvas container
+  display: flex;
+  width: 100%;
+}
+
+.fish-tank {            // Home page Canvas
+  overflow-y: scroll;
+}
+
 .modal-dialog-centered {
   min-height: calc(80% - 1rem);
+  padding: 10px;
+}
+
+.page-container, .modal-dialog-centered, #bottom-list {
+  width: 375px;
+  margin: 0 auto;
 }
