@@ -27,6 +27,8 @@ import "bootstrap";
 // Internal imports
 import { bottom_fish } from '../components/bottom_fish';
 import { background_profile } from '../components/background_profile';
+import { updateCanvasSize } from '../components/update_canvas_size';
+
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { autoComplete } from '../plugins/fish_algolia_auto_complete';
 
@@ -40,6 +42,13 @@ document.addEventListener('turbolinks:load', () => {
   let fishTank = document.querySelector("#fishtank");
   if (fishTank) {
     background_profile();
+
+    let canvas = document.querySelector('canvas');
+    updateCanvasSize(canvas);
+
+    window.addEventListener('resize', () => {
+      updateCanvasSize(canvas);
+    });
   }
 
   let searchField = document.getElementById("search-input");
