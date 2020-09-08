@@ -6,15 +6,23 @@
     </div>
 
     <div class="modal-body">
-      <div class="fish-card-infos">
-        <div class="fish-card-full" style="background-color: #061f35">
+      <div class="fish-card" style="background-color: #061f35">
+        <div class="card-fish-img">
           <%= image_tag catch.fish.picture_url %>
+        </div>
 
-          <p style="color: #BDEBFF; font-style: italic">
+        <div class="fish-card-info" style="background: none">
+          <p style="font-size: 20px; border: none; margin: 0 0 0 10px">
             Minimum size: <%= catch.fish.display_legal_dimensions %>
           </p>
 
-          <p style="color: #BDEBFF"><%= catch.fish.description %></p>
+          <p style="color: #9BDDF9; padding: 0">
+            <%= catch.fish.description %>
+          </p>
+
+          <p style="margin-bottom: 0">
+            <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info" %>
+          </p>
         </div>
       </div>
     </div>
