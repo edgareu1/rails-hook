@@ -1,0 +1,13 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div style="text-align:center; width: 100%; padding: 10px">
+      <h2 class="modal-title" style="color: white; opacity: 0.9">Delete Log</h2>
+      <p style="color: #BDEBFF; margin: 0">Are you sure you want to delete the log?</p>
+
+      <div style="width: 80%; margin: 10px auto 20px; height: 40px">
+        <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+        <%= link_to "Delete", log_path(@log), method: :delete, class: "btn-delete-confirm" %>
+      </div>
+    </div>
+  </div>
+</div>

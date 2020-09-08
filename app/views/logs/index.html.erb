@@ -81,19 +81,8 @@
   </div>
 
   <!-- Modal New Log Form -->
-  <div class="modal fade" id="ModalNewLog" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <div class="modal-body">
-          <%= render "logs/form-new", log: @log %>
-        </div>
-      </div>
-    </div>
+  <div class="modal fade" id="ModalNewLog">
+    <%= render "logs/form-new", log: @log %>
   </div>
 </div>
 
