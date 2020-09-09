@@ -2,7 +2,7 @@ const algoliasearch = require("algoliasearch");
 const client = algoliasearch(process.env.APPLICATION_ID, process.env.API_KEY);
 const index = client.initIndex("Fish");
 
-const autoComplete = () => {
+const autoCompleteFish = () => {
   const searchField = document.getElementById("search-input");
   searchField.addEventListener('keyup', (event) => {
     const { value } = event.target;
@@ -27,4 +27,4 @@ const autoComplete = () => {
   });
 }
 
-export { autoComplete };
+export { autoCompleteFish };
