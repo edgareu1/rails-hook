@@ -1,11 +1,11 @@
-const algoliasearch = require("algoliasearch");
-const client = algoliasearch(process.env.APPLICATION_ID, process.env.API_KEY);
-const index = client.initIndex("Fish");
-
-const autoCompleteFish = () => {
-  const searchField = document.getElementById("search-input");
+function autoCompleteFish(searchField) {
   searchField.addEventListener('keyup', (event) => {
-    const { value } = event.target;
+    const { value } = event.target;                 // Search param
+    const fish_names = gon.fish_names.split(', ');  // Array of Fish to search into
+
+    console.log(value);
+    console.log(fish_names);
+
     index.search(value)
           .then(({ hits }) => {
             const visibleIds = hits.map(fish => fish.id);

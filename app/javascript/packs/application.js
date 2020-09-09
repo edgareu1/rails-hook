@@ -35,7 +35,7 @@ import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 document.addEventListener('turbolinks:load', () => {
   let searchField = document.getElementById('search-input');
   if (searchField) {
-    autoCompleteFish();
+    autoCompleteFish(searchField);
   }
 
   let addressInput = document.getElementById('location_name');
