@@ -1,16 +1,25 @@
 function autoCompleteFish(searchField) {
-  searchField.addEventListener('keyup', (event) => {
+  searchField.addEventListener('input', (event) => {
     const { value } = event.target;                 // Search param
     const fish_names = gon.fish_names.split(', ');  // Array of Fish to search into
 
-    // Create the 'autocomplete-list' Div
-    let autoCompleteContainer = document.createElement("div");
-    autoCompleteContainer.setAttribute("id", "autocomplete-list");
+    // Get or create 'autocomplete-list' Div
+    let autoCompleteContainer = document.getElementById("autocomplete-list")
 
-    // Insert the 'autocomplete-list' in the document
-    searchField.parentNode.insertBefore(autoCompleteContainer, searchField.nextSibling);
+    // If it does not exist then create it
+    if (!autoCompleteContainer) {
+      autoCompleteContainer = document.createElement("div");
+      autoCompleteContainer.setAttribute("id", "autocomplete-list");
 
-    searchField.parentNode.style.position = 'relative';
+      // Insert the 'autocomplete-list' in the document
+      searchField.parentNode.insertBefore(autoCompleteContainer, searchField.nextSibling);
+
+      // Make sure the position of the 'autocomplete-list' is relative to the 'searchField'
+      searchField.parentNode.style.position = 'relative';
+
+    } else {
+      emptyList(autoCompleteContainer); // Make sure the List is empty
+    }
 
     // Iterate over the array of Fish
     for (let i = 0; i < fish_names.length; i++) {
@@ -28,9 +37,21 @@ function autoCompleteFish(searchField) {
 
         // Insert the matched element in the autoComplete list
         autoCompleteContainer.appendChild(fishElement);
+
+        // If the element is clicked upon then the 'searchField' value becomes the own clicked element's name
+        fishElement.addEventListener('click', function(e) {
+          searchField.value = fish_names[i];
+
+          emptyList(autoCompleteContainer);
+        });
       }
     }
   });
+
+  // Empties the elements in the 'autocomplete-list'
+  function emptyList(autoCompleteContainer) {
+    if (autoCompleteContainer) autoCompleteContainer.innerHTML = '';
+  }
 }
 
 export { autoCompleteFish };
