@@ -1,22 +1,22 @@
-<div class="container">
+<div class="page-container">
   <%= link_to 'Back', fish_index_path, class: "btn btn-flat", style:"margin: 10px" %>
 
-  <div class="fish-card-full">
-    <%= image_tag @fish.picture_url %>
+  <div class="fish-card">
+    <div class="card-fish-img">
+      <%= image_tag @fish.picture_url %>
+    </div>
 
-    <div class="fish-card-infos">
-      <h2 style="margin-bottom: 0"><%= @fish.common_name.upcase %></h2>
+    <div class="fish-card-info">
+      <h2><%= @fish.common_name.upcase %></h2>
 
-      <p style="font-size: 15px">
-        <i style="color: #3AC4FF">Minimum size:</i>
-        <i style="color: rgba(255, 255, 255, 0.9)"><%= @fish.display_legal_dimensions %></i>
+      <p style="padding: 0 20px">
+        Minimum size:
+        <%= @fish.display_legal_dimensions %>
       </p>
 
-      <p><%= @fish.description %></p>
+      <p style="color: #9BDDF9; padding: 0 10px"><%= @fish.description %></p>
 
-      <p class="fish-more-info">
-        <%= link_to "Learn more", @fish.url, target: "_blank" %>
-      </p>
+      <p><%= link_to "Learn more", @fish.url, target: "_blank", class: "fish-more-info" %></p>
     </div>
   </div>
 </div>

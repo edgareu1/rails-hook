@@ -1,4 +1,4 @@
-<div style="padding: 20px">
+<div class="page-container">
   <h1 class="page-title">All Logs</h1>
 
   <!-- Modal for the new Log creation -->
@@ -8,16 +8,16 @@
     <% end %>
   </div>
 
-  <div style="margin: 10px 0">
-    <% if @logs.empty? %>
-      <div class="log-card" style="text-align: center">
-        <h3 style="font-size: 24px; margin-bottom: 12px">No logs saved yet</h3>
-        <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
-          The more logs you record, the better our predictions will be!
-        </h5>
-      </div>
+  <% if @logs.empty? %>
+    <div class="log-card" style="text-align: center; padding: 10px 20px">
+      <h3 style="font-size: 24px; margin-bottom: 12px">No logs saved yet</h3>
+      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
+        The more logs you record, the more accurate our predictions will be !
+      </h5>
+    </div>
 
-    <% else %>
+  <% else %>
+    <div style="margin: 10px 0">
       <!-- Iterate over the Logs list and display them as Cards -->
       <% @logs.each do |log| %>
         <%= link_to log_path(log) do %>
@@ -77,23 +77,12 @@
           previous_label: "&laquo;", next_label: "&raquo;"
         %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <!-- Modal New Log Form -->
-  <div class="modal fade" id="ModalNewLog" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" style="color: white; opacity: 0.9">New Log</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <div class="modal-body">
-          <%= render "logs/form-new", log: @log %>
-        </div>
-      </div>
-    </div>
+  <div class="modal fade" id="ModalNewLog">
+    <%= render "logs/form-new", log: @log %>
   </div>
 </div>
 

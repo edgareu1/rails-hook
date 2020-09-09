@@ -1,76 +1,87 @@
-<%= simple_form_for(log) do |f| %>
-  <div class="container-log-form">
-    <!-- Starting Time -->
-    <label for="log_start_time">Starting time</label>
-    <input type="datetime-local" id="log_edit_start_time" name="log[start_time]"
-        value="<%=log.start_time.strftime('%Y-%m-%dT%H:%M')%>">
-
-    <br>
-
-    <!-- Ending Time -->
-    <label for="log_end_time">Ending time</label>
-    <input type="datetime-local" id="log_edit_end_time" name="log[end_time]"
-        value="<%=log.end_time.strftime('%Y-%m-%dT%H:%M')%>">
-
-    <!-- Location -->
-    <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
-      wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
-
-    <!-- Air Pressure -->
-    <div style="display: flex; margin-top: 20px">
-      <label for="log_air_pressure" style="margin: 6px 10px 0 0; width: 100px">Air pressure</label>
-      <%= f.input :air_pressure, id: "log_air_pressure", label: false %>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: white; opacity: 0.9">Edit Log</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
 
-    <!-- Wind Speed -->
-    <div style="display: flex">
-      <label for="log_wind_speed" style="margin: 6px 10px 0 0; width: 100px">Wind speed</label>
-      <%= f.input :wind_speed, id: "log_wind_speed", label: false %>
-    </div>
+    <div class="modal-body">
+      <%= simple_form_for(log) do |f| %>
+        <div class="container-log-form">
+          <!-- Starting Time -->
+          <label for="log_start_time">Starting time</label>
+          <input type="datetime-local" id="log_edit_start_time" name="log[start_time]"
+              value="<%=log.start_time.strftime('%Y-%m-%dT%H:%M')%>">
 
-    <!-- Observations -->
-    <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
-      placeholder: "Leave an observation" %>
+          <br>
 
-    <p style="font-size: 1rem">Rate your session</p>
+          <!-- Ending Time -->
+          <label for="log_end_time">Ending time</label>
+          <input type="datetime-local" id="log_edit_end_time" name="log[end_time]"
+              value="<%=log.end_time.strftime('%Y-%m-%dT%H:%M')%>">
 
-    <!-- Rating as a dynamic filling image -->
-    <div class="fish-rating-container">
-      <div class="fish-rating">
-        <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
-          alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
+          <!-- Location -->
+          <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
+            wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
 
-        <input type="hidden" name="log[rating]" value="">
-
-        <% (1..10).to_a.reverse.each do |num| %>
-          <% if log.id.nil? %>
-            <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
-            <label for="log_rating_new_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
-
-          <% else %>
-            <% if log.rating == num %>
-              <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>" checked>
-            <% else %>
-              <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
-            <% end %>
-
-          <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
-          <% end %>
-
-          <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
-        <% end %>
-      </div>
-
-      <div class="fish-rating-bar">
-        <% (1..10).to_a.each do |num| %>
-          <div class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%">
-            <%= num %>
+          <!-- Air Pressure -->
+          <div style="display: flex; margin-top: 20px">
+            <label for="log_air_pressure" style="margin: 6px 10px 0 0; width: 100px">Air pressure</label>
+            <%= f.input :air_pressure, id: "log_air_pressure", label: false %>
           </div>
-        <% end %>
-      </div>
-    </div>
 
-    <!-- Submit Button -->
-    <%= f.button :submit, class: "btn btn-flat btn-block" %>
+          <!-- Wind Speed -->
+          <div style="display: flex">
+            <label for="log_wind_speed" style="margin: 6px 10px 0 0; width: 100px">Wind speed</label>
+            <%= f.input :wind_speed, id: "log_wind_speed", label: false %>
+          </div>
+
+          <!-- Observations -->
+          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
+            placeholder: "Leave an observation" %>
+
+          <p style="font-size: 1rem">Rate your session</p>
+
+          <!-- Rating as a dynamic filling image -->
+          <div class="fish-rating-container">
+            <div class="fish-rating">
+              <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
+                alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
+
+              <input type="hidden" name="log[rating]" value="">
+
+              <% (1..10).to_a.reverse.each do |num| %>
+                <% if log.id.nil? %>
+                  <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
+                  <label for="log_rating_new_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+
+                <% else %>
+                  <% if log.rating == num %>
+                    <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>" checked>
+                  <% else %>
+                    <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
+                  <% end %>
+
+                <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+                <% end %>
+
+                <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
+              <% end %>
+            </div>
+
+            <div class="fish-rating-bar">
+              <% (1..10).to_a.each do |num| %>
+                <div class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%">
+                  <%= num %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <%= f.button :submit, class: "btn btn-flat btn-block" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

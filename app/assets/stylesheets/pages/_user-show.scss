@@ -21,7 +21,7 @@ hr {
 .location-box {
   background-color: $opacity-blue;
   padding: 10px 10px 0 10px;
-  margin: 20px 20px 50px;
+  margin-bottom: 50px;
 
   li {
     border-top: 1px solid white;
@@ -35,7 +35,7 @@ hr {
 .feed {
   height: 150px;
   box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
-  margin: 20px 20px 50px;
+  margin-bottom: 50px;
 
   h5 {
     text-align: center;
@@ -53,7 +53,7 @@ hr {
   justify-content: space-evenly;
   background-color: $opacity-blue;
   padding: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 
   p {
     margin: 0;
@@ -71,7 +71,7 @@ hr {
   width: 250px;
   list-style-type: none;
   margin: auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   li {
     color: rgba(255, 255, 255, 0.9);

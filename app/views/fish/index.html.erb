@@ -1,6 +1,6 @@
-<div class="container">
+<div class="page-container" style="padding-bottom: 40px">
   <%= form_tag fish_index_path, method: :get do %>
-    <div class="d-flex" style="margin-top: 20px">
+    <div class="d-flex" style="margin-top: 10px">
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
@@ -15,20 +15,18 @@
 
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id } do %>
-      <div class="fish-card">
-        <div style="height: 220px; display: flex; align-items: center">
+      <div class="fish-card" style="margin-top: 20px">
+        <div class="card-fish-img">
           <%= image_tag fish.picture_url %>
         </div>
 
-        <div class="fish-card-infos">
-          <h2 style="margin-bottom: 0"><%= fish.common_name.upcase %></h2>
+        <div class="fish-card-info">
+          <h2><%= fish.common_name.upcase %></h2>
 
-          <p style="font-size: 16px; margin-bottom: 0">
-            <i style="color: #3AC4FF">Minimum size:</i>
-            <i style="color: rgba(255, 255, 255, 0.9)"><%= fish.display_legal_dimensions %></i>
+          <p style="padding: 0 10px 10px 20px; margin: 0">
+            Minimum size:
+            <%= fish.display_legal_dimensions %>
           </p>
-
-          <div style="font-size: 15px; padding:10px"><b><i>Learn more</i></b></div>
         </div>
       </div>
     <% end %>

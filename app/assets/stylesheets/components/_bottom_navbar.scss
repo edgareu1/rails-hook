@@ -1,61 +1,71 @@
-// mobile bottom shortcut navbar
-@media screen and (min-width: 767px) {
-  #bottom-nav  {
-    display: none;
+#bottom-nav {
+  display: flex;
+  position: fixed;
+  color: #BDEBFF;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  background: rgba(82, 111, 128, 0.7);
+  padding: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#bottom-list {
+  display: flex;
+  padding: 0;
+  margin-bottom: 0;
+
+  li {
+    width: 75px;
+    flex-grow: 1;
+    padding: 8px 0;
+
+    a {
+      color: rgba(0, 0, 0, 0.9);
+
+      .far, .fas {
+        color: rgba(0, 0, 0, 0.9);
+      }
+
+      figure {
+        margin: 0;
+      }
+    }
+
+    .navbar-toggler {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+    }
+  }
+
+  li.active {
+    font-weight: 900;
+
+    a {
+      color: #BDEBFF;
+
+      .far, .fas {
+        color: #BDEBFF;
+      }
+    }
   }
 }
 
-@media (max-width: 767px) {
-  #bottom-nav {
-    display: flex;
-    position: fixed;
-    color: #BDEBFF;
-    width: 100%;
-    font-size: 14px;
-    text-align: center;
-    background: rgba(82, 111, 128, 0.7);
-    padding: 0;
-    bottom: 0;
-    z-index: 99;
-  }
+#logo {
+  width: 40px;
+}
 
-  #bottom-list {
-    display: flex;
-    padding: 0;
-    margin-bottom: 0;
+.dropdown-menu {
+  background-color: rgba(155, 221, 249, 0.2);
+  min-width: 140px;
+  padding: 8px 4px;
 
-    li {
-      width: 100%;
-      flex-grow: 1;
-      padding: 5px 0;
+  a {
+    color: rgba(255, 255, 255, 0.9) !important;
 
-      a {
-        color: rgba(0, 0, 0, 0.9);
-
-        .far, .fas {
-          color: rgba(0, 0, 0, 0.9);
-        }
-
-        figure {
-          margin: 0;
-        }
-      }
+    &:hover {
+      background-color: rgba(155, 221, 249, 0.5);
     }
-
-    li.active {
-      font-weight: 900;
-
-      a {
-        color: #BDEBFF;
-
-        .far, .fas {
-          color: #BDEBFF;
-        }
-      }
-    }
-  }
-
-  #logo {
-    width: 40px;
   }
 }
