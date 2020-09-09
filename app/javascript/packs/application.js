@@ -29,17 +29,21 @@ import { bottom_fish } from '../components/bottom_fish';
 import { background_profile } from '../components/background_profile';
 import { updateCanvasSize } from '../components/update_canvas_size';
 
-import { initAutocomplete } from '../plugins/init_autocomplete';
+import { locationAutoComplete } from '../plugins/location-auto-complete';
 import { autoComplete } from '../plugins/fish_algolia_auto_complete';
 
 document.addEventListener('turbolinks:load', () => {
-  initAutocomplete();
-  let fishContainer = document.querySelector("#jsi-flying-fish-container");
+  let addressInput = document.getElementById('location_name');
+  if (addressInput) {
+    locationAutoComplete(addressInput);
+  }
+
+  let fishContainer = document.querySelector('#jsi-flying-fish-container');
   if (fishContainer) {
     bottom_fish();
   }
 
-  let fishTank = document.querySelector("#fishtank");
+  let fishTank = document.querySelector('#fishtank');
   if (fishTank) {
     background_profile();
 
@@ -51,7 +55,7 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 
-  let searchField = document.getElementById("search-input");
+  let searchField = document.getElementById('search-input');
   if (searchField) {
     autoComplete();
   }
