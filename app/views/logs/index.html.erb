@@ -8,16 +8,16 @@
     <% end %>
   </div>
 
-  <div style="margin: 10px 0">
-    <% if @logs.empty? %>
-      <div class="log-card" style="text-align: center">
-        <h3 style="font-size: 24px; margin-bottom: 12px">No logs saved yet</h3>
-        <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
-          The more logs you record, the better our predictions will be!
-        </h5>
-      </div>
+  <% if @logs.empty? %>
+    <div class="log-card" style="text-align: center; padding: 10px 20px">
+      <h3 style="font-size: 24px; margin-bottom: 12px">No logs saved yet</h3>
+      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
+        The more logs you record, the more accurate our predictions will be !
+      </h5>
+    </div>
 
-    <% else %>
+  <% else %>
+    <div style="margin: 10px 0">
       <!-- Iterate over the Logs list and display them as Cards -->
       <% @logs.each do |log| %>
         <%= link_to log_path(log) do %>
@@ -77,8 +77,8 @@
           previous_label: "&laquo;", next_label: "&raquo;"
         %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <!-- Modal New Log Form -->
   <div class="modal fade" id="ModalNewLog">

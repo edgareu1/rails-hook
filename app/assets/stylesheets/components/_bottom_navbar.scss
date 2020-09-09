@@ -17,9 +17,9 @@
   margin-bottom: 0;
 
   li {
-    width: 100%;
+    width: 75px;
     flex-grow: 1;
-    padding: 5px 0;
+    padding: 8px 0;
 
     a {
       color: rgba(0, 0, 0, 0.9);
@@ -31,6 +31,11 @@
       figure {
         margin: 0;
       }
+    }
+
+    .navbar-toggler {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
     }
   }
 
@@ -49,4 +54,18 @@
 
 #logo {
   width: 40px;
+}
+
+.dropdown-menu {
+  background-color: rgba(155, 221, 249, 0.2);
+  min-width: 140px;
+  padding: 8px 4px;
+
+  a {
+    color: rgba(255, 255, 255, 0.9) !important;
+
+    &:hover {
+      background-color: rgba(155, 221, 249, 0.5);
+    }
+  }
 }

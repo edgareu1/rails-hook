@@ -33,7 +33,7 @@
         <% end %>
       </li>
       
-      <div class="navbar-expand-sm navbar-light dropdown" style="margin-top: 5px">
+      <li class="navbar-light dropdown">
         <button class="navbar-toggler" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="navbar-toggler-icon" ></span>
         </button>
@@ -42,7 +42,7 @@
           <%= link_to "About us", "#", class: "dropdown-item" %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
-      </div>
+      </li>
       
     </ul>
   </div>
