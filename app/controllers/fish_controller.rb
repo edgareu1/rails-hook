@@ -14,6 +14,12 @@ class FishController < ApplicationController
     if @fish.count == 1
       redirect_to fish_path(@fish.first)
     end
+
+    # For the AJAX requests
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

@@ -1,4 +1,4 @@
-<%= form_tag fish_index_path, method: :get do %>
+<%= form_tag fish_index_path, remote: true, method: :get do %>
   <div class="d-flex" style="margin-top: 10px">
     <%= text_field_tag :query,
       params[:query],
