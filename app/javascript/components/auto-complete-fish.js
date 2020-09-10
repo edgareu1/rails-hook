@@ -1,17 +1,18 @@
 function autoCompleteFish(searchField) {
-  // Define a variable to follow the currently selected item
-  let activeItem;
+  // Define two variables to follow both the items indexes and the currently selected item index
+  let indexCounter, activeItemIndex;
 
   // Each time the user writes on the 'searchField', then...
   searchField.addEventListener('input', (event) => {
     const param = event.target.value.trim();        // Search param striped of trailing whitespaces
     const fish_names = gon.fish_names.split(', ');  // Array of Fish to search into
 
-    activeItem = -1;  // No item is selected
+    indexCounter = -1;      // No item is yet created
+    activeItemIndex = -1;   // No item is selected
 
-    let listContainer = document.getElementById("autocomplete-list"); // Get the List for the matched items
+    let listContainer = document.getElementById("autocomplete-list"); // Get the List of the matched items
 
-    // If the List does not exist, then create it and insert it in the document
+    // If the List does not exist, then create it
     if (!listContainer) {
       listContainer = document.createElement("div");
       listContainer.setAttribute("id", "autocomplete-list");
@@ -33,11 +34,15 @@ function autoCompleteFish(searchField) {
       // Check if the item matches the search param
       let wordIndex = fish_names[i].toUpperCase().indexOf(param.toUpperCase());
 
-      // If it matches then add the Fish to the List
+      // If it matches, then add the Fish to the List
       if (wordIndex >= 0) {
         let fishElement = document.createElement("div");
 
-        // Make the matching letters bold
+        // Save the index of the item in a data attribute
+        indexCounter++;
+        fishElement.setAttribute('data-index', indexCounter);
+
+        // Make the matching letter are bold
         fishElement.innerHTML = fish_names[i].substr(0, wordIndex);
         fishElement.innerHTML += "<strong>" + fish_names[i].substr(wordIndex, param.length) + "</strong>";
         fishElement.innerHTML += fish_names[i].substr(wordIndex + param.length);
@@ -45,38 +50,47 @@ function autoCompleteFish(searchField) {
         // Insert the matched item in the List
         listContainer.appendChild(fishElement);
 
-        // If the item is clicked upon then the 'searchField' value becomes the that item's name
+        // If the item is clicked upon, then the 'searchField' value becomes the that item's value
         fishElement.addEventListener('click', function(e) {
           searchField.value = fish_names[i];
 
           emptyList(listContainer);
         });
+
+        // Each time the user hovers it's mouse over the item makes it the 'active' item
+        fishElement.addEventListener("mouseover", (e) => {
+          activeItemIndex = fishElement.getAttribute('data-index');
+          removeActive();
+          addActive();
+        });
       }
     }
   });
 
-  // Each time the user presses down a key on the 'searchField', then...
+  // Each time the user presses down a key on the 'searchField'...
   searchField.addEventListener("keydown", function(e) {
     // Only advance if the List exists and has items
     let listContainer = document.getElementById("autocomplete-list");
-    if (!listContainer) return;
-    listContainer = listContainer.getElementsByTagName("div");
-    if (listContainer.length == 0) return;
+    if ((!listContainer) || listContainer.childElementCount == 0) return;
 
-    // If the arrow DOWN key is pressed, then increase the 'activeItem' variable and make it more visible
+    // If the arrow DOWN key is pressed, then the 'active' item becomes the one with +1 index value
     if (e.keyCode == 40) {
-      activeItem++;
-      addActive(listContainer);
+      activeItemIndex++;
+      removeActive();
+      addActive();
 
-    // If the arrow UP key is pressed, then decrease the 'activeItem' variable and make it more visible
+    // If the arrow UP key is pressed, then the 'active' item becomes the one with -1 index value
     } else if (e.keyCode == 38) {
-      activeItem--;
-      addActive(listContainer);
+      activeItemIndex--;
+      removeActive();
+      addActive();
 
-    // If the ENTER key is pressed, then prevent the form from being submitted and simulate the click on the 'activeItem'
+    // If the ENTER key is pressed, then prevent the form from being submitted and simulate the click on the 'active' item
     } else if (e.keyCode == 13) {
       e.preventDefault();
-      if (activeItem > -1) listContainer[activeItem].click();
+
+      listContainer = listContainer.getElementsByTagName("div");
+      if (activeItemIndex > -1) listContainer[activeItemIndex].click();
     }
   });
 
@@ -85,17 +99,24 @@ function autoCompleteFish(searchField) {
     if (listContainer) listContainer.innerHTML = '';
   }
 
-  // Make the 'activeItem' more visible
-  function addActive(listContainer) {
-    // Remove the classification of 'active' from the previous 'activeItem'
+  // Remove the 'active' classification from the previous 'active' item
+  function removeActive() {
+    let listContainer = document.getElementById("autocomplete-list")
+                                .getElementsByTagName("div");
+
     let activeElement = document.getElementsByClassName('autocomplete-active')[0];
     if (activeElement) activeElement.classList.remove("autocomplete-active");
+  }
 
-    // Add the classification of 'active' to the new 'activeItem'
-    if (activeItem >= listContainer.length) activeItem = 0;
-    if (activeItem < 0) activeItem = (listContainer.length - 1);
+  // Get the new 'active' item (which highlights the item)
+  function addActive() {
+    let listContainer = document.getElementById("autocomplete-list")
+                                .getElementsByTagName("div");
 
-    listContainer[activeItem].classList.add("autocomplete-active");
+    if (activeItemIndex >= listContainer.length) activeItemIndex = 0;
+    if (activeItemIndex < 0) activeItemIndex = (listContainer.length - 1);
+
+    listContainer[activeItemIndex].classList.add("autocomplete-active");
   }
 }
 
