@@ -36,10 +36,13 @@ function autoCompleteFish(searchField) {
 
       // If it matches, then add the Fish to the List
       if (wordIndex >= 0) {
+        // Make sure the maximum number of matches displayed is 5
+        indexCounter++;
+        if (indexCounter > 4) break;
+
         let fishElement = document.createElement("div");
 
         // Save the index of the item in a data attribute
-        indexCounter++;
         fishElement.setAttribute('data-index', indexCounter);
 
         // Make the matching letter are bold
