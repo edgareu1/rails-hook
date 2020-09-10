@@ -24,7 +24,7 @@ function autoCompleteFish(searchField) {
 
     // If the List already exists, then empty it
     } else {
-      emptyList(listContainer);
+      emptyList();
     }
 
     if (param === '') return; // If the param is empty, then do not populate the List
@@ -57,11 +57,11 @@ function autoCompleteFish(searchField) {
         fishElement.addEventListener('click', function(e) {
           searchField.value = fish_names[i];
 
-          emptyList(listContainer);
+          emptyList();
         });
 
         // Each time the user hovers it's mouse over the item makes it the 'active' item
-        fishElement.addEventListener("mouseover", (e) => {
+        fishElement.addEventListener("mouseover", function(e) {
           activeItemIndex = fishElement.getAttribute('data-index');
           removeActive();
           addActive();
@@ -97,8 +97,15 @@ function autoCompleteFish(searchField) {
     }
   });
 
+  // If the user clicks outside the 'searchField' or the 'List' empty the 'List'
+  document.addEventListener("click", function(e) {
+    if (e.target.hasAttribute('data-index') || e.target.id == 'search-input') return;
+    emptyList();
+  });
+
   // Empty the 'List'
-  function emptyList(listContainer) {
+  function emptyList() {
+    let listContainer = document.getElementById("autocomplete-list");
     if (listContainer) listContainer.innerHTML = '';
   }
 
