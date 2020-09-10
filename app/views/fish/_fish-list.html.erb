@@ -1,3 +1,12 @@
+<% if @fish.empty? %>
+  <div class="log-card" style="text-align: center; padding: 10px 20px">
+    <h3 style="font-size: 24px; margin-bottom: 12px">No fish found</h3>
+    <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
+      Are you sure that you've entered the name correctly ?
+    </h5>
+  </div>
+<% end %>
+
 <% @fish.each do |fish| %>
   <%= link_to fish_path(fish), data: { id: fish.id } do %>
     <div class="fish-card" style="margin-top: 20px">

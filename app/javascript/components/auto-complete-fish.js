@@ -4,8 +4,9 @@ function autoCompleteFish(searchField) {
 
   // Each time the user writes on the 'searchField', then...
   searchField.addEventListener('input', (event) => {
+    // Use the gem 'gon' in order to call the Fish Controller variable 'fish_names'
+    const fishNames = gon.fish_names.split(', ');   // Array of Fish to search into
     const param = event.target.value.trim();        // Search param striped of trailing whitespaces
-    const fish_names = gon.fish_names.split(', ');  // Array of Fish to search into
 
     indexCounter = -1;      // No item is yet created
     activeItemIndex = -1;   // No item is selected
@@ -30,9 +31,9 @@ function autoCompleteFish(searchField) {
     if (param === '') return; // If the param is empty, then do not populate the List
 
     // Iterate over the array of Fish
-    for (let i = 0; i < fish_names.length; i++) {
+    for (let i = 0; i < fishNames.length; i++) {
       // Check if the item matches the search param
-      let wordIndex = fish_names[i].toUpperCase().indexOf(param.toUpperCase());
+      let wordIndex = fishNames[i].toUpperCase().indexOf(param.toUpperCase());
 
       // If it matches, then add the Fish to the List
       if (wordIndex >= 0) {
@@ -46,16 +47,16 @@ function autoCompleteFish(searchField) {
         fishElement.setAttribute('data-index', indexCounter);
 
         // Make the matching letter are bold
-        fishElement.innerHTML = fish_names[i].substr(0, wordIndex);
-        fishElement.innerHTML += "<strong>" + fish_names[i].substr(wordIndex, param.length) + "</strong>";
-        fishElement.innerHTML += fish_names[i].substr(wordIndex + param.length);
+        fishElement.innerHTML = fishNames[i].substr(0, wordIndex);
+        fishElement.innerHTML += "<strong>" + fishNames[i].substr(wordIndex, param.length) + "</strong>";
+        fishElement.innerHTML += fishNames[i].substr(wordIndex + param.length);
 
         // Insert the matched item in the List
         listContainer.appendChild(fishElement);
 
         // If the item is clicked upon, then the 'searchField' value becomes the that item's value
         fishElement.addEventListener('click', function(e) {
-          searchField.value = fish_names[i];
+          searchField.value = fishNames[i];
 
           emptyList();
         });
