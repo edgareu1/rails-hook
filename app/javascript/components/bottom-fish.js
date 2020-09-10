@@ -1,4 +1,4 @@
-function bottom_fish() {
+function bottomFish() {
   var RENDERER = {
 	POINT_INTERVAL : 5,
 	FISH_COUNT : 3,
@@ -348,4 +348,4 @@ function bottom_fish() {
   });
 }
 
-export { bottom_fish };
+export { bottomFish };

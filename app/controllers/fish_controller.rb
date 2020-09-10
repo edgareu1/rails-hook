@@ -1,6 +1,8 @@
 class FishController < ApplicationController
   def index
     @fish = Fish.all
+    gon.fish_names = @fish.map(&:common_name)
+                          .join(', ')
 
     # Option to search a fish by it's name
     if params[:query].present?

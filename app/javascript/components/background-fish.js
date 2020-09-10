@@ -1,4 +1,4 @@
-function background_profile() {
+function backgroundFish() {
   /* ---------------- FISH "CLASS" START -------------- */
   var FOLLOW_DISTANCE = 100;
 
@@ -279,4 +279,4 @@ function background_profile() {
 	}
 } /* ---------------------- MAIN END ----------------------- */
 
-export { background_profile };
+export { backgroundFish };

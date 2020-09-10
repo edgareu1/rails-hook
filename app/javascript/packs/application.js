@@ -25,34 +25,36 @@ require("channels")
 import "bootstrap";
 
 // Internal imports
-import { bottom_fish } from '../components/bottom_fish';
-import { background_profile } from '../components/background_profile';
-import { updateCanvasSize } from '../components/update_canvas_size';
+import { autoCompleteFish } from '../components/auto-complete-fish';
+import { autoCompleteLocation } from '../components/auto-complete-location';
+import { backgroundFish } from '../components/background-fish';
+import { bottomFish } from '../components/bottom-fish';
+import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
-import { initAutocomplete } from '../plugins/init_autocomplete';
-import { autoComplete } from '../plugins/fish_algolia_auto_complete';
 
 document.addEventListener('turbolinks:load', () => {
-  initAutocomplete();
-  let fishContainer = document.querySelector("#jsi-flying-fish-container");
-  if (fishContainer) {
-    bottom_fish();
+  let searchField = document.getElementById('search-input');
+  if (searchField) {
+    autoCompleteFish(searchField);
   }
 
-  let fishTank = document.querySelector("#fishtank");
-  if (fishTank) {
-    background_profile();
+  let addressInput = document.getElementById('location_name');
+  if (addressInput) {
+    autoCompleteLocation(addressInput);
+  }
 
-    let canvas = document.querySelector('canvas');
-    updateCanvasSize(canvas);
+  let canvas = document.getElementById('fishtank');
+  if (canvas) {
+    backgroundFish();
+    updateCanvasDimensions(canvas);
 
     window.addEventListener('resize', () => {
-      updateCanvasSize(canvas);
+      updateCanvasDimensions(canvas);
     });
   }
 
-  let searchField = document.getElementById("search-input");
-  if (searchField) {
-    autoComplete();
+  let bottomFishContainer = document.querySelector('#jsi-flying-fish-container');
+  if (bottomFishContainer) {
+    bottomFish();
   }
 });
