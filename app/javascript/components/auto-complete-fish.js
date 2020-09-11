@@ -28,7 +28,11 @@ function autoCompleteFish(searchField) {
       emptyList();
     }
 
-    if (param === '') return; // If the param is empty, then do not populate the List
+    // If the param is empty, then do not populate the List and refresh the Fish#index Page
+    if (param === '') {
+      refreshPageSearch(param);
+      return;
+    };
 
     // Iterate over the array of Fish
     for (let i = 0; i < fishNames.length; i++) {
@@ -58,6 +62,7 @@ function autoCompleteFish(searchField) {
         fishElement.addEventListener('click', function(e) {
           searchField.value = fishNames[i];
 
+          refreshPageSearch(searchField.value); // Refresh the Fish#index Page with the clicked item as a search param
           emptyList();
         });
 
@@ -69,6 +74,8 @@ function autoCompleteFish(searchField) {
         });
       }
     }
+
+    refreshPageSearch(param); // Refresh the Fish#index Page with the search param
   });
 
   // Each time the user presses down a key on the 'searchField'...
@@ -108,6 +115,11 @@ function autoCompleteFish(searchField) {
   function emptyList() {
     let listContainer = document.getElementById("autocomplete-list");
     if (listContainer) listContainer.innerHTML = '';
+  }
+
+  // Use jQuery to refresh the Fish#index Page based on that search param
+  function refreshPageSearch(param) {
+    $.getScript(`/fish?query=${param}&commit=Search`);
   }
 
   // Remove the 'active' classification from the previous 'active' item
