@@ -1,24 +1,12 @@
+<!-- Call the gem 'gon' in order to be able to call the Controller variable 'fish_names' from the
+JS variable 'fishNames' in the JS function 'autoCompleteFish' -->
+
 <%= include_gon %>
 
 <div class="page-container" style="padding-bottom: 40px">
   <%= render "search-bar" %>
 
-  <% @fish.each do |fish| %>
-    <%= link_to fish_path(fish), data: { id: fish.id } do %>
-      <div class="fish-card" style="margin-top: 20px">
-        <div class="card-fish-img">
-          <%= image_tag fish.picture_url %>
-        </div>
-
-        <div class="fish-card-info">
-          <h2><%= fish.common_name.upcase %></h2>
-
-          <p style="padding: 0 10px 10px 20px; margin: 0">
-            Minimum size:
-            <%= fish.display_legal_dimensions %>
-          </p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+  <div id="fish-list">
+    <%= render "fish-list" %>
+  </div>
 </div>
