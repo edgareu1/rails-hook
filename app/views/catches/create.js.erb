@@ -1,0 +1,15 @@
+// If there are any errors in the submited form, then refresh the form to display validation errors
+<% if @catch.errors.any? %>
+  document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: @catch %>";
+
+// Otherwise...
+<% else %>
+  // Close the Modal
+  document.querySelector('#ModalNewCatch button').click();
+
+  // Clean the form
+  document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: Catch.new %>";
+
+  // Append the new Catch to the list
+  $('#catches-list table').append("<%= j render "catches/catch", catch: @catch %>");
+<% end %>
