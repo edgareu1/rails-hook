@@ -3,7 +3,7 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
 
 // If there are any errors in the submited form, then add Date related error messages
 <% if @log.errors.any? %>
-  DisplayLogDateErrorMessage();
+  displayTimeErrors(`<%= @log.errors.messages[:end_time].first %>`, 'edit');
 
 // Otherwise close the Modal and refresh the Log information displayed
 <% else %>
@@ -11,21 +11,3 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
 
   document.getElementById('log-information').innerHTML = "<%= j render "logs/information", log: @log %>";
 <% end %>
-
-function DisplayLogDateErrorMessage() {
-  let errorMessageText = `<%= @log.errors.messages[:end_time].first %>`;
-  let startTime = document.getElementById('log_edit_start_time');
-  let endTime = document.getElementById('log_edit_end_time');
-
-  if (errorMessageText == "") {
-    startTime.className = "form-control is-valid";
-    endTime.className = "form-control is-valid";
-
-  } else {
-    startTime.className = "form-control is-invalid";
-    endTime.className = "form-control is-invalid";
-
-    let containerDateErrors = document.querySelector('.edit_log .invalid-feedback.date-input');
-    containerDateErrors.innerHTML = errorMessageText;
-  }
-}

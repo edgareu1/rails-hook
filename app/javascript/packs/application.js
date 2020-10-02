@@ -29,6 +29,7 @@ import { autoCompleteFish } from '../components/auto-complete-fish';
 import { autoCompleteLocation } from '../components/auto-complete-location';
 import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
+import { displayTimeErrors } from '../components/display-time-errors';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
 // Make the following JS functions accessible from HTML files
@@ -38,6 +39,10 @@ window.autoCompleteLocation = function(addressInput) {
 
 window.autoCompleteFish = function(searchField) {
   autoCompleteFish(searchField);
+}
+
+window.displayTimeErrors = function(errorMessageText, action) {
+  displayTimeErrors(errorMessageText, action);
 }
 
 // Upon loading a page, load the following JS functions

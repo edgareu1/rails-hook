@@ -7,10 +7,8 @@ class Log < ApplicationRecord
   has_many :catches, dependent: :destroy
   has_many :fish, through: :catches
 
-  validates :start_time, presence: true
-  validates :end_time, presence: true
   validates :location, presence: true
-  
+
   validate :log_duration
 
   after_create :add_weather_data
