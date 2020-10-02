@@ -82,11 +82,11 @@
 
   <!-- Modal New Log Form -->
   <div class="modal fade" id="ModalNewLog">
-    <%= render "logs/form-new", log: @log %>
+    <%= render "logs/form", log: Log.new %>
   </div>
 </div>
 
-<!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user -->
+<!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user
 <% if @log.errors.any? %>
   <script>
     function DisplayLogDateErrorMessage() {
@@ -118,3 +118,4 @@
     });
   </script>
 <% end %>
+-->

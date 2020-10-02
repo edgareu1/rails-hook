@@ -19,7 +19,6 @@ class LogsController < ApplicationController
   end
 
   def index
-    @log = Log.new
     @logs = init_logs_index(current_user)
   end
 
