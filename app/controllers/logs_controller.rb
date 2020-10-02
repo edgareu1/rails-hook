@@ -8,7 +8,7 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params_new)
     @log.user = current_user
-    @log.tag_id = get_tag_id(@log) unless @log.location.nil?
+    @log.tag_id = get_tag_id(@log.location) unless @log.location.nil?
 
     if @log.save
       redirect_to log_path(@log)
@@ -27,23 +27,31 @@ class LogsController < ApplicationController
   end
 
   def update
-    previous_location_id = @log.location_id
+    start_error = params[:log][:start_time].blank?
+    new_start_time = start_error ? @log.start_time : DateTime.parse(params[:log][:start_time])
 
-    successful_update = @log.update(log_params_edit)
-    @log.update(moon_phase: get_moon_phase(@log.start_time))
+    end_error = params[:log][:end_time].blank?
+    new_end_time = end_error ? @log.end_time : DateTime.parse(params[:log][:end_time])
 
-    unless previous_location_id == @log.location_id
-      # In order to not count this same tag_id in the calculation of the new tag_id
-      @log.update(tag_id: 0)
-      @log.update(tag_id: get_tag_id(@log))
-    end
+    new_moon_phase = get_moon_phase(new_start_time)
 
-    if successful_update
-      redirect_to log_path(@log)
-    else
-      @catch = Catch.new
-      render "logs/show"
-    end
+    param_location_id = params[:log][:location_id].to_i
+    new_tag_id = @log.location_id == param_location_id ? @log.location_id : get_tag_id(Location.find(param_location_id))
+
+    successful_update = @log.update(
+      tag_id:       new_tag_id,
+      start_time:   new_start_time,
+      end_time:     new_end_time,
+      moon_phase:   new_moon_phase,
+      location_id:  params[:log][:location_id],
+      air_pressure: params[:log][:air_pressure],
+      wind_speed:   params[:log][:wind_speed],
+      observation:  params[:log][:observation],
+      rating:       params[:log][:rating]
+    )
+
+    @log.errors.add(:end_time, "Log has to have a start time") if start_error
+    @log.errors.add(:end_time, "Log has to have a end time")   if end_error
   end
 
   def destroy
@@ -58,17 +66,13 @@ class LogsController < ApplicationController
     params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id)
   end
 
-  def log_params_edit
-    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id, :air_pressure, :wind_speed)
-  end
-
   def set_log
     @log = Log.find(params[:id])
   end
 
   # Gets the next tag_id for a Log of a certain location
-  def get_tag_id(log)
-    location_logs = log.location.logs
+  def get_tag_id(location)
+    location_logs = location.logs
 
     return location_logs.empty? ? 1 : location_logs.map(&:tag_id).max + 1
   end
