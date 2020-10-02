@@ -6,7 +6,7 @@
     <% end %>
 
     <!-- Modal Fish Info -->
-    <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>">
+    <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>" role="dialog">
       <%= render "fish/modal-info", catch: catch %>
     </div>
   </td>
@@ -25,7 +25,7 @@
     <% end %>
 
     <!-- Modal Delete Catch -->
-    <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>">
+    <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
       <%= render "catches/modal-delete", catch: catch %>
     </div>
   </td>
