@@ -5,10 +5,7 @@ class CatchesController < ApplicationController
     @catch = Catch.new(catch_params)
     @catch.log = @log
 
-    if @catch.save
-      # Display a congratulations message if a big fish is caught
-      flash[:alert] = "Congratulations, it's a BIGGEN!" if (@catch.weight / @catch.quantity) > @catch.fish.good_weight
-    end
+    @catch.save
   end
 
   def destroy
