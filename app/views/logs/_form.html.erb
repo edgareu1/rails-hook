@@ -1,24 +1,29 @@
+<!-- Get the action the form is being used on -->
+<% log_action = log.id.nil? ? "new" : "edit" %>
+
 <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title" style="color: white; opacity: 0.9"><%= log.id.nil? ? "New" : "Edit" %> Log</h4>
+      <h4 class="modal-title" style="color: white; opacity: 0.9"><%= log_action.capitalize %> Log</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
 
     <div class="modal-body">
-      <%= simple_form_for(log) do |f| %>
+      <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Starting Time -->
           <label for="log_start_time">Starting time</label>
-          <input type="datetime-local" id="log_edit_start_time" name="log[start_time]"
+          <input type="datetime-local" id="log_<%= log_action %>_start_time" name="log[start_time]"
               value="<%= (log.id.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
 
           <br>
 
           <!-- Ending Time -->
           <label for="log_end_time">Ending time</label>
-          <input type="datetime-local" id="log_edit_end_time" name="log[end_time]"
+          <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
               value="<%= (log.id.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
+
+          <div class="invalid-feedback date-input"></div>
 
           <!-- Location -->
           <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
@@ -54,8 +59,8 @@
 
               <% (1..10).to_a.reverse.each do |num| %>
                 <% if log.id.nil? %>
-                  <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_new_<%= num %>">
-                  <label for="log_rating_new_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
+                  <input type="radio" value="<%= num %>" name="log[rating]" id="log_rating_<%= log_action + "_#{num}" %>">
+                  <label for="log_rating_<%= log_action + "_#{num}" %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
 
                 <% else %>
                   <% if log.rating == num %>
