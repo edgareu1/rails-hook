@@ -1,0 +1,21 @@
+// If there are any errors in the submited form, then refresh the form to display validation errors
+<% if @location.errors.any? %>
+  document.getElementById('ModalNewLocation').innerHTML = "<%= j render "locations/form", location: @location %>";
+
+// Otherwise...
+<% else %>
+  // Close the Modal
+  document.querySelector('#ModalNewLocation button').click();
+
+  // Clean the form
+  document.getElementById('ModalNewLocation').innerHTML = "<%= j render "locations/form", location: Location.new %>";
+
+  // Append the new Location to the list if there are less than 3 displayed
+  <% if current_user.locations.size < 4 %>
+    $('#locations-list').append("<%= j render "locations/location", location: @location.data_to_display %>");
+  <% end %>
+<% end %>
+
+// Enable the autocomplete of the Location
+var addressInput = document.getElementById('location_name');
+autoCompleteLocation(addressInput);

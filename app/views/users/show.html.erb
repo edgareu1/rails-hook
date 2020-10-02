@@ -78,19 +78,10 @@
 
 <!-- Modal New Location Form -->
 <div class="modal fade" id="ModalNewLocation">
-  <%= render "locations/form-new" %>
+  <%= render "locations/form", location: Location.new %>
 </div>
 
 <!-- Modal New Log Form -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form-new", log: Log.new %>
 </div>
-
-<!-- Makes sure that, if an error appears while creating a new Location, the error is displayed to the user -->
-<% if @location.errors.any? %>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('[data-target="#ModalNewLocation"]').click();
-    });
-  </script>
-<% end %>
