@@ -1,0 +1,47 @@
+<table style="width: 100%">
+  <!-- If there are no Catches, then... -->
+  <% if @catches.empty? %>
+    <tr>
+      <th style="display: flex; flex-direction: row; justify-content: space-between">
+        <h3 style="margin-left: 10px">Catches</h3>
+
+        <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
+            style: "color: white; opacity: 0.9" do %>
+          <i class="fas fa-plus" style="font-size: 30px"></i>
+        <% end %>
+      </th>
+    </tr>
+
+    <tr>
+      <td><p style="margin: 0"> Nothing caught </p></td>
+    </tr>
+
+  <!-- If there are some Catches, then... -->
+  <% else %>
+    <!-- Catches Table Headers -->
+    <tr style="width: 100%">
+      <th style="width: 55%">
+        <h3 style="margin-left: 10px">Catches</h3>
+      </th>
+
+      <th style="width: 15%; text-align: center">
+        <h6 style="font-size: 16px">Qnt</h6>
+      </th>
+
+      <th style="width: 15%; text-align: center">
+        <h6 style="font-size: 16px">Kg</h6>
+      </th>
+
+      <th style="width: 15%; text-align: center">
+        <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
+            style: "color: white; opacity: 0.9" do %>
+          <i class="fas fa-plus" style="font-size: 26px"></i>
+        <% end %>
+      </th>
+    </tr>
+
+    <div>
+      <%= render partial: "catches/catch", collection: @catches %>
+    </div>
+  <% end %>
+</table>
