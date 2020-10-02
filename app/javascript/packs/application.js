@@ -31,7 +31,16 @@ import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
+// Make the following JS functions accessible from HTML files
+window.autoCompleteLocation = function(addressInput) {
+  autoCompleteLocation(addressInput);
+}
 
+window.autoCompleteFish = function(searchField) {
+  autoCompleteFish(searchField);
+}
+
+// Upon loading a page, load the following JS functions
 document.addEventListener('turbolinks:load', () => {
   let searchField = document.getElementById('search-input');
   if (searchField) {
