@@ -14,14 +14,14 @@
           <!-- Starting Time -->
           <label for="log_start_time">Starting time</label>
           <input type="datetime-local" id="log_<%= log_action %>_start_time" name="log[start_time]"
-              value="<%= (log.id.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
+              value="<%= (log.start_time.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
 
           <br>
 
           <!-- Ending Time -->
           <label for="log_end_time">Ending time</label>
           <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
-              value="<%= (log.id.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
+              value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
 
           <div class="invalid-feedback date-input"></div>
 

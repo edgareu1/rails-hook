@@ -10,16 +10,13 @@ class LogsController < ApplicationController
     @log.user = current_user
     @log.tag_id = get_tag_id(@log.location) unless @log.location.nil?
 
-    if @log.save
-      redirect_to log_path(@log)
-    else
-      @logs = init_logs_index(current_user)
-      render "logs/index"
-    end
+    redirect_to log_path(@log) if @log.save
   end
 
   def index
-    @logs = init_logs_index(current_user)
+    @logs = current_user.logs
+                        .sort_by(&:start_time)
+                        .reverse.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -75,12 +72,5 @@ class LogsController < ApplicationController
     location_logs = location.logs
 
     return location_logs.empty? ? 1 : location_logs.map(&:tag_id).max + 1
-  end
-
-  # Gets the collection of Logs to display at the Logs#index Page
-  def init_logs_index(user)
-    return user.logs
-               .sort_by(&:start_time)
-               .reverse.paginate(page: params[:page], per_page: 5)
   end
 end

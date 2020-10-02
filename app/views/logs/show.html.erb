@@ -106,21 +106,21 @@
 <!-- Modals -->
 
 <!-- Modal New Catch Form -->
-<div class="modal fade" id="ModalNewCatch">
+<div class="modal fade" id="ModalNewCatch" role="dialog">
   <%= render "catches/form-new" %>
 </div>
 
 <!-- Modal New Log Form -->
-<div class="modal fade" id="ModalNewLog">
+<div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form", log: Log.new %>
 </div>
 
 <!-- Modal Edit Log Form -->
-<div class="modal fade" id="ModalEditLog">
+<div class="modal fade" id="ModalEditLog" role="dialog">
   <%= render "logs/form", log: @log %>
 </div>
 
 <!-- Modal Delete Log Form -->
-<div class="modal fade" id="ModalDeleteLog">
+<div class="modal fade" id="ModalDeleteLog" role="dialog">
   <%= render "logs/form-delete" %>
 </div>
