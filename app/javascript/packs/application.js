@@ -29,6 +29,7 @@ import { autoCompleteFish } from '../components/auto-complete-fish';
 import { autoCompleteLocation } from '../components/auto-complete-location';
 import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
+import { createFlash } from '../components/create-flash';
 import { displayTimeErrors } from '../components/display-time-errors';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
@@ -39,6 +40,10 @@ window.autoCompleteLocation = function(addressInput) {
 
 window.autoCompleteFish = function(searchField) {
   autoCompleteFish(searchField);
+}
+
+window.createFlash = function(flashText) {
+  createFlash(flashText);
 }
 
 window.displayTimeErrors = function(errorMessageText, action) {
