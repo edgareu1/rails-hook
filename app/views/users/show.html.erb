@@ -36,33 +36,7 @@
       <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
     <% else %>
-      <% current_user.top_locations(3).each do |location| %>
-        <li>
-          <div style="width: 170px">
-            <h6 style="text-align: left; margin: 10px 10px 0 0">
-              <strong style="font-size: 20px">
-                <%= location[:name] %>
-              </strong>
-
-              <% if location[:num_logs].zero? %>
-                – no logs
-              <% elsif location[:num_logs] == 1 %>
-                – 1 log
-              <% else %>
-                <%= "– #{location[:num_logs]} logs" %>
-              <% end %>
-            </h6>
-
-            <p class="loc-site" style="font-size: 18px; margin: 0 0 5px 18px">
-              <%= location[:site] %>
-            </p>
-          </div>
-
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png);
-               width: 70px; height: 35px; background-size: 58px 58px" class="weather-icon">
-          </div>
-        </li>
-      <% end %>
+      <%= render "locations/locations-list" %>
     <% end %>
   </ul>
 
