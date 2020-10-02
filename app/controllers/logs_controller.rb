@@ -20,7 +20,6 @@ class LogsController < ApplicationController
   end
 
   def show
-    @catches = @log.catches
   end
 
   def update

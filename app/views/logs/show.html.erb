@@ -6,7 +6,7 @@
 
   <!-- List of Catches as a Table -->
   <div class="list-border-top" id="catches-list" style="margin-top: 25px; padding: 10px">
-    <%= render "catches/container" %>
+    <%= render "catches/container", catches: @log.catches %>
   </div>
 
   <!-- Links for Logs Modals: Delete, Edit and New -->

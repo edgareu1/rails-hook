@@ -1,6 +1,6 @@
 <table style="width: 100%">
   <!-- If there are no Catches, then... -->
-  <% if @catches.empty? %>
+  <% if catches.empty? %>
     <tr>
       <th style="display: flex; flex-direction: row; justify-content: space-between">
         <h3 style="margin-left: 10px">Catches</h3>
@@ -40,6 +40,6 @@
       </th>
     </tr>
 
-    <%= render partial: "catches/catch", collection: @catches %>
+    <%= render partial: "catches/catch", collection: catches %>
   <% end %>
 </table>

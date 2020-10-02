@@ -11,8 +11,6 @@ class CatchesController < ApplicationController
   def destroy
     @catch = Catch.find(params[:id])
     @catch.destroy
-
-    redirect_to log_path(@log)
   end
 
   private
