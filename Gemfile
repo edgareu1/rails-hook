@@ -80,3 +80,6 @@ gem 'will_paginate-bootstrap4'
 
 # To use controller variables as JS variables
 gem 'gon'
+
+# To Ajaxify POST forms
+gem 'turbolinks_render'
