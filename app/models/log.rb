@@ -7,10 +7,8 @@ class Log < ApplicationRecord
   has_many :catches, dependent: :destroy
   has_many :fish, through: :catches
 
-  validates :start_time, presence: true
-  validates :end_time, presence: true
   validates :location, presence: true
-  
+
   validate :log_duration
 
   after_create :add_weather_data
@@ -54,12 +52,20 @@ class Log < ApplicationRecord
 
   # Add validations to the Log duration
   def log_duration
-    if start_time >= end_time
-      errors.add(:end_date, "Log cannot end before it begins")
+    if start_time.nil?
+      errors.add(:end_time, "Log has to have a start time")
+
+    elsif end_time.nil?
+      errors.add(:end_time, "Log has to have a end time")
+
+    elsif start_time >= end_time
+      errors.add(:end_time, "Log cannot end before it begins")
+
     elsif start_time + (9 * 60) + 1 >= end_time
-      errors.add(:end_date, "Log cannot be less than 10min long")
+      errors.add(:end_time, "Log cannot be less than 10min long")
+
     elsif start_time + (60 * 60 * 24) + 1 <= end_time
-      errors.add(:end_date, "Log cannot be longer than 24h")
+      errors.add(:end_time, "Log cannot be longer than 24h")
     end
   end
 end

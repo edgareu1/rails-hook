@@ -1,0 +1,13 @@
+// Refresh the form
+document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", log: @log %>";
+
+// If there are any errors in the submited form, then add Date related error messages
+<% if @log.errors.any? %>
+  displayTimeErrors(`<%= @log.errors.messages[:end_time].first %>`, 'edit');
+
+// Otherwise close the Modal and refresh the Log information displayed
+<% else %>
+  document.querySelector('#ModalEditLog button').click();
+
+  document.getElementById('log-information').innerHTML = "<%= j render "logs/information", log: @log %>";
+<% end %>

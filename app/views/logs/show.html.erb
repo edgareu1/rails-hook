@@ -1,149 +1,12 @@
 <div class="page-container">
-  <!-- Title -->
-  <div class="page-title">
-    <h1><%= @log.location.name_to_display %></h1>
-    <h2 class="loc-site" ><%= @log.label %></h2>
-  </div>
-
-  <!-- Date -->
-  <div class="date-show-page">
-    <% if @log.start_time.strftime('%Y-%m-%d') == @log.end_time.strftime('%Y-%m-%d') %>
-      <i class="far fa-calendar-alt" style="font-size: 26px"></i>
-      <p>
-        <%= "#{@log.start_time.strftime('%b %d, %Y')}" %>
-        <span><%= "#{@log.start_time.strftime('%I:%M %p')} - #{@log.end_time.strftime('%I:%M %p')}" %></span>
-      </p>
-
-    <% else %>
-      <i class="far fa-calendar-alt" style="font-size: 42px"></i>
-      <div style="display: flex; flex-direction: column">
-        <p>
-          <%= "#{@log.start_time.strftime('%b %d, %Y')}" %>
-          <span><%= "#{@log.start_time.strftime('%I:%M %p')}" %></span>
-        </p>
-
-        <p>
-          <%= "#{@log.end_time.strftime('%b %d, %Y')}" %>
-          <span><%= "#{@log.end_time.strftime('%I:%M %p')}" %></span>
-        </p>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- Card Weather Info -->
-  <div class="gray-background">
-    <!-- Card's Headers  -->
-    <div class="show-page-weather-headers">
-      <!-- Image of the Weather of the Log's Location -->
-      <div style="background-image: url(http://openweathermap.org/img/wn/<%= @log.weather_icon %>@2x.png);
-           width: 35%; height: 50px" class="weather-icon">
-      </div>
-
-      <h3><%= @log.weather_description.capitalize %> </h3>
-    </div>
-
-    <!-- Card's Content -->
-    <div class="show-page-card-content">
-      <div class="show-page-card-content-weather">
-        <p><strong>Air pressure: </strong> <%= @log.air_pressure %> Pa</p>
-        <p><strong>Wind Speed: </strong> <%= @log.wind_speed %> m/s</p>
-        <p><strong>Moon: </strong> <%= (@log.moon_phase * 100).round %>%</p>
-      </div>
-
-      <!-- Optional Fields: Rating and Observations -->
-      <div class="show-page-card-content-info">
-        <% unless @log.rating.nil? %>
-          <p><strong> Rating: </strong> <%= "#{@log.rating}/10" %></p>
-        <% end %>
-
-        <% unless @log.observation.nil? || @log.observation.match?(/\A\s*\Z/) %>
-          <p><strong>Observations: </strong> <span><%= @log.observation %></span></p>
-        <% end %>
-      </div>
-    </div>
+  <!-- Log information -->
+  <div id="log-information">
+    <%= render "logs/information", log: @log %>
   </div>
 
   <!-- List of Catches as a Table -->
-  <div class="list-border-top" style="margin-top: 25px; padding: 10px">
-    <table style="width: 100%">
-      <!-- If there are no Catches, then... -->
-      <% if @log.catches.empty? %>
-        <tr>
-          <th style="display: flex; flex-direction: row; justify-content: space-between">
-            <h3 style="margin-left: 10px">Catches</h3>
-
-            <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
-                style: "color: white; opacity: 0.9" do %>
-              <i class="fas fa-plus" style="font-size: 30px"></i>
-            <% end %>
-          </th>
-        </tr>
-
-        <tr>
-          <td><p style="margin: 0"> Nothing caught </p></td>
-        </tr>
-
-      <!-- If there are some Catches, then... -->
-      <% else %>
-        <!-- Catches Table Headers -->
-        <tr style="width: 100%">
-          <th style="width: 55%">
-            <h3 style="margin-left: 10px">Catches</h3>
-          </th>
-
-          <th style="width: 15%; text-align: center">
-            <h6 style="font-size: 16px">Qnt</h6>
-          </th>
-
-          <th style="width: 15%; text-align: center">
-            <h6 style="font-size: 16px">Kg</h6>
-          </th>
-
-          <th style="width: 15%; text-align: center">
-            <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
-                style: "color: white; opacity: 0.9" do %>
-              <i class="fas fa-plus" style="font-size: 26px"></i>
-            <% end %>
-          </th>
-        </tr>
-
-        <!-- Iterate over the Catches and display them as Rows of the Table -->
-        <% @log.catches.each do |catch| %>
-          <tr style="height: 60px; border-top: 2px solid white; text-align: center">
-            <td style="text-align: left">
-              <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" },
-                  class: "btn btn-flat", style: "margin-left: 5px; font-size: 15.5px" do %>
-                <%= catch.fish.common_name %>
-              <% end %>
-            </td>
-
-            <td style="font-size: 16px">
-              <%= catch.quantity %>
-            </td>
-
-            <td style="font-size: 16px">
-              <%= catch.weight.fdiv(1000).round(1).tap { |n| break n.to_i == n ? n.to_i : n } %>
-            </td>
-
-            <td>
-              <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
-                <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
-              <% end %>
-            </td>
-          </tr>
-
-          <!-- Modal Fish Info -->
-          <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>">
-            <%= render "fish/modal-info", catch: catch %>
-          </div>
-
-          <!-- Modal Delete Catch -->
-          <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>">
-            <%= render "catches/modal-delete", catch: catch %>
-          </div>
-        <% end %>
-      <% end %>
-    </table>
+  <div class="list-border-top" id="catches-list" style="margin-top: 25px; padding: 10px">
+    <%= render "catches/container", catches: @log.catches %>
   </div>
 
   <!-- Links for Logs Modals: Delete, Edit and New -->
@@ -165,66 +28,21 @@
 <!-- Modals -->
 
 <!-- Modal New Catch Form -->
-<div class="modal fade" id="ModalNewCatch">
-  <%= render "catches/form-new" %>
+<div class="modal fade" id="ModalNewCatch" role="dialog">
+  <%= render "catches/form", catch: Catch.new %>
 </div>
 
 <!-- Modal New Log Form -->
-<div class="modal fade" id="ModalNewLog">
-  <%= render "logs/form-new", log: Log.new %>
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <%= render "logs/form", log: Log.new %>
 </div>
 
 <!-- Modal Edit Log Form -->
-<div class="modal fade" id="ModalEditLog">
-  <%= render "logs/form-edit", log: @log %>
+<div class="modal fade" id="ModalEditLog" role="dialog">
+  <%= render "logs/form", log: @log %>
 </div>
 
 <!-- Modal Delete Log Form -->
-<div class="modal fade" id="ModalDeleteLog">
-  <%= render "logs/modal-delete" %>
+<div class="modal fade" id="ModalDeleteLog" role="dialog">
+  <%= render "logs/form-delete" %>
 </div>
-
-<!-- JS to display errors to the User -->
-
-<!-- Makes sure that, if an error appears while editing a Log, the error is displayed to the user -->
-<% if @log.errors.any? %>
-  <script>
-    function DisplayLogDateErrorMessage() {
-      let errorMessageText = `<%= @log.errors.messages[:end_date].first %>`;
-      let startTime = document.getElementById('log_edit_start_time');
-      let endTime = document.getElementById('log_edit_end_time');
-
-      if (errorMessageText == "") {
-        startTime.className = "form-control is-valid";
-        endTime.className = "form-control is-valid";
-      } else {
-        startTime.className = "form-control is-invalid";
-        endTime.className = "form-control is-invalid";
-
-        let errorMessage = document.createElement("div");
-        errorMessage.className = "invalid-feedback";
-        errorMessage.innerHTML = errorMessageText;
-
-        let logEditForm = document.getElementById('ModalEditLog'); // Makes sure the Form changed is the Logs#edit
-        let nextElement = logEditForm.getElementsByClassName("form-group select required log_location")[0];
-        let formElement = logEditForm.getElementsByClassName("container-log-form")[0];
-
-        formElement.insertBefore(errorMessage, nextElement);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      DisplayLogDateErrorMessage();
-      document.querySelector('[data-target="#ModalEditLog"]').click();
-    });
-  </script>
-<% end %>
-
-<!-- Makes sure that, if an error appears while creating a new Catch, the error is displayed to the user -->
-<% if @catch.errors.any? %>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('[data-target="#ModalNewCatch"]').click();
-    });
-  </script>
-<% end %>

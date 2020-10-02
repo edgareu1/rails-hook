@@ -1,0 +1,11 @@
+// Close the Modal
+document.querySelector('#ModalDeleteCatch<%= @catch.id %> button').click();
+
+// If the Catch list is empty, then refresh the list
+<% if @log.catches.empty? %>
+  document.getElementById('catches-list').innerHTML = "<%= j render "catches/container", catches: @log.catches %>";
+
+// Otherwise, remove the Catch from the list
+<% else %>
+  document.getElementById('catch_<%= @catch.id %>').remove();
+<% end %>

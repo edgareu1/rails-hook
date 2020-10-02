@@ -1,0 +1,32 @@
+<tr id="catch_<%= catch.id %>" style="height: 60px; border-top: 2px solid white; text-align: center">
+  <td style="text-align: left">
+    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" },
+        class: "btn btn-flat", style: "margin-left: 5px; font-size: 15.5px" do %>
+      <%= catch.fish.common_name %>
+    <% end %>
+
+    <!-- Modal Fish Info -->
+    <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>" role="dialog">
+      <%= render "fish/modal-info", catch: catch %>
+    </div>
+  </td>
+
+  <td style="font-size: 16px">
+    <%= catch.quantity %>
+  </td>
+
+  <td style="font-size: 16px">
+    <%= catch.weight.fdiv(1000).round(1).tap { |n| break n.to_i == n ? n.to_i : n } %>
+  </td>
+
+  <td>
+    <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
+      <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
+    <% end %>
+
+    <!-- Modal Delete Catch -->
+    <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
+      <%= render "catches/modal-delete", catch: catch %>
+    </div>
+  </td>
+</tr>

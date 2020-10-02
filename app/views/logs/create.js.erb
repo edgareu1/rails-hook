@@ -1,0 +1,6 @@
+// If there are any errors in the submited form, then add Date related error messages
+<% if @log.errors.any? %>
+  document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
+
+  displayTimeErrors(`<%= @log.errors.messages[:end_time].first %>`, 'new');
+<% end %>

@@ -10,7 +10,7 @@
 
     <div style="width: 80%; margin: 10px auto 20px; height: 40px">
       <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
-      <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, class: "btn-delete-confirm" %>
+      <%= link_to "Delete", log_catch_path(@log, catch), method: :delete, remote: true, class: "btn-delete-confirm" %>
     </div>
   </div>
 </div>

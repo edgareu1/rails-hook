@@ -1,0 +1,63 @@
+<!-- Title -->
+<div class="page-title">
+  <h1><%= log.location.name_to_display %></h1>
+  <h2 class="loc-site" ><%= log.label %></h2>
+</div>
+
+<!-- Date -->
+<div class="date-show-page">
+  <% if log.start_time.strftime('%Y-%m-%d') == log.end_time.strftime('%Y-%m-%d') %>
+    <i class="far fa-calendar-alt" style="font-size: 26px"></i>
+    <p>
+      <%= "#{log.start_time.strftime('%b %d, %Y')}" %>
+      <span><%= "#{log.start_time.strftime('%I:%M %p')} - #{log.end_time.strftime('%I:%M %p')}" %></span>
+    </p>
+
+  <% else %>
+    <i class="far fa-calendar-alt" style="font-size: 42px"></i>
+    <div style="display: flex; flex-direction: column">
+      <p>
+        <%= "#{log.start_time.strftime('%b %d, %Y')}" %>
+        <span><%= "#{log.start_time.strftime('%I:%M %p')}" %></span>
+      </p>
+
+      <p>
+        <%= "#{log.end_time.strftime('%b %d, %Y')}" %>
+        <span><%= "#{log.end_time.strftime('%I:%M %p')}" %></span>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<!-- Card Weather Info -->
+<div class="gray-background">
+  <!-- Card's Headers  -->
+  <div class="show-page-weather-headers">
+    <!-- Image of the Weather of the Log's Location -->
+    <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png);
+          width: 35%; height: 50px" class="weather-icon">
+    </div>
+
+    <h3><%= log.weather_description.capitalize %> </h3>
+  </div>
+
+  <!-- Card's Content -->
+  <div class="show-page-card-content">
+    <div class="show-page-card-content-weather">
+      <p><strong>Air pressure: </strong> <%= log.air_pressure %> Pa</p>
+      <p><strong>Wind Speed: </strong> <%= log.wind_speed %> m/s</p>
+      <p><strong>Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
+    </div>
+
+    <!-- Optional Fields: Rating and Observations -->
+    <div class="show-page-card-content-info">
+      <% unless log.rating.nil? %>
+        <p><strong> Rating: </strong> <%= "#{log.rating}/10" %></p>
+      <% end %>
+
+      <% unless log.observation.nil? || log.observation.match?(/\A\s*\Z/) %>
+        <p><strong>Observations: </strong> <span><%= log.observation %></span></p>
+      <% end %>
+    </div>
+  </div>
+</div>

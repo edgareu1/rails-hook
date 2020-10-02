@@ -29,9 +29,28 @@ import { autoCompleteFish } from '../components/auto-complete-fish';
 import { autoCompleteLocation } from '../components/auto-complete-location';
 import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
+import { createFlash } from '../components/create-flash';
+import { displayTimeErrors } from '../components/display-time-errors';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
+// Make the following JS functions accessible from HTML files
+window.autoCompleteLocation = function(addressInput) {
+  autoCompleteLocation(addressInput);
+}
 
+window.autoCompleteFish = function(searchField) {
+  autoCompleteFish(searchField);
+}
+
+window.createFlash = function(flashText) {
+  createFlash(flashText);
+}
+
+window.displayTimeErrors = function(errorMessageText, action) {
+  displayTimeErrors(errorMessageText, action);
+}
+
+// Upon loading a page, load the following JS functions
 document.addEventListener('turbolinks:load', () => {
   let searchField = document.getElementById('search-input');
   if (searchField) {

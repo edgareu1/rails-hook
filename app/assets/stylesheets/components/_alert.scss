@@ -2,4 +2,7 @@
   color: rgba(255, 255, 255, 0.9);
   background-color: rgba(91, 234, 201, 0.5);
   border: none;
+  position: fixed;
+  top: 0;
+  width: -webkit-fill-available;
 }

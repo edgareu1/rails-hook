@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal-body">
-      <%= simple_form_for(@location) do |f| %>
+      <%= simple_form_for(location, remote: true) do |f| %>
         <%= f.input :site, label: false, placeholder: "Spot's name" %>
         <%= f.input :name, label: false, placeholder: "Location" %>
 

@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal-body">
-      <%= simple_form_for [@log, @catch] do |f| %>
+      <%= simple_form_for([@log, catch], remote: true) do |f| %>
         <div class="container-catch-form">
           <table>
             <tr>
@@ -16,16 +16,16 @@
             </tr>
 
             <tr>
-              <td style="width: 60px; padding-right: 2px">
+              <td style="width: 60px; padding-right: 2px; vertical-align: top">
                 <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || '1' } %>
               </td>
 
-              <td style="width: 280px; padding-right: 2px">
+              <td style="width: 280px; padding-right: 2px; vertical-align: top">
                 <%= f.association :fish, collection: Fish.all.sort_by(&:common_name), prompt: "Please select",
                   label_method: :common_name, label: false %>
               </td>
 
-              <td style="width: 100px; padding-right: 2px">
+              <td style="width: 100px; padding-right: 2px; vertical-align: top">
                 <%= f.input :weight, label: false, placeholder: "gr" %>
               </td>
             </tr>

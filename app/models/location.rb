@@ -18,4 +18,13 @@ class Location < ApplicationRecord
   def fetch_weather_data
     Rails.configuration.open_weather_api.current lon: longitude, lat: latitude
   end
+
+  # Gets the relevant information to be displayed on the Home page
+  def data_to_display(log_size = nil)
+    { name: name_to_display,
+      site: site,
+      weather_icon: fetch_weather_data["weather"][0]["icon"],
+      num_logs: (log_size.nil? ? logs.size : log_size)
+    }
+  end
 end
