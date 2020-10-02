@@ -36,7 +36,9 @@
       <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
     <% else %>
-      <%= render "locations/locations-list" %>
+      <div id="locations-list">
+        <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
+      </div>
     <% end %>
   </ul>
 
