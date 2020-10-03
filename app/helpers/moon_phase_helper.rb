@@ -1,6 +1,6 @@
 module MoonPhaseHelper
-  # Get the % of the moon that is active in a certain date
-  # Both this method and it's helper are based on the Git Repo of "ablwr" named "moon phases"
+  # Get the % of the moon that is active at a certain date
+  # Both this method and it's helper are based on the GitHub Repo "moon phases" of "ablwr"
   def get_moon_phase(date)
     year = date.year
     month = date.month

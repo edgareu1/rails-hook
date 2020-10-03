@@ -1,10 +1,8 @@
 module ApplicationHelper
   # Return a string with it's weight in the correct quantification (gr or kg)
   def rounded_weight(weight)
-    if weight == 0
-      return "NA"
-    elsif weight < 1000
-      return "#{weight} gr"
+    if weight < 1000
+      return weight.zero? ? "NA" : "#{weight} gr"
     else
       weight_in_kg = weight.fdiv(1000)
                            .tap { |n| break n.to_i == n ? n.to_i : n }
