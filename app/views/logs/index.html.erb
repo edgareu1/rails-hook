@@ -17,66 +17,8 @@
     </div>
 
   <% else %>
-    <div style="margin: 10px 0">
-      <!-- Iterate over the Logs list and display them as Cards -->
-      <% @logs.each do |log| %>
-        <%= link_to log_path(log) do %>
-          <div class="log-card">
-            <div class="card-headers">
-              <!-- Cards Headers -->
-              <div>
-                <h3><%= log.location.name_to_display %></h3>
-                <h5 class="loc-site"><%= log.label %></h5>
-              </div>
-
-              <!-- Image of the Weather of the Log's Location -->
-              <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png);
-                  width: 70px; height: 50px; margin-bottom: 8px" class="weather-icon">
-              </div>
-            </div>
-
-            <hr>
-
-            <!-- Content of the Log -->
-            <div class="card-content">
-              <div class="card-content-info">
-                <% if log.catch_count == 0 %>
-                  <p><strong style="font-size: 17px">Nothing caught</strong></p>
-                <% else %>
-                  <p style="margin-bottom: 5px">
-                    <strong style="font-size: 18px">Catches : </strong><%= log.catch_count %>
-                  </p>
-                <% end %>
-
-                <% if log.rating.nil? %>
-                  <p><strong style="font-size: 17px">Not rated</strong></p>
-                <% else %>
-                  <p style="margin-bottom: 5px">
-                    <strong style="font-size: 18px">Rating : </strong><%= log.rating %>
-                  </p>
-                <% end %>
-              </div>
-
-              <div class="card-content-stats">
-                <p><strong style="font-size: 18px">Moon : </strong><%= (log.moon_phase * 100).round %>%</p>
-                <p><%= log.air_pressure %> Pa</p>
-              </div>
-            </div>
-
-            <!-- Card footer displaying the Log's Time -->
-            <p class="log-card-footer-time">
-              <%= log.start_time.strftime('%b %d')  %> | <%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %> h
-            </p>
-          </div>
-        <% end %>
-      <% end %>
-
-      <!-- Pagination to navigate the index of Logs -->
-      <div style="margin-left: 20px">
-        <%= will_paginate @logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
-          previous_label: "&laquo;", next_label: "&raquo;"
-        %>
-      </div>
+    <div id="logs-list" style="margin: 10px 0">
+      <%= render 'logs/list', logs: @logs %>
     </div>
   <% end %>
 
