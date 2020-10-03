@@ -31,6 +31,7 @@ import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
 import { createFlash } from '../components/create-flash';
 import { displayTimeErrors } from '../components/display-time-errors';
+import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
 // Make the following JS functions accessible from HTML files
@@ -50,8 +51,17 @@ window.displayTimeErrors = function(errorMessageText, action) {
   displayTimeErrors(errorMessageText, action);
 }
 
+window.smoothPagination = function() {
+  smoothPagination();
+}
+
 // Upon loading a page, load the following JS functions
 document.addEventListener('turbolinks:load', () => {
+  let logsList = document.getElementById('logs-list');
+  if (logsList) {
+    smoothPagination();
+  }
+
   let searchField = document.getElementById('search-input');
   if (searchField) {
     autoCompleteFish(searchField);

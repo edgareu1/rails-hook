@@ -22,3 +22,5 @@ function smoothPagination() {
     }
   }
 }
+
+export { smoothPagination };
