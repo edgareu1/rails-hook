@@ -43,17 +43,33 @@
 
   <!-- Card's Content -->
   <div class="show-page-card-content">
-    <div class="show-page-card-content-weather">
-      <p><strong>Air pressure: </strong> <%= log.air_pressure %> Pa</p>
-      <p><strong>Wind Speed: </strong> <%= log.wind_speed %> m/s</p>
-      <p><strong>Moon: </strong> <%= (log.moon_phase * 100).round %>%</p>
-    </div>
+    <table>
+      <tr style="line-height: 30px">
+        <td style="color: #9BDDF9; text-align: end; font-weight: bold">Air pressure</td>
+        <td style="width: 15px"></td>
+        <td><%= log.air_pressure %> Pa</td>
+      </tr>
 
-    <!-- Optional Fields: Rating and Observations -->
-    <div class="show-page-card-content-info">
+      <tr style="line-height: 30px">
+        <td style="color: #9BDDF9; text-align: end; font-weight: bold">Wind Speed</td>
+        <td style="width: 15px"></td>
+        <td><%= log.wind_speed %> m/s</td>
+      </tr>
+
+      <tr style="line-height: 30px">
+        <td style="color: #9BDDF9; text-align: end; font-weight: bold">Moon</td>
+        <td style="width: 15px"></td>
+        <td><%= (log.moon_phase * 100).round %>%</td>
+      </tr>
+
       <% unless log.rating.nil? %>
-        <p><strong> Rating: </strong> <%= "#{log.rating}/10" %></p>
+        <tr style="line-height: 30px">
+          <td style="color: #9BDDF9; text-align: end; font-weight: bold">Rating</td>
+          <td style="width: 15px"></td>
+          <td><%= "#{log.rating}/10" %></td>
+        </tr>
       <% end %>
+    </table>
 
       <% unless log.observation.nil? || log.observation.match?(/\A\s*\Z/) %>
         <p><strong>Observations: </strong> <span><%= log.observation %></span></p>

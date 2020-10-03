@@ -81,27 +81,16 @@ input[type=datetime-local] {
 .show-page-card-content {
   width: 100%;
   padding: 10px;
-  padding-left: 35%;
   border-top: 2px solid white;
 
-  .show-page-card-content-weather {
-    p {
-      margin-bottom: 8px;
+  table { margin-left: 35% }
 
-      strong {
-        font-size: 17px;
-      }
-    }
-  }
+  p {
+    font-size: 17px;
+    margin: 8px 0;
 
-  .show-page-card-content-info {
-    p {
-      font-size: 17px;
-      margin-bottom: 8px;
-
-      span {
-        font-size: 15px;
-      }
+    span {
+      font-size: 15px;
     }
   }
 }
