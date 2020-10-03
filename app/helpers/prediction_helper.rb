@@ -19,8 +19,7 @@ module PredictionHelper
                                  prediction: prediction(loc)
                                }
                        }
-                  .sort_by { |loc| - loc[:prediction][:weight_caught] }
-                  .first(num)
+                  .max_by(num) { |loc| loc[:prediction][:weight_caught] }
     end
 
     private

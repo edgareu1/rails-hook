@@ -5,8 +5,7 @@ class FishController < ApplicationController
 
     # Add the gem 'gon' in order to be able to call this variable from the JS variable
     # 'fishNames' in the JS funtion 'autoCompleteFish'
-    gon.fish_names = @fish.map(&:common_name)
-                          .join(', ')
+    gon.fish_names = @fish.map(&:common_name).join(', ')
   end
 
   def show

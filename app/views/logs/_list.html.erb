@@ -39,7 +39,14 @@
 
         <div class="card-content-stats">
           <p><strong style="font-size: 18px">Moon : </strong><%= (log.moon_phase * 100).round %>%</p>
-          <p><%= log.air_pressure %> Pa</p>
+
+          <p>
+            <% unless log.air_pressure.blank? && log.wind_speed.blank? %>
+              <%= log.air_pressure.blank? ? "#{log.wind_speed} m/s" : "#{log.air_pressure} Pa" %>
+            <% else %>
+              No stats
+            <% end %>
+          </p>
         </div>
       </div>
 

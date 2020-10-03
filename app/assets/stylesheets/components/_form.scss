@@ -21,3 +21,38 @@
   background-image: none;
   padding: 6px 12px;
 }
+
+.form-login {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: $opacity-blue;
+  padding: 10px 20px 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  margin-top: 100px;
+
+  img {
+    width: 36px;
+    padding-bottom: 5px;
+  }
+
+  h2 {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .placeholder {
+    color: #495057;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .text-muted {
+    color: #9BDDF9;
+  }
+}

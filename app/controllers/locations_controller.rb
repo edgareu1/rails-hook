@@ -1,7 +1,6 @@
 class LocationsController < ApplicationController
   def create
-    @location = Location.new(location_params)
-    @location.user = current_user
+    @location = current_user.locations.new(location_params)
 
     @user_locations = current_user.locations if @location.save
   end

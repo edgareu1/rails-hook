@@ -2,10 +2,7 @@ class CatchesController < ApplicationController
   before_action :set_log, only: [:create, :destroy]
 
   def create
-    @catch = Catch.new(catch_params)
-    @catch.log = @log
-
-    @catch.save
+    @catch = @log.catches.create(catch_params)
   end
 
   def destroy

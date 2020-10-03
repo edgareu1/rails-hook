@@ -1,6 +1,6 @@
 module LinearRegressionHelper
-  # This Class is based from the Git Repo of "daugaard" named "linear-regression" having been added
-  # the mean absolute percentage error method
+  # This Class is based from the GitHub Repo "linear-regression" of "daugaard" having been modified to
+  # also calculate the mean absolute percentage error method
   class RubyLinearRegression
     attr_reader :x, :y, :theta, :mu, :sigma, :lambda, :normalize
 

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @location = Location.new
     @user_locations = current_user.locations
+    @top_fish = current_user.top_fish(3)
     @feed = [
       'The batfish plays dead when danger is near. It floats motionless on its side when scared, making it look like a dead leaf floating on the surface of the water.',
       'Since a fish’s jaw is not attached to its skull, many fishes can shoot their mouths forward like a spring to catch startled prey.',
@@ -17,6 +17,5 @@ class UsersController < ApplicationController
       'Fish were the first vertebrates with bony skeletons to appear on Earth. Unlike today’s fish, early fish had no scales, fins, or jawbone, but they did have a dorsal fin.',
       'Unlike most fish, the ocean sunfish does not have a tail. A female sunfish can lay 300 million eggs each year. Each egg is smaller than the period at the end of this sentence.'
     ]
-    @top_fish = current_user.top_fish(3)
   end
 end
