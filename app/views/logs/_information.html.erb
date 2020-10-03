@@ -47,13 +47,13 @@
       <tr style="line-height: 30px">
         <td style="color: #9BDDF9; text-align: end; font-weight: bold">Air pressure</td>
         <td style="width: 15px"></td>
-        <td><%= log.air_pressure %> Pa</td>
+        <td><%= log.air_pressure.blank? ? "--" : "#{log.air_pressure} Pa" %></td>
       </tr>
 
       <tr style="line-height: 30px">
         <td style="color: #9BDDF9; text-align: end; font-weight: bold">Wind Speed</td>
         <td style="width: 15px"></td>
-        <td><%= log.wind_speed %> m/s</td>
+        <td><%= log.wind_speed.blank? ? "--" : "#{log.wind_speed} m/s" %></td>
       </tr>
 
       <tr style="line-height: 30px">
@@ -71,9 +71,9 @@
       <% end %>
     </table>
 
-      <% unless log.observation.nil? || log.observation.match?(/\A\s*\Z/) %>
-        <p><strong>Observations: </strong> <span><%= log.observation %></span></p>
-      <% end %>
-    </div>
+    <% unless log.observation.nil? || log.observation.match?(/\A\s*\Z/) %>
+      <p style="margin-top: 8px"><strong>Observations: </strong></p>
+      <p><span><%= log.observation %></span></p>
+    <% end %>
   </div>
 </div>
