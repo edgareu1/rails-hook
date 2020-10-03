@@ -24,11 +24,11 @@ hr {
   margin-bottom: 50px;
 
   li {
-    border-top: 1px solid white;
-    list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    list-style-type: none;
+    border-top: 1px solid white;
   }
 }
 
@@ -66,27 +66,27 @@ hr {
 
 .top-fish {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   width: 250px;
   list-style-type: none;
   margin: auto;
   margin-bottom: 20px;
 
   li {
-    color: rgba(255, 255, 255, 0.9);
     text-align: center;
+    color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid white;
 
     p {
-      margin-bottom: 0;
       padding: 5px;
+      margin-bottom: 0;
     }
   }
 }
 
 .loc-site {
   color: #3AC4FF;
-  font-style: italic;
   font-size: 19px;
+  font-style: italic;
 }

@@ -25,12 +25,12 @@ input[type=datetime-local] {
 
 // Other Elements
 .list-border-top, .gray-background {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: $opacity-blue;
   list-style: none;
-  margin: 20px 0;
   padding: 10px;
   border-radius: 4px;
-  background-color: $opacity-blue;
-  color: rgba(255, 255, 255, 0.9);
+  margin: 20px 0;
 
   p {
     color: rgba(255, 255, 255, 0.9);
@@ -43,9 +43,9 @@ input[type=datetime-local] {
 
 .list-border-top {
   li, p {
+    text-align: center;
     padding: 10px 0;
     border-top: 2px solid white;
-    text-align: center;
   }
 }
 
@@ -73,8 +73,8 @@ input[type=datetime-local] {
 
 .show-page-weather-headers {
   display: flex;
-  width: 100%;
   align-items: center;
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -83,7 +83,9 @@ input[type=datetime-local] {
   padding: 10px;
   border-top: 2px solid white;
 
-  table { margin-left: 35% }
+  table {
+    margin-left: 35%;
+  }
 
   p {
     font-size: 17px;

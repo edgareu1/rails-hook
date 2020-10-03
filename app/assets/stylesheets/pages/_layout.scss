@@ -1,6 +1,6 @@
 body {
-  height: 100%;
   color: rgba(255, 255, 255, 0.9);
+  height: 100%;
 }
 
 html {
@@ -42,9 +42,9 @@ p {
 
 // App responsiveness to different device sizes and centering of the content
 .body-container {
-  width: 100%;
-  height:calc(100% - 58px);
   overflow-y: scroll;
+  height:calc(100% - 58px);
+  width: 100%;
 }
 
 .page-container {
