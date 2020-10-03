@@ -6,8 +6,7 @@ class LogsController < ApplicationController
   before_action :set_log, only: [:show, :update, :destroy]
 
   def create
-    @log = Log.new(log_params_new)
-    @log.user = current_user
+    @log = current_user.logs.new(log_params)
     @log.tag_id = get_tag_id(@log.location) unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
@@ -24,18 +23,22 @@ class LogsController < ApplicationController
   end
 
   def update
+    # Get the new start_time
     start_error = params[:log][:start_time].blank?
     new_start_time = start_error ? @log.start_time : DateTime.parse(params[:log][:start_time])
 
+    # Get the new end_time
     end_error = params[:log][:end_time].blank?
     new_end_time = end_error ? @log.end_time : DateTime.parse(params[:log][:end_time])
 
+    # Get the new moon_phase
     new_moon_phase = get_moon_phase(new_start_time)
 
+    # Get the new tag_id if the Location does change
     param_location_id = params[:log][:location_id].to_i
     new_tag_id = @log.location_id == param_location_id ? @log.location_id : get_tag_id(Location.find(param_location_id))
 
-    successful_update = @log.update(
+    @log.update(
       tag_id:       new_tag_id,
       start_time:   new_start_time,
       end_time:     new_end_time,
@@ -47,6 +50,7 @@ class LogsController < ApplicationController
       rating:       params[:log][:rating]
     )
 
+    # Add 'presence: true' validation errors to the start/end_time fields if they do exist
     @log.errors.add(:end_time, "Log has to have a start time") if start_error
     @log.errors.add(:end_time, "Log has to have a end time")   if end_error
   end
@@ -59,7 +63,7 @@ class LogsController < ApplicationController
 
   private
 
-  def log_params_new
+  def log_params
     params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id)
   end
 
@@ -67,7 +71,7 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
   end
 
-  # Gets the next tag_id for a Log of a certain location
+  # Method that gets the next Log tag_id for a certain location
   def get_tag_id(location)
     location_logs = location.logs
 
