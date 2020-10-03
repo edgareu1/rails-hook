@@ -33,13 +33,13 @@
             <!-- Air Pressure -->
             <div style="display: flex; margin-top: 20px">
               <label for="log_air_pressure" style="margin: 6px 10px 0 0; width: 100px">Air pressure</label>
-              <%= f.input :air_pressure, id: "log_air_pressure", label: false %>
+              <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
             </div>
 
             <!-- Wind Speed -->
             <div style="display: flex">
               <label for="log_wind_speed" style="margin: 6px 10px 0 0; width: 100px">Wind speed</label>
-              <%= f.input :wind_speed, id: "log_wind_speed", label: false %>
+              <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
             </div>
           <% end %>
 
