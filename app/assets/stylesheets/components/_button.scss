@@ -1,8 +1,8 @@
 .btn-flat {
   color: white;
+  background: rgba(155, 221, 249, 0.5);
   padding: 5px 10px;
   border-radius: 5px;
-  background: rgba(155, 221, 249, 0.5);
   transition: background 0.3s ease;
 
   &:hover {
@@ -11,12 +11,11 @@
   }
 }
 
-
 .btn-delete-confirm, .btn-cancel-confirm {
-  width: 50%;
-  height: 100%;
-  float: left;
   text-align: center;
+  float: left;
+  height: 100%;
+  width: 50%;
   text-decoration: none;
   padding: 8px;
   border: none;
@@ -38,18 +37,17 @@
   background-color: lightgray;
 }
 
-
 .btn-user-box {
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  height: 60px;
   background-color: rgba(136, 204, 255, 0.5);
   opacity:1;
+  height: 60px;
   padding: 0;
-  margin: 20px 85px;
   border-radius: 8px;
+  margin: 20px 85px;
 
   h6 {
     color: white;

@@ -1,13 +1,13 @@
 #bottom-nav {
   display: flex;
   position: fixed;
-  color: #BDEBFF;
-  width: 100%;
-  font-size: 14px;
   text-align: center;
-  background: rgba(82, 111, 128, 0.7);
-  padding: 0;
   bottom: 0;
+  color: #BDEBFF;
+  background: rgba(82, 111, 128, 0.7);
+  font-size: 14px;
+  width: 100%;
+  padding: 0;
   z-index: 99;
 }
 
