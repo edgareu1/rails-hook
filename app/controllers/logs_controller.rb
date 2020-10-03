@@ -16,7 +16,8 @@ class LogsController < ApplicationController
   def index
     @logs = current_user.logs
                         .sort_by(&:start_time)
-                        .reverse.paginate(page: params[:page], per_page: 5)
+                        .reverse
+                        .paginate(page: params[:page], per_page: 5)
   end
 
   def show

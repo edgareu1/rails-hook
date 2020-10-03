@@ -1,0 +1,7 @@
+console.log('aaaa');
+
+// Refresh the Logs list
+document.getElementById('logs-list').innerHTML = "<%= j render 'logs/list', logs: @logs %>";
+
+// Add smooth animations to the pagination links
+smoothPagination();
