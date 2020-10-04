@@ -1,31 +1,29 @@
-// Function that creates and appends a flash with a certain text (flashText) to the body of the document
+// Function that creates and appends to the body of the document a flash message with a certain text (flashText)
 function createFlash(flashText) {
-  // Create alert 'div'
+  // Create the flash 'div'
   var div = document.createElement('div');
   div.classList = `alert alert-dismissible fade show m-1`;
   div.setAttribute("role", "alert");
 
-  // Add text to the alert
+  // Add text to the flash
   var alert = document.createTextNode(flashText);
   div.appendChild(alert);
 
-  // Create closing button
+  // Create the closing button
   var button = document.createElement('button');
-  button.setAttribute("type", "button");
   button.classList = 'close';
-  button.setAttribute("data-dismiss", "alert");
   button.setAttribute("aria-label", "Close");
+  button.setAttribute("data-dismiss", "alert");
+  button.setAttribute("type", "button");
 
-  // Button 'X' symbol
+  // Add the 'X' symbol to the button
   var span = document.createElement('span');
   span.setAttribute("aria-hidden", "true");
   span.innerHTML = '&times;';
-
   button.appendChild(span);
-  div.appendChild(button);
 
-  // Append 'div' to the body of the document
-  document.body.appendChild(div);
+  div.appendChild(button);        // Append the button to the flash
+  document.body.appendChild(div); // Append the flash to the body of the document
 }
 
 export { createFlash };
