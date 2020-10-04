@@ -62,9 +62,9 @@ document.addEventListener('turbolinks:load', () => {
     smoothPagination();
   }
 
-  let searchField = document.getElementById('search-input');
-  if (searchField) {
-    autoCompleteFish(searchField);
+  let fishInput = document.getElementById('search-input');
+  if (fishInput) {
+    autoCompleteFish(fishInput);
   }
 
   let addressInput = document.getElementById('location_name');
