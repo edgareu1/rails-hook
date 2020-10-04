@@ -23,7 +23,7 @@
           <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
               value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
 
-          <div class="invalid-feedback date-input"></div>
+          <div class="invalid-feedback time-input"></div>
 
           <!-- Location -->
           <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
