@@ -1,5 +1,6 @@
-// Function that, based on a search parameter, creates an autocomplete list and also refreshes the Fish#index page
-// (using AJAX requests); The functions parameter is the input field where the user searches for the Fish name
+// Function that, from a search parameter, creates an autocomplete list for Fish suggestions and also refreshes the
+// Fish#index page (using AJAX requests); The functions parameter is the input field where the user searches for the
+// Fish name
 function autoCompleteFish(fishInput) {
   // Define two variables to follow the number of items in the autocomplete list and the currently selected item index
   let ItemIndexCounter, selectedItemIndex;

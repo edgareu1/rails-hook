@@ -35,12 +35,12 @@ import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
 // Make the following JS functions accessible from HTML files
-window.autoCompleteLocation = function(addressInput) {
-  autoCompleteLocation(addressInput);
+window.autoCompleteFish = function(fishInput) {
+  autoCompleteFish(fishInput);
 }
 
-window.autoCompleteFish = function(searchField) {
-  autoCompleteFish(searchField);
+window.autoCompleteLocation = function(locationInput) {
+  autoCompleteLocation(locationInput);
 }
 
 window.createFlash = function(flashText) {
@@ -67,9 +67,9 @@ document.addEventListener('turbolinks:load', () => {
     autoCompleteFish(fishInput);
   }
 
-  let addressInput = document.getElementById('location_name');
-  if (addressInput) {
-    autoCompleteLocation(addressInput);
+  let locationInput = document.getElementById('location_name');
+  if (locationInput) {
+    autoCompleteLocation(locationInput);
   }
 
   let canvas = document.getElementById('fishtank');
