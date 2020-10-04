@@ -1,7 +1,8 @@
 import places from 'places.js';
 
-const autoCompleteLocation = (addressInput) => {
-  places( { container: addressInput } );
+// Function that, from a search parameter, creates an autocomplete list for address suggestions
+function autoCompleteLocation(locationInput) {
+  places( { container: locationInput } );
 };
 
 export { autoCompleteLocation };

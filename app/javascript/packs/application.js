@@ -35,12 +35,12 @@ import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
 // Make the following JS functions accessible from HTML files
-window.autoCompleteLocation = function(addressInput) {
-  autoCompleteLocation(addressInput);
+window.autoCompleteFish = function(fishInput) {
+  autoCompleteFish(fishInput);
 }
 
-window.autoCompleteFish = function(searchField) {
-  autoCompleteFish(searchField);
+window.autoCompleteLocation = function(locationInput) {
+  autoCompleteLocation(locationInput);
 }
 
 window.createFlash = function(flashText) {
@@ -55,35 +55,38 @@ window.smoothPagination = function() {
   smoothPagination();
 }
 
-// Upon loading a page, load the following JS functions
+// Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
+  // If in the Logs#index page...
   let logsList = document.getElementById('logs-list');
   if (logsList) {
-    smoothPagination();
+    smoothPagination(); // Smooth the pagination between the Logs
   }
 
-  let searchField = document.getElementById('search-input');
-  if (searchField) {
-    autoCompleteFish(searchField);
+  // If in the Fish#index page...
+  let fishInput = document.getElementById('search-input');
+  if (fishInput) {
+    autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
-  let addressInput = document.getElementById('location_name');
-  if (addressInput) {
-    autoCompleteLocation(addressInput);
-  }
-
+  // If in the Users#show page...
   let canvas = document.getElementById('fishtank');
+  let locationInput = document.getElementById('location_name');
   if (canvas) {
-    backgroundFish();
-    updateCanvasDimensions(canvas);
+    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
 
+    backgroundFish();               // Add the background canvas animation
+    updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the Users device
+
+    // If the user resizes his device window, update the background canvas animation dimensions
     window.addEventListener('resize', () => {
       updateCanvasDimensions(canvas);
     });
   }
 
+  // If in the Devise/registration pages...
   let bottomFishContainer = document.querySelector('#jsi-flying-fish-container');
   if (bottomFishContainer) {
-    bottomFish();
+    bottomFish(); // Add the bottom canvas animation
   }
 });
