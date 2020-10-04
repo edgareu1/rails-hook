@@ -55,35 +55,38 @@ window.smoothPagination = function() {
   smoothPagination();
 }
 
-// Upon loading a page, load the following JS functions
+// Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
+  // If in the Logs#index page...
   let logsList = document.getElementById('logs-list');
   if (logsList) {
-    smoothPagination();
+    smoothPagination(); // Smooth the pagination between the Logs
   }
 
+  // If in the Fish#index page...
   let fishInput = document.getElementById('search-input');
   if (fishInput) {
-    autoCompleteFish(fishInput);
+    autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
-  let locationInput = document.getElementById('location_name');
-  if (locationInput) {
-    autoCompleteLocation(locationInput);
-  }
-
+  // If in the Users#show page...
   let canvas = document.getElementById('fishtank');
+  let locationInput = document.getElementById('location_name');
   if (canvas) {
-    backgroundFish();
-    updateCanvasDimensions(canvas);
+    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
 
+    backgroundFish();               // Add the background canvas animation
+    updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the Users device
+
+    // If the user resizes his device window, update the background canvas animation dimensions
     window.addEventListener('resize', () => {
       updateCanvasDimensions(canvas);
     });
   }
 
+  // If in the Devise/registration pages...
   let bottomFishContainer = document.querySelector('#jsi-flying-fish-container');
   if (bottomFishContainer) {
-    bottomFish();
+    bottomFish(); // Add the bottom canvas animation
   }
 });
