@@ -32,14 +32,14 @@
       <% end %>
     </div>
 
-    <% if @user_locations.empty? %>
-      <p style="padding: 10px; margin: 0">No locations saved yet</p>
+    <div id="locations-list">
+      <% if @user_locations.empty? %>
+        <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
-    <% else %>
-      <div id="locations-list">
-        <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
-      </div>
-    <% end %>
+      <% else %>
+          <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
+      <% end %>
+    </div>
   </ul>
 
   <!-- Feed of Curiosities -->
