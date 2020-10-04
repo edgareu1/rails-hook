@@ -1,6 +1,7 @@
 .alert {
   position: fixed;
   top: 0;
+  z-index: 1000;
   color: rgba(255, 255, 255, 0.9);
   background-color: rgba(91, 234, 201, 0.5);
   width: -webkit-fill-available;
