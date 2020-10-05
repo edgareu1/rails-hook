@@ -1,0 +1,18 @@
+.modal-header h4, .close {
+  color: white;
+  opacity: 0.9;
+
+  &:hover {
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+.modal-content {
+  background-color: #061f35;
+}
+
+// Change the color of the content of the Locations autocomplete list
+.ap-dataset-places {
+  color: black;
+}
