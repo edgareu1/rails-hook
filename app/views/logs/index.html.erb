@@ -1,29 +1,23 @@
-<div class="page-container">
-  <h1 class="page-title">All Logs</h1>
+<h1 class="page-title">All Logs</h1>
 
-  <!-- Modal for the new Log creation -->
-  <div style="text-align: left; margin-bottom: -10px">
-    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "new-log-modal" do %>
-      <i class="fas fa-plus" style="font-size: 28px; color: white"></i>
-    <% end %>
-  </div>
-
-  <% if @logs.empty? %>
-    <div class="log-card" style="text-align: center; padding: 10px 20px">
-      <h3 style="font-size: 24px; margin-bottom: 12px">No logs saved yet</h3>
-      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
-        The more logs you record, the more accurate our predictions will be
-      </h5>
-    </div>
-
-  <% else %>
-    <div id="logs-list" style="margin: 10px 0">
-      <%= render 'logs/list', logs: @logs %>
-    </div>
+<!-- Modal for the new Log creation -->
+  <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "new-log-button" do %>
+    <i class="fas fa-plus"></i>
   <% end %>
 
-  <!-- Modal New Log Form -->
-  <div class="modal fade" id="ModalNewLog" role="dialog">
-    <%= render "logs/form", log: Log.new %>
+<% if @logs.empty? %>
+  <div class="card no-data">
+    <h3>No logs saved yet</h3>
+    <h5>The more logs you record, the more accurate our predictions will be</h5>
   </div>
+
+<% else %>
+  <div id="logs-list">
+    <%= render 'logs/list', logs: @logs %>
+  </div>
+<% end %>
+
+<!-- Modal New Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <%= render "logs/form", log: Log.new %>
 </div>

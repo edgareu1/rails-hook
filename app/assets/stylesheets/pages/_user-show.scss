@@ -1,41 +1,88 @@
-// Specific CSS for the Users#show Page
-hr {
-  border-top: 2px solid $dark-blue;
-  margin-right: 3rem;
-  margin-left: 3rem;
-}
+// Style for the Users#show page
 
-.modal-header h5, .close {
-  color: white;
+// Background animation
+#fish-tank {
+  position: fixed;
+  z-index: -1;
   opacity: 0.9;
 }
 
-.modal-content {
-  background-color: #061f35;
-}
-
-.ap-dataset-places {
-  color: black;
-}
-
-.location-box {
+// User Locations
+.locations-container {
   background-color: $opacity-blue;
   padding: 10px 10px 0 10px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 
-  li {
-    display: flex;
-    justify-content: center;
+  .d-flex {
+    justify-content: space-between;
     align-items: center;
-    list-style-type: none;
-    border-top: 1px solid white;
+
+    img {
+      width: 30px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    a {
+      color: #BDEBFF;
+      opacity: 0.7;
+      padding-bottom: 5px;
+
+      i {
+        font-size: 30px;
+      }
+    }
+  }
+
+  // Locations list
+  #locations-list {
+    .empty-list {
+      padding: 10px;
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style-type: none;
+      border-top: 1px solid white;
+
+      .location-info {
+        width: 170px;
+
+        h6 {
+          text-align: left;
+          margin: 10px 10px 0 0;
+
+          strong {
+            font-size: 20px;
+          }
+        }
+
+        .location-site {
+          font-size: 18px;
+          margin: 0 0 5px 18px;
+        }
+      }
+
+      .weather-icon {
+        width: 70px;
+        height: 35px;
+        background-size: 58px 58px;
+      }
+    }
   }
 }
 
-.feed {
+// Feed of curiosities
+.feed-container {
   height: 150px;
   box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 
   h5 {
     text-align: center;
@@ -48,30 +95,31 @@ hr {
   }
 }
 
-.user-stats {
+// User stats
+.stats-container {
   display: flex;
   justify-content: space-evenly;
   background-color: $opacity-blue;
   padding: 10px;
-  margin-bottom: 50px;
-
-  p {
-    margin: 0;
-  }
+  margin-bottom: 40px;
 
   div {
-     text-align:center;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
   }
 }
 
+// User top fish caught
 .top-fish {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 250px;
   list-style-type: none;
-  margin: auto;
-  margin-bottom: 20px;
+  width: 250px;
+  margin: 0 auto 40px;
 
   li {
     text-align: center;
@@ -83,10 +131,4 @@ hr {
       margin-bottom: 0;
     }
   }
-}
-
-.loc-site {
-  color: #3AC4FF;
-  font-size: 19px;
-  font-style: italic;
 }

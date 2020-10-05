@@ -1,0 +1,48 @@
+// Modals
+
+// Standard modals
+.modal-header h4, .close {
+  color: white;
+  opacity: 0.9;
+
+  &:hover {
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+.modal-content {
+  background-color: #061f35;
+}
+
+// Content of the Locations autocomplete list
+.ap-dataset-places {
+  color: black;
+}
+
+// Delete modals
+.modal-delete {
+  .modal-content {
+    .modal-delete-headers {
+      text-align: center;
+      width: 100%;
+      padding: 10px;
+
+      h2 {
+        color: white;
+      }
+
+      p {
+        color: #BDEBFF;
+        padding: 0;
+        border: none !important;
+        margin: 0;
+      }
+    }
+
+    .modal-delete-confirmation {
+      height: 40px;
+      margin: 10px auto 0;
+    }
+  }
+}

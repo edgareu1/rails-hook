@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title" style="color: white; opacity: 0.9"> <%= catch.fish.common_name %> </h4>
+      <h4 class="modal-title"> <%= catch.fish.common_name %> </h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
 
@@ -20,9 +20,7 @@
             <%= catch.fish.description %>
           </p>
 
-          <p style="margin-bottom: 0">
-            <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info" %>
-          </p>
+          <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info" %>
         </div>
       </div>
     </div>

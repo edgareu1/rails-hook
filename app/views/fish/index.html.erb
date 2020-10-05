@@ -1,12 +1,9 @@
 <!-- Call the gem 'gon' in order to be able to call the Controller variable 'fish_names' from the
 JS variable 'fishNames' in the JS function 'autoCompleteFish' -->
-
 <%= include_gon %>
 
-<div class="page-container" style="padding-bottom: 40px">
-  <%= render "search-bar" %>
+<%= render "search-bar" %>
 
-  <div id="fish-list">
-    <%= render "fish-list" %>
-  </div>
+<div id="fish-list">
+  <%= render "fish-list" %>
 </div>

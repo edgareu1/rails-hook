@@ -1,6 +1,9 @@
-.btn-flat {
+// Buttons
+
+// Standard button style
+.btn-flat, .btn-ghost {
   color: white;
-  background: rgba(155, 221, 249, 0.5);
+  background-color: rgba(136, 204, 255, 0.5);
   padding: 5px 10px;
   border-radius: 5px;
   transition: background 0.3s ease;
@@ -11,6 +14,7 @@
   }
 }
 
+// Buttons for the delete forms
 .btn-delete-confirm, .btn-cancel-confirm {
   text-align: center;
   float: left;
@@ -37,13 +41,11 @@
   background-color: lightgray;
 }
 
-.btn-user-box {
+// Button for the User#show page Logs#create action
+.btn-ghost {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: rgba(136, 204, 255, 0.5);
-  opacity:1;
   height: 60px;
   padding: 0;
   border-radius: 8px;
@@ -56,17 +58,14 @@
   }
 }
 
-.btn-fish-search {
-  color: white;
-  background: rgba(155, 221, 249, 0.3);
-  padding: 4px 8px 6px;
-  border: none;
-  border-radius: 0;
-  margin-top: 0;
-  transition: background 0.3s ease;
+// Button for the Logs index page Logs#create action
+.log-new-button {
+  display: flex;
+  align-items: baseline;
+  margin: 10px 5px -10px;
 
-  &:hover {
+  i {
     color: white;
-    background: rgba(91, 234, 201, 0.5);
+    font-size: 28px;
   }
 }

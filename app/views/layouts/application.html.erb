@@ -34,12 +34,18 @@
   </head>
 
   <body>
-    <div class="body-container">
+    <div style="min-height: 100%; min-width: 100%">
+      <% if request.original_url == 'http://localhost:3000/' %>
+        <canvas id="fish-tank"></canvas>
+      <% end %>
+
       <%= render 'shared/flashes' %>
 
-      <%= yield %>
-    </div>
+      <div class="page-container" style="padding-bottom: 58px">
+        <%= yield %>
+      </div>
 
-    <%= render 'shared/bottom_navbar' if user_signed_in? %>
+      <%= render 'shared/bottom_navbar' if user_signed_in? %>
+    </div>
   </body>
 </html>

@@ -1,3 +1,4 @@
+// Standard style for the app
 body {
   color: rgba(255, 255, 255, 0.9);
   height: 100%;
@@ -19,6 +20,19 @@ p {
   color: #9BDDF9;
 }
 
+// Specify the app normal width
+.page-container, .modal-dialog-centered, #bottom-list {
+  min-width: 375px;
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+// Page Container
+.page-container {
+  padding: 20px;
+}
+
+// Page title
 .page-title {
   display: flex;
   flex-direction: column;
@@ -40,32 +54,40 @@ p {
   }
 }
 
-// App responsiveness to different device sizes and centering of the content
-.body-container {
-  overflow-y: scroll;
-  height:calc(100% - 58px);
-  width: 100%;
-}
-
-.page-container {
-  padding: 20px;
-}
-
-.background-container { // Home page Canvas container
-  display: flex;
-  width: 100%;
-}
-
-.fish-tank {            // Home page Canvas
-  overflow-y: scroll;
-}
-
+// Center Modals
 .modal-dialog-centered {
   min-height: calc(80% - 1rem);
   padding: 10px;
 }
 
-.page-container, .modal-dialog-centered, #bottom-list {
-  width: 375px;
-  margin: 0 auto;
+// Locations site
+.locations-site {
+  color: #3AC4FF;
+  font-size: 19px;
+  font-style: italic;
+}
+
+// Weather icon
+.weather-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-user-select: none;
+}
+
+// When there is no data to display
+.no-data {
+  text-align: center;
+  padding: 10px 20px;
+
+  h3 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 12px;
+  }
+
+  h5 {
+    color: #9BDDF9;
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
