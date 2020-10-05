@@ -1,27 +1,26 @@
 <% if @fish.empty? %>
-  <div class="log-card" style="text-align: center; padding: 10px 20px">
-    <h3 style="font-size: 24px; margin-bottom: 12px">No fish found</h3>
-    <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px;">
-      Are you sure that you've entered the name correctly ?
-    </h5>
+  <div class="log-card">
+    <h3>No fish found</h3>
+    <h5>Have you typed the correct name ?</h5>
   </div>
-<% end %>
 
-<% @fish.each do |fish| %>
-  <%= link_to fish_path(fish), data: { id: fish.id } do %>
-    <div class="fish-card" style="margin-top: 20px">
-      <div class="card-fish-img">
-        <%= image_tag fish.picture_url %>
+<% else %>
+  <% @fish.each do |fish| %>
+    <%= link_to fish_path(fish), data: { id: fish.id } do %>
+      <div class="fish-card">
+        <div class="card-fish-img">
+          <%= image_tag fish.picture_url %>
+        </div>
+
+        <div class="fish-card-info">
+          <h2><%= fish.common_name.upcase %></h2>
+
+          <p>
+            Minimum size:
+            <%= fish.display_legal_dimensions %>
+          </p>
+        </div>
       </div>
-
-      <div class="fish-card-info">
-        <h2><%= fish.common_name.upcase %></h2>
-
-        <p style="padding: 0 10px 10px 20px; margin: 0">
-          Minimum size:
-          <%= fish.display_legal_dimensions %>
-        </p>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
