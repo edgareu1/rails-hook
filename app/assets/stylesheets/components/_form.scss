@@ -1,9 +1,8 @@
+// Forms
+
+// Standard forms
 .form-control {
   font-family: $body-font;
-}
-
-.logo {
-  text-align: center;
 }
 
 .invalid-feedback {
@@ -22,6 +21,7 @@
   padding: 6px 12px;
 }
 
+// Devise Forms
 .form-login {
   color: rgba(255, 255, 255, 0.9);
   background-color: $opacity-blue;
@@ -57,12 +57,16 @@
   }
 }
 
-// Style Log Forms
+// Logs form
 .container-log-form {
   display: flex;
   flex-direction: column;
   color: #BDEBFF;
   opacity: 0.9;
+
+  input[type=datetime-local] {
+    width: 220px;
+  }
 
   label[for="log_air_pressure"], label[for="log_wind_speed"] {
     width: 100px;
@@ -75,11 +79,7 @@
   }
 }
 
-input[type=datetime-local] {
-  width: 220px;
-}
-
-// Style Catch Form
+// Catches form
 .container-catch-form {
   display: flex;
   flex-direction: column;

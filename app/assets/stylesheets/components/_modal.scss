@@ -1,3 +1,6 @@
+// Modals
+
+// Standard modals
 .modal-header h4, .close {
   color: white;
   opacity: 0.9;
@@ -12,11 +15,12 @@
   background-color: #061f35;
 }
 
-// Change the color of the content of the Locations autocomplete list
+// Content of the Locations autocomplete list
 .ap-dataset-places {
   color: black;
 }
 
+// Delete modals
 .modal-delete {
   .modal-content {
     .modal-delete-headers {

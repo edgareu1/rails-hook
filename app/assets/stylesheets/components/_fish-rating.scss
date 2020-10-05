@@ -1,8 +1,11 @@
+// Fish rating for the Logs form
+
+// Container for the rating
 .fish-rating-container {
   width: 300px;
   margin: 0 0 20px 10px;
 
-  // The DIV with this class has the fish layout as it's background image. This image appears at the
+  // The DIV with this class has the fish layout as its background image. This image appears at the
   // front but has a transparent background
   .fish-rating {
     position: relative;
@@ -22,7 +25,7 @@
       display: none;
     }
 
-    // This Label appears at the front but is transparent. When selected it will fill the respective
+    // This Label appears at the front but its transparent. When selected it will fill the respective
     // radio box and, at the same time, change the color of the Label2
     label {
       position: absolute;
@@ -35,8 +38,8 @@
       z-index: 10;
     }
 
-    // This Label is the one that gives color to the "radio box". If the selected box's value is more
-    // or equal to it's value, it will change it's background color
+    // This Label is the one that gives color to the "radio box". If the selected box value is greater
+    // or equal to its value, it will change its background color
     label2 {
       position: absolute;
       box-sizing: border-box;

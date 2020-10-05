@@ -5,7 +5,7 @@
 
 <!-- If there are no predictions, then... -->
 <% if @prediction.empty? %>
-  <div class="card empty-data">
+  <div class="card no-data">
     <h3>No good locations</h3>
     <h5>Take this as an opportunity to find new spots</h5>
   </div>
@@ -18,11 +18,11 @@
 
   <% @prediction.each_with_index do |data, index| %>
     <div class="card">
-      <div class="prediction-card">
+      <div class="prediction-location">
         <div class="d-flex align-items-center">
           <h3><%= index + 1 %></h3>
 
-          <div class="prediction-card-bordered">
+          <div class="prediction-location-headers">
             <h3><%= data[:location][:name] %></h3>
             <h5 class="locations-site"><%= data[:location][:site] %></h5>
           </div>
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="card-footer-stats">
+      <div class="prediction-stats">
         <!-- Prediction of weight of fish to be caught in a 5h session -->
         <p class="tooltip">
           <%= rounded_weight(data[:prediction][:weight_caught] * 5) %>

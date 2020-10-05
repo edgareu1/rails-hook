@@ -4,9 +4,9 @@
 
   <h4>Welcome <%= current_user.username.capitalize %> !</h4>
 
-  <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },
-      class: "btn btn-user-box" do %>
+  <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-ghost" do %>
     <h6>CREATE LOG</h6>
+    <%= image_tag "rod.png", style:"width: 35px" %>
   <% end %>
 </div>
 

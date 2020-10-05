@@ -1,16 +1,6 @@
-// Specific CSS for the Logs#show Page
-.log-stats-headers {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
+// Style for the Logs#show page
 
-  .weather-icon {
-    height: 50px;
-    width: 35%;
-  }
-}
-
+// Log date
 .log-date {
   display: flex;
   justify-content: center;
@@ -33,6 +23,20 @@
   }
 }
 
+// Log stats card headers
+.log-stats-headers {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+
+  .weather-icon {
+    height: 50px;
+    width: 35%;
+  }
+}
+
+// Log stats card content
 .log-stats-content {
   width: 100%;
   padding: 10px;
@@ -69,6 +73,7 @@
   }
 }
 
+// Catches list
 #catches-list {
   color: rgba(255, 255, 255, 0.9);
   background-color: $opacity-blue;

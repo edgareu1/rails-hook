@@ -1,8 +1,12 @@
+// Cards
+
+// Standard card
 .card {
   background-color: $opacity-blue;
   padding: 10px;
   margin-top: 20px;
 
+  // Card headers
   .card-headers {
     display: flex;
     justify-content: space-between;
@@ -27,6 +31,7 @@
     margin: 5px 0;
   }
 
+  // Card content
   .card-content {
     display: flex;
     justify-content: space-around;
@@ -60,6 +65,7 @@
   }
 }
 
+// Card to display Fish
 .fish-card {
   margin: 0;
 

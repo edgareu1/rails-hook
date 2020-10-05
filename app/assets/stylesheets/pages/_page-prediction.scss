@@ -1,5 +1,7 @@
-// Specific CSS for the Pages#prediction Page
-.prediction-card {
+// Style for the Pages#prediction page
+
+// Information on the Location predicted
+.prediction-location {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -10,7 +12,7 @@
     padding-right: 10px;
   }
 
-  .prediction-card-bordered {
+  .prediction-location-headers {
     padding-left: 10px;
     border-left: 5px solid #BDEBFF;
 
@@ -32,7 +34,8 @@
   }
 }
 
-.card-footer-stats {
+// Information on the stats predicted
+.prediction-stats {
   display: flex;
   justify-content: space-around;
   background-color: rgba(155, 221, 249, 0.3);
