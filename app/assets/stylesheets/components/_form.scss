@@ -64,8 +64,14 @@
   color: #BDEBFF;
   opacity: 0.9;
 
+  label[for="log_air_pressure"], label[for="log_wind_speed"] {
+    width: 100px;
+    margin: 6px 10px 0 0;
+  }
+
   p {
     color: #BDEBFF;
+    font-size: 1rem;
   }
 }
 
@@ -79,4 +85,9 @@ input[type=datetime-local] {
   flex-direction: column;
   color: #BDEBFF;
   opacity: 0.9;
+
+  td {
+    vertical-align: top;
+    padding-right: 2px;
+  }
 }

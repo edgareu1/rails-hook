@@ -4,7 +4,7 @@
 <div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title" style="color: white; opacity: 0.9"><%= log_action.capitalize %> Log</h4>
+      <h4 class="modal-title"><%= log_action.capitalize %> Log</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
 
@@ -32,13 +32,13 @@
           <% unless log.id.nil? %>
             <!-- Air Pressure -->
             <div style="display: flex; margin-top: 20px">
-              <label for="log_air_pressure" style="margin: 6px 10px 0 0; width: 100px">Air pressure</label>
+              <label for="log_air_pressure">Air pressure</label>
               <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
             </div>
 
             <!-- Wind Speed -->
             <div style="display: flex">
-              <label for="log_wind_speed" style="margin: 6px 10px 0 0; width: 100px">Wind speed</label>
+              <label for="log_wind_speed">Wind speed</label>
               <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
             </div>
           <% end %>
@@ -47,13 +47,13 @@
           <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
               placeholder: "Leave an observation" %>
 
-          <p style="font-size: 1rem">Rate your session</p>
+          <p>Rate your session</p>
 
           <!-- Rating as a dynamic filling image -->
           <div class="fish-rating-container">
             <div class="fish-rating">
               <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
-                   alt="fish-rating" style="position: absolute; z-index: 1; width: 100%; height: 100%;">
+                   alt="fish-rating">
 
               <input type="hidden" name="log[rating]" value="">
 
