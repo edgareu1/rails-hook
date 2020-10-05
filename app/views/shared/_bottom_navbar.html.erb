@@ -1,49 +1,50 @@
 <nav id="bottom-nav">
-  <div style="width: 100%">
-    <ul id="bottom-list" class="flex-container" style="list-style-type: none">    
-      <li class="<%= 'active' if controller_name == 'users' %>">
-        <%= link_to root_path do %>
-          <% if controller_name == 'users' then image_tag "hook-logo-nav-colored.png" %>
-          <% else image_tag "hook-logo-nav.png" %>
-          <% end %>
+  <ul id="bottom-list" class="flex-container">    
+    <li class="<%= 'active' if controller_name == 'users' %>">
+      <%= link_to root_path do %>
+        <% if controller_name == 'users' then image_tag "hook-logo-nav-colored.png" %>
+        <% else image_tag "hook-logo-nav.png" %>
         <% end %>
-      </li>
-      <li class="<%= 'active' if controller_name == 'fish' %>">
-        <%= link_to fish_index_path do %>
-          <figure>
-            <i class="fas fa-ruler-combined"></i>
-            <figcaption>Fish</figcaption>
-          </figure>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if controller_name == 'pages' %>">
-        <%= link_to prediction_path do %>
-          <figure>
-            <i class="far fa-calendar-alt"></i>
-            <figcaption>Prediction</figcaption>
-          </figure>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if controller_name == 'logs' %>">
-        <%= link_to logs_path do %>
-          <figure>
-            <i class="fas fa-book"></i>
-            <figcaption>Logs</figcaption>
-          </figure>
-        <% end %>
-      </li>
-      
-      <li class="navbar-light dropdown">
-        <button class="navbar-toggler" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="navbar-toggler-icon" ></span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Profile", root_path, class: "dropdown-item" %>
-          <%= link_to "About us", "#", class: "dropdown-item" %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </li>
-      
-    </ul>
-  </div>
+      <% end %>
+    </li>
+
+    <li class="<%= 'active' if controller_name == 'fish' %>">
+      <%= link_to fish_index_path do %>
+        <figure>
+          <i class="fas fa-ruler-combined"></i>
+          <figcaption>Fish</figcaption>
+        </figure>
+      <% end %>
+    </li>
+
+    <li class="<%= 'active' if controller_name == 'pages' %>">
+      <%= link_to prediction_path do %>
+        <figure>
+          <i class="far fa-calendar-alt"></i>
+          <figcaption>Prediction</figcaption>
+        </figure>
+      <% end %>
+    </li>
+
+    <li class="<%= 'active' if controller_name == 'logs' %>">
+      <%= link_to logs_path do %>
+        <figure>
+          <i class="fas fa-book"></i>
+          <figcaption>Logs</figcaption>
+        </figure>
+      <% end %>
+    </li>
+    
+    <li class="navbar-light dropdown">
+      <button class="navbar-toggler" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="navbar-toggler-icon" ></span>
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Profile", root_path, class: "dropdown-item" %>
+        <%= link_to "About us", "#", class: "dropdown-item" %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      </div>
+    </li>
+  </ul>
 </nav>
