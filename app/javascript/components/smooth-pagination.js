@@ -16,7 +16,7 @@ function smoothPagination() {
 
         // Use jQuery to perform a scrolling animation to the top of the page
         // 250 is the time (in milliseconds) the animation is going to take
-        $(".body-container").animate( {
+        $("html, body").animate( {
           scrollTop: 0
         }, 250);
       });

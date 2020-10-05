@@ -1,57 +1,55 @@
-<div class="page-container">
-  <div class="page-title">
-    <h1 style="margin: 10px 0 0; font-size: 22px; color: rgba(255, 255, 255, 0.9)">Current</h1>
-    <h1 style="font-size: 32px">Best Spots</h1>
+<div class="page-title">
+  <h1 style="margin: 10px 0 0; font-size: 22px; color: rgba(255, 255, 255, 0.9)">Current</h1>
+  <h1 style="font-size: 32px">Best Spots</h1>
+</div>
+
+<% if @prediction.empty? %>
+  <div class="log-card" style="text-align: center; padding: 10px 20px">
+    <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 32px">
+      No good locations
+    </h3>
+
+    <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px">
+      Take this as an opportunity to find new spots
+    </h5>
   </div>
 
-  <% if @prediction.empty? %>
-    <div class="log-card" style="text-align: center; padding: 10px 20px">
-      <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 32px">
-        No good locations
-      </h3>
+<% else %>
+  <div class="log-card" style="background-color: transparent; text-align: center; padding: 0 20px">
+    <p>Prediction of weight of fish to be caught in a 5h session</p>
+  </div>
 
-      <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px">
-        Take this as an opportunity to find new spots
-      </h5>
-    </div>
+  <% @prediction.each_with_index do |loc, index| %>
+    <div class="log-card">
+      <div class="prediction-card">
+        <div style="display: flex; align-items: center">
+          <h3><%= index + 1 %></h3>
 
-  <% else %>
-    <div class="log-card" style="background-color: transparent; text-align: center; padding: 0 20px">
-      <p>Prediction of weight of fish to be caught in a 5h session</p>
-    </div>
-
-    <% @prediction.each_with_index do |loc, index| %>
-      <div class="log-card">
-        <div class="prediction-card">
-          <div style="display: flex; align-items: center">
-            <h3><%= index + 1 %></h3>
-
-            <div class="prediction-card-bordered">
-              <h3><%= loc[:location][:name] %></h3>
-              <h5 class="loc-site"><%= loc[:location][:site] %></h5>
-            </div>
-          </div>
-
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= loc[:prediction][:weather_icon] %>@2x.png);
-               width: 70px; height: 50px; margin-left: 10px" class="weather-icon">
+          <div class="prediction-card-bordered">
+            <h3><%= loc[:location][:name] %></h3>
+            <h5 class="loc-site"><%= loc[:location][:site] %></h5>
           </div>
         </div>
-      
-        <div class="card-footer-stats">
-          <!-- Prediction of weight of fish to be caught in a 5h session -->
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
-            <%= rounded_weight(loc[:prediction][:weight_caught] * 5) %>
-            <span class="tooltiptext">prediction of weight to be caught</span>
-          </p>
 
-          <!-- Mean absolute percentage error of the predictive model -->
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
-            <i class="fas fa-exclamation-circle" style="margin-right: 5px"></i>
-            <%= "#{loc[:prediction][:percentage_error]}%" %>
-            <span class="tooltiptext">mean percentage error of the prediction</span>
-          </p>
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= loc[:prediction][:weather_icon] %>@2x.png);
+              width: 70px; height: 50px; margin-left: 10px" class="weather-icon">
         </div>
       </div>
-    <% end %>
+
+      <div class="card-footer-stats">
+        <!-- Prediction of weight of fish to be caught in a 5h session -->
+        <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
+          <%= rounded_weight(loc[:prediction][:weight_caught] * 5) %>
+          <span class="tooltiptext">prediction of weight to be caught</span>
+        </p>
+
+        <!-- Mean absolute percentage error of the predictive model -->
+        <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
+          <i class="fas fa-exclamation-circle" style="margin-right: 5px"></i>
+          <%= "#{loc[:prediction][:percentage_error]}%" %>
+          <span class="tooltiptext">mean percentage error of the prediction</span>
+        </p>
+      </div>
+    </div>
   <% end %>
-</div>
+<% end %>
