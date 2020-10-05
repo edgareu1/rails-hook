@@ -52,26 +52,30 @@
   </div>
 </div>
 
-<!-- User Top Fish Caught -->
+<!-- User top Fish caught -->
 <% unless @top_fish.empty? %>
   <ul class="top-fish">
-    <h5 style="text-align:center">Most caught fish</h3>
-    <% @top_fish.each_with_index do |fish, index|  %>
+    <h5 style="text-align: center">Most caught fish</h5>
+
+    <% @top_fish.each_with_index do |fish, index| %>
       <li>
-        <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
+        <p>
+          <%= "#{index + 1}." %>
+          <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i>
+          <%= "- #{fish[:num_catches]}" %>
+        </p>
       </li>
     <% end %>
   </ul>
 <% end %>
 
 <!-- Modals -->
-
-<!-- Modal New Location Form -->
+<!-- Modal Locations#new -->
 <div class="modal fade" id="ModalNewLocation" role="dialog">
   <%= render "locations/form", location: Location.new %>
 </div>
 
-<!-- Modal New Log Form -->
+<!-- Modal Logs#new -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form", log: Log.new %>
 </div>

@@ -100,6 +100,26 @@
   }
 }
 
+.top-fish {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style-type: none;
+  width: 250px;
+  margin: 0 auto 40px;
+
+  li {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid white;
+
+    p {
+      padding: 5px;
+      margin-bottom: 0;
+    }
+  }
+}
+
 hr {
   border-top: 2px solid $dark-blue;
   margin-right: 3rem;
@@ -117,25 +137,4 @@ hr {
 
 .ap-dataset-places {
   color: black;
-}
-
-.top-fish {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 250px;
-  list-style-type: none;
-  margin: auto;
-  margin-bottom: 20px;
-
-  li {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid white;
-
-    p {
-      padding: 5px;
-      margin-bottom: 0;
-    }
-  }
 }
