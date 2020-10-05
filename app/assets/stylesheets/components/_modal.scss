@@ -16,3 +16,29 @@
 .ap-dataset-places {
   color: black;
 }
+
+.modal-delete {
+  .modal-content {
+    .modal-delete-headers {
+      text-align: center;
+      width: 100%;
+      padding: 10px;
+
+      h2 {
+        color: white;
+      }
+
+      p {
+        color: #BDEBFF;
+        padding: 0;
+        border: none !important;
+        margin: 0;
+      }
+    }
+
+    .modal-delete-confirmation {
+      height: 40px;
+      margin: 10px auto 0;
+    }
+  }
+}

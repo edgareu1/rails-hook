@@ -25,8 +25,8 @@
     <% end %>
 
     <!-- Modal Delete Catch -->
-    <div class="modal fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
-      <%= render "catches/modal-delete", catch: catch %>
+    <div class="modal modal-delete fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
+      <%= render "catches/form-delete", catch: catch %>
     </div>
   </td>
 </tr>
