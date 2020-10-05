@@ -1,78 +1,71 @@
-<!-- Canvas for the Background Fish Animations -->
-<div class="background-container">
-  <canvas width="375" height="760" class="fish-tank" id="fishtank">
+<div class="banner text-center" style="margin-bottom: 40px">
+  <%= large_avatar(current_user) %>
+
+  <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
+    Welcome <%= current_user.username.capitalize %> !
+  </h4>
+
+  <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },
+      class: "btn btn-user-box" do %>
+    <h6 style="padding-left: 10px">CREATE LOG</h6>
+
+    <%= image_tag "rod.png", style:"width: 35px" %>
+  <% end %>
 </div>
 
-<div class="page-container" style="position: sticky">
-  <div class="banner text-center" style="margin-bottom: 40px">
-    <%= large_avatar(current_user) %>
+<!-- User Top Locations -->
+<ul class="location-box">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
 
-    <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
-      Welcome <%= current_user.username.capitalize %> !
-    </h4>
+    <h3 style="font-size: 22px">My Locations</h3>
 
-    <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },
-        class: "btn btn-user-box" do %>
-      <h6 style="padding-left: 10px">CREATE LOG</h6>
-
-      <%= image_tag "rod.png", style:"width: 35px" %>
+    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" },
+        style: "color: #BDEBFF; opacity: 0.7; padding-bottom: 5px" do %>
+      <i class="fas fa-plus" style="font-size: 30px"></i>
     <% end %>
   </div>
 
-  <!-- User Top Locations -->
-  <ul class="location-box">
-    <div style="display: flex; justify-content: space-between; align-items: center">
-      <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
+  <div id="locations-list">
+    <% if @user_locations.empty? %>
+      <p style="padding: 10px; margin: 0">No locations saved yet</p>
 
-      <h3 style="font-size: 22px">My Locations</h3>
+    <% else %>
+        <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
+    <% end %>
+  </div>
+</ul>
 
-      <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" },
-          style: "color: #BDEBFF; opacity: 0.7; padding-bottom: 5px" do %>
-        <i class="fas fa-plus" style="font-size: 30px"></i>
-      <% end %>
-    </div>
+<!-- Feed of Curiosities -->
+<ul class="feed">
+  <h5>Did you know ?</h3>
+  <p><%= @feed.sample %></p>
+</ul>
 
-    <div id="locations-list">
-      <% if @user_locations.empty? %>
-        <p style="padding: 10px; margin: 0">No locations saved yet</p>
-
-      <% else %>
-          <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
-      <% end %>
-    </div>
-  </ul>
-
-  <!-- Feed of Curiosities -->
-  <ul class="feed">
-    <h5>Did you know ?</h3>
-    <p><%= @feed.sample %></p>
-  </ul>
-
-  <!-- User Stats -->
-  <div class="user-stats">
-    <div>
-      <%= current_user.logs.count %>
-      <p>LOGS</p>
-    </div>
-
-    <div>
-      <%= current_user.catch_count %>
-      <p>FISH</p>
-    </div>
+<!-- User Stats -->
+<div class="user-stats">
+  <div>
+    <%= current_user.logs.count %>
+    <p>LOGS</p>
   </div>
 
-  <!-- User Top Fish Caught -->
-  <% unless @top_fish.empty? %>
-    <ul class="top-fish">
-      <h5 style="text-align:center">Most caught fish</h3>
-      <% @top_fish.each_with_index do |fish, index|  %>
-        <li>
-          <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+  <div>
+    <%= current_user.catch_count %>
+    <p>FISH</p>
+  </div>
 </div>
+
+<!-- User Top Fish Caught -->
+<% unless @top_fish.empty? %>
+  <ul class="top-fish">
+    <h5 style="text-align:center">Most caught fish</h3>
+    <% @top_fish.each_with_index do |fish, index|  %>
+      <li>
+        <p><%= "#{index + 1}." %> <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i> <%= "- #{fish[:num_catches]}" %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <!-- Modals -->
 

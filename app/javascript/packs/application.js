@@ -70,7 +70,7 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   // If in the Users#show page...
-  let canvas = document.getElementById('fishtank');
+  let canvas = document.getElementById('fish-tank');
   let locationInput = document.getElementById('location_name');
   if (canvas) {
     autoCompleteLocation(locationInput);  // Autocomplete the Locations address

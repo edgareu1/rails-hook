@@ -149,7 +149,7 @@ function backgroundFish() {
   /* ---------------------- FISH "CLASS" END -------------- */
 
   /* ---------------------- MAIN START -------------------- */
-  var canvas = document.getElementById('fishtank');
+  var canvas = document.getElementById('fish-tank');
   var context = canvas.getContext('2d');
   var fishes = [];
   var speedBoostCountdown = 200,

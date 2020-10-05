@@ -40,24 +40,14 @@ p {
   }
 }
 
-// App responsiveness to different device sizes and centering of the content
-.body-container {
-  overflow-y: scroll;
-  height:calc(100% - 58px);
-  width: 100%;
-}
-
 .page-container {
   padding: 20px;
 }
 
-.background-container { // Home page Canvas container
-  display: flex;
-  width: 100%;
-}
-
-.fish-tank {            // Home page Canvas
-  overflow-y: scroll;
+#fish-tank {
+  position: fixed;
+  z-index: -1;
+  opacity: 0.9;
 }
 
 .modal-dialog-centered {
@@ -66,6 +56,7 @@ p {
 }
 
 .page-container, .modal-dialog-centered, #bottom-list {
-  width: 375px;
+  min-width: 375px;
+  max-width: 375px;
   margin: 0 auto;
 }
