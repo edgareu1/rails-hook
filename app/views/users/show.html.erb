@@ -1,15 +1,12 @@
-<div class="banner text-center" style="margin-bottom: 40px">
+<!-- User Profile Banner -->
+<div class="banner text-center">
   <%= large_avatar(current_user) %>
 
-  <h4 style=" color: rgba(255, 255, 255, 0.9); margin: 15px 0 30px" >
-    Welcome <%= current_user.username.capitalize %> !
-  </h4>
+  <h4>Welcome <%= current_user.username.capitalize %> !</h4>
 
   <%= link_to "Create", id: "modal-button", data: { toggle: "modal", target: "#ModalNewLog" },
       class: "btn btn-user-box" do %>
-    <h6 style="padding-left: 10px">CREATE LOG</h6>
-
-    <%= image_tag "rod.png", style:"width: 35px" %>
+    <h6>CREATE LOG</h6>
   <% end %>
 </div>
 
