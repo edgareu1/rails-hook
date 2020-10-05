@@ -1,7 +1,7 @@
 <!-- Iterate over the Logs list and display them as Cards -->
 <% logs.each do |log| %>
   <%= link_to log_path(log) do %>
-    <div class="log-card">
+    <div class="item-card">
       <div class="card-headers">
         <!-- Cards Headers -->
         <div>
@@ -51,7 +51,7 @@
       </div>
 
       <!-- Card footer displaying the Log's Time -->
-      <p class="log-card-footer-time">
+      <p class="item-card-footer-time">
         <%= log.start_time.strftime('%b %d')  %> | <%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %> h
       </p>
     </div>
