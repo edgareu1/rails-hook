@@ -1,9 +1,11 @@
+<!-- If the Fish list is empty, then... -->
 <% if @fish.empty? %>
   <div class="log-card">
     <h3>No fish found</h3>
     <h5>Have you typed the correct name ?</h5>
   </div>
 
+<!-- Otherwise, display each fish as a card -->
 <% else %>
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id } do %>
