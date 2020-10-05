@@ -10,25 +10,25 @@
   <% end %>
 </div>
 
-<!-- User Top Locations -->
-<ul class="location-box">
-  <div style="display: flex; justify-content: space-between; align-items: center">
-    <%= image_tag "chair.png", style:"width: 30px; padding-bottom: 5px" %>
+<!-- User top Locations -->
+<ul class="locations-container">
+  <div class="d-flex">
+    <%= image_tag "chair.png" %>
 
-    <h3 style="font-size: 22px">My Locations</h3>
+    <h3>My Locations</h3>
 
-    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" },
-        style: "color: #BDEBFF; opacity: 0.7; padding-bottom: 5px" do %>
-      <i class="fas fa-plus" style="font-size: 30px"></i>
+    <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" } do %>
+      <i class="fas fa-plus"></i>
     <% end %>
   </div>
 
+  <!-- List of the User top 3 Locations -->
   <div id="locations-list">
     <% if @user_locations.empty? %>
-      <p style="padding: 10px; margin: 0">No locations saved yet</p>
+      <p class="empty-field">No locations saved yet</p>
 
     <% else %>
-        <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
+      <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
     <% end %>
   </div>
 </ul>
