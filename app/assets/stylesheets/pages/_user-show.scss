@@ -84,6 +84,22 @@
   }
 }
 
+.stats-container {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: $opacity-blue;
+  padding: 10px;
+  margin-bottom: 40px;
+
+  div {
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
 hr {
   border-top: 2px solid $dark-blue;
   margin-right: 3rem;
@@ -101,22 +117,6 @@ hr {
 
 .ap-dataset-places {
   color: black;
-}
-
-.user-stats {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: $opacity-blue;
-  padding: 10px;
-  margin-bottom: 50px;
-
-  p {
-    margin: 0;
-  }
-
-  div {
-     text-align:center;
-  }
 }
 
 .top-fish {
