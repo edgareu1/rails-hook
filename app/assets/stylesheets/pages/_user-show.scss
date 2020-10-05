@@ -68,6 +68,22 @@
   }
 }
 
+.feed-container {
+  height: 150px;
+  box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+  margin-bottom: 40px;
+
+  h5 {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  p {
+    text-align: justify;
+    padding: 0 10px;
+  }
+}
+
 hr {
   border-top: 2px solid $dark-blue;
   margin-right: 3rem;
@@ -85,22 +101,6 @@ hr {
 
 .ap-dataset-places {
   color: black;
-}
-
-.feed {
-  height: 150px;
-  box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
-  margin-bottom: 50px;
-
-  h5 {
-    text-align: center;
-    padding-top: 10px;
-  }
-
-  p {
-    text-align: justify;
-    padding: 0 10px;
-  }
 }
 
 .user-stats {
