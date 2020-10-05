@@ -1,4 +1,4 @@
-.item-card {
+.card {
   background-color: $opacity-blue;
   padding: 10px;
   margin-top: 20px;
@@ -41,6 +41,7 @@
 
     strong {
       color: #9BDDF9;
+      font-size: 18px;
     }
 
     .card-content-stats {
@@ -50,7 +51,7 @@
     }
   }
 
-  .item-card-footer-time {
+  .card-footer-time {
     text-align: right;
     color: rgba(155, 221, 249, 0.7);
     font-size: 17px;

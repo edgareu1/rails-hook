@@ -5,19 +5,19 @@
 
 <!-- If there are no predictions, then... -->
 <% if @prediction.empty? %>
-  <div class="item-card no-prediction">
+  <div class="card empty-data">
     <h3>No good locations</h3>
     <h5>Take this as an opportunity to find new spots</h5>
   </div>
 
 <!-- Otherwise, display each prediction as a card -->
 <% else %>
-  <div class="item-card" style="text-align: center; background-color: transparent; padding: 0 20px">
+  <div class="card" style="text-align: center; background-color: transparent; padding: 0 20px">
     <p>Prediction of weight of fish to be caught in a 5h session</p>
   </div>
 
   <% @prediction.each_with_index do |data, index| %>
-    <div class="item-card">
+    <div class="card">
       <div class="prediction-card">
         <div class="d-flex align-items-center">
           <h3><%= index + 1 %></h3>
