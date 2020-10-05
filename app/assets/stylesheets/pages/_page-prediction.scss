@@ -1,4 +1,21 @@
 // Specific CSS for the Pages#prediction Page
+.no-prediction {
+  text-align: center;
+  padding: 10px 20px;
+
+  h3 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 12px;
+  }
+
+  h5 {
+    color: #9BDDF9;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
 .prediction-card {
   display: flex;
   justify-content: space-around;
@@ -24,6 +41,12 @@
       margin-bottom: 2px;
     }
   }
+
+  .weather-icon {
+    height: 50px;
+    width: 70px;
+    margin-left: 10px;
+  }
 }
 
 .card-footer-stats {
@@ -32,4 +55,13 @@
   background-color: rgba(155, 221, 249, 0.3);
   font-size: 20px;
   padding: 5px 20px;
+
+  .tooltip {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+
+    i {
+      margin-right: 5px;
+    }
+  }
 }

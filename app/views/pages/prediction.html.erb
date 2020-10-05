@@ -3,26 +3,23 @@
   <h1>Best Spots</h1>
 </div>
 
+<!-- If there are no predictions, then... -->
 <% if @prediction.empty? %>
-  <div class="item-card" style="text-align: center; padding: 10px 20px">
-    <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 32px">
-      No good locations
-    </h3>
-
-    <h5 style="font-size: 18px; color: #9BDDF9; line-height: 28px">
-      Take this as an opportunity to find new spots
-    </h5>
+  <div class="item-card no-prediction">
+    <h3>No good locations</h3>
+    <h5>Take this as an opportunity to find new spots</h5>
   </div>
 
+<!-- Otherwise, display each prediction as a card -->
 <% else %>
-  <div class="item-card" style="background-color: transparent; text-align: center; padding: 0 20px">
+  <div class="item-card" style="text-align: center; background-color: transparent; padding: 0 20px">
     <p>Prediction of weight of fish to be caught in a 5h session</p>
   </div>
 
   <% @prediction.each_with_index do |data, index| %>
     <div class="item-card">
       <div class="prediction-card">
-        <div style="display: flex; align-items: center">
+        <div class="d-flex align-items-center">
           <h3><%= index + 1 %></h3>
 
           <div class="prediction-card-bordered">
@@ -31,21 +28,21 @@
           </div>
         </div>
 
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:prediction][:weather_icon] %>@2x.png);
-              width: 70px; height: 50px; margin-left: 10px" class="weather-icon">
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:prediction][:weather_icon] %>@2x.png)"
+             class="weather-icon">
         </div>
       </div>
 
       <div class="card-footer-stats">
         <!-- Prediction of weight of fish to be caught in a 5h session -->
-        <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
+        <p class="tooltip">
           <%= rounded_weight(data[:prediction][:weight_caught] * 5) %>
           <span class="tooltiptext">Weight Prediction</span>
         </p>
 
         <!-- Mean absolute percentage error of the predictive model -->
-        <p style="color: rgba(255, 255, 255, 0.9); margin: 0" class="tooltip">
-          <i class="fas fa-exclamation-circle" style="margin-right: 5px"></i>
+        <p class="tooltip">
+          <i class="fas fa-exclamation-circle"></i>
           <%= "#{data[:prediction][:percentage_error]}%" %>
           <span class="tooltiptext">Mean Error</span>
         </p>
