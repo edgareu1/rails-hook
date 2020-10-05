@@ -1,58 +1,17 @@
 // Specific CSS for the Logs#show Page
-// Style Log Forms
-.container-log-form {
+.log-stats-headers {
   display: flex;
-  flex-direction: column;
-  color: #BDEBFF;
-  opacity: 0.9;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
 
-  p {
-    color: #BDEBFF;
+  .weather-icon {
+    height: 50px;
+    width: 35%;
   }
 }
 
-input[type=datetime-local] {
-  width: 220px;
-}
-
-// Style Catch Form
-.container-catch-form {
-  display: flex;
-  flex-direction: column;
-  color: #BDEBFF;
-  opacity: 0.9;
-}
-
-// Other Elements
-#catches-list, .gray-background {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: $opacity-blue;
-  list-style: none;
-  padding: 10px;
-  border-radius: 4px;
-  margin: 20px 0;
-
-  p {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  strong {
-    color: #9BDDF9;
-  }
-}
-
-#catches-list {
-  padding: 10px;
-  margin-top: 25px;
-
-  li, p {
-    text-align: center;
-    padding: 10px 0;
-    border-top: 2px solid white;
-  }
-}
-
-.date-show-page {
+.log-date {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,19 +33,7 @@ input[type=datetime-local] {
   }
 }
 
-.show-page-weather-headers {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
-
-  .weather-icon {
-    height: 50px;
-    width: 35%;
-  }
-}
-
-.show-page-card-content {
+.log-stats-content {
   width: 100%;
   padding: 10px;
   border-top: 2px solid white;
@@ -116,11 +63,31 @@ input[type=datetime-local] {
     margin: 0;
 
     span {
+      color: rgba(255, 255, 255, 0.9);
       font-size: 15px;
     }
   }
 }
 
-#log-information {
+#catches-list {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: $opacity-blue;
+  list-style: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 25px 0 20px;
 
+  li, p {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid white;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  strong {
+    color: #9BDDF9;
+  }
 }

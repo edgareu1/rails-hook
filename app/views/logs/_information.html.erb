@@ -5,7 +5,7 @@
 </div>
 
 <!-- Date -->
-<div class="date-show-page">
+<div class="log-date">
   <% if log.start_time.strftime('%Y-%m-%d') == log.end_time.strftime('%Y-%m-%d') %>
     <i class="far fa-calendar-alt" style="font-size: 26px"></i>
 
@@ -32,9 +32,9 @@
 </div>
 
 <!-- Card Weather Info -->
-<div class="gray-background">
+<div class="card">
   <!-- Card's Headers  -->
-  <div class="show-page-weather-headers">
+  <div class="log-stats-headers">
     <!-- Image of the Weather of the Log's Location -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
          class="weather-icon">
@@ -44,7 +44,7 @@
   </div>
 
   <!-- Card's Content -->
-  <div class="show-page-card-content">
+  <div class="log-stats-content">
     <table>
       <tr>
         <td>Air pressure</td>

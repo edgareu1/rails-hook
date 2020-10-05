@@ -56,3 +56,27 @@
     color: #9BDDF9;
   }
 }
+
+// Style Log Forms
+.container-log-form {
+  display: flex;
+  flex-direction: column;
+  color: #BDEBFF;
+  opacity: 0.9;
+
+  p {
+    color: #BDEBFF;
+  }
+}
+
+input[type=datetime-local] {
+  width: 220px;
+}
+
+// Style Catch Form
+.container-catch-form {
+  display: flex;
+  flex-direction: column;
+  color: #BDEBFF;
+  opacity: 0.9;
+}
