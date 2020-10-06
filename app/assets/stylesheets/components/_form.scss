@@ -39,7 +39,19 @@
     color: rgba(255, 255, 255, 0.9);
     font-size: 25px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+
+  p, a {
+    color: #BDEBFF;
+    font-size: 16px;
+    padding-left: 5px;
+    margin-bottom: 8px;
+  }
+
+  a:hover {
+    color: #BDEBFF;
+    text-decoration: underline !important;
   }
 
   .placeholder {
@@ -53,15 +65,6 @@
 
   .text-muted {
     color: #9BDDF9 !important;
-  }
-
-  a {
-    font-size: 16px;
-    padding-left: 5px;
-
-    &:hover {
-      color: #BDEBFF;
-    }
   }
 }
 
