@@ -17,7 +17,10 @@
 
             <tr>
               <td style="width: 60px">
-                <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || '1' } %>
+                <div class="form-group integer required catch_quantity">
+                  <input class="form-control numeric integer required" value="1" name="catch[quantity]"
+                         id="catch_quantity">
+                </div>
               </td>
 
               <td style="width: 280px">

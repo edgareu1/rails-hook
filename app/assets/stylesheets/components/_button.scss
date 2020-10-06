@@ -10,7 +10,6 @@
 
   &:hover {
     color: white;
-    background: rgba(91, 234, 201, 0.75);
   }
 }
 
@@ -59,7 +58,7 @@
 }
 
 // Button for the Logs index page Logs#create action
-.log-new-button {
+.btn-log-new {
   display: flex;
   align-items: baseline;
   margin: 10px 5px -10px;

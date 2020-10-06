@@ -1,45 +1,45 @@
-<table style="width: 100%">
-  <!-- If there are no Catches, then... -->
-  <% if catches.empty? %>
-    <tr>
-      <th style="display: flex; flex-direction: row; justify-content: space-between">
-        <h3 style="margin-left: 10px">Catches</h3>
+<!-- If there are no Catches, then... -->
+<% if catches.empty? %>
+  <table class="catches-list-empty">
+    <thead>
+      <tr>
+        <th>
+          <h3>Catches</h3>
 
-        <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
-            style: "color: white; opacity: 0.9" do %>
-          <i class="fas fa-plus" style="font-size: 30px"></i>
-        <% end %>
-      </th>
-    </tr>
+          <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" } do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
+        </th>
+      </tr>
+    </thead>
 
-    <tr>
-      <td><p style="margin: 0"> Nothing caught </p></td>
-    </tr>
+    <tbody>
+      <tr>
+        <td><p> Nothing caught</p></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <!-- If there are some Catches, then... -->
-  <% else %>
+<!-- If there are some Catches, then... -->
+<% else %>
+  <table class="catches-list-populated">
     <!-- Catches Table Headers -->
-    <tr style="width: 100%">
-      <th style="width: 55%">
-        <h3 style="margin-left: 10px">Catches</h3>
-      </th>
+    <thead>
+      <tr>
+        <th><h3>Catches</h3></th>
+        <th><h6>Qnt</h6></th>
+        <th><h6>Kg</h6></th>
 
-      <th style="width: 15%; text-align: center">
-        <h6 style="font-size: 16px">Qnt</h6>
-      </th>
+        <th>
+          <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" } do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
+        </th>
+      </tr>
+    </thead>
 
-      <th style="width: 15%; text-align: center">
-        <h6 style="font-size: 16px">Kg</h6>
-      </th>
-
-      <th style="width: 15%; text-align: center">
-        <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewCatch" },
-            style: "color: white; opacity: 0.9" do %>
-          <i class="fas fa-plus" style="font-size: 26px"></i>
-        <% end %>
-      </th>
-    </tr>
-
-    <%= render partial: "catches/catch", collection: catches %>
-  <% end %>
-</table>
+    <tbody>
+      <%= render partial: "catches/catch", collection: catches %>
+    </tbody>
+  </table>
+<% end %>
