@@ -42,7 +42,7 @@
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <%= link_to "Profile", root_path, class: "dropdown-item" %>
-        <%= link_to "About us", "#", class: "dropdown-item" %>
+        <%= link_to "Edit", edit_user_registration_path, class: "dropdown-item" %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
     </li>
