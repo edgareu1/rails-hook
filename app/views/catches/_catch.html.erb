@@ -1,7 +1,6 @@
 <tr id="catch_<%= catch.id %>">
   <td>
-    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" },
-        class: "btn btn-flat" do %>
+    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" } do %>
       <%= catch.fish.common_name %>
     <% end %>
 

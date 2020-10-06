@@ -108,14 +108,13 @@
 
     tbody > tr {
       text-align: center;
-      height: 60px;
+      height: 50px;
       border-top: 1px solid white;
 
       p {
         text-align: center;
         color: rgba(255, 255, 255, 0.9);
         font-size: 20px;
-        padding: 10px 0;
         margin: 0;
       }
     }
@@ -152,15 +151,19 @@
 
     tbody > tr {
       text-align: center;
-      height: 60px;
+      height: 50px;
       border-top: 1px solid white;
 
       td:first-child {
         text-align: left;
 
         a {
-          font-size: 15.5px;
-          margin-left: 5px;
+          font-size: 16.5px;
+          margin-left: 15px;
+
+          &:hover {
+            color: rgba(91, 234, 201, 0.75);
+          }
         }
       }
 
