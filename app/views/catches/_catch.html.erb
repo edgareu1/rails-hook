@@ -1,7 +1,7 @@
-<tr id="catch_<%= catch.id %>" style="height: 60px; border-top: 2px solid white; text-align: center">
-  <td style="text-align: left">
+<tr id="catch_<%= catch.id %>">
+  <td>
     <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" },
-        class: "btn btn-flat", style: "margin-left: 5px; font-size: 15.5px" do %>
+        class: "btn btn-flat" do %>
       <%= catch.fish.common_name %>
     <% end %>
 
@@ -11,17 +11,12 @@
     </div>
   </td>
 
-  <td style="font-size: 16px">
-    <%= catch.quantity %>
-  </td>
-
-  <td style="font-size: 16px">
-    <%= catch.weight.fdiv(1000).round(1).tap { |n| break n.to_i == n ? n.to_i : n } %>
-  </td>
+  <td><%= catch.quantity %></td>
+  <td><%= catch.weight.fdiv(1000).round(1).tap { |n| break n.to_i == n ? n.to_i : n } %></td>
 
   <td>
     <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
-      <i class="far fa-trash-alt" style="font-size: 18px; color: white; opacity: 0.9; margin-right: 5px"></i>
+      <i class="far fa-trash-alt"></i>
     <% end %>
 
     <!-- Modal Delete Catch -->
