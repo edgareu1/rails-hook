@@ -19,6 +19,7 @@ class LogsController < ApplicationController
   end
 
   def show
+    redirect_to logs_path if @log.nil? || @log.user != current_user
   end
 
   def update
@@ -67,7 +68,7 @@ class LogsController < ApplicationController
   end
 
   def set_log
-    @log = Log.find(params[:id])
+    @log = Log.find_by(id: params[:id])
   end
 
   # Method that gets the next Log tag_id for a certain location
