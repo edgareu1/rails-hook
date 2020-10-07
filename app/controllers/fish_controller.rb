@@ -9,6 +9,8 @@ class FishController < ApplicationController
   end
 
   def show
-    @fish = Fish.find(params[:id])
+    @fish = Fish.find_by(id: params[:id])
+
+    redirect_to fish_index_path if @fish.nil?
   end
 end
