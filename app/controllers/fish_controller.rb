@@ -11,6 +11,9 @@ class FishController < ApplicationController
   def show
     @fish = Fish.find_by(id: params[:id])
 
-    redirect_to fish_index_path if @fish.nil?
+    if @fish.nil?
+      flash[:alert] = "That Fish was not found"
+      redirect_to fish_index_path
+    end
   end
 end
