@@ -12,39 +12,41 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Starting Time -->
-          <label for="log_start_time">Starting time</label>
-          <input type="datetime-local" id="log_<%= log_action %>_start_time" name="log[start_time]"
-                 value="<%= (log.start_time.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
-
-          <br>
+          <div class="d-flex">
+            <label for="log_start_time">Starting time</label>
+            <input type="datetime-local" id="log_<%= log_action %>_start_time" name="log[start_time]"
+                   value="<%= (log.start_time.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
+          </div>
 
           <!-- Ending Time -->
-          <label for="log_end_time">Ending time</label>
-          <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
-                 value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
+          <div class="d-flex">
+            <label for="log_end_time">Ending time</label>
+            <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
+                  value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
+          </div>
 
           <div class="invalid-feedback time-input"></div>
 
           <!-- Location -->
           <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
-              wrapper_html: { style: "margin: 20px 0 0" }, prompt: "Please select", label_method: :site %>
+              prompt: "Please select", label_method: :site %>
 
           <% unless log.id.nil? %>
             <!-- Air Pressure -->
-            <div style="display: flex; margin-top: 20px">
+            <div class="d-flex">
               <label for="log_air_pressure">Air pressure</label>
               <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
             </div>
 
             <!-- Wind Speed -->
-            <div style="display: flex">
+            <div class="d-flex">
               <label for="log_wind_speed">Wind speed</label>
               <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
             </div>
           <% end %>
 
           <!-- Observations -->
-          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 20px 0" },
+          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 0 0 30px" },
               placeholder: "Leave an observation" %>
 
           <p>Rate your session</p>

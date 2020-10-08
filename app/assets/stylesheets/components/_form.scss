@@ -75,8 +75,27 @@
   color: #BDEBFF;
   opacity: 0.9;
 
-  input[type=datetime-local] {
-    width: 220px;
+  .d-flex, .log_location {
+    justify-content: space-between;
+    padding-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .log_location {
+    display: flex;
+    margin: 10px 0 35px;
+  }
+
+  label[for="log_start_time"], label[for="log_end_time"], label[for="log_location_id"] {
+    padding-top: 6px;
+  }
+
+  input[type=datetime-local], #log_location_id, #log_air_pressure, #log_wind_speed {
+    width: 200px;
+  }
+
+  .log_air_pressure {
+    margin-bottom: 0;
   }
 
   label[for="log_air_pressure"], label[for="log_wind_speed"] {
