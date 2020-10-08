@@ -19,7 +19,10 @@ class LogsController < ApplicationController
   end
 
   def show
-    redirect_to logs_path if @log.nil? || @log.user != current_user
+    if @log.nil? || @log.user != current_user
+      flash[:alert] = "That Log was not found"
+      redirect_to logs_path
+    end
   end
 
   def update
