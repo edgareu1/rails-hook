@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title"> <%= catch.fish.common_name %> </h4>
+      <h4 class="modal-title"><%= catch.fish.common_name %></h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
 
@@ -11,16 +11,17 @@
           <%= image_tag catch.fish.picture_url %>
         </div>
 
-        <div class="fish-card-info" style="background: none">
-          <p style="font-size: 20px; border: none; margin: 0 0 0 10px">
+        <div class="fish-card-info" style="padding: 10px; background: none">
+          <p style="font-size: 20px; border: none; margin: 0">
             Minimum size: <%= catch.fish.display_legal_dimensions %>
           </p>
 
-          <p style="color: #9BDDF9; padding: 0">
+          <p style="color: #c5eeff; padding: 5px 0 0 2px; font-style: normal">
             <%= catch.fish.description %>
           </p>
 
-          <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info" %>
+          <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info",
+              style: "margin: -5px" %>
         </div>
       </div>
     </div>

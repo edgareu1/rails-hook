@@ -157,7 +157,7 @@
       td:first-child {
         text-align: left;
 
-        a {
+        a[data-toggle="modal"] {
           font-size: 16.5px;
           margin-left: 15px;
 
