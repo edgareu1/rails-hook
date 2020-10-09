@@ -22,3 +22,5 @@ function displayTimeErrors(errorMessageText, action) {
     timeErrorsContainer.innerHTML = errorMessageText;
   }
 }
+
+export { displayTimeErrors };
