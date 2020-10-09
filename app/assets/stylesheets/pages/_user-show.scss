@@ -16,6 +16,7 @@
   .d-flex {
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 5px;
 
     img {
       width: 30px;
@@ -39,9 +40,9 @@
 
   // Locations list
   #locations-list {
-    .empty-list {
-      padding: 10px;
-      margin: 0;
+    .no-data {
+      font-size: 20px;
+      border-top: 1px solid white;
     }
 
     li {
