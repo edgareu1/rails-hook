@@ -54,11 +54,11 @@ puts "Created #{User.count} Users"
 
 
 # Create Locations
-loc1 = Location.create(name: "Cascais, Área Metropolitana de Lisboa, Portugal", latitude: 38.72240025, longitude: -9.396909171649877, site: "Channel Spot", user: thomas)
-loc2 = Location.create(name: "Sesimbra, Área Metropolitana de Lisboa, Portugal", latitude: 38.4436932, longitude: -9.0996273, site: "Sargo Rock", user: thomas)
-loc3 = Location.create(name: "Caparica, Setúbal, Portugal", latitude: 38.653741049999994,  longitude: -9.208969409268294, site: "Caparica Spot", user: thomas)
-loc4 = Location.create(name: "Porto, Norte, Portugal", latitude: 41.1494512, longitude: -8.6107884, site: "SeaBass Park", user: thomas)
-loc5 = Location.create(name: "Faro, Algarve, Portugal", latitude:  37.0162727, longitude: -7.9351771, site: "Magic Land", user: thomas)
+loc1 = Location.create(name: "Cascais, Área Metropolitana de Lisboa, Portugal", latitude: 38.72240025, longitude: -9.396909171649877, spot: "Channel Spot", user: thomas)
+loc2 = Location.create(name: "Sesimbra, Área Metropolitana de Lisboa, Portugal", latitude: 38.4436932, longitude: -9.0996273, spot: "Sargo Rock", user: thomas)
+loc3 = Location.create(name: "Caparica, Setúbal, Portugal", latitude: 38.653741049999994,  longitude: -9.208969409268294, spot: "Caparica Spot", user: thomas)
+loc4 = Location.create(name: "Porto, Norte, Portugal", latitude: 41.1494512, longitude: -8.6107884, spot: "SeaBass Park", user: thomas)
+loc5 = Location.create(name: "Faro, Algarve, Portugal", latitude:  37.0162727, longitude: -7.9351771, spot: "Magic Land", user: thomas)
 
 puts "Created #{Location.count} Locations"
 

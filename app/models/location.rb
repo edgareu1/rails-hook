@@ -6,8 +6,8 @@ class Location < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_name?
 
   validates :name, presence: true
-  validates :site, presence: true, length: { maximum: 20, message: "Maximum of 20 characters"}
-  validates_uniqueness_of :site, case_sensitive: false, scope: :user_id
+  validates :spot, presence: true, length: { maximum: 20, message: "Maximum of 20 characters"}
+  validates_uniqueness_of :spot, case_sensitive: false, scope: :user_id
 
   # Makes sure the name displayed isn't to long
   def name_to_display
@@ -22,7 +22,7 @@ class Location < ApplicationRecord
   # Gets the relevant information to be displayed on the Home page
   def data_to_display(log_size = nil)
     { name: name_to_display,
-      site: site,
+      spot: spot,
       weather_icon: fetch_weather_data["weather"][0]["icon"],
       num_logs: (log_size.nil? ? logs.size : log_size)
     }

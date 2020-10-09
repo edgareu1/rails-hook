@@ -12,8 +12,8 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Location -->
-          <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
-              prompt: "Please select", label_method: :site %>
+          <%= f.association :location, collection: current_user.locations.sort_by(&:spot),
+              prompt: "Please select", label_method: :spot %>
 
           <!-- Starting Time -->
           <div class="d-flex">
