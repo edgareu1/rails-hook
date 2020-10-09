@@ -12,7 +12,7 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Location -->
-          <div class="form-group select required log_location">
+          <div class="form-group select required log_location d-flex" style="margin-bottom: 4px">
             <label class="select required" for="log_location_id">
               Location
               <abbr title="required">*</abbr>
@@ -41,7 +41,7 @@
           </div>
 
           <!-- Ending Time -->
-          <div class="d-flex">
+          <div class="d-flex" style="margin-bottom: 4px">
             <label for="log_end_time">Ending time</label>
             <input type="datetime-local" id="log_<%= log_action %>_end_time" name="log[end_time]"
                   value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
@@ -54,14 +54,14 @@
             <div class="d-flex">
               <label for="log_air_pressure">Air pressure</label>
               <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
-              <p style="width: 110px; margin: 8px 5px 0; font-size: 18px">Pa</p>
+              <p>Pa</p>
             </div>
 
             <!-- Wind Speed -->
             <div class="d-flex" style="margin-bottom: 10px">
               <label for="log_wind_speed">Wind speed</label>
               <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
-              <p style="width: 110px; margin: 8px 5px 0; font-size: 18px">m/s</p>
+              <p>m/s</p>
             </div>
           <% end %>
 
