@@ -1,6 +1,6 @@
 AlgoliaSearch.configuration = { 
-    application_id: ENV['APPLICATION_ID'],
-    api_key: ENV['API_KEY'],
+    application_id: ENV['ALGOLIA_ID'],
+    api_key: ENV['ALGOLIA_KEY'],
     connect_timeout: 2,
     receive_timeout: 30,
     send_timeout: 30,
