@@ -11,7 +11,7 @@ class Location < ApplicationRecord
 
   # Makes sure the name displayed isn't to long
   def name_to_display
-    name.match(/^[^,]*/)[0].truncate(18)
+    name.match(/^[^,]*/)[0].truncate(20)
   end
 
   # Gets the current Weather Data of the Location
