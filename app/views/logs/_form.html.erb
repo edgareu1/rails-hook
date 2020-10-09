@@ -11,6 +11,10 @@
     <div class="modal-body">
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
+          <!-- Location -->
+          <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
+              prompt: "Please select", label_method: :site %>
+
           <!-- Starting Time -->
           <div class="d-flex">
             <label for="log_start_time">Starting time</label>
@@ -27,26 +31,24 @@
 
           <div class="invalid-feedback time-input"></div>
 
-          <!-- Location -->
-          <%= f.association :location, collection: Location.where(user_id: current_user.id).sort_by(&:site),
-              prompt: "Please select", label_method: :site %>
-
           <% unless log.id.nil? %>
             <!-- Air Pressure -->
-            <div class="d-flex">
+            <div class="d-flex" style="justify-content: end">
               <label for="log_air_pressure">Air pressure</label>
               <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
+              <p style="margin: 7px 10px 5px; font-size: 18px">Pa</p>
             </div>
 
             <!-- Wind Speed -->
-            <div class="d-flex">
+            <div class="d-flex" style="justify-content: end; margin-bottom: 10px">
               <label for="log_wind_speed">Wind speed</label>
               <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
+              <p style="margin: 7px 10px 5px; font-size: 18px">m/s</p>
             </div>
           <% end %>
 
           <!-- Observations -->
-          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 0 0 30px" },
+          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 0 10px 30px 0" },
               placeholder: "Leave an observation" %>
 
           <p>Rate your session</p>

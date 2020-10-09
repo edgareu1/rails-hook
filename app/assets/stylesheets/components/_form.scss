@@ -75,23 +75,31 @@
   color: #BDEBFF;
   opacity: 0.9;
 
-  .d-flex, .log_location {
+  .form-control.is-invalid {
+    padding: 0 0 0 5px;
+  }
+
+  .d-flex {
     justify-content: space-between;
     padding-right: 10px;
     margin-bottom: 20px;
   }
 
   .log_location {
-    display: flex;
-    margin: 10px 0 35px;
+    margin: 0 10px 25px 0;
   }
 
   label[for="log_start_time"], label[for="log_end_time"], label[for="log_location_id"] {
     padding-top: 6px;
   }
 
-  input[type=datetime-local], #log_location_id, #log_air_pressure, #log_wind_speed {
+  input[type=datetime-local] {
     width: 200px;
+    padding-left: 5px;
+  }
+
+  #log_air_pressure, #log_wind_speed {
+    width: 80px;
   }
 
   .log_air_pressure {
