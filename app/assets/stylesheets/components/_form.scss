@@ -75,23 +75,42 @@
   color: #BDEBFF;
   opacity: 0.9;
 
-  .d-flex, .log_location {
+  .form-control.is-invalid {
+    padding: 0 0 0 5px;
+  }
+
+  .d-flex {
     justify-content: space-between;
     padding-right: 10px;
     margin-bottom: 20px;
+
+    label {
+      width: 100px;
+      padding-top: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      width: 110px;
+      margin: 7px 5px 0;
+    }
   }
 
-  .log_location {
-    display: flex;
-    margin: 10px 0 35px;
+  .invalid-feedback {
+    margin: 0 0 14px 0;
   }
 
-  label[for="log_start_time"], label[for="log_end_time"], label[for="log_location_id"] {
-    padding-top: 6px;
-  }
-
-  input[type=datetime-local], #log_location_id, #log_air_pressure, #log_wind_speed {
+  input[type=datetime-local], #log_location_id {
     width: 200px;
+    padding: 0 2px 0 5px !important;
+  }
+
+  #log_air_pressure, #log_wind_speed {
+    width: 80px;
+    background-color: #fff;
+    padding: 6px 5px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
   }
 
   .log_air_pressure {
@@ -99,8 +118,7 @@
   }
 
   label[for="log_air_pressure"], label[for="log_wind_speed"] {
-    width: 100px;
-    margin: 6px 10px 0 0;
+    margin-right: 10px;
   }
 
   p {

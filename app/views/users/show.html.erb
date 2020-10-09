@@ -25,7 +25,7 @@
   <!-- List of the User top 3 Locations -->
   <div id="locations-list">
     <% if @user_locations.empty? %>
-      <p class="empty-field">No locations saved yet</p>
+      <p class="no-data">No locations saved yet</p>
 
     <% else %>
       <%= render partial: "locations/location", collection: current_user.top_locations(3) %>

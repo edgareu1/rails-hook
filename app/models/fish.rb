@@ -1,10 +1,5 @@
 class Fish < ApplicationRecord
-  include AlgoliaSearch
   include ApplicationHelper
-
-  algoliasearch do
-    attribute :common_name, :id
-  end
 
   # Returns a string with the legal dimensions (weight and size) in the right format
   def display_legal_dimensions

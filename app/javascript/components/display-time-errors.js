@@ -1,4 +1,4 @@
-// Function that displays the error messages related with the start/end_time input of the Log form
+// Function that displays the error message related with the start/end_time input of the Log form
 // Parameters: errorMessageText   Error message to display in the Form;
 //             action             Takes the value 'new' or 'edit' depending on the Form action;
 function displayTimeErrors(errorMessageText, action) {

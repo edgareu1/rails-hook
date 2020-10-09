@@ -30,6 +30,7 @@ import { autoCompleteLocation } from '../components/auto-complete-location';
 import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
 import { createFlash } from '../components/create-flash';
+import { displayLocationErrors } from '../components/display-location-errors';
 import { displayTimeErrors } from '../components/display-time-errors';
 import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
@@ -45,6 +46,10 @@ window.autoCompleteLocation = function(locationInput) {
 
 window.createFlash = function(flashText) {
   createFlash(flashText);
+}
+
+window.displayLocationErrors = function(errorMessageText) {
+  displayLocationErrors(errorMessageText);
 }
 
 window.displayTimeErrors = function(errorMessageText, action) {

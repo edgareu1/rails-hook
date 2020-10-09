@@ -16,6 +16,7 @@
   .d-flex {
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 5px;
 
     img {
       width: 30px;
@@ -39,9 +40,9 @@
 
   // Locations list
   #locations-list {
-    .empty-list {
-      padding: 10px;
-      margin: 0;
+    .no-data {
+      font-size: 20px;
+      border-top: 1px solid white;
     }
 
     li {
@@ -52,20 +53,20 @@
       border-top: 1px solid white;
 
       .location-info {
-        width: 180px;
+        width: 200px;
 
         h6 {
           text-align: left;
-          margin: 10px 10px 0 0;
+          margin: 10px 0 0;
 
           strong {
-            font-size: 20px;
+            font-size: 18px;
           }
         }
 
-        .location-site {
-          font-size: 18px;
-          margin: 0 0 5px 18px;
+        .locations-spot {
+          font-size: 16px;
+          margin-left: 5px;
         }
       }
 
