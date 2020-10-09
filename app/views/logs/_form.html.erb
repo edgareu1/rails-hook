@@ -12,8 +12,26 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Location -->
-          <%= f.association :location, collection: current_user.locations.sort_by(&:spot),
-              prompt: "Please select", label_method: :spot %>
+          <div class="form-group select required log_location">
+            <label class="select required" for="log_location_id">
+              Location
+              <abbr title="required">*</abbr>
+            </label>
+
+            <select class="form-control select required" name="log[location_id]" id="log_location_id">
+              <% if log.location.nil? %>
+                <option>Please Select</option>
+              <% end %>
+
+              <% current_user.locations.sort_by(&:spot).each do |location| %>
+                <option <%= "selected=selected" if location.id == log.location_id %> value="<%= location.id %>">
+                  <%= location.spot %>
+                </option>
+              <% end %>
+            </select>
+          </div>
+
+          <div class="invalid-feedback location-input"></div>
 
           <!-- Starting Time -->
           <div class="d-flex">
@@ -33,17 +51,17 @@
 
           <% unless log.id.nil? %>
             <!-- Air Pressure -->
-            <div class="d-flex" style="justify-content: end">
+            <div class="d-flex">
               <label for="log_air_pressure">Air pressure</label>
               <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
-              <p style="margin: 7px 10px 5px; font-size: 18px">Pa</p>
+              <p style="width: 110px; margin: 8px 5px 0; font-size: 18px">Pa</p>
             </div>
 
             <!-- Wind Speed -->
-            <div class="d-flex" style="justify-content: end; margin-bottom: 10px">
+            <div class="d-flex" style="margin-bottom: 10px">
               <label for="log_wind_speed">Wind speed</label>
               <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
-              <p style="margin: 7px 10px 5px; font-size: 18px">m/s</p>
+              <p style="width: 110px; margin: 8px 5px 0; font-size: 18px">m/s</p>
             </div>
           <% end %>
 
