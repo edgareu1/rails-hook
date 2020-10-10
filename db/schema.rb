@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_134544) do
+ActiveRecord::Schema.define(version: 2020_10_10_155424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_10_09_134544) do
 
   create_table "fish", force: :cascade do |t|
     t.string "common_name"
-    t.string "scientific_name"
     t.integer "legal_size"
     t.integer "legal_weight"
     t.text "description"
