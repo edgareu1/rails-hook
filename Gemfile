@@ -83,3 +83,6 @@ gem 'gon'
 
 # To Ajaxify POST forms
 gem 'turbolinks_render'
+
+# Populate fake data
+gem 'faker'
