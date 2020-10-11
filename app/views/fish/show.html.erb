@@ -8,12 +8,12 @@
   <div class="fish-card-info" style="padding-bottom: 15px">
     <h2><%= @fish.common_name.upcase %></h2>
 
-    <p style="padding-left: 20px">
+    <p style="padding-left: 20px; margin-bottom: 12px">
       Minimum size:
       <%= @fish.display_legal_dimensions %>
     </p>
 
-    <p style="padding: 0 15px"><%= @fish.description %></p>
+    <p style="font-style: normal; padding: 0 15px"><%= @fish.description %></p>
 
     <%= link_to "Learn more", @fish.url, target: "_blank", class: "fish-more-info" %>
   </div>
