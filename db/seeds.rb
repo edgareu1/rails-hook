@@ -60,10 +60,7 @@ end
 
 # Method that creates a Log for a specific User and Location
 def create_log(user, location, date_step)
-  log_start_time = DateTime.now - date_step
-
-  log_weather = Weather_data.sample
-  log_weather[:icon] += log_start_time.hour.between?(8, 20) ? "d" : "n"
+  log_start_time = DateTime.now - date_step + rand(0.0..1.0)
 
   new_log = user.logs.create(location:    location,
                              start_time:  log_start_time,
@@ -73,9 +70,14 @@ def create_log(user, location, date_step)
                              tag_id:      location.logs.size + 1
                             )
 
-  new_log.update(air_pressure: rand(1000..1025),
-                 wind_speed: rand(10..100).fdiv(10),
-                 weather_icon: log_weather[:icon],
+  log_weather = Weather_data.sample
+
+  # Get the time period of the Log ('d' for day; 'n' for night)
+  log_time_period = log_start_time.hour.between?(8, 20) ? "d" : "n"
+
+  new_log.update(air_pressure:        rand(980..1030),
+                 wind_speed:          rand(10..100).fdiv(10),
+                 weather_icon:        log_weather[:icon] + log_time_period,
                  weather_description: log_weather[:description]
                 )
 
