@@ -37,8 +37,8 @@ puts "Created #{Fish.count} Fish"
 
 # Locations data
 Locations_data = [
-"Alcochete", "Almada", "Cascais", "Costa de Caparica", "Lisboa", "Loures",
-"Mafra", "Oeiras", "Seixal", "Sesimbra", "Sintra", "Vila Franca de Xira"
+  "Alcochete", "Almada", "Cascais", "Costa de Caparica", "Lisboa", "Loures",
+  "Mafra", "Oeiras", "Seixal", "Sesimbra", "Sintra", "Vila Franca de Xira"
 ]
 
 # Weather data
@@ -95,12 +95,15 @@ end
 
 # Method that creates a Catch for a specific Log
 def create_catch(log)
-  catch_fish = Fish.all.sample
-  catch_quantity = (6 - Math.sqrt(rand(1..25)).floor).abs
+  log_power = log_power(log)
 
-  log.catches.create(fish: catch_fish,
+  catch_fish =     Fish.all.sample
+  catch_quantity = [(Math.sqrt(rand(1..25)) * log_power).floor, 1].max
+  catch_weight =   (catch_quantity * catch_fish.good_weight * rand(0.25..0.75) * log_power).round
+
+  log.catches.create(fish:     catch_fish,
                      quantity: catch_quantity,
-                     weight: catch_quantity * (catch_fish.good_weight * rand(0.4..0.7)).round
+                     weight:   catch_weight
                     )
 end
 
@@ -118,16 +121,16 @@ end
 
   new_user.save
 
-  # Create random Locations
-  rand(5..8).times {
+  # Create 10 random Locations
+  10.times {
     new_location = create_location(new_user)
 
-    # Create random Logs
-    0.step(by: 4, to: 36).to_a.each do |date_step|
+    # Create 20 random Logs
+    0.step(by: 4, to: 76).to_a.each do |date_step|
       new_log = create_log(new_user, new_location, date_step)
 
       # Create random Catches
-      (4 - Math.sqrt(rand(1..20)).floor).abs.times {
+      (Math.sqrt(rand(0..25)) * log_power(new_log)).floor.times {
         create_catch(new_log)
       }
     end
