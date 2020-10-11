@@ -12,12 +12,12 @@
 
 <!-- Otherwise, display each prediction as a card -->
 <% else %>
-  <div class="card" style="text-align: center; background-color: transparent; padding: 0 20px">
-    <p>Prediction of weight of fish to be caught in a 5h session</p>
+  <div class="card" style="text-align: center; padding: 10px">
+    <p style="margin: 0">Prediction of weight of fish to be caught in a 5h session</p>
   </div>
 
   <% @prediction.each_with_index do |data, index| %>
-    <div class="card">
+    <div class="card" style="margin-bottom: 20px">
       <div class="prediction-location">
         <div class="d-flex align-items-center">
           <h3><%= index + 1 %></h3>
