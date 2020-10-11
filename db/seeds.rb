@@ -82,6 +82,17 @@ def create_log(user, location, date_step)
   return new_log
 end
 
+def log_power(log)
+  # Air pressure power: the closer to 1005 Pa, the better the Log
+  air_pressure_power = ((log.air_pressure - 1005).abs.fdiv(25) - 1).abs
+
+  # Wind speed power: the closer to 5 m/s, the better the Log
+  wind_speed_power = ((log.wind_speed - 5).abs.fdiv(5) - 1).abs
+
+  # Log total fishing power
+  return (log.moon_phase * 0.35) + (air_pressure_power * 0.5) + (wind_speed_power * 0.15)
+end
+
 # Method that creates a Catch for a specific Log
 def create_catch(log)
   catch_fish = Fish.all.sample
