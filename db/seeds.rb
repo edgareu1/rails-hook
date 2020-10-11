@@ -9,7 +9,7 @@ Fish.destroy_all
 
 puts "Cleaned the existing DB"
 
-# Create the Fish
+# Create the app Fish
 Fish.create(common_name: 'Yellow Fin Tuna',    good_weight: 25000,  legal_weight: 2700,  legal_size: 0,   picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/YELLOW_FIN_TUNA_wo1dl0.png",     url: 'https://en.wikipedia.org/wiki/Yellowfin_tuna',          description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.')
 Fish.create(common_name: 'Bluemouth',          good_weight: 600,    legal_weight: 0,     legal_size: 0,   picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/BLUEMOUTH_vjzvfi.png",           url: 'https://en.wikipedia.org/wiki/Blackbelly_rosefish',     description: 'It dwells on the seabed between 200-1,000 m, often around underwater wrecks. It is a solitary species and aggregate only at the time of reproduction, which occurs in summer. It feeds on fish, crustaceans and some cephalopods.')
 Fish.create(common_name: 'Horse Mackerel',     good_weight: 450,    legal_weight: 0,     legal_size: 15,  picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252655/Hook/HORSE_MACKEREL_zdrlug.png",      url: 'https://en.wikipedia.org/wiki/Atlantic_horse_mackerel', description: 'It inhabits the water column in the coastal areas, from the surface to the bottom, between 0 to 200 m of depth. Horse mackerels form large schools that migrate for long distances, feeding on small crustaceans, fish and molluscs. It spawns from December to April.')
@@ -35,10 +35,10 @@ Fish.create(common_name: 'Spotted Seabass',    good_weight: 1000,   legal_weight
 
 puts "Created #{Fish.count} Fish"
 
-# Locations data
+# Locations data (in Lisbon)
 Locations_data = [
-"Alcochete", "Almada", "Cascais", "Costa de Caparica", "Lisboa", "Loures",
-"Mafra", "Oeiras", "Seixal", "Sesimbra", "Sintra", "Vila Franca de Xira"
+  "Alcochete", "Almada", "Cascais", "Costa de Caparica", "Lisboa", "Loures",
+  "Mafra", "Oeiras", "Seixal", "Sesimbra", "Sintra", "Vila Franca de Xira"
 ]
 
 # Weather data
@@ -51,45 +51,67 @@ Weather_data = [
   { icon: "10", description: "rain" }
 ]
 
-# Method that creates a Location for a specific User
+# Method that creates a random Location for a specific User
 def create_location(user)
   location_name = Locations_data.sample + ", Área Metropolitana de Lisboa, Portugal"
 
-  user.locations.create(name: location_name, spot: Faker::Address.street_name[0..19].strip)
+  user.locations.create(name: location_name, spot: Faker::Address.street_name[0..15].strip)
 end
 
-# Method that creates a Log for a specific User and Location
+# Method that creates a random Log for a specific User and Location
 def create_log(user, location, date_step)
-  log_start_time = DateTime.now - date_step
+  # A day in the past; also a different hour
+  log_start_time = DateTime.now - date_step + rand(0.0..1.0)
 
-  log_weather = Weather_data.sample
-  log_weather[:icon] += log_start_time.hour.between?(8, 20) ? "d" : "n"
-
+  # Create Log (weather data is automatically fetched)
   new_log = user.logs.create(location:    location,
                              start_time:  log_start_time,
                              end_time:    log_start_time + rand(0.05..0.25),
                              rating:      Math.sqrt(rand(1..100)).floor,
                              observation: Faker::ChuckNorris.fact,
-                             tag_id:      location.logs.size + 1
+                             tag_id:      location.logs.reload.size + 1
                             )
 
-  new_log.update(air_pressure: rand(1000..1025),
-                 wind_speed: rand(10..100).fdiv(10),
-                 weather_icon: log_weather[:icon],
+  log_weather = Weather_data.sample
+
+  # Get the time period of the Log ('d' for day; 'n' for night)
+  log_time_period = log_start_time.hour.between?(8, 20) ? "d" : "n"
+
+  # Randomize the weather data
+  new_log.update(air_pressure:        rand(980..1030),
+                 wind_speed:          rand(10..100).fdiv(10),
+                 weather_icon:        log_weather[:icon] + log_time_period,
                  weather_description: log_weather[:description]
                 )
 
   return new_log
 end
 
+# Method that quantifies the Log success chance ('power')
+def log_power(log)
+  # Air pressure power: the closer to 1005 Pa, the better the Log
+  air_pressure_power = ((log.air_pressure - 1005).abs.fdiv(25) - 1).abs
+
+  # Wind speed power: the closer to 5 m/s, the better the Log
+  wind_speed_power = ((log.wind_speed - 5).abs.fdiv(5) - 1).abs
+
+  # Log total fishing power
+  return (log.moon_phase * 0.35) + (air_pressure_power * 0.5) + (wind_speed_power * 0.15)
+end
+
 # Method that creates a Catch for a specific Log
 def create_catch(log)
-  catch_fish = Fish.all.sample
-  catch_quantity = (6 - Math.sqrt(rand(1..25)).floor).abs
+  log_power = log_power(log)
 
-  log.catches.create(fish: catch_fish,
+  # Randomize the Catch based on the Logs 'power'
+  catch_fish =     Fish.where("good_weight <= ?", 1000).sample
+  catch_quantity = [(rand(2.5..3.5) * log_power).floor, 1].max
+  catch_weight =   (catch_quantity * 650 * log_power).round
+
+  # Create Catch
+  log.catches.create(fish:     catch_fish,
                      quantity: catch_quantity,
-                     weight: catch_quantity * (catch_fish.good_weight * rand(0.4..0.7)).round
+                     weight:   catch_weight
                     )
 end
 
@@ -105,18 +127,20 @@ end
   file_avatar = URI.open('https://source.unsplash.com/random/400x400')
   new_user.avatar.attach(io: file_avatar, filename: 'nes.png', content_type: 'image/png')
 
+  # Save the User
   new_user.save
 
-  # Create random Locations
-  rand(5..8).times {
+  # Create 10 random Locations
+  10.times {
     new_location = create_location(new_user)
 
-    # Create random Logs
-    0.step(by: 4, to: 36).to_a.each do |date_step|
+    # Create 20 random Logs (different dates)
+    0.step(by: 4, to: 76).to_a.each do |date_step|
+      # Create Log
       new_log = create_log(new_user, new_location, date_step)
 
-      # Create random Catches
-      (4 - Math.sqrt(rand(1..20)).floor).abs.times {
+      # Create random Catches (the greater the Logs 'power', the more the Catches)
+      (rand(2.5..3.5) * log_power(new_log)).floor.times {
         create_catch(new_log)
       }
     end

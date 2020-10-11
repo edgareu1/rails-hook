@@ -69,5 +69,5 @@
 <!-- Pagination to navigate the index of Logs -->
 <div style="margin-left: 20px">
   <%= will_paginate logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
-    previous_label: "&laquo;", next_label: "&raquo;" %>
+    previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
 </div>
