@@ -69,7 +69,7 @@ def create_log(user, location, date_step)
                              end_time:    log_start_time + rand(0.05..0.25),
                              rating:      Math.sqrt(rand(1..100)).floor,
                              observation: Faker::ChuckNorris.fact,
-                             tag_id:      location.logs.size + 1
+                             tag_id:      location.logs.reload.size + 1
                             )
 
   log_weather = Weather_data.sample
