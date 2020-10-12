@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :logs, except: [:new, :edit] do
     resources :catches, only: [:create, :destroy]
   end
+
+  # API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+    end
+  end
 end
