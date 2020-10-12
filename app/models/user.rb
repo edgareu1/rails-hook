@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # Returns an array of hashes that represent the fish most caught by the user
   def top_fish(num)
-    catches.group_by { |catch| catch.fish.common_name }
+    catches.group_by { |catch| catch.fish.name }
            .transform_values { |catches| catches.inject(0) { |sum, catch| sum + catch.quantity } }
            .max_by(num) { |k, v| v }
            .sort_by { |arr| - arr.last}
