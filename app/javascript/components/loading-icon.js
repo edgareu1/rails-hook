@@ -4,3 +4,5 @@ function loadingIcon(loadingAnchor) {
     loadingAnchor.innerHTML = "<i class=\"fas fa-spinner fa-spin\"></i>";
   });
 }
+
+export { loadingIcon };

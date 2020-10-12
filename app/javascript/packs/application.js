@@ -32,6 +32,7 @@ import { bottomFish } from '../components/bottom-fish';
 import { createFlash } from '../components/create-flash';
 import { displayLocationErrors } from '../components/display-location-errors';
 import { displayTimeErrors } from '../components/display-time-errors';
+import { loadingIcon } from '../components/loading-icon';
 import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
@@ -93,5 +94,11 @@ document.addEventListener('turbolinks:load', () => {
   let bottomFishContainer = document.querySelector('#jsi-flying-fish-container');
   if (bottomFishContainer) {
     bottomFish(); // Add the bottom canvas animation
+  }
+
+  // If there is a Navbar...
+  let predictionAnchor = document.querySelector('a[href="/prediction"]');
+  if (predictionAnchor) {
+    loadingIcon(predictionAnchor);
   }
 });
