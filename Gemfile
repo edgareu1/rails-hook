@@ -86,3 +86,6 @@ gem 'turbolinks_render'
 
 # Populate fake data
 gem 'faker'
+
+# Handle authorization
+gem "pundit"

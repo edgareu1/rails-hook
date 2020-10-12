@@ -24,8 +24,8 @@
               </td>
 
               <td style="width: 280px">
-                <%= f.association :fish, collection: Fish.all.sort_by(&:common_name), prompt: "Please select",
-                    label_method: :common_name, label: false %>
+                <%= f.association :fish, collection: Fish.all.sort_by(&:name), prompt: "Please select",
+                    label_method: :name, label: false %>
               </td>
 
               <td style="width: 100px">
