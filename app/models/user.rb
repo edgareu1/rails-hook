@@ -30,9 +30,9 @@ class User < ApplicationRecord
   # Returns an array of hashes that represent the 'num' Locations with the most Logs
   # In case of 2 or more Locations with the same Log size, decide by their creation date (Id serves the purpose)
   def top_locations(num)
-    locations.map { |loc| [loc.logs.size, - loc.id] }
+    locations.map { |loc| [loc.logs_count, - loc.id] }
              .max(3)
-             .map { |loc_data| Location.find(loc_data.last.abs).data_to_display(loc_data.first) }
+             .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
   # Get the total number of fish caught by the User
