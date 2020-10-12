@@ -1,7 +1,7 @@
 class Log < ApplicationRecord
   include MoonPhaseHelper
 
-  belongs_to :location
+  belongs_to :location, counter_cache: true
   belongs_to :user, counter_cache: true
 
   has_many :catches, dependent: :destroy
