@@ -9,7 +9,7 @@ module PredictionHelper
       @user = user
       @moon_phase = round_element(get_moon_phase(Time.now))
       @locations = @user.locations
-                        .reject { |loc| loc.logs.size < 5 }
+                        .reject { |loc| loc.logs_count < 5 }
     end
 
     def top_ranking_locations(num)

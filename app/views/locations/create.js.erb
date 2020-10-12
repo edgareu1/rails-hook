@@ -11,10 +11,10 @@
   document.getElementById('ModalNewLocation').innerHTML = "<%= j render "locations/form", location: Location.new %>";
 
   // Append the new Location to the list if there are less than 3 displayed
-  <% if current_user.locations.size == 1 %>
+  <% if current_user.locations_count == 1 %>
     document.getElementById('locations-list').innerHTML = "<%= j render "locations/location", location: @location.data_to_display %>";
 
-  <% elsif current_user.locations.size < 4 %>
+  <% elsif current_user.locations_count < 4 %>
     $('#locations-list').append("<%= j render "locations/location", location: @location.data_to_display %>");
   <% end %>
 <% end %>

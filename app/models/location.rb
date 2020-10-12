@@ -24,7 +24,7 @@ class Location < ApplicationRecord
     { name: name_to_display,
       spot: spot,
       weather_icon: fetch_weather_data["weather"][0]["icon"],
-      num_logs: (log_size.nil? ? logs.size : log_size)
+      num_logs: (log_size.nil? ? logs_count : log_size)
     }
   end
 end

@@ -69,7 +69,7 @@ def create_log(user, location, date_step)
                              end_time:    log_start_time + rand(0.05..0.25),
                              rating:      Math.sqrt(rand(1..100)).floor,
                              observation: Faker::ChuckNorris.fact,
-                             tag_id:      location.logs.reload.size + 1
+                             tag_id:      location.logs_count + 1
                             )
 
   log_weather = Weather_data.sample
@@ -146,5 +146,5 @@ end
     end
   }
 
-  puts "Created the User #{new_user.username} with: #{new_user.locations.size} Locations; #{new_user.logs.size} Logs; #{new_user.catch_count} Catches"
+  puts "Created the User #{new_user.username} with: #{new_user.locations_count} Locations; #{new_user.logs_count} Logs; #{new_user.catch_count} Catches"
 end
