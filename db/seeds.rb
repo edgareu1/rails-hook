@@ -105,7 +105,7 @@ def create_catch(log)
 
   # Randomize the Catch based on the Logs 'power'
   catch_fish =     Fish.where("good_weight <= ?", 1000).sample
-  catch_quantity = [(rand(2.5..3.5) * log_power).floor, 1].max
+  catch_quantity = [(rand(3.0..3.5) * log_power).floor, 1].max
   catch_weight =   (catch_quantity * 650 * log_power).round
 
   # Create Catch
@@ -140,7 +140,7 @@ end
       new_log = create_log(new_user, new_location, date_step)
 
       # Create random Catches (the greater the Logs 'power', the more the Catches)
-      (rand(2.5..3.5) * log_power(new_log)).floor.times {
+      (rand(3.0..3.5) * log_power(new_log)).floor.times {
         create_catch(new_log)
       }
     end
