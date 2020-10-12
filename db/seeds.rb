@@ -78,7 +78,7 @@ def create_log(user, location, date_step)
   log_time_period = log_start_time.hour.between?(8, 20) ? "d" : "n"
 
   # Randomize the weather data
-  new_log.update(air_pressure:        rand(980..1030),
+  new_log.update(air_pressure:        rand(990..1030),
                  wind_speed:          rand(10..100).fdiv(10),
                  weather_icon:        log_weather[:icon] + log_time_period,
                  weather_description: log_weather[:description]
@@ -88,15 +88,16 @@ def create_log(user, location, date_step)
 end
 
 # Method that quantifies the Log success chance ('power')
+# This method simulates a linear regression that the prediction feature of this app will try to find
 def log_power(log)
-  # Air pressure power: the closer to 1005 Pa, the better the Log
-  air_pressure_power = ((log.air_pressure - 1005).abs.fdiv(25) - 1).abs
+  # The lower the air pressure, the better the Log
+  air_pressure_power = ((log.air_pressure - 990).fdiv(40) - 1).abs
 
-  # Wind speed power: the closer to 5 m/s, the better the Log
-  wind_speed_power = ((log.wind_speed - 5).abs.fdiv(5) - 1).abs
+  # The lower the wind speed, the better the Log
+  wind_speed_power = (10 - log.wind_speed).fdiv(10)
 
   # Log total fishing power
-  return (log.moon_phase * 0.35) + (air_pressure_power * 0.5) + (wind_speed_power * 0.15)
+  return (log.moon_phase * 0.5) + (air_pressure_power * 0.35) + (wind_speed_power * 0.15)
 end
 
 # Method that creates a Catch for a specific Log
