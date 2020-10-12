@@ -20,11 +20,11 @@ class Location < ApplicationRecord
   end
 
   # Gets the relevant information to be displayed on the Home page
-  def data_to_display(log_size = nil)
+  def data_to_display
     { name: name_to_display,
       spot: spot,
       weather_icon: fetch_weather_data["weather"][0]["icon"],
-      num_logs: (log_size.nil? ? logs_count : log_size)
+      num_logs: logs_count
     }
   end
 end

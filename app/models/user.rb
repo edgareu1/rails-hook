@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def top_locations(num)
     locations.map { |loc| [loc.logs_count, - loc.id] }
              .max(3)
-             .map { |loc_data| Location.find(loc_data.last.abs).data_to_display(loc_data.first) }
+             .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
   # Get the total number of fish caught by the User
