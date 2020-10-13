@@ -19,10 +19,20 @@ class Api::V1::LocationsController < Api::V1::BaseController
     end
   end
 
+  def update
+    @location = Location.find(params[:id])
+
+    if @location.update(location_params)
+      render :show
+    else
+      render_error
+    end
+  end
+
   private
 
   def location_params
-    params.require(:location).permit(:name, :spot)
+    params.require(:location).permit(:name, :spot, :latitude, :longitude)
   end
 
   def set_user
