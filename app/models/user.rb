@@ -6,6 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # API authentication token
+  acts_as_token_authenticatable
+
   has_many :logs
   has_many :locations, dependent: :destroy
   has_many :catches, through: :logs
