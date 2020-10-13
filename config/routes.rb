@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :fish, only: [ :index ]
 
       resources :users, only: [ :show ] do
-        resources :locations, only: [ :index, :show, :create, :update ] do
+        resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
           resources :logs, only: [ :index, :show ]
         end
       end
