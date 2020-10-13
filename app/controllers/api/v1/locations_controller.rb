@@ -1,6 +1,6 @@
 class Api::V1::LocationsController < Api::V1::BaseController
+  before_action :set_user,     only: [ :index, :show, :create, :update, :destroy ]
   before_action :set_location, only: [ :update, :destroy ]
-  before_action :set_user,     only: [ :index, :show, :create ]
 
   def index
     @locations = @user.locations
@@ -38,12 +38,12 @@ class Api::V1::LocationsController < Api::V1::BaseController
     params.require(:location).permit(:name, :spot, :latitude, :longitude)
   end
 
-  def set_location
-    @location = Location.find(params[:id])
-  end
-
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_location
+    @location = @user.locations.find(params[:id])
   end
 
   def render_error
