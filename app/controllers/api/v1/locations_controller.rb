@@ -1,5 +1,6 @@
 class Api::V1::LocationsController < Api::V1::BaseController
-  before_action :set_user, only: [ :index, :show, :create ]
+  before_action :set_location, only: [ :update, :destroy ]
+  before_action :set_user,     only: [ :index, :show, :create ]
 
   def index
     @locations = @user.locations
@@ -20,8 +21,6 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def update
-    @location = Location.find(params[:id])
-
     if @location.update(location_params)
       render :show
     else
@@ -29,10 +28,18 @@ class Api::V1::LocationsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @location.destroy
+  end
+
   private
 
   def location_params
     params.require(:location).permit(:name, :spot, :latitude, :longitude)
+  end
+
+  def set_location
+    @location = Location.find(params[:id])
   end
 
   def set_user
