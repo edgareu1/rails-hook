@@ -3,7 +3,7 @@ class Location < ApplicationRecord
   has_many :logs, dependent: :destroy
 
   geocoded_by :name
-  after_validation :geocode, if: :will_save_change_to_name?
+  after_validation :geocode, if: Proc.new { |location| location.id.nil? }
 
   validates :name, presence: true
   validates :spot, presence: true, length: { maximum: 16, message: "Maximum of 16 characters"}
