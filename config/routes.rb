@@ -18,7 +18,9 @@ Rails.application.routes.draw do
       resources :fish, only: [ :index ]
 
       resources :users, only: [ :show ] do
-        resources :locations, only: [ :index, :show ]
+        resources :locations, only: [ :index, :show ] do
+          resources :logs, only: [ :index, :show ]
+        end
       end
     end
   end
