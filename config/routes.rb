@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
       resources :users, only: [ :show ] do
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
-          resources :logs, only: [ :index, :show, :create ]
+          resources :logs, only: [ :index, :show, :create, :update ]
         end
       end
     end
