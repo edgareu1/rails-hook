@@ -3,7 +3,7 @@ class Location < ApplicationRecord
   has_many :logs, dependent: :destroy
 
   geocoded_by :name
-  after_validation :geocode, if: :will_save_change_to_name?
+  after_validation :geocode, if: Proc.new { |location| location.id.nil? }
 
   validates :name, presence: true
   validates :spot, presence: true, length: { maximum: 16, message: "Maximum of 16 characters"}
@@ -26,5 +26,12 @@ class Location < ApplicationRecord
       weather_icon: fetch_weather_data["weather"][0]["icon"],
       num_logs: logs_count
     }
+  end
+
+  # Method that gets the Locations tag_id for the next Log
+  def next_tag_id
+    location_logs = logs
+
+    return location_logs.empty? ? 1 : location_logs.max_by(&:tag_id).tag_id + 1
   end
 end

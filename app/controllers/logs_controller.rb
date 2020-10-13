@@ -7,7 +7,7 @@ class LogsController < ApplicationController
 
   def create
     @log = current_user.logs.new(log_params)
-    @log.tag_id = get_tag_id(@log.location) unless @log.location.nil?
+    @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
   end
@@ -39,7 +39,7 @@ class LogsController < ApplicationController
 
     # Get the new tag_id if the Location does change
     param_location_id = params[:log][:location_id].to_i
-    new_tag_id = @log.location_id == param_location_id ? @log.location_id : get_tag_id(Location.find(param_location_id))
+    new_tag_id = ( @log.location_id == param_location_id ? @log.location_id : Location.find(param_location_id).next_tag_id )
 
     @log.update(
       tag_id:       new_tag_id,
@@ -72,12 +72,5 @@ class LogsController < ApplicationController
 
   def set_log
     @log = Log.find_by(id: params[:id])
-  end
-
-  # Method that gets the next Log tag_id for a certain location
-  def get_tag_id(location)
-    location_logs = location.logs
-
-    return location_logs.empty? ? 1 : location_logs.map(&:tag_id).max + 1
   end
 end
