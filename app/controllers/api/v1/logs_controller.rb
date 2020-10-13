@@ -14,7 +14,7 @@ class Api::V1::LogsController < Api::V1::BaseController
     @log = @user.logs.new(log_params)
     @log.location = @location
 
-    @log.tag_id = get_tag_id(@location) unless @location.nil?
+    @log.tag_id = @location.next_tag_id unless @location.nil?
 
     if @log.save
       render :show, status: :created
@@ -53,12 +53,5 @@ class Api::V1::LogsController < Api::V1::BaseController
   def render_error
     render json: { errors: @log.errors.full_messages },
            status: :unprocessable_entity
-  end
-
-  # Method that gets the next Log tag_id for a certain location
-  def get_tag_id(location)
-    location_logs = location.logs
-
-    return location_logs.empty? ? 1 : location_logs.map(&:tag_id).max + 1
   end
 end

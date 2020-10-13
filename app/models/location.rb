@@ -27,4 +27,11 @@ class Location < ApplicationRecord
       num_logs: logs_count
     }
   end
+
+  # Method that gets the Locations tag_id for the next Log
+  def next_tag_id
+    location_logs = logs
+
+    return location_logs.empty? ? 1 : location_logs.max_by(&:tag_id).tag_id + 1
+  end
 end
