@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :fish, only: [ :index ]
 
-      resources :users, only: [ :show ]
+      resources :users, only: [ :show ] do
+        resources :locations, only: [ :index, :show ]
+      end
     end
   end
 end
