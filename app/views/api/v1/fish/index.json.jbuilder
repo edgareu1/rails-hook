@@ -1,3 +1,7 @@
 json.array! @fish do |fish|
-  json.extract! fish, :id, :name, :legal_size, :legal_weight, :good_weight
+  json.extract! fish, :id, :name
+
+  json.more_info do
+    json.extract! fish, :url, :picture_url
+  end
 end

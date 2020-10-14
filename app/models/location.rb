@@ -21,10 +21,8 @@ class Location < ApplicationRecord
 
   # Gets the relevant information to be displayed on the Home page
   def data_to_display
-    { name: name_to_display,
-      spot: spot,
-      weather_icon: fetch_weather_data["weather"][0]["icon"],
-      num_logs: logs_count
+    { instance: self,
+      weather_icon: fetch_weather_data["weather"][0]["icon"]
     }
   end
 
@@ -33,5 +31,15 @@ class Location < ApplicationRecord
     location_logs = logs
 
     return location_logs.empty? ? 1 : location_logs.max_by(&:tag_id).tag_id + 1
+  end
+
+  # Get the number of Fish caught in the Location
+  def catch_count
+    logs.inject(0) { |sum, log| sum + log.catch_count }
+  end
+
+  # Get the weight of Fish caught in the Location
+  def catch_weight
+    logs.inject(0) { |sum, log| sum + log.catch_weight }
   end
 end

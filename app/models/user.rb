@@ -23,23 +23,34 @@ class User < ApplicationRecord
 
   # Returns an array of hashes that represent the fish most caught by the user
   def top_fish(num)
-    catches.group_by { |catch| catch.fish.name }
-           .transform_values { |catches| catches.inject(0) { |sum, catch| sum + catch.quantity } }
+    catches.group_by { |catch| catch.fish_id }
+           .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
+                                          catches.inject(0) { |sum, catch| sum + catch.weight }
+                                         ]
+                             }
            .max_by(num) { |k, v| v }
-           .sort_by { |arr| - arr.last}
-           .map { |k, v| { name: k, num_catches: v } }
+           .map { |k, v| { id: k,
+                           name: Fish.find(k).name,
+                           catch_count: v.first,
+                           catch_weight: v.last }
+                }
   end
 
   # Returns an array of hashes that represent the 'num' Locations with the most Logs
   # In case of 2 or more Locations with the same Log size, decide by their creation date (Id serves the purpose)
   def top_locations(num)
-    locations.map { |loc| [loc.logs_count, - loc.id] }
-             .max(3)
+    locations.map { |loc| [loc.logs_count, loc.catch_count, - loc.id] }
+             .max(num)
              .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
-  # Get the total number of fish caught by the User
+  # Get the number of fish caught by the User
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
+  end
+
+  # Get the weight of fish caught by the User
+  def catch_weight
+    catches.inject(0) { |sum, catch| sum + catch.weight }
   end
 end

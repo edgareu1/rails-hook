@@ -3,7 +3,15 @@ class Api::V1::BaseController < ActionController::API
 
   private
 
+  def check_user_authorization
+    unauthorized_action unless User.find(params[:user_id]) == current_user
+  end
+
   def not_found(exception)
     render json: { error: exception.message }, status: :not_found
+  end
+
+  def unauthorized_action
+    render json: { error: "Action not authorized for the user: #{current_user.username}." }, status: :unauthorized
   end
 end
