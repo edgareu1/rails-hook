@@ -7,7 +7,7 @@ json.coordinates do
 end
 
 json.stats do
-  json.extract! @location, :logs_count
+  json.num_logs @location.logs_count
 
   json.fish_caught do
     json.num @location.catch_count
@@ -15,6 +15,6 @@ json.stats do
   end
 end
 
-json.record_info do
+json.instance_info do
   json.extract! @location, :created_at, :updated_at
 end

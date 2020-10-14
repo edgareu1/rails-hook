@@ -22,6 +22,6 @@ json.user_notes do
   json.extract! @log, :rating, :observation
 end
 
-json.record_info do
+json.instance_info do
   json.extract! @log, :created_at, :updated_at
 end
