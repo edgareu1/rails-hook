@@ -7,7 +7,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   before_action :set_location, only: [ :update, :destroy ]
 
   def index
-    @locations = @user.locations
+    @locations = @user.locations.sort
   end
 
   def show

@@ -7,7 +7,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   before_action :set_log,               only: [ :update, :destroy ]
 
   def index
-    @logs = @location.logs
+    @logs = @location.logs.sort
   end
 
   def show
