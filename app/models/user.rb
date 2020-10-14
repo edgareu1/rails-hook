@@ -38,8 +38,13 @@ class User < ApplicationRecord
              .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
-  # Get the total number of fish caught by the User
+  # Get the number of fish caught by the User
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
+  end
+
+  # Get the weight of fish caught by the User
+  def catch_weight
+    catches.inject(0) { |sum, catch| sum + catch.weight }
   end
 end
