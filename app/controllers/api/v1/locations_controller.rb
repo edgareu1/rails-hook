@@ -1,4 +1,6 @@
 class Api::V1::LocationsController < Api::V1::BaseController
+  acts_as_token_authentication_handler_for User
+
   before_action :set_user,     only: [ :index, :show, :create, :update, :destroy ]
   before_action :set_location, only: [ :update, :destroy ]
 
