@@ -23,11 +23,17 @@ class User < ApplicationRecord
 
   # Returns an array of hashes that represent the fish most caught by the user
   def top_fish(num)
-    catches.group_by { |catch| catch.fish.name }
-           .transform_values { |catches| catches.inject(0) { |sum, catch| sum + catch.quantity } }
+    catches.group_by { |catch| catch.fish_id }
+           .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
+                                          catches.inject(0) { |sum, catch| sum + catch.weight }
+                                         ]
+                             }
            .max_by(num) { |k, v| v }
-           .sort_by { |arr| - arr.last}
-           .map { |k, v| { name: k, num_catches: v } }
+           .map { |k, v| { id: k,
+                           name: Fish.find(k).name,
+                           catch_count: v.first,
+                           catch_weight: v.last }
+                }
   end
 
   # Returns an array of hashes that represent the 'num' Locations with the most Logs
