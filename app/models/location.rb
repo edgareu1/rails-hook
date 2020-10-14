@@ -21,10 +21,8 @@ class Location < ApplicationRecord
 
   # Gets the relevant information to be displayed on the Home page
   def data_to_display
-    { name: name_to_display,
-      spot: spot,
-      weather_icon: fetch_weather_data["weather"][0]["icon"],
-      num_logs: logs_count
+    { instance: self,
+      weather_icon: fetch_weather_data["weather"][0]["icon"]
     }
   end
 

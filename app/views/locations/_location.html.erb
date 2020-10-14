@@ -3,20 +3,20 @@
   <div class="location-info">
     <!-- Location Name -->
     <h6>
-      <strong><%= location[:name] %></strong>
+      <strong><%= location[:instance].name_to_display %></strong>
 
-      <% if location[:num_logs].zero? %>
+      <% if location[:instance].logs_count.zero? %>
         – no logs
-      <% elsif location[:num_logs] == 1 %>
+      <% elsif location[:instance].logs_count == 1 %>
         – 1 log
       <% else %>
-        <%= "– #{location[:num_logs]} logs" %>
+        <%= "– #{location[:instance].logs_count} logs" %>
       <% end %>
     </h6>
 
     <!-- Location spot -->
     <p class="locations-spot">
-      <%= location[:spot] %>
+      <%= location[:instance].spot %>
     </p>
   </div>
 

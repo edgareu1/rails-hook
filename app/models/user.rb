@@ -33,8 +33,8 @@ class User < ApplicationRecord
   # Returns an array of hashes that represent the 'num' Locations with the most Logs
   # In case of 2 or more Locations with the same Log size, decide by their creation date (Id serves the purpose)
   def top_locations(num)
-    locations.map { |loc| [loc.logs_count, - loc.id] }
-             .max(3)
+    locations.map { |loc| [loc.logs_count, loc.catch_count, - loc.id] }
+             .max(num)
              .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
