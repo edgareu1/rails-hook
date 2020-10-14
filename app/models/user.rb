@@ -15,6 +15,9 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :email,    presence: true,
+                       uniqueness: { case_sensitive: false }
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
