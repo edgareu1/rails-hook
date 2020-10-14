@@ -15,6 +15,12 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :email,    presence: true,
+                       uniqueness: { case_sensitive: false }
+  validates :username, presence: true,
+                       uniqueness: { case_sensitive: false },
+                       length: { maximum: 20, message: "Maximum of 20 characters"}
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
