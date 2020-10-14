@@ -1,6 +1,8 @@
 class Api::V1::LogsController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User
 
+  before_action :check_user_authorization
+
   before_action :set_user_and_location, only: [ :index, :show, :create, :update, :destroy ]
   before_action :set_log,               only: [ :update, :destroy ]
 
