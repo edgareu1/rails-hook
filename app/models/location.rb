@@ -13,7 +13,7 @@ class Location < ApplicationRecord
     end
   end
 
-  after_validation :geocode, if: Proc.new { |location| location.id.nil? }
+  after_validation :geocode
   after_validation :reverse_geocode
 
   validates :name, presence: true

@@ -75,10 +75,12 @@ document.addEventListener('turbolinks:load', () => {
     autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
-  // If there is a Locations#new form...
-  let locationInput = document.getElementById('location_name');
-  if (locationInput) {
-    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
+  // If theres any Locations#new form...
+  let locationInputs = document.querySelectorAll('#location_name');
+  if (locationInputs[0]) {
+    for (let i = 0; i < locationInputs.length; i++) {
+      autoCompleteLocation(locationInputs[i]);  // Autocomplete the Locations address
+    }
   }
 
   // If in the Users#show page...
