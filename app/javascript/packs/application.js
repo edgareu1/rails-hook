@@ -75,12 +75,15 @@ document.addEventListener('turbolinks:load', () => {
     autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
+  // If there is a Locations#new form...
+  let locationInput = document.getElementById('location_name');
+  if (locationInput) {
+    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
+  }
+
   // If in the Users#show page...
   let canvas = document.getElementById('fish-tank');
-  let locationInput = document.getElementById('location_name');
   if (canvas) {
-    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
-
     backgroundFish();               // Add the background canvas animation
     updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the Users device
 
