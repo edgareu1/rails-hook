@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  include ApplicationHelper
+
   def create
     @location = current_user.locations.new(location_params)
 
