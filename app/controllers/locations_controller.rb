@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
   def create
     @location = current_user.locations.new(location_params)
 
-    @user_locations = current_user.locations if @location.save
+    redirect_to location_path(@location) if @location.save
   end
 
   def index
