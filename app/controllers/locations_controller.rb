@@ -5,6 +5,13 @@ class LocationsController < ApplicationController
     @user_locations = current_user.locations if @location.save
   end
 
+  def index
+    @locations = current_user.locations
+                             .order(logs_count: :desc)
+                             .map(&:data_to_display)
+                             .paginate(page: params[:page], per_page: 5)
+  end
+
   private
 
   def location_params
