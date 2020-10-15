@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_124317) do
+ActiveRecord::Schema.define(version: 2020_10_15_175134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_10_13_124317) do
     t.bigint "user_id", null: false
     t.string "spot"
     t.integer "logs_count", default: 0
+    t.string "country"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
