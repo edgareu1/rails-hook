@@ -10,7 +10,6 @@ class LocationsController < ApplicationController
   def index
     @locations = current_user.locations
                              .order(logs_count: :desc)
-                             .map(&:data_to_display)
                              .paginate(page: params[:page], per_page: 5)
   end
 

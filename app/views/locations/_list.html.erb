@@ -1,17 +1,12 @@
 <!-- Iterate over the Locations list and display them as Cards -->
 <% locations.each do |location| %>
-  <%= link_to location_path(location[:instance]) do %>
+  <%= link_to location_path(location) do %>
     <div class="card">
       <div class="card-headers">
         <!-- Cards Headers -->
         <div>
-          <h3><%= location[:instance].name_to_display %></h3>
-          <h5 class="locations-spot"><%= location[:instance].spot %></h5>
-        </div>
-
-        <!-- Image of the Weather of the Location -->
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png)"
-             class="weather-icon">
+          <h3><%= location.name_to_display %></h3>
+          <h5 class="locations-spot"><%= location.spot %></h5>
         </div>
       </div>
 
@@ -20,33 +15,33 @@
       <!-- Content of the Location -->
       <div class="card-content">
         <div class="card-content-info">
-          <% if location[:instance].logs_count.zero? %>
+          <% if location.logs_count.zero? %>
             <p><strong style="font-size: 17px">No logs</strong></p>
 
           <% else %>
             <p style="margin-bottom: 5px">
               <strong>Logs : </strong>
-              <%= location[:instance].logs_count %>
+              <%= location.logs_count %>
             </p>
 
             <p style="margin-bottom: 5px">
               <strong>Last : </strong>
-              <%= time_ago_in_words(location[:instance].logs.map(&:end_time).sort.last) %> ago
+              <%= time_ago_in_words(location.logs.map(&:end_time).sort.last) %> ago
             </p>
           <% end %>
         </div>
 
         <div class="card-content-stats">
-          <% if location[:instance].catch_count.zero? %>
+          <% if location.catch_count.zero? %>
             <p><strong style="font-size: 17px">No Catches</strong></p>
 
           <% else %>
             <p>
-              <%= location[:instance].catch_count %>
+              <%= location.catch_count %>
               Fish
             </p>
 
-            <p><%= rounded_weight(location[:instance].catch_weight) %></p>
+            <p><%= rounded_weight(location.catch_weight) %></p>
           <% end %>
         </div>
       </div>
