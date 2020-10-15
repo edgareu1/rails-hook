@@ -12,6 +12,11 @@ module ApplicationHelper
     end
   end
 
+  # Convert temperature in Kelvin to degrees Celsius
+  def kelvin_to_celcius(kelvin)
+    return kelvin - 273.15
+  end
+
   # Display the user avatar or, if this isn't present, the standard avatar
   def large_avatar(user)
     if user.avatar.attached?
