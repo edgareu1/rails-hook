@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
   include ApplicationHelper
   include MoonPhaseHelper
 
+  before_action :set_location, only: [:show, :update, :destroy]
+
   def create
     @location = current_user.locations.new(location_params)
 
@@ -15,8 +17,6 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find_by(id: params[:id])
-
     if @location.nil? || @location.user != current_user
       flash[:alert] = "That Location was not found"
       redirect_to locations_path
@@ -35,9 +35,23 @@ class LocationsController < ApplicationController
     end
   end
 
+  def update
+    @location.update(location_params)
+  end
+
+  def destroy
+    @location.destroy
+
+    redirect_to locations_path
+  end
+
   private
 
   def location_params
     params.require(:location).permit(:name, :spot)
+  end
+
+  def set_location
+    @location = Location.find_by(id: params[:id])
   end
 end
