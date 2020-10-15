@@ -64,8 +64,8 @@ window.smoothPagination = function() {
 // Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
   // If in the Logs#index page...
-  let logsList = document.getElementById('logs-list');
-  if (logsList) {
+  let cardsList = document.getElementById('cards-list');
+  if (cardsList) {
     smoothPagination(); // Smooth the pagination between the Logs
   }
 
