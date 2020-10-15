@@ -29,7 +29,7 @@ class LocationsController < ApplicationController
         description: weather_data["weather"].first["description"],
         air_pressure: weather_data["main"]["pressure"],
         wind_speed: weather_data["wind"]["speed"],
-        temperature: weather_data["main"]["temp"],
+        temperature: kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
         moon_phase: (get_moon_phase(Time.now) * 100).round
       }
     end
