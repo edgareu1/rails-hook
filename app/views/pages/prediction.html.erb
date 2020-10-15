@@ -18,20 +18,22 @@
 
   <% @prediction.each_with_index do |data, index| %>
     <div class="card" style="margin-bottom: 20px">
-      <div class="prediction-location">
-        <div class="d-flex align-items-center">
-          <h3><%= index + 1 %></h3>
+      <%= link_to location_path(data[:location]) do %>
+        <div class="prediction-location">
+          <div class="d-flex align-items-center">
+            <h3><%= index + 1 %></h3>
 
-          <div class="prediction-location-headers">
-            <h3><%= data[:location][:name] %></h3>
-            <h5 class="locations-spot"><%= data[:location][:spot] %></h5>
+            <div class="prediction-location-headers">
+              <h3><%= data[:location].name_to_display %></h3>
+              <h5 class="locations-spot"><%= data[:location].spot %></h5>
+            </div>
+          </div>
+
+          <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:prediction][:weather_icon] %>@2x.png)"
+              class="weather-icon">
           </div>
         </div>
-
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:prediction][:weather_icon] %>@2x.png)"
-             class="weather-icon">
-        </div>
-      </div>
+      <% end %>
 
       <div class="prediction-stats">
         <!-- Prediction of weight of fish to be caught in a 5h session -->
