@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/prediction', to: 'pages#prediction'
 
   resources :fish, only: [:index, :show]
-  resources :locations, only: [ :index, :create]
+  resources :locations, only: [ :index, :show, :create]
 
   resources :logs, except: [:new, :edit] do
     resources :catches, only: [:create, :destroy]
