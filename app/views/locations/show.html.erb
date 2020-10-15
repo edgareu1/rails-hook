@@ -18,7 +18,31 @@
 
   <!-- Card's Content -->
   <div class="log-stats-content">
-    <table style="margin-left: 15%">
+    <table style="margin-left: 5%">
+      <tr>
+        <td>Country</td>
+        <td></td>
+        <td><%= @location.country.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td>State</td>
+        <td></td>
+        <td><%= @location.state.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td>City</td>
+        <td></td>
+        <td><%= @location.city.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td><hr></td>
+        <td></td>
+        <td><hr></td>
+      </tr>
+
       <tr>
         <td>Air pressure</td>
         <td></td>
@@ -58,7 +82,7 @@
       <tr>
         <td>Last Log</td>
         <td></td>
-        <td><%= time_ago_in_words(@location.logs.map(&:end_time).sort.last) %></td>
+        <td><%= time_ago_in_words(@location.logs.map(&:end_time).sort.last) %> ago</td>
       </tr>
 
       <tr>
