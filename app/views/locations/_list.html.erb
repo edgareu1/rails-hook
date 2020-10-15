@@ -1,0 +1,57 @@
+<!-- Iterate over the Locations list and display them as Cards -->
+<% locations.each do |location| %>
+  <%= link_to location_path(location[:instance]) do %>
+    <div class="card">
+      <div class="card-headers">
+        <!-- Cards Headers -->
+        <div>
+          <h3><%= location[:instance].name_to_display %></h3>
+          <h5 class="locations-spot"><%= location[:instance].spot %></h5>
+        </div>
+
+        <!-- Image of the Weather of the Location -->
+        <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png)"
+             class="weather-icon">
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Content of the Location -->
+      <div class="card-content">
+        <div class="card-content-info">
+          <% if location[:instance].logs_count == 0 %>
+            <p><strong style="font-size: 17px">No logs</strong></p>
+            <p style="margin-bottom: 5px">...</p>
+
+          <% else %>
+            <p style="margin-bottom: 5px">
+              <strong>Logs : </strong>
+              <%= location[:instance].logs_count %>
+            </p>
+
+            <p style="margin-bottom: 5px">
+              <%= time_ago_in_words(location[:instance].logs.map(&:end_time).sort.last) %> ago
+            </p>
+          <% end %>
+        </div>
+
+        <div class="card-content-stats">
+          <p>
+            <%= location[:instance].catch_count %>
+            Fish
+          </p>
+
+          <p>
+            <%= location[:instance].catch_weight %>
+            gr
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Pagination to navigate the index of Locations -->
+<%= will_paginate locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
+    previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
