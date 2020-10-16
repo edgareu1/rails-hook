@@ -30,7 +30,7 @@
 
             <p>
               <strong>Last : </strong>
-              <%= time_ago_in_words(location.logs.map(&:end_time).sort.last) %> ago
+              <%= time_ago_in_words(location.logs.map(&:end_time).max) %> ago
             </p>
           <% end %>
         </div>
