@@ -11,8 +11,8 @@ module LinearRegressionHelper
 
     # Method that loads and normalizes the training data; must be called prior to training.
     # Arguments:
-    #   x_data: (Two dimensional array with the independent variables of your training data)
-    #   y_data: (Array with the dependent variables of your training data)
+    #   x_data: Two dimensional array with the independent variables of your training data
+    #   y_data: Array with the dependent variables of your training data
     def load_training_data(x_data, y_data)
       # Normalize the x_data
       x_data = normalize_data(x_data)
@@ -60,17 +60,17 @@ module LinearRegressionHelper
 
         return @theta
 
-      # If there's an error while manipulating the Matrices, make the weight prediction zero
+      # If there's an error while manipulating the Matrices, make the weight predicted zero
       rescue *Exception
         @sigma = [0, 0, 0]
       end
     end
 
-    # Makes a prediction based on your trained model
+    # Method that makes a prediction based on the trained model
     # Arguments:
-    #   data: (Array of independent variables to base your prediction on)
-    def predict data
-      # normalize
+    #   data: Array of independent variables to base the prediction on
+    def predict(data)
+      # Normalize the data
       data.each_index do |i|
         data[i] = (data[i] - @mu[i]) / @sigma[i].to_f
       end
@@ -81,7 +81,7 @@ module LinearRegressionHelper
       # Perform prediction
       prediction = (Matrix[data] * @theta)[0, 0].to_f
 
-      # If there's any error with the prediction, then make the weight predicted zero
+      # If there's any error with the prediction, make the weight predicted zero
       prediction = 0 if @sigma.include?(0) || @theta.any? { |i| !i.infinite?.nil? }
 
       return prediction
