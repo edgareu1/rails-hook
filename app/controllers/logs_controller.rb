@@ -6,7 +6,7 @@ class LogsController < ApplicationController
   before_action :set_log, only: [:show, :update, :destroy]
 
   def create
-    @log = current_user.logs.new(log_params)
+    @log = current_user.logs.new(log_params.except(:air_pressure, :wind_speed))
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
@@ -26,36 +26,31 @@ class LogsController < ApplicationController
   end
 
   def update
+    @log.attributes = log_params
+
     # Get the new start_time
-    start_error = params[:log][:start_time].blank?
-    new_start_time = start_error ? @log.start_time : DateTime.parse(params[:log][:start_time])
+    if @log.start_time.blank?
+      @log.start_time = @log.start_time_was
+      start_time_error = true
+    end
 
     # Get the new end_time
-    end_error = params[:log][:end_time].blank?
-    new_end_time = end_error ? @log.end_time : DateTime.parse(params[:log][:end_time])
+    if @log.end_time.blank?
+      @log.end_time = @log.end_time_was
+      end_time_error = true
+    end
 
     # Get the new moon_phase
-    new_moon_phase = get_moon_phase(new_start_time)
+    @log.moon_phase = get_moon_phase(@log.start_time)
 
     # Get the new tag_id if the Location does change
-    param_location_id = params[:log][:location_id].to_i
-    new_tag_id = ( @log.location_id == param_location_id ? @log.location_id : Location.find(param_location_id).next_tag_id )
+    @log.tag_id = @log.location.next_tag_id if @log.location_id_changed?
 
-    @log.update(
-      tag_id:       new_tag_id,
-      start_time:   new_start_time,
-      end_time:     new_end_time,
-      moon_phase:   new_moon_phase,
-      location_id:  params[:log][:location_id],
-      air_pressure: params[:log][:air_pressure],
-      wind_speed:   params[:log][:wind_speed],
-      observation:  params[:log][:observation],
-      rating:       params[:log][:rating]
-    )
+    @log.save
 
-    # Add 'presence: true' validation errors to the start/end_time fields if they do exist
-    @log.errors.add(:end_time, "Log has to have a start time") if start_error
-    @log.errors.add(:end_time, "Log has to have a end time")   if end_error
+    # Add the Time related errors
+    @log.errors.add(:end_time, "Log has to have a start time") if start_time_error
+    @log.errors.add(:end_time, "Log has to have a end time")   if end_time_error
   end
 
   def destroy
@@ -67,7 +62,7 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id)
+    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id, :air_pressure, :wind_speed)
   end
 
   def set_log
