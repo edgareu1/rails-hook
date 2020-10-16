@@ -25,6 +25,7 @@ module LinearRegressionHelper
       @y = Matrix.rows( y_data.collect { |i| [i] } )
 
       # Create a Matrix with one row and the same number of columns as the x_data
+      # This variable will hold the normal equation formula
       @theta = Matrix.zero(@x.column_count, 1)
     end
 
@@ -44,21 +45,22 @@ module LinearRegressionHelper
       return result.round
     end
 
-    # Calculates the optimal theta using the normal equation
-    def train_normal_equation l = 0
+    # Method that calculates the optimal theta using the normal equation
+    def train_normal_equation(lambda = 0)
       begin
-        @lambda = l
-        lambda_matrix = Matrix.build(@theta.row_size, @theta.row_size) do |c, r|
-          ((c == 0 && r == 0) || c != r) ? 0 : 1
+        @lambda = lambda
+
+        lambda_matrix = Matrix.build(@theta.row_size, @theta.row_size) do |col, row|
+          ((col.zero? && row.zero?) || col != row) ? 0 : 1
         end
 
         # Calculate the optimal theta using the normal equation
-        # theta = ( X' * X )^1 * X' * y
+        # theta = ( X' * X )^(-1) * X' * y
         @theta = (@x.transpose * @x + @lambda * lambda_matrix).inverse * @x.transpose * @y
 
         return @theta
 
-      # If there's an error while manipulating the Matrices, then make the weight prediction zero
+      # If there's an error while manipulating the Matrices, make the weight prediction zero
       rescue *Exception
         @sigma = [0, 0, 0]
       end
