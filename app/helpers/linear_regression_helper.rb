@@ -13,17 +13,18 @@ module LinearRegressionHelper
     # Arguments:
     #   x_data: (Two dimensional array with the independent variables of your training data)
     #   y_data: (Array with the dependent variables of your training data)
-    def load_training_data x_data, y_data
+    def load_training_data(x_data, y_data)
       # Normalize the x_data
       x_data = normalize_data(x_data)
 
-      # Add 1 column to our data
-      x_data = x_data.map { |r| [1].concat(r) }
+      # Add 1 column to x_data
+      x_data = x_data.map { |row| [1].concat(row) }
 
-      # Build our x Matrix and y Vector
+      # Build the x Matrix and y Vector
       @x = Matrix.rows(x_data)
-      @y = Matrix.rows( y_data.collect { |e| [e] } )
+      @y = Matrix.rows( y_data.collect { |i| [i] } )
 
+      # Create a Matrix with the same number of columns as the x_data and one row
       @theta = Matrix.zero(@x.column_count, 1)
     end
 
