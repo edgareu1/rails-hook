@@ -18,26 +18,26 @@
 
       <!-- Content of the Location -->
       <div class="card-content">
-        <div class="card-content-info">
+        <div>
           <% if location.logs_count.zero? %>
-            <p><strong style="font-size: 17px">No logs</strong></p>
+            <p><strong>No logs</strong></p>
 
           <% else %>
-            <p style="margin-bottom: 5px">
+            <p>
               <strong>Logs : </strong>
               <%= location.logs_count %>
             </p>
 
-            <p style="margin-bottom: 5px">
+            <p>
               <strong>Last : </strong>
-              <%= time_ago_in_words(location.logs.map(&:end_time).sort.last) %> ago
+              <%= time_ago_in_words(location.logs.map(&:end_time).max) %> ago
             </p>
           <% end %>
         </div>
 
-        <div class="card-content-stats">
+        <div>
           <% if location.catch_count.zero? %>
-            <p><strong style="font-size: 17px">No Catches</strong></p>
+            <p><strong>No Catches</strong></p>
 
           <% else %>
             <p>

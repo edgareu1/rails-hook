@@ -19,29 +19,29 @@
 
       <!-- Content of the Log -->
       <div class="card-content">
-        <div class="card-content-info">
+        <div>
           <% if log.catch_count == 0 %>
-            <p><strong style="font-size: 17px">Nothing caught</strong></p>
+            <p><strong>Nothing caught</strong></p>
 
           <% else %>
-            <p style="margin-bottom: 5px">
+            <p>
               <strong>Catches : </strong>
               <%= log.catch_count %>
             </p>
           <% end %>
 
           <% if log.rating.nil? %>
-            <p><strong style="font-size: 17px">Not rated</strong></p>
+            <p><strong>Not rated</strong></p>
 
           <% else %>
-            <p style="margin-bottom: 5px">
+            <p>
               <strong>Rating : </strong>
               <%= log.rating %>
             </p>
           <% end %>
         </div>
 
-        <div class="card-content-stats">
+        <div>
           <p>
             <strong>Moon : </strong>
             <%= (log.moon_phase * 100).round %>%

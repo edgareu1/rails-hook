@@ -1,0 +1,103 @@
+<!-- Title -->
+<div class="page-title">
+  <h1><%= location.name_to_display %></h1>
+  <h2 class="locations-spot" ><%= location.spot %></h2>
+</div>
+
+<!-- Card Weather Info -->
+<div class="card" style="margin-bottom: 20px">
+  <!-- Card's Headers  -->
+  <div class="card-info-headers">
+    <!-- Image of the Locations Weather -->
+    <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:icon] %>@2x.png)"
+         class="weather-icon">
+    </div>
+
+    <h3><%= location_weather[:description].capitalize %></h3>
+  </div>
+
+  <!-- Card's Content -->
+  <div class="card-info-content">
+    <table style="margin: 0 auto">
+      <tr>
+        <td>Country</td>
+        <td></td>
+        <td><%= location.country.nil? ? "NA" : location.country.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td>State</td>
+        <td></td>
+        <td><%= location.state.nil? ? "NA" : location.state.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td>City</td>
+        <td></td>
+        <td><%= location.city.nil? ? "NA" : location.city.truncate(20) %></td>
+      </tr>
+
+      <tr>
+        <td><hr></td>
+        <td></td>
+        <td><hr></td>
+      </tr>
+
+      <tr>
+        <td>Air pressure</td>
+        <td></td>
+        <td><%= "#{location_weather[:air_pressure]} Pa" %></td>
+      </tr>
+
+      <tr>
+        <td>Wind Speed</td>
+        <td></td>
+        <td><%= "#{location_weather[:wind_speed]} m/s" %></td>
+      </tr>
+
+      <tr>
+        <td>Temperature</td>
+        <td></td>
+        <td><%= "#{location_weather[:temperature]} °C" %></td>
+      </tr>
+
+      <tr>
+        <td>Moon Phase</td>
+        <td></td>
+        <td><%= location_weather[:moon_phase] %>%</td>
+      </tr>
+
+      <% unless location.logs_count.zero? %>
+        <tr>
+          <td><hr></td>
+          <td></td>
+          <td><hr></td>
+        </tr>
+
+        <tr>
+          <td>Num Logs</td>
+          <td></td>
+          <td><%= location.logs_count %></td>
+        </tr>
+
+        <tr>
+          <td>Last Log</td>
+          <td></td>
+          <td><%= time_ago_in_words(location.logs.map(&:end_time).sort.last) %> ago</td>
+        </tr>
+
+        <tr>
+          <td>Num Catches</td>
+          <td></td>
+          <td><%= location.catch_count %></td>
+        </tr>
+
+        <tr>
+          <td>Weight Caught</td>
+          <td></td>
+          <td><%= rounded_weight(location.catch_weight) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

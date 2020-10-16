@@ -22,21 +22,16 @@ class LocationsController < ApplicationController
       redirect_to locations_path
 
     else
-      weather_data = @location.fetch_weather_data
-
-      @location_weather = {
-        icon: weather_data["weather"].first["icon"],
-        description: weather_data["weather"].first["description"],
-        air_pressure: weather_data["main"]["pressure"],
-        wind_speed: weather_data["wind"]["speed"],
-        temperature: kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
-        moon_phase: (get_moon_phase(Time.now) * 100).round
-      }
+      get_location_weather
     end
   end
 
   def update
-    @location.update(location_params)
+    @location.attributes = location_params
+    name_changed = @location.name_changed?
+    @location.save
+
+    get_location_weather if name_changed
   end
 
   def destroy
@@ -53,5 +48,18 @@ class LocationsController < ApplicationController
 
   def set_location
     @location = Location.find_by(id: params[:id])
+  end
+
+  def get_location_weather
+    weather_data = @location.fetch_weather_data
+
+    @location_weather = {
+      icon: weather_data["weather"].first["icon"],
+      description: weather_data["weather"].first["description"],
+      air_pressure: weather_data["main"]["pressure"],
+      wind_speed: weather_data["wind"]["speed"],
+      temperature: kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
+      moon_phase: (get_moon_phase(Time.now) * 100).round
+    }
   end
 end
