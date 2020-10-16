@@ -9,7 +9,7 @@ module LinearRegressionHelper
       @sigma = 1
     end
 
-    # Loads and normalizes the training data, must be called prior to training.
+    # Method that loads and normalizes the training data; must be called prior to training.
     # Arguments:
     #   x_data: (Two dimensional array with the independent variables of your training data)
     #   y_data: (Array with the dependent variables of your training data)
@@ -24,27 +24,14 @@ module LinearRegressionHelper
       @x = Matrix.rows(x_data)
       @y = Matrix.rows( y_data.collect { |i| [i] } )
 
-      # Create a Matrix with the same number of columns as the x_data and one row
+      # Create a Matrix with one row and the same number of columns as the x_data
       @theta = Matrix.zero(@x.column_count, 1)
     end
 
-    # Computes the mean absolute percentage error
-    def mean_absolute_percentage_error test_x = nil, test_y = nil
-      if not test_x.nil?
-        test_x.each_index do |row|
-          test_x[row].each_index do |i|
-            test_x[row][i] = (test_x[row][i] - @mu[i]) / @sigma[i].to_f
-          end
-        end
-        test_x = test_x.map { |r| [1].concat(r) }
-      end
-
-      # Per default use training data to compute cost if no data is given
-      cost_x = test_x.nil? ? @x : Matrix.rows(test_x)
-      cost_y = test_y.nil? ? @y : Matrix.rows( test_y.collect { |e| [e] } )
-
-      prediction_y = (cost_x * @theta).to_a.flatten
-      real_y = cost_y.to_a.flatten
+    # Method that computes the mean absolute percentage error
+    def mean_absolute_percentage_error
+      prediction_y = (@x * @theta).to_a.flatten
+      real_y = @y.to_a.flatten
 
       errors = 0
 
