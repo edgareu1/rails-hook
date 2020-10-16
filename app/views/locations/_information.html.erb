@@ -7,7 +7,7 @@
 <!-- Card Weather Info -->
 <div class="card" style="margin-bottom: 20px">
   <!-- Card's Headers  -->
-  <div class="log-stats-headers">
+  <div class="card-info-headers">
     <!-- Image of the Locations Weather -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:icon] %>@2x.png)"
          class="weather-icon">
@@ -17,7 +17,7 @@
   </div>
 
   <!-- Card's Content -->
-  <div class="log-stats-content">
+  <div class="card-info-content">
     <table style="margin: 0 auto">
       <tr>
         <td>Country</td>
@@ -38,9 +38,9 @@
       </tr>
 
       <tr>
-        <td><hr style="min-width: 100px"></td>
+        <td><hr></td>
         <td></td>
-        <td><hr style="min-width: 140px"></td>
+        <td><hr></td>
       </tr>
 
       <tr>
@@ -69,9 +69,9 @@
 
       <% unless location.logs_count.zero? %>
         <tr>
-          <td><hr style="min-width: 100px"></td>
+          <td><hr></td>
           <td></td>
-          <td><hr style="min-width: 140px"></td>
+          <td><hr></td>
         </tr>
 
         <tr>

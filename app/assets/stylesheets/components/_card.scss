@@ -6,6 +6,7 @@
   padding: 10px;
   margin-top: 20px;
 
+  // General card
   // Card headers
   .card-headers {
     display: flex;
@@ -50,12 +51,74 @@
     }
   }
 
+  // Card footer
   .card-footer-time {
     text-align: right;
     color: rgba(155, 221, 249, 0.7);
     font-size: 17px;
     padding-right: 3px;
     margin: 0;
+  }
+
+  // Info card
+  // Card headers
+  .card-info-headers {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+    .weather-icon {
+      height: 50px;
+      width: 35%;
+    }
+  }
+
+  // Card content
+  .card-info-content {
+    width: 100%;
+    padding: 10px;
+    border-top: 2px solid white;
+
+    table {
+      margin-left: 35%;
+
+      tr {
+        line-height: 30px;
+
+        td {
+          &:nth-child(1) {
+            text-align: end;
+            color: #9BDDF9;
+            font-weight: bold;
+
+            hr {
+              min-width: 100px;
+            }
+          }
+
+          &:nth-child(2) {
+            width: 15px;
+          }
+
+          &:nth-child(3) > hr {
+            min-width: 140px;
+          }
+        }
+      }
+    }
+
+    p {
+      text-align: justify;
+      font-size: 17px;
+      padding-right: 10px;
+      margin: 0;
+
+      span {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 15px;
+      }
+    }
   }
 }
 
