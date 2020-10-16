@@ -3,6 +3,6 @@
   document.getElementById('ModalNewLocation').innerHTML = "<%= j render "locations/form", location: @location %>";
 
   // Enable the autocomplete of the Location
-  var addressInput = document.getElementById('location_name');
+  var addressInput = document.querySelector('#ModalNewLocation #location_name');
   autoCompleteLocation(addressInput);
 <% end %>
