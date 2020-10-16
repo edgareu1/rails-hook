@@ -2,7 +2,7 @@ module LinearRegressionHelper
   # This Class is based from the GitHub Repo "linear-regression" of "daugaard" having been modified to
   # also calculate the mean absolute percentage error method
   class RubyLinearRegression
-    attr_reader :x, :y, :theta, :mu, :sigma, :lambda, :normalize
+    attr_reader :x, :y, :theta, :mu, :sigma, :lambda
 
     def initialize
       @mu = 0
@@ -13,11 +13,9 @@ module LinearRegressionHelper
     # Arguments:
     #   x_data: (Two dimensional array with the independent variables of your training data)
     #   y_data: (Array with the dependent variables of your training data)
-    def load_training_data x_data, y_data, normalize = true
-      @normalize = normalize
-
+    def load_training_data x_data, y_data
       # Normalize the x_data
-      x_data = normalize_data(x_data) if @normalize
+      x_data = normalize_data(x_data)
 
       # Add 1 column to our data
       x_data = x_data.map { |r| [1].concat(r) }
@@ -36,7 +34,7 @@ module LinearRegressionHelper
           test_x[row].each_index do |i|
             test_x[row][i] = (test_x[row][i] - @mu[i]) / @sigma[i].to_f
           end
-        end if @normalize
+        end
         test_x = test_x.map { |r| [1].concat(r) }
       end
 
@@ -85,7 +83,7 @@ module LinearRegressionHelper
       # normalize
       data.each_index do |i|
         data[i] = (data[i] - @mu[i]) / @sigma[i].to_f
-      end if @normalize
+      end
 
       # Add 1 column to prediction data
       data = [1].concat(data)
