@@ -1,8 +1,10 @@
 <!-- Title -->
-<div class="page-title">
-  <h1><%= log.location.name_to_display %></h1>
-  <h2 class="locations-spot" ><%= log.label %></h2>
-</div>
+<%= link_to location_path(log.location) do %>
+  <div class="page-title">
+    <h1><%= log.location.name_to_display %></h1>
+    <h2 class="locations-spot" ><%= log.label %></h2>
+  </div>
+<% end %>
 
 <!-- Date -->
 <div class="log-date">

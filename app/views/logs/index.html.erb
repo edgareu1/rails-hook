@@ -1,9 +1,9 @@
 <h1 class="page-title">All Logs</h1>
 
 <!-- Modal for the new Log creation -->
-  <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn-log-new" do %>
-    <i class="fas fa-plus"></i>
-  <% end %>
+<%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn-log-new" do %>
+  <i class="fas fa-plus"></i>
+<% end %>
 
 <% if @logs.empty? %>
   <div class="card no-data">
@@ -12,7 +12,7 @@
   </div>
 
 <% else %>
-  <div id="logs-list">
+  <div id="cards-list">
     <%= render 'logs/list', logs: @logs %>
   </div>
 <% end %>

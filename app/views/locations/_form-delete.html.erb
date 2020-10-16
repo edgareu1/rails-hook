@@ -1,0 +1,14 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-delete-headers">
+      <h2 class="modal-title">Delete Location</h2>
+      <p>Are you sure you want to delete the location and all its logs?</p>
+
+      <div class="modal-delete-confirmation">
+        <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+
+        <%= link_to "Delete", location_path(@location), method: :delete, class: "btn-delete-confirm" %>
+      </div>
+    </div>
+  </div>
+</div>

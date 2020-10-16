@@ -64,8 +64,8 @@ window.smoothPagination = function() {
 // Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
   // If in the Logs#index page...
-  let logsList = document.getElementById('logs-list');
-  if (logsList) {
+  let cardsList = document.getElementById('cards-list');
+  if (cardsList) {
     smoothPagination(); // Smooth the pagination between the Logs
   }
 
@@ -75,12 +75,17 @@ document.addEventListener('turbolinks:load', () => {
     autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
+  // If theres any Locations#new form...
+  let locationInputs = document.querySelectorAll('#location_name');
+  if (locationInputs[0]) {
+    for (let i = 0; i < locationInputs.length; i++) {
+      autoCompleteLocation(locationInputs[i]);  // Autocomplete the Locations address
+    }
+  }
+
   // If in the Users#show page...
   let canvas = document.getElementById('fish-tank');
-  let locationInput = document.getElementById('location_name');
   if (canvas) {
-    autoCompleteLocation(locationInput);  // Autocomplete the Locations address
-
     backgroundFish();               // Add the background canvas animation
     updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the Users device
 

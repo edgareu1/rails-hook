@@ -1,0 +1,5 @@
+// Refresh the Locations list
+document.getElementById('cards-list').innerHTML = "<%= j render 'locations/list', locations: @locations %>";
+
+// Add smooth animations to the pagination links
+smoothPagination();

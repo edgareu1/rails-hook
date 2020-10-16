@@ -3,7 +3,18 @@ class Location < ApplicationRecord
   has_many :logs, dependent: :destroy
 
   geocoded_by :name
-  after_validation :geocode, if: Proc.new { |location| location.id.nil? }
+
+  reverse_geocoded_by :latitude, :longitude do |obj, results|
+    if geo = results.first
+      obj.country = geo.country
+      obj.country_code = geo.country_code.upcase
+      obj.state = geo.state
+      obj.city = geo.city
+    end
+  end
+
+  after_validation :geocode
+  after_validation :reverse_geocode
 
   validates :name, presence: true
   validates :spot, presence: true, length: { maximum: 16, message: "Maximum of 16 characters"}

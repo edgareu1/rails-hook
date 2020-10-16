@@ -1,27 +1,29 @@
-<li>
-  <!-- Location info -->
-  <div class="location-info">
-    <!-- Location Name -->
-    <h6>
-      <strong><%= location[:instance].name_to_display %></strong>
+<%= link_to location_path(location[:instance]) do %>
+  <li>
+    <!-- Location info -->
+    <div class="location-info">
+      <!-- Location Name -->
+      <h6>
+        <strong><%= location[:instance].name_to_display %></strong>
 
-      <% if location[:instance].logs_count.zero? %>
-        – no logs
-      <% elsif location[:instance].logs_count == 1 %>
-        – 1 log
-      <% else %>
-        <%= "– #{location[:instance].logs_count} logs" %>
-      <% end %>
-    </h6>
+        <% if location[:instance].logs_count.zero? %>
+          – no logs
+        <% elsif location[:instance].logs_count == 1 %>
+          – 1 log
+        <% else %>
+          <%= "– #{location[:instance].logs_count} logs" %>
+        <% end %>
+      </h6>
 
-    <!-- Location spot -->
-    <p class="locations-spot">
-      <%= location[:instance].spot %>
-    </p>
-  </div>
+      <!-- Location spot -->
+      <p class="locations-spot">
+        <%= location[:instance].spot %>
+      </p>
+    </div>
 
-  <!-- Icon of the Location weather right now -->
-  <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png)"
-       class="weather-icon">
-  </div>
-</li>
+    <!-- Icon of the Location weather right now -->
+    <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather_icon] %>@2x.png)"
+        class="weather-icon">
+    </div>
+  </li>
+<% end %>

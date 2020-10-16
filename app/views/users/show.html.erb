@@ -15,7 +15,9 @@
   <div class="d-flex">
     <%= image_tag "chair.png" %>
 
-    <h3>My Locations</h3>
+    <%= link_to locations_path, style: "color: rgba(255, 255, 255, 0.9); opacity: 1; padding: 0" do %>
+      <h3>My Locations</h3>
+    <% end %>
 
     <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" } do %>
       <i class="fas fa-plus"></i>

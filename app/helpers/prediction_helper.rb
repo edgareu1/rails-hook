@@ -13,9 +13,7 @@ module PredictionHelper
     end
 
     def top_ranking_locations(num)
-        @locations.map { |loc| { location: { name: loc.name_to_display,
-                                             spot: loc.spot
-                                           },
+        @locations.map { |loc| { location: loc,
                                  prediction: prediction(loc)
                                }
                        }
