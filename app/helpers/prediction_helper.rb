@@ -18,6 +18,7 @@ module PredictionHelper
                                }
                        }
                   .max_by(num) { |loc| loc[:prediction][:weight_caught] }
+                  .select { |i| i[:prediction][:weight_caught].positive? }
     end
 
     private
