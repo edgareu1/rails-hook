@@ -89,23 +89,24 @@ module LinearRegressionHelper
 
     private
 
-    def normalize_data(x_data, mu = nil, sigma = nil)
+    def normalize_data(x_data)
       row_size = x_data.size
-      column_count = x_data[0].is_a?( Array) ? x_data[0].size : 1
+      column_count = x_data[0].is_a?(Array) ? x_data[0].size : 1
 
       x_norm = Array.new(row_size)
       @mu = Array.new(column_count)
       @sigma = Array.new(column_count)
 
-      0.upto(column_count - 1) do |column|
-        column_data = x_data.map { |e| e[column] }
-        @mu[column] = column_data.inject { |sum, e| sum + e } / row_size
-        @sigma[column] = (column_data.max - column_data.min)
+      column_count.times do |column|
+        column_data = x_data.map { |row| row[column] }
+        @mu[column] = column_data.inject { |sum, i| sum + i } / row_size
+        @sigma[column] = column_data.max - column_data.min
       end
 
-      0.upto(row_size - 1) do |row|
+      row_size.times do |row|
         row_data = x_data[row]
         x_norm[row] = Array.new(column_count)
+
         row_data.each_index do |i|
           x_norm[row][i] = (row_data[i] - @mu[i]) / @sigma[i].to_f
         end
