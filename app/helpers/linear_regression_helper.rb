@@ -93,6 +93,9 @@ module LinearRegressionHelper
       # Perform prediction
       prediction = (Matrix[data] * @theta)[0, 0].to_f
 
+      # If there's any error with the prediction, then make the weight predicted zero
+      prediction = 0 if @sigma.include?(0) || @theta.any? { |i| !i.infinite?.nil? }
+
       return prediction
     end
 
