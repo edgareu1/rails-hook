@@ -1,5 +1,14 @@
 // Cards
 
+// Cards list
+#cards-list {
+  margin: 10px 0 20px;
+
+  .weather-icon {
+    margin-bottom: 8px;
+  }
+}
+
 // Standard card
 .card {
   background-color: $opacity-blue;
