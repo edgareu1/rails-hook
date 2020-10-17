@@ -3,7 +3,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user = User.find(params[:id])
 
     # If the request comes from that same User, then display more complete info
-    @more_info = (current_user == @user)
+    @more_info = request.headers["X-User-Email"] == @user.email &&
+                 request.headers["X-User-Token"] == @user.authentication_token
 
     # Only load the more complete info if necessary
     if @more_info
