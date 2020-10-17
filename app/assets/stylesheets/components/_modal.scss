@@ -15,11 +15,6 @@
   background-color: #061f35;
 }
 
-// Content of the Locations autocomplete list
-.ap-dataset-places {
-  color: black;
-}
-
 // Delete modals
 .modal-delete {
   .modal-content {
@@ -45,4 +40,10 @@
       margin: 10px auto 0;
     }
   }
+}
+
+// Center Modals
+.modal-dialog-centered {
+  min-height: calc(100% - 1rem);
+  padding: 10px;
 }
