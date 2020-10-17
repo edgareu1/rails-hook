@@ -6,7 +6,7 @@ function smoothPagination() {
   for (let anchor of anchors) {
     const anchorRef = anchor.href;
 
-    // If the anchor has a page destination, then...
+    // If the anchor has a page destination...
     if (typeof anchorRef !== "undefined") {
       anchor.setAttribute("data-remote", "true"); // Ajaxify the anchor
 
