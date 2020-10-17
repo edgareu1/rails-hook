@@ -3,7 +3,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user = User.find(params[:id])
 
     # If the request comes from the that same User, then display more complete info
-    @more_info = (User.find(params[:id]) == current_user)
+    @more_info = (current_user == @user)
 
     # Only load the more advanced data if necessary
     if @more_info

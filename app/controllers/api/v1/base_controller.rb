@@ -4,7 +4,7 @@ class Api::V1::BaseController < ActionController::API
   private
 
   def check_user_authorization
-    unauthorized_action unless User.find(params[:user_id]) == current_user
+    unauthorized_action unless current_user == User.find(params[:user_id])
   end
 
   def not_found(exception)

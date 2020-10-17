@@ -4,14 +4,13 @@ class Api::V1::LocationsController < Api::V1::BaseController
   before_action :check_user_authorization
 
   before_action :set_user,     only: [ :index, :show, :create, :update, :destroy ]
-  before_action :set_location, only: [ :update, :destroy ]
+  before_action :set_location, only: [ :show, :update, :destroy ]
 
   def index
     @locations = @user.locations.sort
   end
 
   def show
-    @location = @user.locations.find(params[:id])
   end
 
   def create
