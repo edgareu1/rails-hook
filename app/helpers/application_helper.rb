@@ -3,9 +3,10 @@ module ApplicationHelper
   def rounded_weight(weight)
     if weight < 1000
       return weight.zero? ? "NA" : "#{weight} gr"
+
     else
       weight_in_kg = weight.fdiv(1000)
-                           .tap { |n| break n.to_i == n ? n.to_i : n }
+                           .tap { |num| break num.to_i == num ? num.to_i : num }
                            .round(1)
 
       return "#{weight_in_kg} kg"
@@ -17,12 +18,13 @@ module ApplicationHelper
     return kelvin - 273.15
   end
 
-  # Display the user avatar or, if this isn't present, the standard avatar
+  # Display the Users avatar or, if this isn't present, the standard avatar
   def large_avatar(user)
     if user.avatar.attached?
       cl_image_tag(user.avatar.key, transformation: [
         { width: 240, height: 240, gravity: 'face', radius: 'max', crop: 'fill' }
       ], class: "avatar-large")
+
     else
       image_tag('default-user-avatar.png', class: "avatar-large")
     end
