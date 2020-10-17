@@ -1,13 +1,13 @@
-// Alerts
+// Alert
 .alert {
   position: fixed;
   top: 0;
   left: 0;
   text-align: center;
-  z-index: 1000;
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
   background-color: rgba(91, 234, 201, 0.5);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
   width: -webkit-fill-available;
   border: none;
 }
