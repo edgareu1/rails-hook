@@ -40,7 +40,7 @@
   background-color: lightgray;
 }
 
-// Button for the User#show page Logs#create action
+// Button for the Logs#create action in the Users#show page
 .btn-ghost {
   display: flex;
   align-items: center;
@@ -57,8 +57,8 @@
   }
 }
 
-// Button for the Logs index page Logs#create action
-.btn-log-new {
+// Button to create a new instance; Plus (+) symbol
+.btn-new-instance {
   display: flex;
   align-items: baseline;
   margin: 10px 5px -10px;
