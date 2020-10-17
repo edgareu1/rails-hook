@@ -1,11 +1,11 @@
-// Function that, from a search parameter, creates an autocomplete list for Fish suggestions and also refreshes the
-// Fish#index page (using AJAX requests); The functions parameter is the input field where the user searches for the
+// Function that, from a search parameter, creates an autocomplete list for Fish name suggestions and also refreshes
+// the Fish#index page (using AJAX requests); The function argument is the input field where the user searches for the
 // Fish name
 function autoCompleteFish(fishInput) {
   // Define two variables to follow the number of items in the autocomplete list and the currently selected item index
   let ItemIndexCounter, selectedItemIndex;
 
-  // Each time the user writes on the 'fishInput', then...
+  // Each time the user writes on the 'fishInput'...
   fishInput.addEventListener('input', (event) => {
     // Use the gem 'gon' to call the Fish Controller variable 'fish_names', which is the array of Fish to search into
     const fishNames = gon.fish_names.split(', ');
@@ -63,7 +63,7 @@ function autoCompleteFish(fishInput) {
         autoCompleteList.appendChild(fishElement);
 
         // If the item is clicked upon, then the 'fishInput' is filled with that item's value
-        fishElement.addEventListener('click', function() {
+        fishElement.addEventListener('click', () => {
           fishInput.value = fishNames[i];
 
           refreshPageSearch(fishInput.value); // Refresh the Fish#index page with the clicked item as a search param
@@ -71,7 +71,7 @@ function autoCompleteFish(fishInput) {
         });
 
         // Each time the user hovers it's mouse over the item makes it the 'selected' item
-        fishElement.addEventListener("mouseover", function() {
+        fishElement.addEventListener("mouseover", () => {
           selectedItemIndex = fishElement.getAttribute('data-index');
           removeSelected();
           addSelected();
@@ -83,27 +83,27 @@ function autoCompleteFish(fishInput) {
   });
 
   // Each time the user presses down a key on the 'fishInput'...
-  fishInput.addEventListener("keydown", function(e) {
+  fishInput.addEventListener("keydown", (event) => {
     // Only advance if the autocomplete list exists and has items
     let autoCompleteList = document.getElementById("autocomplete-list");
     if ((!autoCompleteList) || autoCompleteList.childElementCount == 0) return;
 
     // If the arrow DOWN key is pressed, then the 'selected' item becomes the one with +1 index value
-    if (e.keyCode == 40) {
+    if (event.keyCode == 40) {
       selectedItemIndex++;
       removeSelected();
       addSelected();
 
     // If the arrow UP key is pressed, then the 'selected' item becomes the one with -1 index value
-    } else if (e.keyCode == 38) {
+    } else if (event.keyCode == 38) {
       selectedItemIndex--;
       removeSelected();
       addSelected();
 
     // If the ENTER key is pressed, then prevent the form from being submitted and simulate the click on the
     // 'selected' item
-    } else if (e.keyCode == 13) {
-      e.preventDefault();
+    } else if (event.keyCode == 13) {
+      event.preventDefault();
 
       autoCompleteList = autoCompleteList.getElementsByTagName("div");
       if (selectedItemIndex > -1) autoCompleteList[selectedItemIndex].click();
@@ -111,8 +111,8 @@ function autoCompleteFish(fishInput) {
   });
 
   // If the user clicks outside the 'fishInput' or the autocomplete list, then empty the autocomplete list
-  document.addEventListener("click", function(e) {
-    if (e.target.hasAttribute('data-index') || e.target.id == 'search-input') return;
+  document.addEventListener("click", (event) => {
+    if (event.target.hasAttribute('data-index') || event.target.id == 'search-input') return;
     emptyList();
   });
 

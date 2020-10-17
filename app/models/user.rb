@@ -9,8 +9,8 @@ class User < ApplicationRecord
   # API authentication token
   acts_as_token_authenticatable
 
-  has_many :logs
   has_many :locations, dependent: :destroy
+  has_many :logs
   has_many :catches, through: :logs
 
   has_one_attached :avatar
@@ -19,43 +19,48 @@ class User < ApplicationRecord
                        uniqueness: { case_sensitive: false }
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false },
-                       length: { maximum: 20, message: "Maximum of 20 characters"}
+                       length: { maximum: 20, message: "Maximum of 20 characters" }
 
-  def self.find_for_database_authentication warden_conditions
+  def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
+    where(conditions).where(["lower(username) = :value OR lower(email) = :value", { value: login.strip.downcase }]).first
   end
 
-  # Returns an array of hashes that represent the fish most caught by the user
+  # Method that gets an array of hashes that represent the Fish most caught by the User; in the case of 2 or more Fish
+  # with the same quantity, decide by their weight; if they are still equal, decide by their creation date (Id serves
+  # the purpose)
   def top_fish(num)
     catches.group_by { |catch| catch.fish_id }
            .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
-                                          catches.inject(0) { |sum, catch| sum + catch.weight }
+                                          catches.inject(0) { |sum, catch| sum + catch.weight },
+                                          - catches.first.id
                                          ]
                              }
            .max_by(num) { |k, v| v }
            .map { |k, v| { id: k,
                            name: Fish.find(k).name,
                            catch_count: v.first,
-                           catch_weight: v.last }
+                           catch_weight: v[1]
+                         }
                 }
   end
 
-  # Returns an array of hashes that represent the 'num' Locations with the most Logs
-  # In case of 2 or more Locations with the same Log size, decide by their creation date (Id serves the purpose)
+  # Method that gets an array of hashes that represent the Locations with the most Logs; in the case of 2 or more
+  # Locations with the same Log size, decide by their catch_count; if they are still equal, decide by their creation
+  # date (Id serves the purpose)
   def top_locations(num)
     locations.map { |loc| [loc.logs_count, loc.catch_count, - loc.id] }
              .max(num)
              .map { |loc_data| Location.find(loc_data.last.abs).data_to_display }
   end
 
-  # Get the number of fish caught by the User
+  # Method that gets the number of Fish caught by the User
   def catch_count
     catches.inject(0) { |sum, catch| sum + catch.quantity }
   end
 
-  # Get the weight of fish caught by the User
+  # Method that gets the weight of Fish caught by the User
   def catch_weight
     catches.inject(0) { |sum, catch| sum + catch.weight }
   end

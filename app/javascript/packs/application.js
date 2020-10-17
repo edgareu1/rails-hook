@@ -37,10 +37,6 @@ import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
 
 // Make the following JS functions accessible from HTML files
-window.autoCompleteFish = function(fishInput) {
-  autoCompleteFish(fishInput);
-}
-
 window.autoCompleteLocation = function(locationInput) {
   autoCompleteLocation(locationInput);
 }
@@ -63,10 +59,10 @@ window.smoothPagination = function() {
 
 // Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
-  // If in the Logs#index page...
+  // If in either the Logs#index or Locations#index pages...
   let cardsList = document.getElementById('cards-list');
   if (cardsList) {
-    smoothPagination(); // Smooth the pagination between the Logs
+    smoothPagination(); // Smooth the pagination
   }
 
   // If in the Fish#index page...
@@ -75,7 +71,7 @@ document.addEventListener('turbolinks:load', () => {
     autoCompleteFish(fishInput);  // Autocomplete the Fish name
   }
 
-  // If theres any Locations#new form...
+  // If in a page with a Locations#new form...
   let locationInputs = document.querySelectorAll('#location_name');
   if (locationInputs[0]) {
     for (let i = 0; i < locationInputs.length; i++) {
@@ -95,7 +91,7 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 
-  // If in the Devise/registration pages...
+  // If in the Devise/registration or session pages...
   let bottomFishContainer = document.querySelector('#jsi-flying-fish-container');
   if (bottomFishContainer) {
     bottomFish(); // Add the bottom canvas animation
@@ -104,6 +100,6 @@ document.addEventListener('turbolinks:load', () => {
   // If there is a Navbar...
   let predictionAnchor = document.querySelector('a[href="/prediction"]');
   if (predictionAnchor) {
-    loadingIcon(predictionAnchor);
+    loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction
   }
 });

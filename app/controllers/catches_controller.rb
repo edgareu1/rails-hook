@@ -1,5 +1,5 @@
 class CatchesController < ApplicationController
-  before_action :set_log, only: [:create, :destroy]
+  before_action :set_log, only: [ :create, :destroy ]
 
   def create
     @catch = @log.catches.create(catch_params)

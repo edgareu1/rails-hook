@@ -1,5 +1,5 @@
 module LinearRegressionHelper
-  # This Class is based from the GitHub Repo "linear-regression" of "daugaard" having been modified to
+  # This Class is based from the GitHub Repo "linear-regression" of "daugaard"; it was modified to
   # also calculate the mean absolute percentage error method
   class RubyLinearRegression
     attr_reader :x, :y, :theta, :mu, :sigma, :lambda
@@ -60,7 +60,7 @@ module LinearRegressionHelper
 
         return @theta
 
-      # If there's an error while manipulating the Matrices, make the weight predicted zero
+      # If there's an error while manipulating the Matrices make the predicted weight zero
       rescue *Exception
         @sigma = [0, 0, 0]
       end
@@ -81,7 +81,7 @@ module LinearRegressionHelper
       # Perform prediction
       prediction = (Matrix[data] * @theta)[0, 0].to_f
 
-      # If there's any error with the prediction, make the weight predicted zero
+      # If there's any error with the prediction make the predicted weight zero
       prediction = 0 if @sigma.include?(0) || @theta.any? { |i| !i.infinite?.nil? }
 
       return prediction

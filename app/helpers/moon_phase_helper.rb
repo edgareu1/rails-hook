@@ -8,11 +8,9 @@ module MoonPhaseHelper
 
     phase_days = (julian(year, month, day) - julian(2000, 1, 6)) % 29.530588853
 
-    if phase_days < 14.7652944265
-      return (phase_days % 14.7652944265) / 14.7652944265
-    else
-      return 1 - ((phase_days % 14.7652944265) / 14.7652944265)
-    end
+    result = (phase_days % 14.7652944265) / 14.7652944265
+
+    return phase_days < 14.7652944265 ? result : (1 - result)
   end
 
   private

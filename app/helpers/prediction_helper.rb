@@ -9,12 +9,12 @@ module PredictionHelper
       @user = user
       @moon_phase = round_element(get_moon_phase(Time.now))
 
-      # Only get Locations with at least 5 Logs
+      # Reject Locations with less than 5 Logs
       @locations = @user.locations
                         .reject { |loc| loc.logs_count < 5 }
     end
 
-    # Method that returns the Locations with the higher prediction of weight of fish to be caught
+    # Method that returns the Locations with the highest prediction of weight of fish to be caught
     # Arguments:
     #   num: Number of Locations to return
     def top_ranking_locations(num)

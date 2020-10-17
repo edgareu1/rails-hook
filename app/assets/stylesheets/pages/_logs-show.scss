@@ -36,6 +36,7 @@
     width: 100%;
   }
 
+  // If the list is empty...
   .catches-list-empty {
     thead > tr > th {
       display: flex;
@@ -70,6 +71,7 @@
     }
   }
 
+  // If the list isn't empty...
   .catches-list-populated {
     thead > tr {
       th:first-child {
@@ -129,13 +131,4 @@
       }
     }
   }
-}
-
-// Log actions
-.log-actions {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-right: 15px;
-  margin-bottom: 30px;
 }

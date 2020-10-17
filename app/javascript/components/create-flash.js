@@ -1,6 +1,6 @@
 // Function that creates and appends to the body of the document a flash message with a certain text (flashText)
 function createFlash(flashText) {
-  // Remove the existing flash messages in the document
+  // Remove existing flash messages from the document
   var flashesList = document.querySelectorAll('div.alert.alert-dismissible');
   for (let i = 0; i < flashesList.length; i++) {
     flashesList[i].remove();

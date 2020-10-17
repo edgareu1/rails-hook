@@ -1,6 +1,6 @@
 // Forms
 
-// Standard forms
+// Standard form validations
 .form-control {
   font-family: $body-font;
 }
@@ -68,7 +68,7 @@
   }
 }
 
-// Logs form
+// Logs forms
 .container-log-form {
   display: flex;
   flex-direction: column;
@@ -106,8 +106,8 @@
   }
 
   #log_air_pressure, #log_wind_speed {
-    width: 80px;
     background-color: #fff;
+    width: 80px;
     padding: 6px 5px;
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 2px;

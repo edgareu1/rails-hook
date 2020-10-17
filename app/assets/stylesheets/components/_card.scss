@@ -1,5 +1,14 @@
 // Cards
 
+// Cards list
+#cards-list {
+  margin: 10px 0 20px;
+
+  .weather-icon {
+    margin-bottom: 8px;
+  }
+}
+
 // Standard card
 .card {
   background-color: $opacity-blue;
@@ -69,7 +78,6 @@
     margin-bottom: 10px;
 
     .weather-icon {
-      height: 50px;
       width: 35%;
     }
   }
@@ -87,6 +95,7 @@
         line-height: 30px;
 
         td {
+          // First column
           &:nth-child(1) {
             text-align: end;
             color: #9BDDF9;
@@ -97,10 +106,12 @@
             }
           }
 
+          // Second column
           &:nth-child(2) {
             width: 15px;
           }
 
+          // Third column
           &:nth-child(3) > hr {
             min-width: 140px;
           }
@@ -177,4 +188,13 @@
       }
     }
   }
+}
+
+// Card actions
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 15px;
+  margin-bottom: 30px;
 }

@@ -4,14 +4,13 @@ class Api::V1::LogsController < Api::V1::BaseController
   before_action :check_user_authorization
 
   before_action :set_user_and_location, only: [ :index, :show, :create, :update, :destroy ]
-  before_action :set_log,               only: [ :update, :destroy ]
+  before_action :set_log,               only: [ :show, :update, :destroy ]
 
   def index
     @logs = @location.logs.sort
   end
 
   def show
-    @log = @location.logs.find(params[:id])
   end
 
   def create

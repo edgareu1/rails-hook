@@ -3,7 +3,7 @@ json.array! @locations do |location|
   json.address location.name
 
   json.stats do
-    json.num_logs @location.logs_count
+    json.num_logs location.logs_count
 
     json.fish_caught do
       json.num location.catch_count
