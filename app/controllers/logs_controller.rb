@@ -3,7 +3,7 @@ require 'will_paginate/array'
 class LogsController < ApplicationController
   include MoonPhaseHelper
 
-  before_action :set_log, only: [:show, :update, :destroy]
+  before_action :set_log, only: [ :show, :update, :destroy ]
 
   def create
     @log = current_user.logs.new(log_params.except(:air_pressure, :wind_speed))
@@ -19,8 +19,8 @@ class LogsController < ApplicationController
   end
 
   def show
-    if @log.nil? || @log.user != current_user
-      flash[:alert] = "That Log was not found"
+    if @log.nil? || current_user != @log.user
+      flash[:alert] = "Log was not found"
       redirect_to logs_path
     end
   end
@@ -62,7 +62,7 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :location_id, :air_pressure, :wind_speed)
+    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :air_pressure, :wind_speed)
   end
 
   def set_log

@@ -30,7 +30,7 @@
       <p class="no-data">No locations saved yet</p>
 
     <% else %>
-      <%= render partial: "locations/location", collection: current_user.top_locations(3) %>
+      <%= render partial: "locations/location", collection: @user_locations %>
     <% end %>
   </div>
 </ul>
