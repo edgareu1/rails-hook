@@ -14,4 +14,10 @@ class Api::V1::PagesController < Api::V1::BaseController
       @prediction = Ranking.new(current_user).prediction(@location)
     end
   end
+
+  def top_prediction
+    num = params[:num].present? ? params[:num].to_i : 3
+
+    @prediction = Ranking.new(current_user).top_ranking_locations(num)
+  end
 end
