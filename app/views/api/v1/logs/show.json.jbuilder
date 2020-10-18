@@ -1,4 +1,10 @@
-json.extract! @log, :id, :tag_id
+json.extract! @log, :id
+
+json.location do
+  json.spot @log.location.spot
+  json.address @log.location.name
+  json.extract! @log, :tag_id
+end
 
 json.time do
   json.start @log.start_time

@@ -26,7 +26,7 @@ json.stats do
 
       json.stats do
         json.num_logs location[:instance].logs_count
-      
+
         json.fish_caught do
           json.num location[:instance].catch_count
           json.weight_gr location[:instance].catch_weight
