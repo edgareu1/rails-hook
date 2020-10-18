@@ -35,9 +35,9 @@ class Location < ApplicationRecord
     return {
       weather_icon:         weather_data["weather"].first["icon"],
       weather_description:  weather_data["weather"].first["description"],
-      air_pressure:         weather_data["main"]["pressure"],
-      wind_speed:           weather_data["wind"]["speed"],
       temperature:          kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
+      air_pressure:         weather_data["main"]["pressure"].round,
+      wind_speed:           weather_data["wind"]["speed"].round(1),
       moon_phase:           get_moon_phase(Time.now).round(2)
     }
   end

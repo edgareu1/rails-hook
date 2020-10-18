@@ -75,6 +75,14 @@
   color: #BDEBFF;
   opacity: 0.9;
 
+  label {
+    margin-bottom: 0;
+  }
+
+  label[for=log_observation]{
+    margin-bottom: 8px;
+  }
+
   .form-control.is-invalid {
     padding: 0 0 0 5px;
   }
@@ -82,7 +90,7 @@
   .d-flex {
     justify-content: space-between;
     padding-right: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
     label {
       width: 100px;
@@ -97,7 +105,7 @@
   }
 
   .invalid-feedback {
-    margin: 0 0 14px 0;
+    margin: 0 0 10px 0;
   }
 
   input[type=datetime-local], #log_location_id {
@@ -105,7 +113,7 @@
     padding: 0 2px 0 5px !important;
   }
 
-  #log_air_pressure, #log_wind_speed {
+  #log_temperature, #log_air_pressure, #log_wind_speed {
     background-color: #fff;
     width: 80px;
     padding: 6px 5px;
@@ -113,11 +121,11 @@
     border-radius: 2px;
   }
 
-  .log_air_pressure {
+  .log_temperature, .log_air_pressure, .log_wind_speed {
     margin-bottom: 0;
   }
 
-  label[for="log_air_pressure"], label[for="log_wind_speed"] {
+  label[for="log_temperature"], label[for="log_air_pressure"], label[for="log_wind_speed"] {
     margin-right: 10px;
   }
 

@@ -27,6 +27,19 @@ class Log < ApplicationRecord
     "#{location.spot} \##{sprintf '%03d', (tag_id)}"
   end
 
+  # Method that gets and displays the more relevant stat
+  def stat_to_display
+    if temperature.present?
+      "#{temperature} °C"
+    elsif air_pressure.present?
+      "#{air_pressure} Pa"
+    elsif wind_speed.present?
+      "#{wind_speed} m/s"
+    else
+      "No stats"
+    end
+  end
+
   # Method that gets the Log duration in hours
   def duration
     (end_time - start_time) / ( 60 * 60 )
@@ -36,7 +49,7 @@ class Log < ApplicationRecord
 
   # Method that updates the weather attributes to the ones registered at the moment in the respective Location
   def add_weather_data
-    self.update(location.weather_data.except(:temperature))
+    self.update(location.weather_data)
   end
 
   # Method that adds validations to the Log duration

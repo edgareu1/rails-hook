@@ -10,6 +10,6 @@ json.array! @prediction do |loc_prediction|
   json.current_weather do
     json.icon loc_prediction[:weather][:weather_icon]
     json.description loc_prediction[:weather][:weather_description]
-    json.extract! loc_prediction[:weather], :air_pressure, :wind_speed, :temperature, :moon_phase
+    json.extract! loc_prediction[:weather], :temperature, :air_pressure, :wind_speed, :moon_phase
   end
 end

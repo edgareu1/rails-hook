@@ -49,6 +49,12 @@
   <div class="card-info-content">
     <table>
       <tr>
+        <td>Temperature</td>
+        <td></td>
+        <td><%= log.temperature.blank? ? "--" : "#{log.temperature} °C" %></td>
+      </tr>
+
+      <tr>
         <td>Air pressure</td>
         <td></td>
         <td><%= log.air_pressure.blank? ? "--" : "#{log.air_pressure} Pa" %></td>

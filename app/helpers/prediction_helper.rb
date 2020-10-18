@@ -32,8 +32,8 @@ module PredictionHelper
         # Predicting weight of fish caught per hour
         y_data.push(weight_caught_hour)
 
-        # Analysing 'air pressure', 'wind speed' and 'moon phase'
-        x_data.push( [log.air_pressure, log.wind_speed, log.moon_phase.round(2)] )
+        # Analysing 'temperature', 'air pressure', 'wind speed' and 'moon phase'
+        x_data.push( [log.temperature, log.air_pressure, log.wind_speed, log.moon_phase.round(2)] )
       end
 
       # Create the regression model
@@ -51,7 +51,7 @@ module PredictionHelper
       # Get the current weather of the Location
       weather_data = location.weather_data
 
-      prediction_data = [weather_data[:air_pressure], weather_data[:wind_speed], weather_data[:moon_phase]]
+      prediction_data = [weather_data[:temperature], weather_data[:air_pressure], weather_data[:wind_speed], weather_data[:moon_phase]]
 
       # Get the prediction based on the trained model
       prediction_weight = linear_regression.predict(prediction_data).round

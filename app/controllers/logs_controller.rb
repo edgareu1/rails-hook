@@ -6,7 +6,7 @@ class LogsController < ApplicationController
   before_action :set_log, only: [ :show, :update, :destroy ]
 
   def create
-    @log = current_user.logs.new(log_params.except(:air_pressure, :wind_speed))
+    @log = current_user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
@@ -62,7 +62,7 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :air_pressure, :wind_speed)
+    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :temperature, :air_pressure, :wind_speed)
   end
 
   def set_log

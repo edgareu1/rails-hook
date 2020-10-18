@@ -41,7 +41,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :air_pressure, :wind_speed, :moon_phase, :weather_description, :weather_icon)
+    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :temperature, :air_pressure, :wind_speed, :moon_phase, :weather_description, :weather_icon)
   end
 
   def set_location

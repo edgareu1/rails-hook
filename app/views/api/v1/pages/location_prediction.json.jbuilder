@@ -14,5 +14,5 @@ end
 json.current_weather do
   json.icon @prediction[:weather][:weather_icon]
   json.description @prediction[:weather][:weather_description]
-  json.extract! @prediction[:weather], :air_pressure, :wind_speed, :temperature, :moon_phase
+  json.extract! @prediction[:weather], :temperature, :air_pressure, :wind_speed, :moon_phase
 end
