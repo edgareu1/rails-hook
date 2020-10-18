@@ -6,6 +6,9 @@ class Log < ApplicationRecord
   has_many :fish, through: :catches
 
   validates :location, presence: true
+  validates :temperature,  numericality: { greater_than_or_equal_to: 0 }
+  validates :air_pressure, numericality: { greater_than_or_equal_to: 0 }
+  validates :wind_speed,   numericality: { greater_than_or_equal_to: 0 }
 
   validate :log_duration
 
