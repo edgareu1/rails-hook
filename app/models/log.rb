@@ -36,15 +36,7 @@ class Log < ApplicationRecord
 
   # Method that updates the weather attributes to the ones registered at the moment in the respective Location
   def add_weather_data
-    weather_data = location.weather_data
-
-    self.weather_icon =         weather_data[:weather_icon]
-    self.weather_description =  weather_data[:weather_description]
-    self.air_pressure =         weather_data[:air_pressure]
-    self.wind_speed =           weather_data[:wind_speed]
-    self.moon_phase =           weather_data[:moon_phase]
-
-    save
+    self.update(location.weather_data.except(:temperature))
   end
 
   # Method that adds validations to the Log duration

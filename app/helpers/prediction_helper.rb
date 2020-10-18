@@ -16,10 +16,7 @@ module PredictionHelper
     # Arguments:
     #   num: Number of Locations to return
     def top_ranking_locations(num)
-      @locations.map { |loc| { location: loc,
-                               prediction: prediction(loc)
-                             }
-                     }
+      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
                 .select { |loc| loc[:prediction][:weight_caught].positive? }
                 .max_by(num) { |loc| loc[:prediction][:weight_caught] }
     end
@@ -59,13 +56,10 @@ module PredictionHelper
       # Get the prediction based on the trained model
       prediction_weight = linear_regression.predict(prediction_data).round
 
-      return { weight_caught:    prediction_weight,
-               percentage_error: percentage_error,
-               weather_icon:     weather_data[:weather_icon],
-               air_pressure:     weather_data[:air_pressure],
-               wind_speed:       weather_data[:wind_speed],
-               temperature:      weather_data[:temperature],
-               moon_phase:       weather_data[:moon_phase]
+      return { weather: weather_data,
+               prediction: { weight_caught:    prediction_weight,
+                             percentage_error: percentage_error
+                           }
              }
     end
 
