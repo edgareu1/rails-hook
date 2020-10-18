@@ -54,18 +54,21 @@
             <div class="form-group float optional log_temperature d-flex">
               <label for="log_temperature">Temperature</label>
               <input class="form-control" id="log_temperature" aria-invalid="true" placeholder="°C" type="number"
-                     step="any" value="<%= log.temperature %>" name="log[temperature]">
+                     step="1" value="<%= log.temperature %>" name="log[temperature]">
               <p>°C</p>
             </div>
 
             <div class="invalid-feedback temperature_input"></div>
 
             <!-- Air Pressure -->
-            <div class="d-flex">
+            <div class="form-group integer optional log_air_pressure d-flex">
               <label for="log_air_pressure">Air pressure</label>
-              <%= f.input :air_pressure, id: "log_air_pressure", placeholder: 'Pa', label: false %>
+              <input class="form-control" id="log_air_pressure" placeholder="Pa" type="number" step="1"
+                     value="<%= log.air_pressure %>" name="log[air_pressure]">
               <p>Pa</p>
             </div>
+
+            <div class="invalid-feedback air_pressure_input"></div>
 
             <!-- Wind Speed -->
             <div class="d-flex" style="margin-bottom: 5px">
