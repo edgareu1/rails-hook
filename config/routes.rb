@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   get '/prediction', to: 'pages#prediction'
 
-  resources :fish, only: [:index, :show]
+  resources :fish, only: [ :index, :show ]
   resources :locations, only: [ :index, :show, :create, :update, :destroy ]
 
-  resources :logs, except: [:new, :edit] do
-    resources :catches, only: [:create, :destroy]
+  resources :logs, except: [ :new, :edit ] do
+    resources :catches, only: [ :create, :destroy ]
   end
 
   # API
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       resources :users, only: [ :show ] do
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
           resources :logs, only: [ :index, :show, :create, :update, :destroy ]
+
+          get '/prediction', to: 'pages#location_prediction'
         end
       end
     end
