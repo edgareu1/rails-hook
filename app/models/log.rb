@@ -27,6 +27,19 @@ class Log < ApplicationRecord
     "#{location.spot} \##{sprintf '%03d', (tag_id)}"
   end
 
+  # Method that gets and displays the more relevant stat
+  def stat_to_display
+    if temperature.present?
+      "#{temperature} °C"
+    elsif air_pressure.present?
+      "#{air_pressure} Pa"
+    elsif wind_speed.present?
+      "#{wind_speed} m/s"
+    else
+      "No stats"
+    end
+  end
+
   # Method that gets the Log duration in hours
   def duration
     (end_time - start_time) / ( 60 * 60 )
