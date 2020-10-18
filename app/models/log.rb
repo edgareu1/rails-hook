@@ -1,6 +1,4 @@
 class Log < ApplicationRecord
-  include MoonPhaseHelper
-
   belongs_to :location, counter_cache: true
   belongs_to :user, counter_cache: true
 
@@ -38,16 +36,7 @@ class Log < ApplicationRecord
 
   # Method that updates the weather attributes to the ones registered at the moment in the respective Location
   def add_weather_data
-    weather_data = location.fetch_weather_data
-
-    self.air_pressure = weather_data["main"]["pressure"]
-    self.wind_speed = weather_data["wind"]["speed"]
-    self.weather_icon = weather_data["weather"][0]["icon"]
-    self.weather_description = weather_data["weather"][0]["description"]
-
-    self.moon_phase = get_moon_phase(self.start_time)
-
-    save
+    self.update(location.weather_data.except(:temperature))
   end
 
   # Method that adds validations to the Log duration

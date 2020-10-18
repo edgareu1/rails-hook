@@ -3,11 +3,9 @@ module PredictionHelper
 
   class Ranking
     include LinearRegressionHelper
-    include MoonPhaseHelper
 
     def initialize(user)
       @user = user
-      @moon_phase = round_element(get_moon_phase(Time.now))
 
       # Reject Locations with less than 5 Logs
       @locations = @user.locations
@@ -18,15 +16,10 @@ module PredictionHelper
     # Arguments:
     #   num: Number of Locations to return
     def top_ranking_locations(num)
-      @locations.map { |loc| { location: loc,
-                                prediction: prediction(loc)
-                             }
-                     }
+      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
                 .select { |loc| loc[:prediction][:weight_caught].positive? }
                 .max_by(num) { |loc| loc[:prediction][:weight_caught] }
     end
-
-    private
 
     # Method that returns a prediction of the weight of fish to be caught (per hour) in a certain Location
     def prediction(location)
@@ -40,7 +33,7 @@ module PredictionHelper
         y_data.push(weight_caught_hour)
 
         # Analysing 'air pressure', 'wind speed' and 'moon phase'
-        x_data.push( [log.air_pressure, round_element(log.wind_speed), round_element(log.moon_phase)] )
+        x_data.push( [log.air_pressure, log.wind_speed, log.moon_phase.round(2)] )
       end
 
       # Create the regression model
@@ -56,32 +49,21 @@ module PredictionHelper
       percentage_error = linear_regression.mean_absolute_percentage_error
 
       # Get the current weather of the Location
-      weather_data = weather_data(location)
+      weather_data = location.weather_data
 
-      prediction_data = [weather_data[:air_pressure], weather_data[:wind_speed], @moon_phase]
+      prediction_data = [weather_data[:air_pressure], weather_data[:wind_speed], weather_data[:moon_phase]]
 
       # Get the prediction based on the trained model
       prediction_weight = linear_regression.predict(prediction_data).round
 
-      return { weight_caught: prediction_weight,
-               percentage_error: percentage_error,
-               weather_icon: weather_data[:weather_icon]
+      return { weather: weather_data,
+               prediction: { weight_caught:    prediction_weight,
+                             percentage_error: percentage_error
+                           }
              }
     end
 
-    # Method that fetches the relevant current weather conditions of a certain Location
-    def weather_data(location)
-      weather_data = location.fetch_weather_data
-
-      air_pressure = weather_data["main"]["pressure"]
-      wind_speed = round_element(weather_data["wind"]["speed"])
-      weather_icon = weather_data["weather"][0]["icon"]
-
-      return { air_pressure: air_pressure,
-               wind_speed: wind_speed,
-               weather_icon: weather_icon
-             }
-    end
+    private
 
     def round_element(element)
       (element * 100).round
