@@ -18,7 +18,7 @@ function displayTimeErrors(errorMessageText, action) {
     endTime.className = "form-control is-invalid";
 
     // Add the error message to its container
-    let timeErrorsContainer = document.querySelector(`.${action}_log .time-input`);
+    let timeErrorsContainer = document.querySelector(`.${action}_log .duration_input`);
     timeErrorsContainer.innerHTML = errorMessageText;
   }
 }

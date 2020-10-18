@@ -2,6 +2,6 @@
 <% if @log.errors.any? %>
   document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
 
-  displayTimeErrors(`<%= @log.errors.messages[:end_time].first %>`, 'new');
+  displayTimeErrors(`<%= @time_errors.first %>`, 'new');
   displayLogFormErrors('location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
 <% end %>
