@@ -50,6 +50,13 @@
           <div class="invalid-feedback time-input"></div>
 
           <% unless log.id.nil? %>
+            <!-- Temperature -->
+            <div class="d-flex">
+              <label for="log_temperature">Temperature</label>
+              <%= f.input :temperature, id: "log_temperature", placeholder: '°C', label: false %>
+              <p>°C</p>
+            </div>
+
             <!-- Air Pressure -->
             <div class="d-flex">
               <label for="log_air_pressure">Air pressure</label>
