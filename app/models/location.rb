@@ -1,4 +1,7 @@
 class Location < ApplicationRecord
+  include ApplicationHelper
+  include MoonPhaseHelper
+
   belongs_to :user, counter_cache: true
   has_many :logs, dependent: :destroy
 
@@ -25,9 +28,18 @@ class Location < ApplicationRecord
     name.match(/^[^,]*/)[0][0..15].strip
   end
 
-  # Method that gets the current weather data of the Location
-  def fetch_weather_data
-    Rails.configuration.open_weather_api.current lon: longitude, lat: latitude
+  # Method that creates a readable hash with the current weather data of the Location
+  def weather_data
+    weather_data = fetch_weather_data
+
+    return {
+      weather_icon:         weather_data["weather"].first["icon"],
+      weather_description:  weather_data["weather"].first["description"],
+      air_pressure:         weather_data["main"]["pressure"],
+      wind_speed:           weather_data["wind"]["speed"],
+      temperature:          kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
+      moon_phase:           get_moon_phase(Time.now).round(2)
+    }
   end
 
   # Method that gets the relevant information to be displayed on the Home page
@@ -50,5 +62,12 @@ class Location < ApplicationRecord
   # Method that gets the weight of Fish caught in the Location
   def catch_weight
     logs.inject(0) { |sum, log| sum + log.catch_weight }
+  end
+
+  private
+
+  # Method that gets the current weather data of the Location
+  def fetch_weather_data
+    Rails.configuration.open_weather_api.current(lon: longitude, lat: latitude)
   end
 end

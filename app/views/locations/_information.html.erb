@@ -9,11 +9,11 @@
   <!-- Card's Headers  -->
   <div class="card-info-headers">
     <!-- Image of the Locations Weather -->
-    <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:icon] %>@2x.png)"
+    <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:weather_icon] %>@2x.png)"
          class="weather-icon">
     </div>
 
-    <h3><%= location_weather[:description].capitalize %></h3>
+    <h3><%= location_weather[:weather_description].capitalize %></h3>
   </div>
 
   <!-- Card's Content -->
