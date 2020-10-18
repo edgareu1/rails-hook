@@ -71,11 +71,14 @@
             <div class="invalid-feedback air_pressure_input"></div>
 
             <!-- Wind Speed -->
-            <div class="d-flex" style="margin-bottom: 5px">
+            <div class="form-group float optional log_wind_speed d-flex">
               <label for="log_wind_speed">Wind speed</label>
-              <%= f.input :wind_speed, id: "log_wind_speed", placeholder: 'm/s', label: false %>
+              <input class="form-control" id="log_wind_speed" placeholder="m/s" type="number" step="1"
+                     value="<%= log.wind_speed %>" name="log[wind_speed]">
               <p>m/s</p>
             </div>
+
+            <div class="invalid-feedback wind_speed_input"></div>
           <% end %>
 
           <!-- Observations -->

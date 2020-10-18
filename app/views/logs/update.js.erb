@@ -7,6 +7,7 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
   displayLogFormErrors('location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
   displayLogFormErrors('temperature', `<%= @log.errors.full_messages_for(:temperature).first %>`);
   displayLogFormErrors('air_pressure', `<%= @log.errors.full_messages_for(:air_pressure).first %>`);
+  displayLogFormErrors('wind_speed', `<%= @log.errors.full_messages_for(:wind_speed).first %>`);
 
 // Otherwise close the Modal and refresh the Log information displayed
 <% else %>
