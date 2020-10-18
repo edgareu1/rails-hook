@@ -7,6 +7,11 @@ class Log < ApplicationRecord
 
   validates :location, presence: true
 
+  # The weather attributes intervals take into account their respective lowest/highest records measured on Earth
+  validates :temperature,  numericality: { greater_than: -100, less_than: 100 },          on: :update
+  validates :air_pressure, numericality: { greater_than: 880, less_than: 1080 },          on: :update
+  validates :wind_speed,   numericality: { greater_than_or_equal_to: 0, less_than: 140 }, on: :update
+
   validate :log_duration
 
   after_create :add_weather_data
@@ -55,19 +60,19 @@ class Log < ApplicationRecord
   # Method that adds validations to the Log duration
   def log_duration
     if start_time.nil?
-      errors.add(:end_time, "Log has to have a start time")
+      errors.add(:start_time, "must exist")
 
     elsif end_time.nil?
-      errors.add(:end_time, "Log has to have a end time")
+      errors.add(:end_time, "must exist")
 
     elsif start_time >= end_time
-      errors.add(:end_time, "Log cannot end before it begins")
+      errors.add(:duration, "must be positive")
 
     elsif start_time + (9 * 60) + 1 >= end_time
-      errors.add(:end_time, "Log cannot be less than 10min long")
+      errors.add(:duration, "cannot be less than 10min")
 
     elsif start_time + (60 * 60 * 24) + 1 <= end_time
-      errors.add(:end_time, "Log cannot be longer than 24h")
+      errors.add(:duration, "cannot be longer than 24h")
     end
   end
 end

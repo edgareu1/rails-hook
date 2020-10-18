@@ -10,6 +10,8 @@ class LogsController < ApplicationController
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
+
+    get_time_errors
   end
 
   def index
@@ -49,8 +51,10 @@ class LogsController < ApplicationController
     @log.save
 
     # Add the Time related errors
-    @log.errors.add(:end_time, "Log has to have a start time") if start_time_error
-    @log.errors.add(:end_time, "Log has to have a end time")   if end_time_error
+    @log.errors.add(:start_time, "must exist") if start_time_error
+    @log.errors.add(:end_time, "must exist")   if end_time_error
+
+    get_time_errors
   end
 
   def destroy
@@ -67,5 +71,11 @@ class LogsController < ApplicationController
 
   def set_log
     @log = Log.find_by(id: params[:id])
+  end
+
+  def get_time_errors
+    @time_errors = @log.errors.messages
+                              .slice(:start_time, :end_time, :duration)
+                              .map { |k, v| k.to_s.humanize + " " +  v.first }
   end
 end
