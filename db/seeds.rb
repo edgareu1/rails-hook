@@ -1,5 +1,7 @@
 require 'open-uri'
 
+include MoonPhaseHelper
+
 # Clean the existing DB
 Catch.destroy_all
 Log.destroy_all
@@ -78,8 +80,10 @@ def create_log(user, location, date_step)
   log_time_period = log_start_time.hour.between?(8, 20) ? "d" : "n"
 
   # Randomize the weather data
-  new_log.update(air_pressure:        rand(990..1030),
+  new_log.update(temperature:         rand(0..400).fdiv(10),
+                 air_pressure:        rand(990..1030),
                  wind_speed:          rand(10..100).fdiv(10),
+                 moon_phase:          get_moon_phase(log_start_time),
                  weather_icon:        log_weather[:icon] + log_time_period,
                  weather_description: log_weather[:description]
                 )
@@ -90,6 +94,9 @@ end
 # Method that quantifies the Log success chance ('power')
 # This method simulates a linear regression that the prediction feature of this app will try to find
 def log_power(log)
+  # The higher the temperature, the better the Log
+  temperature_power = log.temperature.fdiv(40)
+
   # The lower the air pressure, the better the Log
   air_pressure_power = ((log.air_pressure - 990).fdiv(40) - 1).abs
 
@@ -97,7 +104,7 @@ def log_power(log)
   wind_speed_power = (10 - log.wind_speed).fdiv(10)
 
   # Log total fishing power
-  return (log.moon_phase * 0.5) + (air_pressure_power * 0.35) + (wind_speed_power * 0.15)
+  return (log.moon_phase * 0.45) + (temperature_power * 0.15) + (air_pressure_power * 0.3) + (wind_speed_power * 0.1)
 end
 
 # Method that creates a Catch for a specific Log
@@ -106,8 +113,8 @@ def create_catch(log)
 
   # Randomize the Catch based on the Logs 'power'
   catch_fish =     Fish.where("good_weight <= ?", 1000).sample
-  catch_quantity = [(rand(3.0..3.5) * log_power).floor, 1].max
-  catch_weight =   (catch_quantity * 650 * log_power).round
+  catch_quantity = [(rand(3.5..4.0) * log_power).floor, 1].max
+  catch_weight =   (catch_quantity * 750 * log_power).round
 
   # Create Catch
   log.catches.create(fish:     catch_fish,
@@ -141,7 +148,7 @@ end
       new_log = create_log(new_user, new_location, date_step)
 
       # Create random Catches (the greater the Logs 'power', the more the Catches)
-      (rand(3.0..3.5) * log_power(new_log)).floor.times {
+      (rand(3.5..4.0) * log_power(new_log)).floor.times {
         create_catch(new_log)
       }
     end
