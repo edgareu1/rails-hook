@@ -24,8 +24,19 @@
               </td>
 
               <td style="width: 280px">
-                <%= f.association :fish, collection: Fish.all.sort_by(&:name), prompt: "Please select",
-                    label_method: :name, label: false %>
+                <div class="form-group select required catch_fish">
+                  <select class="form-control"  name="catch[fish_id]" id="catch_fish_id">
+                    <% if catch.quantity.nil? %>
+                      <option>Please Select</option>
+                    <% end %>
+
+                    <% Fish.all.sort_by(&:name).each do |fish| %>
+                      <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
+                        <%= fish.name %>
+                      </option>
+                    <% end %>
+                  </select>
+                </div>
               </td>
 
               <td style="width: 100px">
