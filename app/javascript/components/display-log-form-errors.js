@@ -1,4 +1,4 @@
-// Function that displays the error messages related with certain input of the Log form
+// Function that displays the error messages related with a certain input of the Log form
 function displayLogFormErrors(inputType, errorMessage) {
   // Get the Log form input field
   let inputField = document.getElementById(`log_${inputType}`);
