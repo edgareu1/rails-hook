@@ -31,7 +31,6 @@ import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
 import { createFlash } from '../components/create-flash';
 import { displayFormErrors } from '../components/display-form-errors';
-import { displayTimeErrors } from '../components/display-time-errors';
 import { loadingIcon } from '../components/loading-icon';
 import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
@@ -47,10 +46,6 @@ window.createFlash = function(flashText) {
 
 window.displayFormErrors = function(formType, inputType, errorMessage) {
   displayFormErrors(formType, inputType, errorMessage);
-}
-
-window.displayTimeErrors = function(errorMessageText, action) {
-  displayTimeErrors(errorMessageText, action);
 }
 
 window.smoothPagination = function() {

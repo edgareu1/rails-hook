@@ -3,7 +3,8 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
 
 // If there are any errors in the submited form, then add error messages
 <% if @log.errors.any? %>
-  displayTimeErrors(`<%= @time_errors.first %>`, 'edit');
+  displayFormErrors('log_edit', 'start_time', `<%= @time_errors.first %>`);
+  displayFormErrors('log_edit', 'end_time', `<%= @time_errors.first %>`);
 
   displayFormErrors('log', 'location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
   displayFormErrors('log', 'temperature', `<%= @log.errors.full_messages_for(:temperature).first %>`);

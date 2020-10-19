@@ -47,7 +47,7 @@
                   value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
           </div>
 
-          <div class="invalid-feedback duration_error"></div>
+          <div class="invalid-feedback log_<%= log_action %>_start_time_error log_<%= log_action %>_end_time_error"></div>
 
           <% unless log.id.nil? %>
             <!-- Temperature -->
