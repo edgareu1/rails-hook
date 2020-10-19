@@ -16,12 +16,12 @@
             </tr>
 
             <tr>
-              <td style="width: 60px">
+              <td>
                 <input class="form-control numeric integer" value="<%= catch.quantity || 1 %>"
                        name="catch[quantity]" id="catch_quantity">
               </td>
 
-              <td style="width: 280px">
+              <td>
                 <select class="form-control" name="catch[fish_id]" id="catch_fish_id">
                   <% if catch.fish.nil? %>
                     <option>Please Select</option>
@@ -35,7 +35,7 @@
                 </select>
               </td>
 
-              <td style="width: 80px">
+              <td>
                 <input class="form-control numeric integer" placeholder="gr" value="<%= catch.weight %>"
                        name="catch[weight]" id="catch_weight">
               </td>
