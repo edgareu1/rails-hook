@@ -18,8 +18,8 @@
             <tr>
               <td style="width: 60px">
                 <div class="form-group integer required catch_quantity">
-                  <input class="form-control numeric integer required" value="1" name="catch[quantity]"
-                         id="catch_quantity">
+                  <input class="form-control numeric integer required" value="<%= catch.quantity || 1 %>"
+                         name="catch[quantity]" id="catch_quantity">
                 </div>
               </td>
 
