@@ -1,29 +1,31 @@
-// If there are any errors in the submited form, then refresh the form to display validation errors
+// If there are any errors in the submited form...
 <% if @catch.errors.any? %>
+  // Clean the form
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: @catch %>";
 
+  // Display the Catch form errors
   displayFormErrors('catch', 'weight', `<%= @catch.errors.full_messages_for(:weight).first %>`);
   displayFormErrors('catch', 'fish_id', `<%= @catch.errors.full_messages_for(:fish).first %>`);
   displayFormErrors('catch', 'quantity', `<%= @catch.errors.full_messages_for(:quantity).first %>`);
 
 // Otherwise...
 <% else %>
-  // Close the Modal
+  // Close the modal
   document.querySelector('#ModalNewCatch button').click();
 
   // Clean the form
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: Catch.new %>";
 
-  // If there is no Catch yet, then remove the row displaying "Nothing caught" if it so exists
+  // If the catches are empty, remove the row displaying "Nothing caught" (if it exists)
   <% if @log.catches.size == 1 %>
     document.getElementById('catches-list').innerHTML = "<%= j render "catches/container", catches: @log.catches %>";
 
-  // Otherwise, append the new Catch to the list
+  // Otherwise, append the new catches to the list
   <% else %>
     $('#catches-list table').append("<%= j render "catches/catch", catch: @catch %>");
   <% end %>
 
-  // Add flash congratulating the User if he does catches a big Fish
+  // Add a flash congratulating the User if he does catches a big Fish
   <% if (@catch.weight / @catch.quantity) > @catch.fish.good_weight %>
     createFlash("Congratulations, it's a BIGGIN!");
   <% end %>

@@ -1,7 +1,9 @@
-// If there are any errors in the submited form, then add error messages
+// If there are any errors in the submited form...
 <% if @log.errors.any? %>
+  // Clean the form
   document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
 
+  // Display the Catch form errors
   displayFormErrors('log_new', 'start_time', `<%= @time_errors.first %>`);
   displayFormErrors('log_new', 'end_time', `<%= @time_errors.first %>`);
 
