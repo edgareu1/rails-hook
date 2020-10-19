@@ -145,8 +145,35 @@
   color: #BDEBFF;
   opacity: 0.9;
 
-  td {
-    vertical-align: top;
-    padding-right: 2px;
+  table {
+    margin-bottom: 5px;
+
+    td {
+      vertical-align: top;
+      padding-right: 2px;
+
+      &:nth-child(1) {
+        width: 55px;
+      }
+
+      &:nth-child(2) {
+        width: 195px;
+      }
+
+      &:nth-child(3) {
+        width: 70px;
+        padding: 0;
+      }
+
+      .form-control {
+        font-size: 15.5px;
+        padding: 6px 10px;
+      }
+    }
+  }
+
+  .invalid-feedback {
+    padding: 0 0 0 5px;
+    margin-bottom: 5px;
   }
 }

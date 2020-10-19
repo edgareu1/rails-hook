@@ -2,6 +2,10 @@
 <% if @catch.errors.any? %>
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: @catch %>";
 
+  displayFormErrors('catch', 'weight', `<%= @catch.errors.full_messages_for(:weight).first %>`);
+  displayFormErrors('catch', 'fish_id', `<%= @catch.errors.full_messages_for(:fish).first %>`);
+  displayFormErrors('catch', 'quantity', `<%= @catch.errors.full_messages_for(:quantity).first %>`);
+
 // Otherwise...
 <% else %>
   // Close the Modal

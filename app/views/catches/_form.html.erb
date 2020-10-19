@@ -10,29 +10,39 @@
         <div class="container-catch-form">
           <table>
             <tr>
-              <th> <%= f.label :quantity, "Qnt." %> </th>
-              <th> <%= f.label :fish, "Species name" %> </th>
-              <th> <%= f.label :weight %> </th>
+              <th><%= f.label :quantity, "Qnt." %></th>
+              <th><%= f.label :fish, "Species name" %></th>
+              <th><%= f.label :weight %></th>
             </tr>
 
             <tr>
-              <td style="width: 60px">
-                <div class="form-group integer required catch_quantity">
-                  <input class="form-control numeric integer required" value="1" name="catch[quantity]"
-                         id="catch_quantity">
-                </div>
+              <td>
+                <input class="form-control numeric integer" value="<%= catch.quantity || 1 %>"
+                       name="catch[quantity]" id="catch_quantity">
               </td>
 
-              <td style="width: 280px">
-                <%= f.association :fish, collection: Fish.all.sort_by(&:name), prompt: "Please select",
-                    label_method: :name, label: false %>
+              <td>
+                <select class="form-control" name="catch[fish_id]" id="catch_fish_id">
+                  <% if catch.fish.nil? %>
+                    <option>Please Select</option>
+                  <% end %>
+
+                  <% Fish.all.sort_by(&:name).each do |fish| %>
+                    <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
+                      <%= fish.name %>
+                    </option>
+                  <% end %>
+                </select>
               </td>
 
-              <td style="width: 100px">
-                <%= f.input :weight, label: false, placeholder: "gr" %>
+              <td>
+                <input class="form-control numeric integer" placeholder="gr" value="<%= catch.weight %>"
+                       name="catch[weight]" id="catch_weight">
               </td>
             </tr>
           </table>
+
+          <div class="invalid-feedback catch_quantity_error catch_fish_id_error catch_weight_error"></div>
 
           <%= f.button :submit, class: "btn btn-flat btn-block" %>
         </div>
