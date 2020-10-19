@@ -40,7 +40,10 @@
               </td>
 
               <td style="width: 100px">
-                <%= f.input :weight, label: false, placeholder: "gr" %>
+                <div class="form-group integer required catch_weight">
+                  <input class="form-control" placeholder="gr" type="number" step="1" value="<%= catch.weight %>"
+                         name="catch[weight]" id="catch_weight">
+                </div>
               </td>
             </tr>
           </table>
