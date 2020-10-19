@@ -30,7 +30,7 @@ import { autoCompleteLocation } from '../components/auto-complete-location';
 import { backgroundFish } from '../components/background-fish';
 import { bottomFish } from '../components/bottom-fish';
 import { createFlash } from '../components/create-flash';
-import { displayLogFormErrors } from '../components/display-log-form-errors';
+import { displayFormErrors } from '../components/display-form-errors';
 import { displayTimeErrors } from '../components/display-time-errors';
 import { loadingIcon } from '../components/loading-icon';
 import { smoothPagination } from '../components/smooth-pagination';
@@ -45,8 +45,8 @@ window.createFlash = function(flashText) {
   createFlash(flashText);
 }
 
-window.displayLogFormErrors = function(inputType, errorMessage) {
-  displayLogFormErrors(inputType, errorMessage);
+window.displayFormErrors = function(formType, inputType, errorMessage) {
+  displayFormErrors(formType, inputType, errorMessage);
 }
 
 window.displayTimeErrors = function(errorMessageText, action) {

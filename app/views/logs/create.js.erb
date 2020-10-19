@@ -3,5 +3,5 @@
   document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
 
   displayTimeErrors(`<%= @time_errors.first %>`, 'new');
-  displayLogFormErrors('location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
+  displayFormErrors('log', 'location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
 <% end %>
