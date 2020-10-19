@@ -1,5 +1,6 @@
 // Style for the Users#show page
 
+// --------------------//--------------------
 // Background animation
 #fish-tank {
   position: fixed;
@@ -7,6 +8,7 @@
   z-index: -1;
 }
 
+// --------------------//--------------------
 // User Locations
 .locations-container {
   background-color: $opacity-blue;
@@ -81,6 +83,7 @@
   }
 }
 
+// --------------------//--------------------
 // Feed of curiosities
 .feed-container {
   height: 150px;
@@ -98,6 +101,7 @@
   }
 }
 
+// --------------------//--------------------
 // User stats
 .stats-container {
   display: flex;
@@ -115,6 +119,7 @@
   }
 }
 
+// --------------------//--------------------
 // User top fish caught
 .top-fish {
   display: flex;

@@ -11,7 +11,7 @@
   </td>
 
   <td><%= catch.quantity %></td>
-  <td><%= catch.weight.fdiv(1000).round(1).tap { |n| break n.to_i == n ? n.to_i : n } %></td>
+  <td><%= rounded_by_thousand(catch.weight) %></td>
 
   <td>
     <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>

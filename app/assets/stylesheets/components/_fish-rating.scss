@@ -37,7 +37,7 @@
       cursor: pointer;
     }
 
-    // This Label is the one that gives color to the "radio box". If the selected box value is greater
+    // This Label is the one that gives color to the "radio box". If the selected box value is greater than
     // or equal to its value, it will change its background color
     label2 {
       position: absolute;
@@ -78,7 +78,7 @@
     }
   }
 
-  // Give less size to the first and last "slices" in order for the borders to not appear
+  // Give less width to the first and last "slices" in order for the borders to not appear
   .rating1 {
     left: 0.5% !important;
     width: 10% !important;

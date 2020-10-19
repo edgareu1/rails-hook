@@ -59,7 +59,7 @@ window.smoothPagination = function() {
 
 // Upon loading a page, load also the following JS functions
 document.addEventListener('turbolinks:load', () => {
-  // If in either the Logs#index or Locations#index pages...
+  // If in a page with pagination...
   let cardsList = document.getElementById('cards-list');
   if (cardsList) {
     smoothPagination(); // Smooth the pagination
@@ -97,7 +97,7 @@ document.addEventListener('turbolinks:load', () => {
     bottomFish(); // Add the bottom canvas animation
   }
 
-  // If there is a Navbar...
+  // If there is a navbar...
   let predictionAnchor = document.querySelector('a[href="/prediction"]');
   if (predictionAnchor) {
     loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction

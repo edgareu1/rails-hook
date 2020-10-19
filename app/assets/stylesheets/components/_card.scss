@@ -1,5 +1,6 @@
 // Cards
 
+// --------------------//--------------------
 // Cards list
 #cards-list {
   margin: 10px 0 20px;
@@ -9,12 +10,14 @@
   }
 }
 
+// --------------------//--------------------
 // Standard card
 .card {
   background-color: $opacity-blue;
   padding: 10px;
   margin-top: 20px;
 
+  // --------------------//--------------------
   // General card
   // Card headers
   .card-headers {
@@ -69,6 +72,7 @@
     margin: 0;
   }
 
+  // --------------------//--------------------
   // Info card
   // Card headers
   .card-info-headers {
@@ -133,6 +137,7 @@
   }
 }
 
+// --------------------//--------------------
 // Card to display Fish
 .fish-card {
   margin: 0;
@@ -190,6 +195,7 @@
   }
 }
 
+// --------------------//--------------------
 // Card actions
 .card-actions {
   display: flex;

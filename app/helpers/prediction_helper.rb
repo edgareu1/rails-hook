@@ -12,22 +12,13 @@ module PredictionHelper
                         .reject { |loc| loc.logs_count < 5 }
     end
 
-    # Method that returns the Locations with the highest prediction of weight of fish to be caught
-    # Arguments:
-    #   num: Number of Locations to return
-    def top_ranking_locations(num)
-      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
-                .select { |loc| loc[:prediction][:weight_caught].positive? }
-                .max_by(num) { |loc| loc[:prediction][:weight_caught] }
-    end
-
-    # Method that returns a prediction of the weight of fish to be caught (per hour) in a certain Location
+    # Method that returns a prediction of the weight of fish to be caught (per hour) at a certain Location
     def prediction(location)
       x_data = []
       y_data = []
 
       location.logs.each do |log|
-        weight_caught_hour = log.catch_weight / log.duration
+        weight_caught_hour = log.catch_weight.fdiv(log.duration)
 
         # Predicting weight of fish caught per hour
         y_data.push(weight_caught_hour)
@@ -63,10 +54,13 @@ module PredictionHelper
              }
     end
 
-    private
-
-    def round_element(element)
-      (element * 100).round
+    # Method that returns the Locations with the highest prediction of weight of fish to be caught
+    # Arguments:
+    #   num: Number of Locations to return
+    def top_ranking_locations(num)
+      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
+                .select { |loc| loc[:prediction][:weight_caught].positive? }
+                .max_by(num) { |loc| loc[:prediction][:weight_caught] }
     end
   end
 end

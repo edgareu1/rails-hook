@@ -1,5 +1,6 @@
 // Style for the Logs#show page
 
+// --------------------//--------------------
 // Log date
 .log-date {
   display: flex;
@@ -23,6 +24,7 @@
   }
 }
 
+// --------------------//--------------------
 // Catches list
 #catches-list {
   color: rgba(255, 255, 255, 0.9);
@@ -36,6 +38,7 @@
     width: 100%;
   }
 
+  // --------------------//--------------------
   // If the list is empty...
   .catches-list-empty {
     thead > tr > th {
@@ -71,6 +74,7 @@
     }
   }
 
+  // --------------------//--------------------
   // If the list isn't empty...
   .catches-list-populated {
     thead > tr {

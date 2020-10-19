@@ -42,6 +42,7 @@
         border-radius: 4px;
       }
 
+      // Dropdown menu
       .dropdown-menu {
         background-color: rgba(82, 111, 128, 0.9);
         min-width: 140px;
@@ -57,6 +58,7 @@
       }
     }
 
+    // The navbar item representing the current page
     li.active {
       font-weight: 900;
 

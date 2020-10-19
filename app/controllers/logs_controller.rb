@@ -5,15 +5,6 @@ class LogsController < ApplicationController
 
   before_action :set_log, only: [ :show, :update, :destroy ]
 
-  def create
-    @log = current_user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
-    @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
-
-    redirect_to log_path(@log) if @log.save
-
-    get_time_errors
-  end
-
   def index
     @logs = current_user.logs
                         .order(start_time: :desc)
@@ -25,6 +16,15 @@ class LogsController < ApplicationController
       flash[:alert] = "Log was not found"
       redirect_to logs_path
     end
+  end
+
+  def create
+    @log = current_user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
+    @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
+
+    redirect_to log_path(@log) if @log.save
+
+    get_time_errors
   end
 
   def update

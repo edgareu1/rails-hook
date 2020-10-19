@@ -1,5 +1,6 @@
 // Buttons
 
+// --------------------//--------------------
 // Standard button style
 .btn-flat, .btn-ghost {
   color: white;
@@ -13,6 +14,7 @@
   }
 }
 
+// --------------------//--------------------
 // Buttons for the delete forms
 .btn-delete-confirm, .btn-cancel-confirm {
   text-align: center;
@@ -40,6 +42,7 @@
   background-color: lightgray;
 }
 
+// --------------------//--------------------
 // Button for the Logs#create action in the Users#show page
 .btn-ghost {
   display: flex;
@@ -57,7 +60,8 @@
   }
 }
 
-// Button to create a new instance; Plus (+) symbol
+// --------------------//--------------------
+// Button to create a new instance (+ symbol)
 .btn-new-instance {
   display: flex;
   align-items: baseline;
