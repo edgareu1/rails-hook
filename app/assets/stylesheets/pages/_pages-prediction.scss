@@ -1,6 +1,7 @@
 // Style for the Pages#prediction page
 
-// Information on the Location predicted
+// --------------------//--------------------
+// Locations predicted
 .prediction-location {
   display: flex;
   justify-content: space-between;
@@ -20,7 +21,7 @@
       font-size: 20px;
       margin-bottom: 2px;
     }
-  
+
     h5 {
       text-indent: 5px;
       font-size: 18px;
@@ -29,7 +30,8 @@
   }
 }
 
-// Information on the stats predicted
+// --------------------//--------------------
+// Stats predicted
 .prediction-stats {
   display: flex;
   justify-content: space-around;

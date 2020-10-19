@@ -1,5 +1,6 @@
 // Modals
 
+// --------------------//--------------------
 // Standard modals
 .modal-header h4, .close {
   color: white;
@@ -15,6 +16,7 @@
   background-color: #061f35;
 }
 
+// --------------------//--------------------
 // Delete modals
 .modal-delete .modal-content {
   .modal-delete-headers {
@@ -40,6 +42,7 @@
   }
 }
 
+// --------------------//--------------------
 // Center Modals
 .modal-dialog-centered {
   min-height: calc(100% - 1rem);
