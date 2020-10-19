@@ -10,40 +10,34 @@
         <div class="container-catch-form">
           <table>
             <tr>
-              <th> <%= f.label :quantity, "Qnt." %> </th>
-              <th> <%= f.label :fish, "Species name" %> </th>
-              <th> <%= f.label :weight %> </th>
+              <th><%= f.label :quantity, "Qnt." %></th>
+              <th><%= f.label :fish, "Species name" %></th>
+              <th><%= f.label :weight %></th>
             </tr>
 
             <tr>
               <td style="width: 60px">
-                <div class="form-group integer required catch_quantity">
-                  <input class="form-control numeric integer required" value="<%= catch.quantity || 1 %>"
-                         name="catch[quantity]" id="catch_quantity">
-                </div>
+                <input class="form-control numeric integer" value="<%= catch.quantity || 1 %>"
+                       name="catch[quantity]" id="catch_quantity">
               </td>
 
               <td style="width: 280px">
-                <div class="form-group select required catch_fish">
-                  <select class="form-control"  name="catch[fish_id]" id="catch_fish_id">
-                    <% if catch.quantity.nil? %>
-                      <option>Please Select</option>
-                    <% end %>
+                <select class="form-control" name="catch[fish_id]" id="catch_fish_id">
+                  <% if catch.fish.nil? %>
+                    <option>Please Select</option>
+                  <% end %>
 
-                    <% Fish.all.sort_by(&:name).each do |fish| %>
-                      <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
-                        <%= fish.name %>
-                      </option>
-                    <% end %>
-                  </select>
-                </div>
+                  <% Fish.all.sort_by(&:name).each do |fish| %>
+                    <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
+                      <%= fish.name %>
+                    </option>
+                  <% end %>
+                </select>
               </td>
 
-              <td style="width: 100px">
-                <div class="form-group integer required catch_weight">
-                  <input class="form-control" placeholder="gr" type="number" step="1" value="<%= catch.weight %>"
-                         name="catch[weight]" id="catch_weight">
-                </div>
+              <td style="width: 80px">
+                <input class="form-control numeric integer" placeholder="gr" value="<%= catch.weight %>"
+                       name="catch[weight]" id="catch_weight">
               </td>
             </tr>
           </table>
