@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @user_locations = current_user.top_locations(3)
+    @top_locations = current_user.top_locations(3)
+                                 .map { |loc| Hash[instance: loc, weather: loc.weather_data] }
     @top_fish = current_user.top_fish(3)
 
     feed = [

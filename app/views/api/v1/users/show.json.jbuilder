@@ -20,16 +20,16 @@ json.stats do
     end
 
     json.top_locations @top_locations do |location|
-      json.id location[:instance].id
-      json.spot location[:instance].spot
-      json.address location[:instance].name
+      json.id location.id
+      json.spot location.spot
+      json.address location.name
 
       json.stats do
-        json.num_logs location[:instance].logs_count
+        json.num_logs location.logs_count
 
         json.fish_caught do
-          json.num location[:instance].catch_count
-          json.weight_gr location[:instance].catch_weight
+          json.num location.catch_count
+          json.weight_gr location.catch_weight
         end
       end
     end

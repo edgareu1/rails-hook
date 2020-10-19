@@ -42,13 +42,6 @@ class Location < ApplicationRecord
     }
   end
 
-  # Method that gets the relevant information to be displayed on the Home page
-  def data_to_display
-    { instance: self,
-      weather_icon: fetch_weather_data["weather"][0]["icon"]
-    }
-  end
-
   # Method that gets the Locations tag_id for the next Log
   def next_tag_id
     logs.empty? ? 1 : logs.max_by(&:tag_id).tag_id + 1
