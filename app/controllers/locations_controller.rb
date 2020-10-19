@@ -1,12 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [ :show, :update, :destroy ]
 
-  def create
-    @location = current_user.locations.new(location_params)
-
-    redirect_to location_path(@location) if @location.save
-  end
-
   def index
     @locations = current_user.locations
                              .order(logs_count: :desc)
@@ -21,6 +15,12 @@ class LocationsController < ApplicationController
     else
       @location_weather = @location.weather_data
     end
+  end
+
+  def create
+    @location = current_user.locations.new(location_params)
+
+    redirect_to location_path(@location) if @location.save
   end
 
   def update
