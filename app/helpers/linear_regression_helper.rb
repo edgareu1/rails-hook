@@ -75,7 +75,7 @@ module LinearRegressionHelper
         data[i] = (data[i] - @mu[i]) / @sigma[i].to_f
       end
 
-      # Add 1 column to prediction data
+      # Add 1 column to the prediction data
       data = [1].concat(data)
 
       # Perform prediction

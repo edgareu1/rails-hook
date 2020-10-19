@@ -1,5 +1,5 @@
 module ApplicationHelper
-  # Method that divides a number by a thousand and rounds it (distinguishing it by float or integer)
+  # Method that divides a number by a thousand and rounds it (distinguishing by float or integer)
   def rounded_by_thousand(num)
     num.fdiv(1000)
        .tap { |i| break i.to_i == i ? i.to_i : i }
@@ -17,7 +17,7 @@ module ApplicationHelper
 
   # Convert temperature in Kelvin to degrees Celsius
   def kelvin_to_celcius(kelvin)
-    return kelvin - 273.15
+    kelvin - 273.15
   end
 
   # Display the Users avatar or, if this isn't present, the standard avatar
