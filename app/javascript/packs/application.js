@@ -52,7 +52,7 @@ window.smoothPagination = function() {
   smoothPagination();
 }
 
-// Upon loading a page, load also the following JS functions
+// Upon loading a page, also load the following JS functions
 document.addEventListener('turbolinks:load', () => {
   // If in a page with pagination...
   let cardsList = document.getElementById('cards-list');
@@ -95,6 +95,6 @@ document.addEventListener('turbolinks:load', () => {
   // If there is a navbar...
   let predictionAnchor = document.querySelector('a[href="/prediction"]');
   if (predictionAnchor) {
-    loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction
+    loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction in the background
   }
 });

@@ -1,7 +1,7 @@
 // Refresh the form
 document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", log: @log %>";
 
-// If there are any errors in the submited form, then add error messages
+// If there are any errors in the submited form: display the form errors
 <% if @log.errors.any? %>
   displayFormErrors('log_edit', 'start_time', `<%= @time_errors.first %>`);
   displayFormErrors('log_edit', 'end_time', `<%= @time_errors.first %>`);
@@ -11,9 +11,11 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
   displayFormErrors('log', 'air_pressure', `<%= @log.errors.full_messages_for(:air_pressure).first %>`);
   displayFormErrors('log', 'wind_speed', `<%= @log.errors.full_messages_for(:wind_speed).first %>`);
 
-// Otherwise close the Modal and refresh the Log information displayed
+// Otherwise...
 <% else %>
+  // Close the modal
   document.querySelector('#ModalEditLog button').click();
 
+  // Refresh the Log information displayed
   document.getElementById('log-information').innerHTML = "<%= j render "logs/information", log: @log %>";
 <% end %>
