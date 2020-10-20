@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :fish, only: [ :index, :show ]
 
       resources :users, only: [ :show ] do
+        resources :logs, only: [ :index ]
         get '/prediction(/:num)', to: 'pages#top_prediction'
 
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
