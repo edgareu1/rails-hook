@@ -1,5 +1,4 @@
 json.extract! @location, :id, :spot
-json.address @location.name
 
 if @prediction[:prediction].nil?
   json.prediction "Needs at least 5 Logs to make a prediction."
