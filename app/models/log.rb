@@ -16,16 +16,6 @@ class Log < ApplicationRecord
 
   after_create :add_weather_data
 
-  # Method that gets the number of Fish caught in the Log
-  def catch_count
-    catches.inject(0) { |sum, catch| sum + catch.quantity }
-  end
-
-  # Method that gets the weight of Fish caught in the Log
-  def catch_weight
-    catches.inject(0) { |sum, catch| sum + catch.weight }
-  end
-
   # Method that gets a string with the Log spot followed by its tag_id (padded by zeros)
   # Ex: Sargo Rock #009
   def label
