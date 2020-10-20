@@ -48,16 +48,6 @@ class Location < ApplicationRecord
     logs.empty? ? 1 : logs.max_by(&:tag_id).tag_id + 1
   end
 
-  # Method that gets the number of Fish caught in the Location
-  def catch_count
-    logs.inject(0) { |sum, log| sum + log.catch_count }
-  end
-
-  # Method that gets the weight of Fish caught in the Location
-  def catch_weight
-    logs.inject(0) { |sum, log| sum + log.catch_weight }
-  end
-
   private
 
   # Method that gets the current weather data of the Location

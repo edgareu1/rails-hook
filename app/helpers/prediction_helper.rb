@@ -18,7 +18,7 @@ module PredictionHelper
       y_data = []
 
       location.logs.each do |log|
-        weight_caught_hour = log.catch_weight.fdiv(log.duration)
+        weight_caught_hour = log.catches_weight.fdiv(log.duration)
 
         # Predicting weight of fish caught per hour
         y_data.push(weight_caught_hour)

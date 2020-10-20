@@ -10,8 +10,8 @@ json.stats do
   json.num_logs @location.logs_count
 
   json.fish_caught do
-    json.num @location.catch_count
-    json.weight_gr @location.catch_weight
+    json.num @location.catches_count
+    json.weight_gr @location.catches_weight
   end
 end
 

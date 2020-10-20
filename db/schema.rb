@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_163626) do
+ActiveRecord::Schema.define(version: 2020_10_20_190547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_163626) do
     t.string "country_code"
     t.string "city"
     t.string "state"
+    t.integer "catches_count", default: 0
+    t.integer "catches_weight", default: 0
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
@@ -91,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_163626) do
     t.string "weather_description"
     t.float "moon_phase"
     t.float "temperature"
+    t.integer "catches_count", default: 0
+    t.integer "catches_weight", default: 0
     t.index ["location_id"], name: "index_logs_on_location_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
@@ -107,6 +111,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_163626) do
     t.integer "locations_count", default: 0
     t.integer "logs_count", default: 0
     t.string "authentication_token", limit: 30
+    t.integer "catches_count", default: 0
+    t.integer "catches_weight", default: 0
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

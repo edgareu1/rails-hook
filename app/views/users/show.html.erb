@@ -49,7 +49,7 @@
   </div>
 
   <div>
-    <%= current_user.catch_count %>
+    <%= current_user.catches_count %>
     <p>FISH</p>
   </div>
 </div>
@@ -64,7 +64,7 @@
         <p>
           <%= "#{index + 1}." %>
           <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i>
-          <%= "- #{fish[:catch_count]}" %>
+          <%= "- #{fish[:catches_count]}" %>
         </p>
       </li>
     <% end %>
