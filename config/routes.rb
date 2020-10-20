@@ -21,7 +21,8 @@ Rails.application.routes.draw do
         get '/prediction(/:num)', to: 'pages#top_prediction'
 
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
-          resources :logs, only: [ :index, :show, :create, :update, :destroy ]
+          resources :logs, only: [ :show, :create, :update, :destroy ]
+          get '/logs', to: 'logs#location_index'
 
           get '/prediction', to: 'pages#location_prediction'
         end

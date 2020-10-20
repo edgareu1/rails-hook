@@ -3,10 +3,10 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   before_action :check_user_authorization
 
-  before_action :set_location, only: [ :index, :show, :create, :update, :destroy ]
+  before_action :set_location, only: [ :location_index, :show, :create, :update, :destroy ]
   before_action :set_log,      only: [ :show, :update, :destroy ]
 
-  def index
+  def location_index
     @logs = @location.logs.sort
   end
 
