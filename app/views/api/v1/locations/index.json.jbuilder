@@ -1,6 +1,9 @@
 json.array! @locations do |location|
   json.extract! location, :id, :spot
-  json.address location.name
+
+  json.address do
+    json.extract! location, :city, :country
+  end
 
   json.stats do
     json.num_logs location.logs_count
