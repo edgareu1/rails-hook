@@ -25,10 +25,9 @@ class LocationsController < ApplicationController
 
   def update
     @location.attributes = location_params
-    name_changed = @location.name_changed? # If the Location does change refresh the weather
     @location.save
 
-    @location_weather = @location.weather_data if name_changed
+    @location_weather = @location.weather_data
   end
 
   def destroy
