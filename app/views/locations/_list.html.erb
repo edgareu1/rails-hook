@@ -36,16 +36,16 @@
         </div>
 
         <div>
-          <% if location.catch_count.zero? %>
+          <% if location.catches_count.zero? %>
             <p><strong>No Catches</strong></p>
 
           <% else %>
             <p>
-              <%= location.catch_count %>
+              <%= location.catches_count %>
               Fish
             </p>
 
-            <p><%= rounded_weight(location.catch_weight) %></p>
+            <p><%= rounded_weight(location.catches_weight) %></p>
           <% end %>
         </div>
       </div>

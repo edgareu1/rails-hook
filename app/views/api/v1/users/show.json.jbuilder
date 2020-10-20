@@ -4,8 +4,8 @@ json.stats do
   json.extract! @user, :locations_count, :logs_count
 
   json.fish_caught do
-    json.num @user.catch_count
-    json.weight_gr @user.catch_weight
+    json.num @user.catches_count
+    json.weight_gr @user.catches_weight
   end
 
   if @more_info
@@ -14,8 +14,8 @@ json.stats do
       json.name fish[:name]
 
       json.catches do
-        json.num fish[:catch_count]
-        json.weight_gr fish[:catch_weight]
+        json.num fish[:catches_count]
+        json.weight_gr fish[:catches_weight]
       end
     end
 
@@ -28,8 +28,8 @@ json.stats do
         json.num_logs location.logs_count
 
         json.fish_caught do
-          json.num location.catch_count
-          json.weight_gr location.catch_weight
+          json.num location.catches_count
+          json.weight_gr location.catches_weight
         end
       end
     end
