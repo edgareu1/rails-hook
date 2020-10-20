@@ -24,9 +24,9 @@ class Location < ApplicationRecord
                    length: { maximum: 16 },
                    uniqueness: { case_sensitive: false, scope: :user_id }
 
-  # Method that gets a personalized name to display
-  def name_to_display
-    name.match(/^[^,]*/)[0][0..15].strip
+  # Method that gets a personalized address to display
+  def address_to_display
+    (city || name).strip.truncate(20)
   end
 
   # Method that gets a hash with the current weather data of the Location
