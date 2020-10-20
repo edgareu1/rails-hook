@@ -39,25 +39,15 @@ class User < ApplicationRecord
            .max_by(num) { |k, v| v }
            .map { |k, v| { id: k,
                            name: Fish.find(k).name,
-                           catch_count: v[0],
-                           catch_weight: v[1]
+                           catches_count: v[0],
+                           catches_weight: v[1]
                          }
                 }
   end
 
   # Method that gets an array of Locations with the most Logs; if there are 2 or more Locations with the same
-  # logs_count, sort by their catch_count; if they are still equal, sort by their creation date
+  # logs_count, sort by their catches_count; if they are still equal, sort by their creation date
   def top_locations(num)
-    locations.max_by(num) { |loc| [loc.logs_count, loc.catch_count, loc.created_at] }
-  end
-
-  # Method that gets the number of Fish caught by the User
-  def catch_count
-    catches.inject(0) { |sum, catch| sum + catch.quantity }
-  end
-
-  # Method that gets the weight of Fish caught by the User
-  def catch_weight
-    catches.inject(0) { |sum, catch| sum + catch.weight }
+    locations.max_by(num) { |loc| [loc.logs_count, loc.catches_count, loc.created_at] }
   end
 end
