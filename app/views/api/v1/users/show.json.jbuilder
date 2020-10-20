@@ -1,7 +1,8 @@
 json.extract! @user, :id, :username, :email
 
 json.stats do
-  json.extract! @user, :locations_count, :logs_count
+  json.num_locations @user.locations_count
+  json.num_logs @user.logs_count
 
   json.fish_caught do
     json.num @user.catches_count
@@ -22,7 +23,10 @@ json.stats do
     json.top_locations @top_locations do |location|
       json.id location.id
       json.spot location.spot
-      json.address location.name
+
+      json.address do
+        json.extract! location, :city, :country
+      end
 
       json.stats do
         json.num_logs location.logs_count
