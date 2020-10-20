@@ -1,9 +1,12 @@
 json.extract! @location, :id, :spot
-json.address @location.name
 
-json.coordinates do
-  json.lat @location.latitude
-  json.long @location.longitude
+json.address do
+  json.extract! @location, :city, :state, :country, :country_code
+
+  json.coordinates do
+    json.lat @location.latitude
+    json.long @location.longitude
+  end
 end
 
 json.stats do

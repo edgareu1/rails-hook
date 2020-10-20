@@ -1,9 +1,13 @@
 json.extract! @log, :id
 
 json.location do
-  json.spot @log.location.spot
-  json.address @log.location.name
+  json.id @log.location_id
+  json.extract! @log.location, :spot
   json.extract! @log, :tag_id
+
+  json.address do
+    json.extract! @log.location, :city, :country
+  end
 end
 
 json.time do

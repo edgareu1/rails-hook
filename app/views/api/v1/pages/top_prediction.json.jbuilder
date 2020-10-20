@@ -1,6 +1,9 @@
 json.array! @prediction do |loc_prediction|
   json.extract! loc_prediction[:location], :id, :spot
-  json.address loc_prediction[:location].name
+
+  json.address do
+    json.extract! loc_prediction[:location], :city, :country
+  end
 
   json.prediction do
     json.weight_gr loc_prediction[:prediction][:weight_caught]
