@@ -20,15 +20,16 @@ class Location < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :spot, presence: true, length: { maximum: 16, message: "Maximum of 16 characters" }
-  validates_uniqueness_of :spot, case_sensitive: false, scope: :user_id
+  validates :spot, presence: true,
+                   length: { maximum: 16 },
+                   uniqueness: { case_sensitive: false, scope: :user_id }
 
-  # Method that displays a name not too long
-  def name_to_display
-    name.match(/^[^,]*/)[0][0..15].strip
+  # Method that gets a personalized address to display
+  def address_to_display
+    (city || name).strip.truncate(20)
   end
 
-  # Method that creates a readable hash with the current weather data of the Location
+  # Method that gets a hash with the current weather data of the Location
   def weather_data
     weather_data = fetch_weather_data
 
@@ -39,13 +40,6 @@ class Location < ApplicationRecord
       air_pressure:         weather_data["main"]["pressure"].round,
       wind_speed:           weather_data["wind"]["speed"].round(1),
       moon_phase:           get_moon_phase(Time.now).round(2)
-    }
-  end
-
-  # Method that gets the relevant information to be displayed on the Home page
-  def data_to_display
-    { instance: self,
-      weather_icon: fetch_weather_data["weather"][0]["icon"]
     }
   end
 

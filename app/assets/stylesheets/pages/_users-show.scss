@@ -60,24 +60,28 @@
 
       .location-info {
         width: 200px;
+        max-width: 200px;
+        overflow: hidden;
 
         h6 {
           text-align: left;
+          font-size: 14.5px;
           margin: 10px 0 0;
 
-          strong {
-            font-size: 18px;
+          span {
+            font-size: 16.5px;
           }
         }
 
-        .locations-spot {
-          font-size: 17px;
+        .location-address {
+          font-size: 16.5px;
           margin-left: 5px;
         }
       }
 
       .weather-icon {
-        background-size: 58px 58px;
+        background-size: 90px 90px;
+        margin-left: 10px;
       }
     }
   }

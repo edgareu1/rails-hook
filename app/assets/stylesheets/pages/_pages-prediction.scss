@@ -8,25 +8,35 @@
   align-items: center;
   padding: 0 5px;
 
-  h3 {
-    font-size: 65px;
-    padding-right: 8px;
-  }
-
-  .prediction-location-headers {
-    padding: 10px;
-    border-left: 5px solid #BDEBFF;
+  .d-flex {
+    max-width: 233px;
+    overflow: hidden;
 
     h3 {
-      font-size: 20px;
-      margin-bottom: 2px;
+      font-size: 65px;
+      padding-right: 8px;
     }
 
-    h5 {
-      text-indent: 5px;
-      font-size: 18px;
-      margin-bottom: 2px;
+    .prediction-location-headers {
+      padding: 10px;
+      border-left: 5px solid rgba(255, 255, 255, 0.9);
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 2px;
+      }
+
+      h5 {
+        text-indent: 5px;
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
     }
+  }
+
+  .weather-icon {
+    background-size: 90px 90px;
+    margin-left: 10px;
   }
 }
 

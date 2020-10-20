@@ -26,11 +26,11 @@
 
   <!-- List of the User top 3 Locations -->
   <div id="locations-list">
-    <% if @user_locations.empty? %>
+    <% if @top_locations.empty? %>
       <p class="no-data">No locations saved yet</p>
 
     <% else %>
-      <%= render partial: "locations/location", collection: @user_locations %>
+      <%= render partial: "locations/location", collection: @top_locations %>
     <% end %>
   </div>
 </ul>
