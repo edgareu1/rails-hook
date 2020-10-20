@@ -4,7 +4,7 @@
     <div class="location-info">
       <!-- Location Name -->
       <h6>
-        <strong><%= location[:instance].name_to_display %></strong>
+        <span><%= location[:instance].spot %></span>
 
         <% if location[:instance].logs_count.zero? %>
           – no logs
@@ -15,9 +15,9 @@
         <% end %>
       </h6>
 
-      <!-- Location spot -->
-      <p class="locations-spot">
-        <%= location[:instance].spot %>
+      <!-- Location address -->
+      <p class="location-address">
+        <%= location[:instance].address_to_display %>
       </p>
     </div>
 
