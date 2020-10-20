@@ -20,15 +20,16 @@ class Location < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :spot, presence: true, length: { maximum: 16, message: "Maximum of 16 characters" }
-  validates_uniqueness_of :spot, case_sensitive: false, scope: :user_id
+  validates :spot, presence: true,
+                   length: { maximum: 16 },
+                   uniqueness: { case_sensitive: false, scope: :user_id }
 
-  # Method that displays a name not too long
+  # Method that gets a personalized name to display
   def name_to_display
     name.match(/^[^,]*/)[0][0..15].strip
   end
 
-  # Method that creates a readable hash with the current weather data of the Location
+  # Method that gets a hash with the current weather data of the Location
   def weather_data
     weather_data = fetch_weather_data
 

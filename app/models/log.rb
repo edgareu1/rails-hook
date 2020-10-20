@@ -26,13 +26,13 @@ class Log < ApplicationRecord
     catches.inject(0) { |sum, catch| sum + catch.weight }
   end
 
-  # Method gets a string of the Log spot followed by it's tag_id (padded by zeros)
+  # Method that gets a string with the Log spot followed by its tag_id (padded by zeros)
   # Ex: Sargo Rock #009
   def label
     "#{location.spot} \##{sprintf '%03d', (tag_id)}"
   end
 
-  # Method that gets and displays the more relevant stat
+  # Method that gets the Log more relevant stat
   def stat_to_display
     if temperature.present?
       "#{temperature} °C"
@@ -52,7 +52,7 @@ class Log < ApplicationRecord
 
   private
 
-  # Method that updates the weather attributes to the ones registered at the moment in the respective Location
+  # Method that updates the Log weather attributes to the ones registered at the moment in the respective Location
   def add_weather_data
     self.update(location.weather_data)
   end
