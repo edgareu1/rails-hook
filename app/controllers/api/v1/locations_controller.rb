@@ -3,7 +3,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   before_action :set_location, only: [ :show, :update, :destroy ]
 
   def index
-    @locations = @user.locations.sort
+    set_index
   end
 
   def show
@@ -35,7 +35,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   def destroy
     @location.destroy
 
-    @locations = @user.locations.sort
+    set_index
     render :index
   end
 
@@ -47,6 +47,10 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def set_location
     @location = @user.locations.find(params[:id])
+  end
+
+  def set_index
+    @locations = @user.locations.sort
   end
 
   def set_current_weather

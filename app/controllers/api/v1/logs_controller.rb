@@ -5,7 +5,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   before_action :set_log, only: [ :show, :update, :destroy ]
 
   def index
-    @logs = @user.logs.sort
+    set_index
   end
 
   def location_index
@@ -19,8 +19,8 @@ class Api::V1::LogsController < Api::V1::BaseController
   def create
     @log = @user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
 
-    @log.tag_id = @log.location.next_tag_id unless @user.locations.find(log_params[:location_id]).nil?  # Get the tag_id
-    @log.moon_phase = get_moon_phase(@log.start_time)   # Get the moon_phase
+    @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id  # Get the tag_id
+    @log.moon_phase = get_moon_phase(@log.start_time)                         # Get the moon_phase
 
     if @log.save
       render :show, status: :created
@@ -57,7 +57,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   def destroy
     @log.destroy
 
-    @logs = @user.logs.sort
+    set_index
     render :index
   end
 
@@ -69,6 +69,10 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   def set_log
     @log = @user.logs.find(params[:id])
+  end
+
+  def set_index
+    @logs = @user.logs.sort
   end
 
   def render_error
