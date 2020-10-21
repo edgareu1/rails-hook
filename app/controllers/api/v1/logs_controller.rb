@@ -27,7 +27,20 @@ class Api::V1::LogsController < Api::V1::BaseController
   end
 
   def update
-    if @log.update(log_params)
+    @log.attributes = log_params
+
+    if @log.location_id_changed?
+      previous_loc_id = @log.location_id_was    # Save the previous Location
+      @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
+    end
+
+    # If the Logs Location changes, then update the Locations catches counters
+    if @log.save && previous_loc_id.present?
+      log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
+
+      decrement_catches_counters_location(log_counters.merge(location: Location.find(previous_loc_id)))
+      increment_catches_counters_location(log_counters.merge(location: @log.location))
+
       render :show
     else
       render_error

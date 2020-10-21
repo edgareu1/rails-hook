@@ -46,7 +46,6 @@ class LogsController < ApplicationController
 
     if @log.location_id_changed?
       previous_loc_id = @log.location_id_was    # Save the previous Location
-
       @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
     end
 
@@ -85,17 +84,5 @@ class LogsController < ApplicationController
     @time_errors = @log.errors.messages
                               .slice(:start_time, :end_time, :duration)
                               .map { |k, v| k.to_s.humanize + " " +  v.first }
-  end
-
-  # Method that decrements the previous Location catches counters
-  def decrement_catches_counters_location(location:, quantity:, weight:)
-    location.decrement!(:catches_count, quantity)
-    location.decrement!(:catches_weight, weight)
-  end
-
-  # Method that increments the current Location catches counters
-  def increment_catches_counters_location(location:, quantity:, weight:)
-    location.increment!(:catches_count, quantity)
-    location.increment!(:catches_weight, weight)
   end
 end
