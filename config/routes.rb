@@ -16,14 +16,18 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :fish, only: [ :index, :show ]
+      get '/users/:user_id', to: 'users#show'
 
-      resources :users, only: [ :show ] do
+      scope '/users/:user_id' do
         get '/prediction(/:num)', to: 'pages#top_prediction'
 
-        resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
-          resources :logs, only: [ :index, :show, :create, :update, :destroy ]
+        resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
+          resources :catches, only: [ :index, :create, :destroy ]
+        end
 
+        resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
           get '/prediction', to: 'pages#location_prediction'
+          get '/logs',       to: 'logs#location_index'
         end
       end
     end

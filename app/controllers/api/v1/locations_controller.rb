@@ -1,11 +1,9 @@
 class Api::V1::LocationsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
-
   before_action :check_user_authorization
   before_action :set_location, only: [ :show, :update, :destroy ]
 
   def index
-    @locations = current_user.locations.sort
+    @locations = @user.locations.sort
   end
 
   def show
@@ -13,7 +11,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def create
-    @location = current_user.locations.new(location_params)
+    @location = @user.locations.new(location_params)
 
     if @location.save
       render :show, status: :created
@@ -41,7 +39,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def set_location
-    @location = current_user.locations.find(params[:id])
+    @location = @user.locations.find(params[:id])
   end
 
   def render_error

@@ -42,15 +42,22 @@ class LogsController < ApplicationController
       end_time_error = true
     end
 
-    # Get the new moon_phase
-    @log.moon_phase = get_moon_phase(@log.start_time)
+    @log.moon_phase = get_moon_phase(@log.start_time)   # Get the new moon_phase
 
-    # Get the new tag_id if the Location does change
-    @log.tag_id = @log.location.next_tag_id if @log.location_id_changed?
+    if @log.location_id_changed?
+      previous_loc_id = @log.location_id_was    # Save the previous Location
+      @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
+    end
 
-    @log.save
+    # If the Logs Location changes, then update the Locations catches counters
+    if @log.save && previous_loc_id.present?
+      log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
 
-    # Add the Time related errors
+      decrement_catches_counters_location(log_counters.merge(location: Location.find(previous_loc_id)))
+      increment_catches_counters_location(log_counters.merge(location: @log.location))
+    end
+
+    # Add Time related errors
     @log.errors.add(:start_time, "must exist") if start_time_error
     @log.errors.add(:end_time, "must exist")   if end_time_error
 
