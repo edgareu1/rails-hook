@@ -19,6 +19,6 @@ class Api::V1::BaseController < ActionController::API
   end
 
   def unauthorized_action
-    render json: { error: "Action not authorized for the user: #{current_user.username}." }, status: :unauthorized
+    render json: { error: "Action only authorized for the user: #{@user.username}." }, status: :unauthorized
   end
 end
