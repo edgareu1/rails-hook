@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
       scope '/users/:user_id' do
         get '/prediction(/:num)', to: 'pages#top_prediction'
-        resources :logs, only: [ :index, :show, :create, :update, :destroy ]
+
+        resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
+          resources :catches, only: [ :index ]
+        end
 
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
           get '/prediction', to: 'pages#location_prediction'
