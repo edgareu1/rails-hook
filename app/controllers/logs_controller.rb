@@ -42,15 +42,23 @@ class LogsController < ApplicationController
       end_time_error = true
     end
 
-    # Get the new moon_phase
-    @log.moon_phase = get_moon_phase(@log.start_time)
+    @log.moon_phase = get_moon_phase(@log.start_time)   # Get the new moon_phase
 
-    # Get the new tag_id if the Location does change
-    @log.tag_id = @log.location.next_tag_id if @log.location_id_changed?
+    if @log.location_id_changed?
+      previous_loc_id = @log.location_id_was    # Save the previous Location
 
-    @log.save
+      @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
+    end
 
-    # Add the Time related errors
+    # If the Logs Location changes, then update the Locations catches counters
+    if @log.save && previous_loc_id.present?
+      log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
+
+      decrement_catches_counters_location(log_counters.merge(location: Location.find(previous_loc_id)))
+      increment_catches_counters_location(log_counters.merge(location: @log.location))
+    end
+
+    # Add Time related errors
     @log.errors.add(:start_time, "must exist") if start_time_error
     @log.errors.add(:end_time, "must exist")   if end_time_error
 
@@ -77,5 +85,17 @@ class LogsController < ApplicationController
     @time_errors = @log.errors.messages
                               .slice(:start_time, :end_time, :duration)
                               .map { |k, v| k.to_s.humanize + " " +  v.first }
+  end
+
+  # Method that decrements the previous Location catches counters
+  def decrement_catches_counters_location(location:, quantity:, weight:)
+    location.decrement!(:catches_count, quantity)
+    location.decrement!(:catches_weight, weight)
+  end
+
+  # Method that increments the current Location catches counters
+  def increment_catches_counters_location(location:, quantity:, weight:)
+    location.increment!(:catches_count, quantity)
+    location.increment!(:catches_weight, weight)
   end
 end
