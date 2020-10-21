@@ -1,7 +1,7 @@
 <!-- Get the action the form is being used on -->
 <% log_action = log.id.nil? ? "new" : "edit" %>
 
-<div class="modal-dialog modal-dialog-centered" style="min-height: calc(90% - 1rem)">
+<div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
     <div class="modal-header">
       <h4 class="modal-title"><%= log_action.capitalize %> Log</h4>
@@ -11,11 +11,10 @@
     <div class="modal-body">
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
-          <!-- Location -->
-          <div class="form-group select required log_location d-flex" style="margin-bottom: 5px">
+          <!-- Location input -->
+          <div class="form-group select required log_location d-flex">
             <label class="select required" for="log_location_id">
               Location
-              <abbr title="required">*</abbr>
             </label>
 
             <select class="form-control" name="log[location_id]" id="log_location_id">
@@ -24,7 +23,7 @@
               <% end %>
 
               <% current_user.locations.sort_by(&:spot).each do |location| %>
-                <option <%= "selected=selected" if location.id == log.location_id %> value="<%= location.id %>">
+                <option <%= "selected=selected" if location == log.location %> value=<%= location.id %>>
                   <%= location.spot %>
                 </option>
               <% end %>
@@ -33,85 +32,71 @@
 
           <div class="invalid-feedback log_location_id_error"></div>
 
-          <!-- Starting Time -->
+          <!-- Starting Time input -->
           <div class="d-flex">
             <label for="log_start_time">Starting time</label>
             <input type="datetime-local" class="form-control" id="log_<%= log_action %>_start_time" name="log[start_time]"
-                   value="<%= (log.start_time.nil? ? Time.now : log.start_time).strftime('%Y-%m-%dT%H:%M') %>">
+                   value=<%= (log.start_time || Time.now).strftime('%Y-%m-%dT%H:%M') %>>
           </div>
 
-          <!-- Ending Time -->
+          <!-- Ending Time input -->
           <div class="d-flex" style="margin-bottom: 5px">
             <label for="log_end_time">Ending time</label>
             <input type="datetime-local" class="form-control" id="log_<%= log_action %>_end_time" name="log[end_time]"
-                   value="<%= (log.end_time.nil? ? Time.now : log.end_time).strftime('%Y-%m-%dT%H:%M') %>">
+                   value=<%= (log.end_time || Time.now).strftime('%Y-%m-%dT%H:%M') %>>
           </div>
 
           <div class="invalid-feedback log_<%= log_action %>_start_time_error log_<%= log_action %>_end_time_error"></div>
 
           <% unless log.id.nil? %>
-            <!-- Temperature -->
+            <!-- Temperature input -->
             <div class="form-group float optional log_temperature d-flex">
               <label for="log_temperature">Temperature</label>
               <input class="form-control" id="log_temperature" placeholder="°C" type="number" step="1"
-                     value="<%= log.temperature %>" name="log[temperature]">
+                     name="log[temperature]" value=<%= log.temperature %>>
               <p>°C</p>
             </div>
 
             <div class="invalid-feedback log_temperature_error"></div>
 
-            <!-- Air Pressure -->
+            <!-- Air Pressure input -->
             <div class="form-group integer optional log_air_pressure d-flex">
               <label for="log_air_pressure">Air pressure</label>
               <input class="form-control" id="log_air_pressure" placeholder="Pa" type="number" step="1"
-                     value="<%= log.air_pressure %>" name="log[air_pressure]">
+                     name="log[air_pressure]" value=<%= log.air_pressure %>>
               <p>Pa</p>
             </div>
 
             <div class="invalid-feedback log_air_pressure_error"></div>
 
-            <!-- Wind Speed -->
+            <!-- Wind Speed input -->
             <div class="form-group float optional log_wind_speed d-flex">
               <label for="log_wind_speed">Wind speed</label>
               <input class="form-control" id="log_wind_speed" placeholder="m/s" type="number" step="1"
-                     value="<%= log.wind_speed %>" name="log[wind_speed]">
+                     name="log[wind_speed]" value=<%= log.wind_speed %>>
               <p>m/s</p>
             </div>
 
             <div class="invalid-feedback log_wind_speed_error"></div>
           <% end %>
 
-          <!-- Observations -->
-          <%= f.input :observation, label: "Observations", wrapper_html: { style: "margin: 10px 10px 20px 0" },
-              placeholder: "Leave an observation" %>
+          <!-- Observation input -->
+          <%= f.input :observation, label: "Observations", placeholder: "Leave an observation" %>
 
           <p>Rate your session</p>
 
-          <!-- Rating as a dynamic filling image -->
+          <!-- Rating input as a dynamic filling image -->
           <div class="fish-rating-container">
             <div class="fish-rating">
-              <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
-                   alt="fish-rating">
+              <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png" alt="fish-rating">
 
               <input type="hidden" name="log[rating]" value="">
 
               <% (1..10).to_a.reverse.each do |num| %>
-                <% if log.id.nil? %>
-                  <input type="radio" value="<%= num %>" name="log[rating]" id="log_rating_<%= log_action + "_#{num}" %>">
-                  <label for="log_rating_<%= log_action + "_#{num}" %>" class="rating<%= num %>"
-                         style="left: <%= (num - 1) * 10 %>%">
-                  </label>
-
-                <% else %>
-                  <% if log.rating == num %>
-                    <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>" checked>
-                  <% else %>
-                    <input type="radio" value= <%= "#{num}" %> name="log[rating]" id="log_rating_<%= num %>">
-                  <% end %>
-
-                  <label for="log_rating_<%= num %>" class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label>
-                <% end %>
-
+                <input type="radio" value=<%= num %> name="log[rating]" id=<%= "log_rating_#{log_action}_#{num}" %>
+                       <%= "checked" if log.rating == num %>>
+                <label for=<%= "log_rating_#{log_action}_#{num}" %> class="rating<%= num %>"
+                       style="left: <%= (num - 1) * 10 %>%"></label>
                 <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
               <% end %>
             </div>
