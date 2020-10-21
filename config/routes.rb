@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         get '/prediction(/:num)', to: 'pages#top_prediction'
 
         resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
-          resources :catches, only: [ :index ]
+          resources :catches, only: [ :index, :create ]
         end
 
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
