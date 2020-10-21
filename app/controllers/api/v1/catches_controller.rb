@@ -19,6 +19,9 @@ class Api::V1::CatchesController < Api::V1::BaseController
   def destroy
     catch = @log.catches.find(params[:id])
     catch.destroy
+
+    @catches = @log.catches.sort
+    render :index
   end
 
   private
