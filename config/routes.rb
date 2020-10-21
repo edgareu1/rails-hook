@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   get '/prediction', to: 'pages#prediction'
 
-  resources :fish, only: [ :index, :show ]
+  resources :fish,      only: [ :index, :show ]
   resources :locations, only: [ :index, :show, :create, :update, :destroy ]
 
-  resources :logs, except: [ :new, :edit ] do
+  resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
     resources :catches, only: [ :create, :destroy ]
   end
 
@@ -21,13 +21,13 @@ Rails.application.routes.draw do
       scope '/users/:user_id' do
         get '/prediction(/:num)', to: 'pages#top_prediction'
 
-        resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
-          resources :catches, only: [ :index, :create, :destroy ]
-        end
-
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
           get '/prediction', to: 'pages#location_prediction'
           get '/logs',       to: 'logs#location_index'
+        end
+
+        resources :logs, only: [ :index, :show, :create, :update, :destroy ] do
+          resources :catches, only: [ :index, :create, :destroy ]
         end
       end
     end
