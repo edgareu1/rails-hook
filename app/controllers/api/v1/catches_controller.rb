@@ -1,6 +1,6 @@
 class Api::V1::CatchesController < Api::V1::BaseController
   before_action :check_user_authorization
-  before_action :set_log, only: [ :index, :create ]
+  before_action :set_log, only: [ :index, :create, :destroy ]
 
   def index
     @catches = @log.catches.sort
@@ -14,6 +14,11 @@ class Api::V1::CatchesController < Api::V1::BaseController
     else
       render_error
     end
+  end
+
+  def destroy
+    catch = @log.catches.find(params[:id])
+    catch.destroy
   end
 
   private
