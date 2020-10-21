@@ -2,8 +2,7 @@ json.array! @logs do |log|
   json.extract! log, :id
 
   json.location do
-    json.id log.location_id
-    json.extract! log.location, :spot
+    json.extract! @location, :id, :spot
     json.extract! log, :tag_id
   end
 

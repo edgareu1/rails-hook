@@ -1,14 +1,13 @@
 class Api::V1::LogsController < Api::V1::BaseController
   before_action :check_user_authorization
-
-  before_action :set_location, only: [ :location_index, :show, :create, :update, :destroy ]
-  before_action :set_log,      only: [ :show, :update, :destroy ]
+  before_action :set_log, only: [ :show, :update, :destroy ]
 
   def index
     @logs = @user.logs.sort
   end
 
   def location_index
+    @location = @user.locations.find(params[:location_id])
     @logs = @location.logs.sort
   end
 
@@ -17,9 +16,8 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   def create
     @log = @user.logs.new(log_params)
-    @log.location = @location
 
-    @log.tag_id = @location.next_tag_id unless @location.nil?
+    @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     if @log.save
       render :show, status: :created
@@ -43,15 +41,11 @@ class Api::V1::LogsController < Api::V1::BaseController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :rating, :observation, :temperature, :air_pressure, :wind_speed, :moon_phase, :weather_description, :weather_icon)
-  end
-
-  def set_location
-    @location = @user.locations.find(params[:location_id])
+    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :temperature, :air_pressure, :wind_speed, :moon_phase, :weather_description, :weather_icon)
   end
 
   def set_log
-    @log = @location.logs.find(params[:id])
+    @log = @user.logs.find(params[:id])
   end
 
   def render_error
