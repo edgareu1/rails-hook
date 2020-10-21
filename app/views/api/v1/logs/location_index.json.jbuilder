@@ -1,10 +1,5 @@
 json.array! @logs do |log|
-  json.extract! log, :id
-
-  json.location do
-    json.extract! @location, :id, :spot
-    json.extract! log, :tag_id
-  end
+  json.extract! log, :id, :tag_id
 
   json.time do
     json.start log.start_time

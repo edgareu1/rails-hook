@@ -48,6 +48,18 @@ class Location < ApplicationRecord
     logs.empty? ? 1 : logs.max_by(&:tag_id).tag_id + 1
   end
 
+  # Method that decrements the catches counters
+  def decrement_catches_counters(quantity:, weight:)
+    self.decrement!(:catches_count, quantity)
+    self.decrement!(:catches_weight, weight)
+  end
+
+  # Method that increments the current Location catches counters
+  def increment_catches_counters(quantity:, weight:)
+    self.increment!(:catches_count, quantity)
+    self.increment!(:catches_weight, weight)
+  end
+
   private
 
   # Method that gets the current weather data of the Location

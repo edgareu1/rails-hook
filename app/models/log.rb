@@ -6,6 +6,9 @@ class Log < ApplicationRecord
   has_many :fish, through: :catches
 
   validates :location, presence: true
+  validates :rating, numericality: { greater_than: 0, less_than_or_equal_to: 10, only_integer: true },
+                     allow_nil: true
+  validates :observation, length: { maximum: 120 }
 
   # The weather attributes intervals take into account their respective lowest/highest records measured on Earth
   validates :temperature,  numericality: { greater_than: -100, less_than: 100 },          on: :update

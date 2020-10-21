@@ -3,7 +3,7 @@ class Api::V1::CatchesController < Api::V1::BaseController
   before_action :set_log, only: [ :index, :create, :destroy ]
 
   def index
-    @catches = @log.catches.sort
+    set_index
   end
 
   def create
@@ -19,6 +19,9 @@ class Api::V1::CatchesController < Api::V1::BaseController
   def destroy
     catch = @log.catches.find(params[:id])
     catch.destroy
+
+    set_index
+    render :index
   end
 
   private
@@ -29,6 +32,10 @@ class Api::V1::CatchesController < Api::V1::BaseController
 
   def set_log
     @log = @user.logs.find(params[:log_id])
+  end
+
+  def set_index
+    @catches = @log.catches.sort
   end
 
   def render_error

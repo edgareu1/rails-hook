@@ -53,8 +53,8 @@ class LogsController < ApplicationController
     if @log.save && previous_loc_id.present?
       log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
 
-      decrement_catches_counters_location(log_counters.merge(location: Location.find(previous_loc_id)))
-      increment_catches_counters_location(log_counters.merge(location: @log.location))
+      Location.find(previous_loc_id).decrement_catches_counters(log_counters)
+      @log.location.increment_catches_counters(log_counters)
     end
 
     # Add Time related errors
