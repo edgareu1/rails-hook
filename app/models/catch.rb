@@ -4,8 +4,8 @@ class Catch < ApplicationRecord
 
   validates :quantity, presence: true,
                        numericality: { greater_than: 0, less_than: 100 }
-  validates :weight,   presence: true,
-                       numericality: { greater_than: 0 }
+  validates :weight,   presence: true
+  validate  :weight_numericality
 
   after_save :increment_catches_counters
   after_destroy :decrement_catches_counters
@@ -30,5 +30,17 @@ class Catch < ApplicationRecord
 
     log.user.decrement!(:catches_count, quantity)
     log.user.decrement!(:catches_weight, weight)
+  end
+
+  private
+
+  def weight_numericality
+    return if weight.nil?
+
+    if weight <= 0
+      errors.add(:weight, "must be greater than 0 gr")
+    elsif weight >= 500000
+      errors.add(:weight, "must be less than 500 kg")
+    end
   end
 end

@@ -1,4 +1,4 @@
-<!-- If there are no Catches, then... -->
+<!-- If there are no Catches... -->
 <% if catches.empty? %>
   <table class="catches-list-empty">
     <thead>
@@ -20,7 +20,7 @@
     </tbody>
   </table>
 
-<!-- If there are some Catches, then... -->
+<!-- If there are some Catches... -->
 <% else %>
   <table class="catches-list-populated">
     <!-- Catches Table Headers -->
@@ -38,6 +38,7 @@
       </tr>
     </thead>
 
+    <!-- Catches list -->
     <tbody>
       <%= render partial: "catches/catch", collection: catches %>
     </tbody>

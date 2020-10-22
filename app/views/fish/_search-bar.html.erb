@@ -1,10 +1,10 @@
-<%= form_tag fish_index_path, remote: true, method: :get do %>
+<%= form_tag(fish_index_path, remote: true, method: :get) do %>
   <div class="d-flex">
     <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      id: "search-input",
-      placeholder: "Fish name",
-      autocomplete: "off" %>
+        params[:query],
+        class: "form-control",
+        id: "search-input",
+        placeholder: "Fish name",
+        autocomplete: "off" %>
   </div>
 <% end %>

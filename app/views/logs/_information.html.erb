@@ -12,8 +12,8 @@
     <i class="far fa-calendar-alt" style="font-size: 26px"></i>
 
     <p>
-      <%= "#{log.start_time.strftime('%b %d, %Y')}" %>
-      <span><%= "#{log.start_time.strftime('%I:%M %p')} - #{log.end_time.strftime('%I:%M %p')}" %></span>
+      <%= log.start_time.strftime('%b %d, %Y') %>
+      <span><%= log.start_time.strftime('%I:%M %p') + " - " + log.end_time.strftime('%I:%M %p') %></span>
     </p>
 
   <% else %>
@@ -21,23 +21,23 @@
 
     <div style="display: flex; flex-direction: column">
       <p>
-        <%= "#{log.start_time.strftime('%b %d, %Y')}" %>
-        <span><%= "#{log.start_time.strftime('%I:%M %p')}" %></span>
+        <%= log.start_time.strftime('%b %d, %Y') %>
+        <span><%= log.start_time.strftime('%I:%M %p') %></span>
       </p>
 
       <p>
-        <%= "#{log.end_time.strftime('%b %d, %Y')}" %>
-        <span><%= "#{log.end_time.strftime('%I:%M %p')}" %></span>
+        <%= log.end_time.strftime('%b %d, %Y') %>
+        <span><%= log.end_time.strftime('%I:%M %p') %></span>
       </p>
     </div>
   <% end %>
 </div>
 
-<!-- Card Weather Info -->
+<!-- Log weather info -->
 <div class="card">
-  <!-- Card's Headers  -->
+  <!-- Card Headers  -->
   <div class="card-info-headers">
-    <!-- Image of the Weather of the Log's Location -->
+    <!-- Image of the Log's weather -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
          class="weather-icon">
     </div>
@@ -45,7 +45,7 @@
     <h3><%= log.weather_description.capitalize %></h3>
   </div>
 
-  <!-- Card's Content -->
+  <!-- Card Content -->
   <div class="card-info-content">
     <table>
       <tr>
@@ -81,7 +81,7 @@
       <% end %>
     </table>
 
-    <% unless log.observation.nil? || log.observation.match?(/\A\s*\Z/) %>
+    <% unless log.observation.blank? %>
       <p style="margin-top: 8px"><strong>Observations: </strong></p>
       <p><span><%= log.observation %></span></p>
     <% end %>

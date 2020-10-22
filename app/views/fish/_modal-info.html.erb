@@ -11,7 +11,7 @@
           <%= image_tag catch.fish.picture_url %>
         </div>
 
-        <div class="fish-card-info" style="padding: 10px; background: none">
+        <div class="fish-card-info" style="background: none; padding: 10px">
           <p style="font-size: 20px; font-style: normal; margin: 0 0 5px 10px">
             Minimum size: <%= catch.fish.display_legal_dimensions %>
           </p>
@@ -21,7 +21,7 @@
           </p>
 
           <%= link_to "Learn more", catch.fish.url, target: "_blank", class: "fish-more-info",
-              style: "margin: -5px" %>
+              style: "margin-left: -5px" %>
         </div>
       </div>
     </div>

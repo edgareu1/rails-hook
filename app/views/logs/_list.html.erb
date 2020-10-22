@@ -1,15 +1,15 @@
-<!-- Iterate over the Logs list and display them as Cards -->
+<!-- Iterate over the Logs index and display them as cards -->
 <% logs.each do |log| %>
   <%= link_to log_path(log) do %>
     <div class="card">
       <div class="card-headers">
-        <!-- Cards Headers -->
+        <!-- Card Headers -->
         <div class="card-title-container">
           <h3><%= log.label %></h3>
           <h5 class="location-address"><%= log.location.address_to_display %></h5>
         </div>
 
-        <!-- Image of the Weather of the Log's Location -->
+        <!-- Image of the Log's weather -->
         <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
              class="weather-icon">
         </div>
@@ -20,7 +20,7 @@
       <!-- Content of the Log -->
       <div class="card-content">
         <div>
-          <% if log.catches_count == 0 %>
+          <% if log.catches_count.zero? %>
             <p><strong>Nothing caught</strong></p>
 
           <% else %>
@@ -47,20 +47,18 @@
             <%= (log.moon_phase * 100).round %>%
           </p>
 
-          <p>
-            <%= log.stat_to_display %>
-          </p>
+          <p><%= log.stat_to_display %></p>
         </div>
       </div>
 
       <!-- Card footer displaying the Log's Time -->
       <p class="card-footer-time">
-        <%= log.start_time.strftime('%b %d')  %> | <%= (log.end_time - log.start_time).fdiv(60 * 60).ceil %> h
+        <%= log.start_time.strftime('%b %d') %> | <%= log.duration.ceil %> h
       </p>
     </div>
   <% end %>
 <% end %>
 
-<!-- Pagination to navigate the index of Logs -->
+<!-- Pagination to navigate the Logs index -->
 <%= will_paginate logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
     previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
