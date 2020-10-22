@@ -79,7 +79,13 @@
           <% end %>
 
           <!-- Observation input -->
-          <%= f.input :observation, label: "Observations", placeholder: "Leave an observation" %>
+          <div class="form-group text log_observation">
+            <label for="log_observation">Observations</label>
+            <textarea class="form-control" id="log_<%= log_action %>_observation" placeholder="Leave an observation"
+                      name="log[observation]"><%= log.observation.nil? ? "" : log.observation.strip %></textarea>
+          </div>
+
+          <div class="invalid-feedback log_<%= log_action %>_observation_error"></div>
 
           <p>Rate your session</p>
 
