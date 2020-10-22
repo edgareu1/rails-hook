@@ -28,7 +28,7 @@
                   <% end %>
 
                   <% Fish.all.sort_by(&:name).each do |fish| %>
-                    <option <%= "selected=selected" if fish == catch.fish %> value=<%= fish.id %>>
+                    <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
                       <%= fish.name %>
                     </option>
                   <% end %>
@@ -36,7 +36,7 @@
               </td>
 
               <td>
-                <input class="form-control numeric integer" placeholder="gr" value=<%= catch.weight %>
+                <input class="form-control numeric integer" placeholder="gr" value="<%= catch.weight %>"
                        name="catch[weight]" id="catch_weight">
               </td>
             </tr>
