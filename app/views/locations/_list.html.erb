@@ -1,4 +1,4 @@
-<!-- Iterate over the Locations list and display them as Cards -->
+<!-- Iterate over the Locations index and display them as cards -->
 <% locations.each do |location| %>
   <%= link_to location_path(location) do %>
     <div class="card">
@@ -53,6 +53,6 @@
   <% end %>
 <% end %>
 
-<!-- Pagination to navigate the index of Locations -->
+<!-- Pagination to navigate the Locations index -->
 <%= will_paginate locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
     previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
