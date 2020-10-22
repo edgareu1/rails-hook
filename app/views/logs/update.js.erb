@@ -6,7 +6,8 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
   displayFormErrors('log_edit', 'start_time', `<%= @time_errors.first %>`);
   displayFormErrors('log_edit', 'end_time', `<%= @time_errors.first %>`);
 
-  displayFormErrors('log', 'location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
+  displayFormErrors('log_edit', 'location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
+  displayFormErrors('log_edit', 'observation', `<%= @log.errors.full_messages_for(:observation).first %>`);
   displayFormErrors('log', 'temperature', `<%= @log.errors.full_messages_for(:temperature).first %>`);
   displayFormErrors('log', 'air_pressure', `<%= @log.errors.full_messages_for(:air_pressure).first %>`);
   displayFormErrors('log', 'wind_speed', `<%= @log.errors.full_messages_for(:wind_speed).first %>`);
