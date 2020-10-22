@@ -40,7 +40,7 @@ class Log < ApplicationRecord
 
   # Method that gets the Log duration in hours
   def duration
-    (end_time - start_time) / ( 60 * 60 )
+    (end_time - start_time).fdiv(60 * 60)
   end
 
   private
