@@ -133,12 +133,17 @@
   width: 250px;
   margin: 0 auto 40px;
 
+  h5 {
+    text-align: center;
+  }
+
   li {
     text-align: center;
     color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid white;
 
     p {
+      color: #9BDDF9;
       padding: 5px;
       margin-bottom: 0;
     }

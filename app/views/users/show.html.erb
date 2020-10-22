@@ -6,7 +6,7 @@
 
   <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn btn-ghost" do %>
     <h6>CREATE LOG</h6>
-    <%= image_tag "rod.png", style:"width: 35px" %>
+    <%= image_tag "rod.png" %>
   <% end %>
 </div>
 
@@ -15,7 +15,7 @@
   <div class="d-flex">
     <%= image_tag "chair.png" %>
 
-    <%= link_to locations_path, style: "color: rgba(255, 255, 255, 0.9); opacity: 1; padding: 0" do %>
+    <%= link_to locations_path, style: "opacity: 1; padding: 0" do %>
       <h3>My Locations</h3>
     <% end %>
 
@@ -36,10 +36,10 @@
 </ul>
 
 <!-- Feed of curiosities -->
-<ul class="feed-container">
+<div class="feed-container">
   <h5>Did you know ?</h3>
   <p><%= @feed_item %></p>
-</ul>
+</div>
 
 <!-- User stats -->
 <div class="stats-container">
@@ -57,13 +57,13 @@
 <!-- User top Fish caught -->
 <% unless @top_fish.empty? %>
   <ul class="top-fish">
-    <h5 style="text-align: center">Most caught fish</h5>
+    <h5>Most caught fish</h5>
 
     <% @top_fish.each_with_index do |fish, index| %>
       <li>
         <p>
           <%= "#{index + 1}." %>
-          <i style="color:#9BDDF9"><%= "#{fish[:name]}" %></i>
+          <i><%= fish[:name] %></i>
           <%= "- #{fish[:catches_count]}" %>
         </p>
       </li>

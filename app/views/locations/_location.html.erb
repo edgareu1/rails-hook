@@ -2,7 +2,7 @@
   <li>
     <!-- Location info -->
     <div class="location-info">
-      <!-- Location Name -->
+      <!-- Location name -->
       <h6>
         <span><%= location[:instance].spot %></span>
 
@@ -21,9 +21,9 @@
       </p>
     </div>
 
-    <!-- Icon of the Location weather right now -->
+    <!-- Icon of the Location's current weather -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather][:weather_icon] %>@2x.png)"
-        class="weather-icon">
+         class="weather-icon">
     </div>
   </li>
 <% end %>
