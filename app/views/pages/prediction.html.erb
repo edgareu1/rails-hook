@@ -3,7 +3,7 @@
   <h1>Best Spots</h1>
 </div>
 
-<!-- If there are no predictions, then... -->
+<!-- If there are no predictions... -->
 <% if @prediction.empty? %>
   <div class="card no-data">
     <h3>No good locations</h3>
@@ -30,13 +30,13 @@
           </div>
 
           <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:weather][:weather_icon] %>@2x.png)"
-              class="weather-icon">
+               class="weather-icon">
           </div>
         </div>
       <% end %>
 
       <div class="prediction-stats">
-        <!-- Prediction of weight of fish to be caught in a 5h session -->
+        <!-- Prediction of weight of Fish to be caught in a 5h session -->
         <p class="tooltip">
           <%= rounded_weight(data[:prediction][:weight_caught] * 5) %>
           <span class="tooltiptext">Weight Prediction</span>
