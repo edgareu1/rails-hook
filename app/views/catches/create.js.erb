@@ -16,16 +16,16 @@
   // Clean the form
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: Catch.new %>";
 
-  // If the catches are empty, remove the row displaying "Nothing caught" (if it exists)
+  // If the list of Catches was empty, refresh its content
   <% if @log.catches.size == 1 %>
     document.getElementById('catches-list').innerHTML = "<%= j render "catches/container", catches: @log.catches %>";
 
-  // Otherwise, append the new catches to the list
+  // Otherwise, append the new Catch into the list
   <% else %>
     $('#catches-list table').append("<%= j render "catches/catch", catch: @catch %>");
   <% end %>
 
-  // Add a flash congratulating the User if he does catches a big Fish
+  // If the User does Catch a big Fish, add a flash congratulating him
   <% if (@catch.weight / @catch.quantity) > @catch.fish.good_weight %>
     createFlash("Congratulations, it's a BIGGIN!");
   <% end %>
