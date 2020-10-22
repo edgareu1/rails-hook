@@ -5,7 +5,7 @@ class Catch < ApplicationRecord
   validates :quantity, presence: true,
                        numericality: { greater_than: 0, less_than: 100 }
   validates :weight,   presence: true,
-                       numericality: { greater_than: 0 }
+                       numericality: { greater_than: 0, less_than: 500000 }
 
   after_save :increment_catches_counters
   after_destroy :decrement_catches_counters
