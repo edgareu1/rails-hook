@@ -12,12 +12,10 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Location input -->
-          <div class="form-group select required log_location d-flex">
-            <label class="select required" for="log_location_id">
-              Location
-            </label>
+          <div class="form-group select log_location d-flex">
+            <label for="log_location_id">Location</label>
 
-            <select class="form-control" name="log[location_id]" id="log_location_id">
+            <select class="form-control" name="log[location_id]" id="log_<%= log_action %>_location_id">
               <% if log.location.nil? %>
                 <option>Please Select</option>
               <% end %>
@@ -30,7 +28,7 @@
             </select>
           </div>
 
-          <div class="invalid-feedback log_location_id_error"></div>
+          <div class="invalid-feedback log_<%= log_action %>_location_id_error"></div>
 
           <!-- Starting Time input -->
           <div class="d-flex">
@@ -50,7 +48,7 @@
 
           <% unless log.id.nil? %>
             <!-- Temperature input -->
-            <div class="form-group float optional log_temperature d-flex">
+            <div class="form-group float log_temperature d-flex">
               <label for="log_temperature">Temperature</label>
               <input class="form-control" id="log_temperature" placeholder="°C" type="number" step="1"
                      name="log[temperature]" value=<%= log.temperature %>>
@@ -60,7 +58,7 @@
             <div class="invalid-feedback log_temperature_error"></div>
 
             <!-- Air Pressure input -->
-            <div class="form-group integer optional log_air_pressure d-flex">
+            <div class="form-group integer log_air_pressure d-flex">
               <label for="log_air_pressure">Air pressure</label>
               <input class="form-control" id="log_air_pressure" placeholder="Pa" type="number" step="1"
                      name="log[air_pressure]" value=<%= log.air_pressure %>>
@@ -70,7 +68,7 @@
             <div class="invalid-feedback log_air_pressure_error"></div>
 
             <!-- Wind Speed input -->
-            <div class="form-group float optional log_wind_speed d-flex">
+            <div class="form-group float log_wind_speed d-flex">
               <label for="log_wind_speed">Wind speed</label>
               <input class="form-control" id="log_wind_speed" placeholder="m/s" type="number" step="1"
                      name="log[wind_speed]" value=<%= log.wind_speed %>>
