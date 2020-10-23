@@ -7,11 +7,6 @@ class PagesController < ApplicationController
 
   def location_prediction
     location = current_user.locations.find(params[:location_id])
-
-    if location.logs.size < 5
-      @prediction =  nil
-    else
-      @prediction = Ranking.new(current_user).prediction(location)
-    end
+    @prediction = Ranking.new(current_user).prediction(location)[:prediction]
   end
 end

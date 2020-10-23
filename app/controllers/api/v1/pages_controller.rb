@@ -6,7 +6,7 @@ class Api::V1::PagesController < Api::V1::BaseController
   def location_prediction
     location = @user.locations.find(params[:location_id])
 
-    if location.logs.size < 5
+    if location.logs_count < 5
       @prediction = { weather: location.weather_data, prediction: nil }
     else
       @prediction = Ranking.new(@user).prediction(location)
