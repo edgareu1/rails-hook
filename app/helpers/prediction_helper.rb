@@ -1,19 +1,17 @@
 module PredictionHelper
   require 'matrix'
 
-  class Ranking
+  class Predictor
     include LinearRegressionHelper
 
     def initialize(user)
-      @user = user
-
       # Reject Locations with less than 5 Logs
-      @locations = @user.locations
-                        .reject { |loc| loc.logs_count < 5 }
+      @locations = user.locations
+                       .reject { |loc| loc.logs_count < 5 }
     end
 
     # Method that returns a prediction of the weight of fish to be caught (per hour) at a certain Location
-    def prediction(location)
+    def predict(location)
       x_data = []
       y_data = []
 
@@ -58,8 +56,8 @@ module PredictionHelper
     # Method that returns the Locations with the highest prediction of weight of fish to be caught
     # Arguments:
     #   num: Number of Locations to return
-    def top_ranking_locations(num)
-      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
+    def top_locations(num)
+      @locations.map { |loc| { location: loc }.merge(predict(loc)) }
                 .max_by(num) { |loc| [loc[:prediction][:weight_gr_hour], - loc[:prediction][:mean_percentage_error]] }
                 .reject { |loc| loc[:prediction][:weight_gr_hour].zero? }
     end
