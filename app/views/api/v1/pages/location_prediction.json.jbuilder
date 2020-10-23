@@ -3,7 +3,7 @@ if @prediction[:prediction].nil?
 
 else
   json.prediction do
-    json.extract! @prediction[:prediction], :weight_gr, :mean_percentage_error
+    json.extract! @prediction[:prediction], :weight_gr_hour, :mean_percentage_error
   end
 end
 

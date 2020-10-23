@@ -49,7 +49,7 @@ module PredictionHelper
       prediction_weight = 0 if prediction_weight.negative?
 
       return { weather: weather_data,
-               prediction: { weight_gr:             prediction_weight,
+               prediction: { weight_gr_hour:        prediction_weight,
                              mean_percentage_error: prediction_mean_error
                            }
              }
@@ -60,8 +60,8 @@ module PredictionHelper
     #   num: Number of Locations to return
     def top_ranking_locations(num)
       @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
-                .max_by(num) { |loc| [loc[:prediction][:weight_gr], - loc[:prediction][:mean_percentage_error]] }
-                .reject { |loc| loc[:prediction][:weight_gr].zero? }
+                .max_by(num) { |loc| [loc[:prediction][:weight_gr_hour], - loc[:prediction][:mean_percentage_error]] }
+                .reject { |loc| loc[:prediction][:weight_gr_hour].zero? }
     end
   end
 end
