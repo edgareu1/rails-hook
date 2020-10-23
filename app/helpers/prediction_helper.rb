@@ -37,7 +37,7 @@ module PredictionHelper
       linear_regression.train_normal_equation
 
       # Get the mean absolute percentage error of the model
-      percentage_error = linear_regression.mean_absolute_percentage_error
+      prediction_mean_error = linear_regression.mean_absolute_percentage_error
 
       # Get the current weather of the Location
       weather_data = location.weather_data
@@ -46,10 +46,11 @@ module PredictionHelper
 
       # Get the prediction based on the trained model
       prediction_weight = linear_regression.predict(prediction_data).round
+      prediction_weight = 0 if prediction_weight.negative?
 
       return { weather: weather_data,
-               prediction: { weight_caught:    prediction_weight,
-                             percentage_error: percentage_error
+               prediction: { weight_gr:             prediction_weight,
+                             mean_percentage_error: prediction_mean_error
                            }
              }
     end
@@ -59,8 +60,8 @@ module PredictionHelper
     #   num: Number of Locations to return
     def top_ranking_locations(num)
       @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
-                .select { |loc| loc[:prediction][:weight_caught].positive? }
-                .max_by(num) { |loc| loc[:prediction][:weight_caught] }
+                .max_by(num) { |loc| [loc[:prediction][:weight_gr], - loc[:prediction][:mean_percentage_error]] }
+                .reject { |loc| loc[:prediction][:weight_gr].zero? }
     end
   end
 end
