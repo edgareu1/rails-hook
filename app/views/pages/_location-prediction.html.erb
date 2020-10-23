@@ -7,7 +7,10 @@
 <tr>
   <td>Prediction</td>
   <td></td>
-  <td><%= "#{rounded_weight(prediction[:weight_gr_hour])} (per hour)" %></td>
+  <td>
+    <%= prediction[:weight_gr_hour].zero? ? 0 : rounded_weight(prediction[:weight_gr_hour]) %>
+    (per hour)
+  </td>
 </tr>
 
 <tr>
