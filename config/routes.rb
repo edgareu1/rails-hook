@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :fish,      only: [ :index, :show ]
   resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
+    get '/prediction', to: 'pages#location_prediction'
     get '/logs',       to: 'logs#location_index'
   end
 
