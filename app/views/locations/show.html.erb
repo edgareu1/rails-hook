@@ -3,8 +3,20 @@
   <%= render "locations/information", location: @location, location_weather: @location_weather %>
 </div>
 
-<!-- Links for Locations Modals: Delete, Edit and New -->
+<!-- Links for Locations actions: Predict, Logs, Delete, Edit and New -->
 <div class="card-actions">
+  <% unless @location.logs_count < 5 %>
+    <div id="location-prediction">
+      <%= link_to location_prediction_path(@location), remote: true do %>
+        <i class="fas fa-calculator"></i>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to location_logs_path(@location) do %>
+    <i class="fas fa-stream"></i>
+  <% end %>
+
   <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLocation" } do %>
     <i class="far fa-trash-alt"></i>
   <% end %>

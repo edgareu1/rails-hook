@@ -38,14 +38,14 @@
       <div class="prediction-stats">
         <!-- Prediction of weight of Fish to be caught in a 5h session -->
         <p class="tooltip">
-          <%= rounded_weight(data[:prediction][:weight_caught] * 5) %>
+          <%= rounded_weight(data[:prediction][:weight_gr_hour] * 5) %>
           <span class="tooltiptext">Weight Prediction</span>
         </p>
 
         <!-- Mean absolute percentage error of the predictive model -->
         <p class="tooltip">
           <i class="fas fa-exclamation-circle"></i>
-          <%= "#{data[:prediction][:percentage_error]}%" %>
+          <%= "#{data[:prediction][:mean_percentage_error]}%" %>
           <span class="tooltiptext">Mean Error</span>
         </p>
       </div>

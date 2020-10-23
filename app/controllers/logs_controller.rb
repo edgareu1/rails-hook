@@ -11,6 +11,14 @@ class LogsController < ApplicationController
                         .paginate(page: params[:page], per_page: 5)
   end
 
+  def location_index
+    @location = current_user.locations.find(params[:location_id])
+
+    @logs = @location.logs
+                     .order(start_time: :desc)
+                     .paginate(page: params[:page], per_page: 5)
+  end
+
   def show
     if @log.nil? || current_user != @log.user
       flash[:alert] = "Log was not found"

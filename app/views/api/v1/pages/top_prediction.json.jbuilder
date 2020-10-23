@@ -7,8 +7,7 @@ json.array! @prediction do |loc_prediction|
   end
 
   json.prediction do
-    json.weight_gr loc_prediction[:prediction][:weight_caught]
-    json.extract! loc_prediction[:prediction], :percentage_error
+    json.extract! loc_prediction[:prediction], :weight_gr_hour, :mean_percentage_error
   end
 
   json.current_weather do

@@ -1,19 +1,17 @@
 module PredictionHelper
   require 'matrix'
 
-  class Ranking
+  class Predictor
     include LinearRegressionHelper
 
     def initialize(user)
-      @user = user
-
       # Reject Locations with less than 5 Logs
-      @locations = @user.locations
-                        .reject { |loc| loc.logs_count < 5 }
+      @locations = user.locations
+                       .reject { |loc| loc.logs_count < 5 }
     end
 
     # Method that returns a prediction of the weight of fish to be caught (per hour) at a certain Location
-    def prediction(location)
+    def predict(location)
       x_data = []
       y_data = []
 
@@ -37,7 +35,7 @@ module PredictionHelper
       linear_regression.train_normal_equation
 
       # Get the mean absolute percentage error of the model
-      percentage_error = linear_regression.mean_absolute_percentage_error
+      prediction_mean_error = linear_regression.mean_absolute_percentage_error
 
       # Get the current weather of the Location
       weather_data = location.weather_data
@@ -46,10 +44,11 @@ module PredictionHelper
 
       # Get the prediction based on the trained model
       prediction_weight = linear_regression.predict(prediction_data).round
+      prediction_weight = 0 if prediction_weight.negative?
 
       return { weather: weather_data,
-               prediction: { weight_caught:    prediction_weight,
-                             percentage_error: percentage_error
+               prediction: { weight_gr_hour:        prediction_weight,
+                             mean_percentage_error: prediction_mean_error
                            }
              }
     end
@@ -57,10 +56,10 @@ module PredictionHelper
     # Method that returns the Locations with the highest prediction of weight of fish to be caught
     # Arguments:
     #   num: Number of Locations to return
-    def top_ranking_locations(num)
-      @locations.map { |loc| { location: loc }.merge(prediction(loc)) }
-                .select { |loc| loc[:prediction][:weight_caught].positive? }
-                .max_by(num) { |loc| loc[:prediction][:weight_caught] }
+    def top_locations(num)
+      @locations.map { |loc| { location: loc }.merge(predict(loc)) }
+                .max_by(num) { |loc| [loc[:prediction][:weight_gr_hour], - loc[:prediction][:mean_percentage_error]] }
+                .reject { |loc| loc[:prediction][:weight_gr_hour].zero? }
     end
   end
 end

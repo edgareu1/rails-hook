@@ -1,0 +1,28 @@
+<!-- Title -->
+<div class="page-title">
+  <h1><%= @location.spot %></h1>
+  <h2 class="location-address" ><%= @location.address_to_display %></h2>
+</div>
+
+<!-- New Log link -->
+<%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn-new-instance" do %>
+  <i class="fas fa-plus"></i>
+<% end %>
+
+<!-- List of Logs -->
+<% if @logs.empty? %>
+  <div class="card no-data">
+    <h3>No logs saved for this location</h3>
+    <h5>The more logs you record, the more accurate our predictions will be</h5>
+  </div>
+
+<% else %>
+  <div id="cards-list">
+    <%= render 'logs/list', logs: @logs %>
+  </div>
+<% end %>
+
+<!-- Modal New Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <%= render "logs/form", log: Log.new %>
+</div>
