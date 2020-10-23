@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   root to: 'users#show'
 
-  get '/prediction', to: 'pages#prediction'
+  get '/prediction', to: 'users#prediction'
 
   resources :fish,      only: [ :index, :show ]
   resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
-    get '/prediction', to: 'pages#location_prediction'
+    get '/prediction', to: 'locations#prediction'
     get '/logs',       to: 'logs#location_index'
   end
 
@@ -22,10 +22,10 @@ Rails.application.routes.draw do
       get '/users/:user_id', to: 'users#show'
 
       scope '/users/:user_id' do
-        get '/prediction(/:num)', to: 'pages#top_prediction'
+        get '/prediction(/:num)', to: 'users#prediction'
 
         resources :locations, only: [ :index, :show, :create, :update, :destroy ] do
-          get '/prediction', to: 'pages#location_prediction'
+          get '/prediction', to: 'locations#prediction'
           get '/logs',       to: 'logs#location_index'
         end
 
