@@ -97,4 +97,10 @@ document.addEventListener('turbolinks:load', () => {
   if (predictionAnchor) {
     loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction in the background
   }
+
+  // If in the Locations#show page...
+  let locationPredictionAnchor = document.querySelector('#location-prediction');
+  if (locationPredictionAnchor) {
+    loadingIcon(locationPredictionAnchor);  // Add the loading animation while the app executes the prediction in the background
+  }
 });
