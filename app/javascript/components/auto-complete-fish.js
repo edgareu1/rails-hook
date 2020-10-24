@@ -110,11 +110,14 @@ function autoCompleteFish(fishInput) {
     }
   });
 
-  // If the user clicks outside the 'fishInput' or the autocomplete list, then empty the autocomplete list
-  document.addEventListener("click", (event) => {
+  // If the event is outside of the 'fishInput' and the autocomplete list, then empty the autocomplete list
+  function closeAutoCompleteList(event) {
     if (event.target.hasAttribute('data-index') || event.target.id == 'search-input') return;
     emptyList();
-  });
+  }
+
+  document.addEventListener("click", closeAutoCompleteList);      // Uppon the User clicking in a normal device
+  document.addEventListener("touchstart", closeAutoCompleteList); // Upoon the User touching in a mobile device
 
   // Function that empties the autocomplete list
   function emptyList() {
