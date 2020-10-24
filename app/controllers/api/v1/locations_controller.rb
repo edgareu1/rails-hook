@@ -1,4 +1,6 @@
 class Api::V1::LocationsController < Api::V1::BaseController
+  include PredictionHelper
+
   before_action :check_user_authorization
   before_action :set_location, only: [ :show, :update, :destroy ]
 
@@ -37,6 +39,16 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
     set_index
     render :index
+  end
+
+  def prediction
+    location = @user.locations.find(params[:location_id])
+
+    if location.logs_count < 5
+      @prediction = { weather: location.weather_data, prediction: nil }
+    else
+      @prediction = Predictor.new(@user).predict(location)
+    end
   end
 
   private

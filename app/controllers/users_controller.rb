@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include PredictionHelper
+
   def show
     @top_locations = current_user.top_locations(3)
                                  .map { |loc| Hash[instance: loc, weather: loc.weather_data] }
@@ -20,5 +22,9 @@ class UsersController < ApplicationController
       'Unlike most fish, the ocean sunfish does not have a tail. A female sunfish can lay 300 million eggs each year. Each egg is smaller than the period at the end of this sentence'
     ]
     @feed_item = feed.sample
+  end
+
+  def prediction
+    @prediction = Predictor.new(current_user).top_locations(3)
   end
 end
