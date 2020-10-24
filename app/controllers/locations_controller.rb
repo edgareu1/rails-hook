@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   include PredictionHelper
 
-  before_action :set_location, only: [ :show, :update, :destroy ]
+  before_action :set_location, only: [ :show, :prediction, :update, :destroy ]
 
   def index
     @locations = current_user.locations
@@ -10,13 +10,17 @@ class LocationsController < ApplicationController
   end
 
   def show
-    if @location.nil? || current_user != @location.user
+    if @location.nil?
       flash[:alert] = "Location was not found"
       redirect_to locations_path
 
     else
       @location_weather = @location.weather_data
     end
+  end
+
+  def prediction
+    @prediction = Predictor.new(current_user).predict(@location)[:prediction]
   end
 
   def create
@@ -38,11 +42,6 @@ class LocationsController < ApplicationController
     redirect_to locations_path
   end
 
-  def prediction
-    location = Location.find_by(id: params[:location_id])
-    @prediction = Predictor.new(current_user).predict(location)[:prediction]
-  end
-
   private
 
   def location_params
@@ -50,6 +49,6 @@ class LocationsController < ApplicationController
   end
 
   def set_location
-    @location = Location.find_by(id: params[:id])
+    @location = curret_user.locations.find_by(id: params[:id] || params[:location_id])
   end
 end
