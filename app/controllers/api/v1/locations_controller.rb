@@ -2,21 +2,29 @@ class Api::V1::LocationsController < Api::V1::BaseController
   include PredictionHelper
 
   before_action :check_user_authorization
-  before_action :set_location, only: [ :show, :update, :destroy ]
+  before_action :set_location, only: [ :show, :prediction, :update, :destroy ]
 
   def index
-    set_index
+    get_index
   end
 
   def show
-    set_current_weather
+    get_current_weather
+  end
+
+  def prediction
+    if @location.logs_count < 5
+      @prediction = { weather: @location.weather_data, prediction: nil }
+    else
+      @prediction = Predictor.new(@user).predict(@location)
+    end
   end
 
   def create
     @location = @user.locations.new(location_params)
 
     if @location.save
-      set_current_weather
+      get_current_weather
 
       render :show, status: :created
     else
@@ -26,7 +34,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def update
     if @location.update(location_params)
-      set_current_weather
+      get_current_weather
 
       render :show
     else
@@ -37,18 +45,8 @@ class Api::V1::LocationsController < Api::V1::BaseController
   def destroy
     @location.destroy
 
-    set_index
+    get_index
     render :index
-  end
-
-  def prediction
-    location = @user.locations.find(params[:location_id])
-
-    if location.logs_count < 5
-      @prediction = { weather: location.weather_data, prediction: nil }
-    else
-      @prediction = Predictor.new(@user).predict(location)
-    end
   end
 
   private
@@ -58,14 +56,14 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def set_location
-    @location = @user.locations.find(params[:id])
+    @location = @user.locations.find(params[:id] || params[:location_id])
   end
 
-  def set_index
+  def get_index
     @locations = @user.locations.sort
   end
 
-  def set_current_weather
+  def get_current_weather
     @current_weather = @location.weather_data
   end
 

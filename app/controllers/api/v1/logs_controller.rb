@@ -2,15 +2,15 @@ class Api::V1::LogsController < Api::V1::BaseController
   include MoonPhaseHelper
 
   before_action :check_user_authorization
-  before_action :set_log, only: [ :show, :update, :destroy ]
+  before_action :set_location, only: [ :location_index ]
+  before_action :set_log,      only: [ :show, :update, :destroy ]
 
   def index
-    set_index
+    get_index
   end
 
   def location_index
-    location = @user.locations.find(params[:location_id])
-    @logs = location.logs.sort
+    @logs = @location.logs.sort
   end
 
   def show
@@ -57,7 +57,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   def destroy
     @log.destroy
 
-    set_index
+    get_index
     render :index
   end
 
@@ -71,7 +71,11 @@ class Api::V1::LogsController < Api::V1::BaseController
     @log = @user.logs.find(params[:id])
   end
 
-  def set_index
+  def set_location
+    @location = @user.locations.find(params[:location_id])
+  end
+
+  def get_index
     @logs = @user.logs.sort
   end
 

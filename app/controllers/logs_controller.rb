@@ -3,7 +3,8 @@ require 'will_paginate/array'
 class LogsController < ApplicationController
   include MoonPhaseHelper
 
-  before_action :set_log, only: [ :show, :update, :destroy ]
+  before_action :set_location, only: [ :location_index ]
+  before_action :set_log,      only: [ :show, :update, :destroy ]
 
   def index
     @logs = current_user.logs
@@ -12,15 +13,19 @@ class LogsController < ApplicationController
   end
 
   def location_index
-    @location = current_user.locations.find(params[:location_id])
+    if @location.nil?
+      flash[:alert] = "Location was not found"
+      redirect_to locations_path
 
-    @logs = @location.logs
-                     .order(start_time: :desc)
-                     .paginate(page: params[:page], per_page: 5)
+    else
+      @logs = @location.logs
+                       .order(start_time: :desc)
+                       .paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def show
-    if @log.nil? || current_user != @log.user
+    if @log.nil?
       flash[:alert] = "Log was not found"
       redirect_to logs_path
     end
@@ -85,7 +90,11 @@ class LogsController < ApplicationController
   end
 
   def set_log
-    @log = Log.find_by(id: params[:id])
+    @log = current_user.logs.find_by(id: params[:id])
+  end
+
+  def set_location
+    @location = current_user.locations.find_by(id: params[:location_id])
   end
 
   def get_time_errors
