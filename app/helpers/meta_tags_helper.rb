@@ -1,4 +1,8 @@
 module MetaTagsHelper
+  def meta_hook
+    content_for?(:meta_hook) ? content_for(:meta_hook) : DEFAULT_META["meta_hook"]
+  end
+
   def meta_title
     content_for?(:meta_title) ? content_for(:meta_title) : DEFAULT_META["meta_title"]
   end
