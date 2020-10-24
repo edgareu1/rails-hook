@@ -49,6 +49,6 @@ class LocationsController < ApplicationController
   end
 
   def set_location
-    @location = curret_user.locations.find_by(id: params[:id] || params[:location_id])
+    @location = current_user.locations.find_by(id: params[:id] || params[:location_id])
   end
 end
