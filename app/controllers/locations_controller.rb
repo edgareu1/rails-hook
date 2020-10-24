@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  include PredictionHelper
+
   before_action :set_location, only: [ :show, :update, :destroy ]
 
   def index
@@ -34,6 +36,11 @@ class LocationsController < ApplicationController
     @location.destroy
 
     redirect_to locations_path
+  end
+
+  def prediction
+    location = Location.find_by(id: params[:location_id])
+    @prediction = Predictor.new(current_user).predict(location)[:prediction]
   end
 
   private
