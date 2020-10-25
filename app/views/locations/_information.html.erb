@@ -86,7 +86,7 @@
         <tr>
           <td>Last Log</td>
           <td></td>
-          <td><%= time_ago_in_words(location.logs.map(&:end_time).sort.last).truncate(20) %> ago</td>
+          <td><%= "#{time_ago_in_words(location.logs.map(&:end_time).sort.last)} ago".truncate(20) %></td>
         </tr>
 
         <tr>
