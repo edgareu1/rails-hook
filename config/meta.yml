@@ -1,5 +1,5 @@
-meta_hook: "Hook"
 meta_title: "Hook - You know how, we know where"
 meta_description: "The app that records your catches and finds the best fishing spots!"
-meta_image: "cover.png" # should exist in 'app/assets/images/'
-twitter_account: "@hook_twitter_account"   # required for Twitter Cards
+meta_image: "cover.png"
+meta_icon: "hook-logo.png"
+twitter_account: "@Lewagonparis"  # Le Wagon twitter account... We don't have one
