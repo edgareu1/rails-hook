@@ -20,7 +20,7 @@
                 <option>Please Select</option>
               <% end %>
 
-              <% current_user.locations.sort_by(&:spot).each do |location| %>
+              <% current_user.locations.sort_by { |loc| loc.spot.downcase }.each do |location| %>
                 <option <%= "selected=selected" if location == log.location %> value="<%= location.id %>">
                   <%= location.spot %>
                 </option>
