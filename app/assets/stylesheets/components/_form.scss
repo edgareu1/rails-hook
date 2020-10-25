@@ -65,6 +65,10 @@
     margin-bottom: 20px;
   }
 
+  .user_avatar > input.file {
+    overflow: hidden;
+  }
+
   .text-muted {
     color: #9BDDF9 !important;
   }
