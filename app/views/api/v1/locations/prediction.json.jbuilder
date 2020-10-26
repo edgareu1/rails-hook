@@ -1,5 +1,5 @@
 if @prediction[:prediction].nil?
-  json.prediction "Needs at least 5 Logs to make a prediction"
+  json.prediction "We need at least 5 logs to make a prediction"
 
 else
   json.prediction do
