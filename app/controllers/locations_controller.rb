@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  require 'will_paginate/array'
   include PredictionHelper
 
   before_action :set_location, only: [ :show, :prediction, :update, :destroy ]
@@ -14,7 +15,6 @@ class LocationsController < ApplicationController
     if @location.nil?
       flash[:alert] = "Location was not found"
       redirect_to locations_path
-
     else
       @location_weather = @location.weather_data
     end
@@ -31,15 +31,12 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location.attributes = location_params
-    @location.save
-
+    @location.update(location_params)
     @location_weather = @location.weather_data
   end
 
   def destroy
     @location.destroy
-
     redirect_to locations_path
   end
 

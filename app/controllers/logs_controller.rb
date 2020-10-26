@@ -1,6 +1,5 @@
-require 'will_paginate/array'
-
 class LogsController < ApplicationController
+  require 'will_paginate/array'
   include MoonPhaseHelper
 
   before_action :set_location, only: [ :location_index ]
@@ -36,8 +35,7 @@ class LogsController < ApplicationController
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
 
     redirect_to log_path(@log) if @log.save
-
-    get_time_errors
+    set_time_errors
   end
 
   def update
@@ -62,7 +60,7 @@ class LogsController < ApplicationController
       @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
     end
 
-    # If the Logs Location changes, then update the Locations catches counters
+    # If the Log Location changes, then update the Location catch counters
     if @log.save && previous_loc_id.present?
       log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
 
@@ -74,12 +72,11 @@ class LogsController < ApplicationController
     @log.errors.add(:start_time, "must exist") if start_time_error
     @log.errors.add(:end_time, "must exist")   if end_time_error
 
-    get_time_errors
+    set_time_errors
   end
 
   def destroy
     @log.destroy
-
     redirect_to logs_path
   end
 
@@ -97,7 +94,7 @@ class LogsController < ApplicationController
     @location = current_user.locations.find_by(id: params[:location_id])
   end
 
-  def get_time_errors
+  def set_time_errors
     @time_errors = @log.errors.messages
                               .slice(:start_time, :end_time, :duration)
                               .map { |k, v| k.to_s.humanize + " " +  v.first }
