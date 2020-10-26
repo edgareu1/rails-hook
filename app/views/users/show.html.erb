@@ -1,3 +1,7 @@
+<% content_for :content do %>
+  <canvas id="fish-tank"></canvas>
+<% end %>
+
 <!-- User profile banner -->
 <div class="banner text-center">
   <%= large_avatar(current_user) %>
@@ -37,7 +41,7 @@
 
 <!-- Feed of curiosities -->
 <div class="feed-container">
-  <h5>Did you know ?</h3>
+  <h5>Did you know ?</h5>
   <p><%= @feed_item %></p>
 </div>
 

@@ -1,9 +1,9 @@
 <nav id="bottom-nav">
   <ul id="bottom-list" class="flex-container">    
-    <li class="<%= 'active' if controller_name == 'users' %>">
+    <li class="<%= 'active' if (controller_name == 'users' && action_name == 'show') %>">
       <%= link_to root_path do %>
-        <% if controller_name == 'users' then image_tag "hook-logo-nav-colored.png" %>
-        <% else image_tag "hook-logo-nav.png" %>
+        <% if (controller_name == 'users' && action_name == 'show') then image_tag "hook-logo-colored.png" %>
+        <% else image_tag "hook-logo.png" %>
         <% end %>
       <% end %>
     </li>
@@ -17,7 +17,7 @@
       <% end %>
     </li>
 
-    <li class="<%= 'active' if controller_name == 'pages' %>">
+    <li class="<%= 'active' if (controller_name == 'users' && action_name == 'prediction') %>">
       <%= link_to prediction_path do %>
         <figure>
           <i class="fas fa-calculator"></i>

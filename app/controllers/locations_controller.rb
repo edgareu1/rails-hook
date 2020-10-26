@@ -5,7 +5,8 @@ class LocationsController < ApplicationController
 
   def index
     @locations = current_user.locations
-                             .order(logs_count: :desc)
+                             .sort_by { |loc| [loc.catches_weight, loc.created_at] }
+                             .reverse
                              .paginate(page: params[:page], per_page: 5)
   end
 

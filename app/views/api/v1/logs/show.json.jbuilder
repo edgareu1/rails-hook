@@ -3,11 +3,12 @@ json.extract! @log, :id
 json.location do
   json.id @log.location_id
   json.extract! @log.location, :spot
-  json.extract! @log, :tag_id
 
   json.address do
     json.extract! @log.location, :city, :country
   end
+
+  json.extract! @log, :tag_id
 end
 
 json.time do

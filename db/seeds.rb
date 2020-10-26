@@ -70,7 +70,7 @@ def create_log(user, location, date_step)
                              start_time:  log_start_time,
                              end_time:    log_start_time + rand(0.05..0.25),
                              rating:      Math.sqrt(rand(1..100)).floor,
-                             observation: Faker::ChuckNorris.fact,
+                             observation: Faker::ChuckNorris.fact.truncate(120),
                              tag_id:      location.logs_count + 1
                             )
 

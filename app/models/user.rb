@@ -33,7 +33,7 @@ class User < ApplicationRecord
     catches.group_by { |catch| catch.fish_id }
            .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
                                           catches.inject(0) { |sum, catch| sum + catch.weight },
-                                          - catches.first.id
+                                          catches.last.created_at
                                          ]
                              }
            .max_by(num) { |k, v| v }
@@ -46,8 +46,8 @@ class User < ApplicationRecord
   end
 
   # Method that gets an array of Locations with the most Logs; if there are 2 or more Locations with the same
-  # logs_count, sort by their catches_count; if they are still equal, sort by their creation date
+  # logs_count, sort by their catches_weight; if they are still equal, sort by their creation date
   def top_locations(num)
-    locations.max_by(num) { |loc| [loc.logs_count, loc.catches_count, loc.created_at] }
+    locations.max_by(num) { |loc| [loc.logs_count, loc.catches_weight, loc.created_at] }
   end
 end

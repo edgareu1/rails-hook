@@ -20,6 +20,8 @@
                   placeholder: "email",
                   input_html: { autocomplete: "email" } %>
 
+      <%= f.input :avatar, as: :file %>
+
       <%= f.input :password,
                   required: true,
                   placeholder: "••••••",
