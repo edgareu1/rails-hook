@@ -5,7 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def show
     # If the request comes from that same User, then display more complete info
-    @more_info = check_user
+    @more_info = authorized_user
 
     # Only load the more complete info if necessary
     if @more_info

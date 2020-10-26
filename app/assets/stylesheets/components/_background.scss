@@ -1,0 +1,16 @@
+// Background
+body {
+  background: url("background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+#fishbitmap {
+  display: none;
+}
+
+// Home page background animation
+#fish-tank {
+  position: fixed;
+  opacity: 0.9;
+  z-index: -1;
+}

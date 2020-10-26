@@ -5,11 +5,11 @@ class Api::V1::LocationsController < Api::V1::BaseController
   before_action :set_location, only: [ :show, :prediction, :update, :destroy ]
 
   def index
-    get_index
+    set_index
   end
 
   def show
-    get_current_weather
+    set_current_weather
   end
 
   def prediction
@@ -24,8 +24,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
     @location = @user.locations.new(location_params)
 
     if @location.save
-      get_current_weather
-
+      set_current_weather
       render :show, status: :created
     else
       render_error
@@ -34,8 +33,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def update
     if @location.update(location_params)
-      get_current_weather
-
+      set_current_weather
       render :show
     else
       render_error
@@ -45,7 +43,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   def destroy
     @location.destroy
 
-    get_index
+    set_index
     render :index
   end
 
@@ -59,11 +57,11 @@ class Api::V1::LocationsController < Api::V1::BaseController
     @location = @user.locations.find(params[:id] || params[:location_id])
   end
 
-  def get_index
+  def set_index
     @locations = @user.locations.sort
   end
 
-  def get_current_weather
+  def set_current_weather
     @current_weather = @location.weather_data
   end
 

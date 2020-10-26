@@ -6,7 +6,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   before_action :set_log,      only: [ :show, :update, :destroy ]
 
   def index
-    get_index
+    set_index
   end
 
   def location_index
@@ -33,14 +33,14 @@ class Api::V1::LogsController < Api::V1::BaseController
     @log.attributes = log_params
 
     if @log.location_id_changed?
-      previous_loc_id = @log.location_id_was  # Save the previous Location
+      previous_loc_id = @log.location_id_was                                    # Save the previous Location
       @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id  # Get the new tag_id
     end
 
     @log.moon_phase = get_moon_phase(@log.start_time)   # Get the new moon_phase
 
     if @log.save
-      # If the Logs Location changes, then update the Location catches counters
+      # If the Log Location changes, then update the Location catch counters
       if previous_loc_id.present?
         log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
 
@@ -57,7 +57,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   def destroy
     @log.destroy
 
-    get_index
+    set_index
     render :index
   end
 
@@ -75,7 +75,7 @@ class Api::V1::LogsController < Api::V1::BaseController
     @location = @user.locations.find(params[:location_id])
   end
 
-  def get_index
+  def set_index
     @logs = @user.logs.sort
   end
 

@@ -31,11 +31,11 @@
 
   // --------------------//--------------------
   // General card
-  // Card headers
+  // Headers
   .card-headers {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 5px;
     margin-left: 5px;
 
@@ -62,11 +62,11 @@
     margin: 5px 0;
   }
 
-  // Card content
+  // Content
   .card-content {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
     margin-top: 10px;
 
     p {
@@ -81,7 +81,7 @@
     }
   }
 
-  // Card footer
+  // Footer
   .card-footer-time {
     text-align: right;
     color: rgba(155, 221, 249, 0.7);
@@ -92,7 +92,7 @@
 
   // --------------------//--------------------
   // Info card
-  // Card headers
+  // Headers
   .card-info-headers {
     display: flex;
     align-items: center;
@@ -110,7 +110,7 @@
     }
   }
 
-  // Card content
+  // Content
   .card-info-content {
     width: 100%;
     padding: 10px;
@@ -167,7 +167,7 @@
 }
 
 // --------------------//--------------------
-// Card to display Fish
+// Fish card
 .fish-card {
   margin: 0;
 
@@ -225,7 +225,7 @@
 }
 
 // --------------------//--------------------
-// Card actions
+// Actions card
 .card-actions {
   display: flex;
   justify-content: flex-end;

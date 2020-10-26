@@ -1,12 +1,4 @@
-// Style for the Users#show page
-
-// --------------------//--------------------
-// Background animation
-#fish-tank {
-  position: fixed;
-  opacity: 0.9;
-  z-index: -1;
-}
+// Style for the Users#show page (home page)
 
 // --------------------//--------------------
 // User Locations
@@ -16,8 +8,8 @@
   margin-bottom: 40px;
 
   .d-flex {
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 5px;
 
     img {
@@ -53,14 +45,14 @@
 
     li {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       list-style-type: none;
       border-top: 1px solid white;
 
       .location-info {
-        width: 200px;
-        max-width: 200px;
+        width: 210px;
+        max-width: 210px;
         overflow: hidden;
 
         h6 {
@@ -80,7 +72,8 @@
       }
 
       .weather-icon {
-        background-size: 90px 90px;
+        background-size: 75px 75px;
+        width: 50px;
         margin-left: 10px;
       }
     }
