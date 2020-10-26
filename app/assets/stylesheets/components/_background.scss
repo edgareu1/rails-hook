@@ -7,3 +7,10 @@ body {
 #fishbitmap {
   display: none;
 }
+
+// Home page background animation
+#fish-tank {
+  position: fixed;
+  opacity: 0.9;
+  z-index: -1;
+}

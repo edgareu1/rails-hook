@@ -1,12 +1,4 @@
-// Style for the Users#show page
-
-// --------------------//--------------------
-// Background animation
-#fish-tank {
-  position: fixed;
-  opacity: 0.9;
-  z-index: -1;
-}
+// Style for the Users#show page (home page)
 
 // --------------------//--------------------
 // User Locations
@@ -16,8 +8,8 @@
   margin-bottom: 40px;
 
   .d-flex {
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 5px;
 
     img {
@@ -53,8 +45,8 @@
 
     li {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       list-style-type: none;
       border-top: 1px solid white;
 
