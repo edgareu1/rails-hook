@@ -7,7 +7,7 @@ class Api::V1::BaseController < ActionController::API
     render json: { error: exception.message }, status: :not_found
   end
 
-  def check_user
+  def authorized_user
     @user = User.find(params[:user_id])
 
     return request.headers["X-User-Email"] == @user.email &&
@@ -15,10 +15,11 @@ class Api::V1::BaseController < ActionController::API
   end
 
   def check_user_authorization
-    unauthorized_action unless check_user
+    unauthorized_action unless authorized_user
   end
 
   def unauthorized_action
-    render json: { error: "Action only authorized for the user: #{@user.username}." }, status: :unauthorized
+    render json: { error: "Action only authorized for the user: #{@user.username}." },
+           status: :unauthorized
   end
 end

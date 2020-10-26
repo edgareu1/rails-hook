@@ -10,7 +10,8 @@ class Api::V1::CatchesController < Api::V1::BaseController
     @catch = @log.catches.new(catch_params)
 
     if @catch.save
-      render :show, status: :created
+      set_index
+      render :index, status: :created
     else
       render_error
     end
