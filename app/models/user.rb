@@ -32,7 +32,8 @@ class User < ApplicationRecord
   def top_fish(num)
     catches.group_by { |catch| catch.fish_id }
            .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
-                                          catches.inject(0) { |sum, catch| sum + catch.weight }
+                                          catches.inject(0) { |sum, catch| sum + catch.weight },
+                                          catches.last.created_at
                                          ]
                              }
            .max_by(num) { |k, v| v }
