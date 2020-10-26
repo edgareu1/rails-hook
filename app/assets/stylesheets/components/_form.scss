@@ -75,7 +75,7 @@
 }
 
 // --------------------//--------------------
-// Logs forms
+// Log forms
 .container-log-form {
   display: flex;
   flex-direction: column;
@@ -128,7 +128,7 @@
       margin-right: 10px;
     }
 
-    #log_temperature, #log_air_pressure, #log_wind_speed {
+    input {
       width: 80px;
       padding: 6px 5px;
       border-radius: 2px;
@@ -155,7 +155,7 @@
 }
 
 // --------------------//--------------------
-// Catches form
+// Catch form
 .container-catch-form {
   display: flex;
   flex-direction: column;
