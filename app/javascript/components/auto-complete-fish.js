@@ -1,17 +1,17 @@
-// Function that, from a search parameter, creates an autocomplete list for Fish name suggestions and also refreshes
-// the Fish#index page (using AJAX requests); The function argument is the input field where the user searches for the
-// Fish name
+// Function that creates an autocomplete list for fish name suggestions
+// Arguments:
+//   fishInput: Input field where the user searches for the fish
 function autoCompleteFish(fishInput) {
-  // Define two variables to follow the number of items in the autocomplete list and the currently selected item index
+  // Define two variables to follow the number of items in the autocomplete list and the currently selected item
   let ItemIndexCounter, selectedItemIndex;
 
   // Each time the user writes on the 'fishInput'...
   fishInput.addEventListener('input', (event) => {
-    // Use the gem 'gon' to call the Fish Controller variable 'fish_names', which is the array of Fish to search into
+    // Use the gem 'gon' to call the Fish controller variable 'fish_names', which is an array of fish to search into
     const fishNames = gon.fish_names.split(', ');
-    const param = event.target.value.trim();  // Search param striped of trailing whitespaces
+    const param = event.target.value.trim();  // Search param
 
-    ItemIndexCounter = -1;    // The autocomplete list is empty
+    ItemIndexCounter = -1;    // Autocomplete list is empty
     selectedItemIndex = -1;   // No item is selected
 
     let autoCompleteList = document.getElementById("autocomplete-list"); // Get the autocomplete list
@@ -21,11 +21,7 @@ function autoCompleteFish(fishInput) {
       autoCompleteList = document.createElement("div");
       autoCompleteList.setAttribute("id", "autocomplete-list");
 
-      let fishInputContainer = fishInput.parentNode;
-      fishInputContainer.appendChild(autoCompleteList);
-
-      // Make sure the position of the autocomplete list is relative to the 'fishInput'
-      fishInputContainer.style.position = 'relative';
+      fishInput.parentNode.appendChild(autoCompleteList);
 
     // If the autocomplete list already exists, then empty it
     } else {
@@ -36,33 +32,29 @@ function autoCompleteFish(fishInput) {
     if (param === '') {
       refreshPageSearch(param);
       return;
-    };
+    }
 
-    // Iterate over the array of Fish
+    // Iterate over the array of fish
     for (let i = 0; i < fishNames.length; i++) {
-      // Check if the item matches the search param (which happens when the index is not -1)
+      // Check if the item matches the search param (which happens when the index is different from -1)
       let wordIndex = fishNames[i].toUpperCase().indexOf(param.toUpperCase());
 
-      // If it matches, then add the Fish to the autocomplete list
+      // If it matches, then add the fish to the autocomplete list
       if (wordIndex >= 0) {
-        // Make sure the maximum number of matches displayed is 5
         ItemIndexCounter++;
-        if (ItemIndexCounter > 4) break;
+        if (ItemIndexCounter > 4) break;  // Make sure the maximum number of matches displayed is 5
 
         let fishElement = document.createElement("div");
-
-        // Save the index of the item in a data attribute
-        fishElement.setAttribute('data-index', ItemIndexCounter);
+        fishElement.setAttribute('data-index', ItemIndexCounter); // Save the index of the item in a data attribute
 
         // Make the matching letters bold
         fishElement.innerHTML = fishNames[i].substr(0, wordIndex);
         fishElement.innerHTML += "<strong>" + fishNames[i].substr(wordIndex, param.length) + "</strong>";
         fishElement.innerHTML += fishNames[i].substr(wordIndex + param.length);
 
-        // Insert the matched item in the autocomplete list
-        autoCompleteList.appendChild(fishElement);
+        autoCompleteList.appendChild(fishElement);  // Insert the matched item in the autocomplete list
 
-        // If the item is clicked upon, then the 'fishInput' is filled with that item's value
+        // If the item is clicked upon, then fill the 'fishInput' with that item value
         fishElement.addEventListener('click', () => {
           fishInput.value = fishNames[i];
 
@@ -70,7 +62,7 @@ function autoCompleteFish(fishInput) {
           emptyList();
         });
 
-        // Each time the user hovers it's mouse over the item makes it the 'selected' item
+        // When the user hovers the mouse over an item, it gets 'selected'
         fishElement.addEventListener("mouseover", () => {
           selectedItemIndex = fishElement.getAttribute('data-index');
           removeSelected();
@@ -82,7 +74,7 @@ function autoCompleteFish(fishInput) {
     refreshPageSearch(param); // Refresh the Fish#index page with the search param
   });
 
-  // Each time the user presses down a key on the 'fishInput'...
+  // When the user presses down a key on the 'fishInput'...
   fishInput.addEventListener("keydown", (event) => {
     // Only advance if the autocomplete list exists and has items
     let autoCompleteList = document.getElementById("autocomplete-list");
@@ -110,7 +102,7 @@ function autoCompleteFish(fishInput) {
     }
   });
 
-  // If the event is outside of the 'fishInput' and the autocomplete list, then empty the autocomplete list
+  // Function that empties the autocomplete list if the event is outside of the 'fishInput' and the autocomplete list
   function closeAutoCompleteList(event) {
     if (event.target.hasAttribute('data-index') || event.target.id == 'search-input') return;
     emptyList();
@@ -125,7 +117,7 @@ function autoCompleteFish(fishInput) {
     if (autoCompleteList) autoCompleteList.innerHTML = '';
   }
 
-  // Function that uses jQuery to refresh the Fish#index page based on that search param
+  // Function that uses jQuery to refresh the Fish#index page with a certain search param
   function refreshPageSearch(param) {
     $.getScript(`/fish?query=${param}&commit=Search`);
   }
@@ -136,7 +128,7 @@ function autoCompleteFish(fishInput) {
     if (selectedElement) selectedElement.classList.remove("autocomplete-selected");
   }
 
-  // Function that marks the new selected item as 'selected' (which highlights it)
+  // Function that marks the new selected item as 'selected'
   function addSelected() {
     let autoCompleteList = document.querySelectorAll('#autocomplete-list div');
 
