@@ -15,7 +15,6 @@ class LogsController < ApplicationController
     if @location.nil?
       flash[:alert] = "Location was not found"
       redirect_to locations_path
-
     else
       @logs = @location.logs
                        .order(start_time: :desc)
