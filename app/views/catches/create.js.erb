@@ -3,10 +3,10 @@
   // Clean the form
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: @catch %>";
 
-  // Display the Catch form errors
-  displayFormErrors('catch', 'weight', `<%= @catch.errors.full_messages_for(:weight).first %>`);
-  displayFormErrors('catch', 'fish_id', `<%= @catch.errors.full_messages_for(:fish).first %>`);
-  displayFormErrors('catch', 'quantity', `<%= @catch.errors.full_messages_for(:quantity).first %>`);
+  // Display the form errors
+  displayFormErrors('catch_weight',   `<%= @catch.errors.full_messages_for(:weight).first %>`);
+  displayFormErrors('catch_fish_id',  `<%= @catch.errors.full_messages_for(:fish).first %>`);
+  displayFormErrors('catch_quantity', `<%= @catch.errors.full_messages_for(:quantity).first %>`);
 
 // Otherwise...
 <% else %>
@@ -16,17 +16,17 @@
   // Clean the form
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: Catch.new %>";
 
-  // If the list of Catches was empty, refresh its content
+  // If the Catches list was previously empty, refresh its content
   <% if @log.catches.size == 1 %>
-    document.getElementById('catches-list').innerHTML = "<%= j render "catches/list", catches: @log.catches %>";
+    document.getElementById('catches-list').innerHTML = "<%= j render "catches/container", catches: @log.catches %>";
 
   // Otherwise, append the new Catch into the list
   <% else %>
     $('#catches-list table').append("<%= j render "catches/catch", catch: @catch %>");
   <% end %>
 
-  // If the User does Catch a big Fish, add a flash congratulating him
-  <% if (@catch.weight / @catch.quantity) > @catch.fish.good_weight %>
+  // If the User catches a big Fish, add a flash congratulating him
+  <% if @catch.weight.fdiv(@catch.quantity) >= @catch.fish.good_weight %>
     createFlash("Congratulations, it's a BIGGIN!");
   <% end %>
 <% end %>

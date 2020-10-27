@@ -44,15 +44,15 @@ window.createFlash = function(flashText) {
   createFlash(flashText);
 }
 
-window.displayFormErrors = function(formType, inputType, errorMessage) {
-  displayFormErrors(formType, inputType, errorMessage);
+window.displayFormErrors = function(errorSelector, errorMessage) {
+  displayFormErrors(errorSelector, errorMessage);
 }
 
 window.smoothPagination = function() {
   smoothPagination();
 }
 
-// Upon loading a page, also load the following JS functions
+// Upon loading a page load the following JS functions
 document.addEventListener('turbolinks:load', () => {
   // If in a page with pagination...
   let cardsList = document.getElementById('cards-list');
@@ -63,7 +63,7 @@ document.addEventListener('turbolinks:load', () => {
   // If in the Fish#index page...
   let fishInput = document.getElementById('search-input');
   if (fishInput) {
-    autoCompleteFish(fishInput);  // Autocomplete the Fish name
+    autoCompleteFish(fishInput);  // Autocomplete the fish name
   }
 
   // If in a page with a Locations#new form...
@@ -74,13 +74,13 @@ document.addEventListener('turbolinks:load', () => {
     }
   }
 
-  // If in the Users#show page...
+  // If in the home page...
   let canvas = document.getElementById('fish-tank');
   if (canvas) {
     backgroundFish();               // Add the background canvas animation
-    updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the Users device
+    updateCanvasDimensions(canvas); // Resize the background canvas animation to the dimensions of the User device
 
-    // If the user resizes his device window, update the background canvas animation dimensions
+    // If the User resizes his device window, update the background canvas animation dimensions
     window.addEventListener('resize', () => {
       updateCanvasDimensions(canvas);
     });
@@ -95,12 +95,14 @@ document.addEventListener('turbolinks:load', () => {
   // If there is a navbar...
   let predictionAnchor = document.querySelector('a[href="/prediction"]');
   if (predictionAnchor) {
-    loadingIcon(predictionAnchor);  // Add the loading animation while the app executes the prediction in the background
+    loadingIcon(predictionAnchor);  // Add the loading animation while the prediction runs in the background
+  } else {
+    document.querySelector('.page-container').style.paddingBottom = '20px'; // Remove the padding for the navbar
   }
 
   // If in the Locations#show page...
   let locationPredictionAnchor = document.querySelector('#location-prediction');
   if (locationPredictionAnchor) {
-    loadingIcon(locationPredictionAnchor);  // Add the loading animation while the app executes the prediction in the background
+    loadingIcon(locationPredictionAnchor);  // Add the loading animation while the prediction runs in the background
   }
 });

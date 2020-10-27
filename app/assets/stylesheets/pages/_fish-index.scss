@@ -2,7 +2,8 @@
 
 // --------------------//--------------------
 // Search form
-form[action="/fish"] > .d-flex {
+.fish-search-container {
+  position: relative;
   margin-top: 10px;
 }
 

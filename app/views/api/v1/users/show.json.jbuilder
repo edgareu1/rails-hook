@@ -11,8 +11,7 @@ json.stats do
 
   if @more_info
     json.top_fish @top_fish do |fish|
-      json.id fish[:id]
-      json.name fish[:name]
+      json.extract! fish, :id, :name
 
       json.catches do
         json.num fish[:catches_count]
@@ -21,8 +20,7 @@ json.stats do
     end
 
     json.top_locations @top_locations do |location|
-      json.id location.id
-      json.spot location.spot
+      json.extract! location, :id, :spot
 
       json.address do
         json.extract! location, :city, :country

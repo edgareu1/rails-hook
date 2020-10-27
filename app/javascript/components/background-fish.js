@@ -1,4 +1,4 @@
-// Function that creates the background animation of the Users#show page using the canvas element
+// Function that creates the background animation of the home page (using the canvas element)
 function backgroundFish() {
   /* ---------------- FISH "CLASS" START -------------- */
   var FOLLOW_DISTANCE = 100;

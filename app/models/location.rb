@@ -5,8 +5,7 @@ class Location < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :logs, dependent: :destroy
 
-  after_validation :geocode
-  after_validation :reverse_geocode
+  after_validation :geocode, :reverse_geocode
 
   geocoded_by :name
 
@@ -29,7 +28,7 @@ class Location < ApplicationRecord
     (city || name).strip.truncate(20)
   end
 
-  # Method that gets a hash with the current weather data of the Location
+  # Method that gets a hash with the current weather data
   def weather_data
     weather_data = fetch_weather_data
 
@@ -43,9 +42,15 @@ class Location < ApplicationRecord
     }
   end
 
-  # Method that gets the Locations tag_id for the next Log
+  # Method that gets the tag_id for the next Log
   def next_tag_id
     logs.empty? ? 1 : logs.max_by(&:tag_id).tag_id + 1
+  end
+
+  # Method that increments the catches counters
+  def increment_catches_counters(quantity:, weight:)
+    self.increment!(:catches_count, quantity)
+    self.increment!(:catches_weight, weight)
   end
 
   # Method that decrements the catches counters
@@ -54,15 +59,9 @@ class Location < ApplicationRecord
     self.decrement!(:catches_weight, weight)
   end
 
-  # Method that increments the current Location catches counters
-  def increment_catches_counters(quantity:, weight:)
-    self.increment!(:catches_count, quantity)
-    self.increment!(:catches_weight, weight)
-  end
-
   private
 
-  # Method that gets the current weather data of the Location
+  # Method that gets the current weather via API
   def fetch_weather_data
     Rails.configuration.open_weather_api.current(lon: longitude, lat: latitude)
   end

@@ -5,7 +5,7 @@
     <h5>Have you typed the correct name?</h5>
   </div>
 
-<!-- Otherwise, display each fish as a card -->
+<!-- Otherwise, display each Fish as a card -->
 <% else %>
   <% @fish.each do |fish| %>
     <%= link_to fish_path(fish), data: { id: fish.id } do %>
@@ -19,7 +19,7 @@
 
           <p>
             Minimum size:
-            <%= fish.display_legal_dimensions %>
+            <%= fish.legal_dimensions %>
           </p>
         </div>
       </div>

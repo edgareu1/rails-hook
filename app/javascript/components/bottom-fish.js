@@ -1,4 +1,4 @@
-// Function that creates the animation at the bottom of the Devise/registrations pages using the canvas element
+// Function that creates the animation at the bottom of the Devise/registrations pages (using the canvas element)
 function bottomFish() {
   var RENDERER = {
 	POINT_INTERVAL : 5,

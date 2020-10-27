@@ -1,4 +1,4 @@
-// Function that make the pagination anchors scroll to the beginning of the page in a smooth manner
+// Function that makes the pagination anchors scroll to the beginning of the page in a smooth manner
 function smoothPagination() {
   const anchors = document.getElementsByClassName("page-link"); // Get the anchors of the pagination
 
@@ -12,7 +12,7 @@ function smoothPagination() {
 
       // Upon clicking on the anchor...
       anchor.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent the anchors default click behavior
+        event.preventDefault(); // Prevent the anchor default click behavior
 
         // Use jQuery to perform a scrolling animation to the top of the page
         // 250 is the time (in milliseconds) the animation is going to take

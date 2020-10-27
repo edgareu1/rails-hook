@@ -1,4 +1,6 @@
-// Function that creates and appends to the body of the document a flash message with a certain text (flashText)
+// Function that creates a flash message
+// Arguments:
+//   flashText: Fash message text
 function createFlash(flashText) {
   // Remove existing flash messages from the document
   var flashesList = document.querySelectorAll('div.alert.alert-dismissible');
@@ -11,7 +13,7 @@ function createFlash(flashText) {
   div.classList = `alert alert-dismissible fade show m-1`;
   div.setAttribute("role", "alert");
 
-  // Add text to the flash
+  // Add a message to the flash
   var alert = document.createTextNode(flashText);
   div.appendChild(alert);
 
