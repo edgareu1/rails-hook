@@ -96,6 +96,8 @@ document.addEventListener('turbolinks:load', () => {
   let predictionAnchor = document.querySelector('a[href="/prediction"]');
   if (predictionAnchor) {
     loadingIcon(predictionAnchor);  // Add the loading animation while the prediction runs in the background
+  } else {
+    document.querySelector('.page-container').style.paddingBottom = '20px'; // Remove the padding for the navbar
   }
 
   // If in the Locations#show page...
