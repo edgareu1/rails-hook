@@ -10,6 +10,9 @@ class Catch < ApplicationRecord
   after_save :increment_catches_counters
   after_destroy :decrement_catches_counters
 
+  private
+
+  # Method that increments the catch counters of the Log, Location and User to which this Catch instance belongs
   def increment_catches_counters
     log.increment!(:catches_count, quantity)
     log.increment!(:catches_weight, weight)
@@ -21,6 +24,7 @@ class Catch < ApplicationRecord
     log.user.increment!(:catches_weight, weight)
   end
 
+  # Method that decrements the catch counters of the Log, Location and User to which this Catch instance belongs
   def decrement_catches_counters
     log.decrement!(:catches_count, quantity)
     log.decrement!(:catches_weight, weight)
@@ -32,8 +36,7 @@ class Catch < ApplicationRecord
     log.user.decrement!(:catches_weight, weight)
   end
 
-  private
-
+  # Method that provides personalized validation to the numericality of the weight column
   def weight_numericality
     return if weight.nil?
 

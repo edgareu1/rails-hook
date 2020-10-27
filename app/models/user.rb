@@ -6,8 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # API authentication token
-  acts_as_token_authenticatable
+  acts_as_token_authenticatable # API authentication token
 
   has_many :locations, dependent: :destroy
   has_many :logs
@@ -28,7 +27,7 @@ class User < ApplicationRecord
   end
 
   # Method that gets an array of hashes that represent the Fish most caught by the User; if there are 2 or more Fish
-  # with the same quantity, sort by their weight; if they are still equal, sort by their creation date
+  # with the same quantity, sort by weight; if they are still equal, sort by the last Catch creation date
   def top_fish(num)
     catches.group_by { |catch| catch.fish_id }
            .transform_values { |catches| [catches.inject(0) { |sum, catch| sum + catch.quantity },
@@ -45,8 +44,8 @@ class User < ApplicationRecord
                 }
   end
 
-  # Method that gets an array of Locations with the most Logs; if there are 2 or more Locations with the same
-  # logs_count, sort by their catches_weight; if they are still equal, sort by their creation date
+  # Method that gets an array of Locations with the most Logs recorded; if there are 2 or more Locations with the same
+  # logs_count, sort by catches_weight; if they are still equal, sort by creation date
   def top_locations(num)
     locations.max_by(num) { |loc| [loc.logs_count, loc.catches_weight, loc.created_at] }
   end
