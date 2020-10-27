@@ -18,7 +18,7 @@
 
   // If the list of Catches was empty, refresh its content
   <% if @log.catches.size == 1 %>
-    document.getElementById('catches-list').innerHTML = "<%= j render "catches/list", catches: @log.catches %>";
+    document.getElementById('catches-list').innerHTML = "<%= j render "catches/container", catches: @log.catches %>";
 
   // Otherwise, append the new Catch into the list
   <% else %>
