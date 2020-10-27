@@ -1,8 +1,9 @@
-// Function that displays an error message (errorMessage) related with a certain input (inputType) in a
-// certain form (formType)
-function displayFormErrors(formType, inputType, errorMessage) {
-  let selector = `${formType}_${inputType}`;          // General selector
-  let inputField = document.getElementById(selector); // Get the input field
+// Function that displays an error message in a form
+// Arguments:
+//   errorSelector: Selector of the specific input error container; E.g.: 'log_new_start_time', 'catch_quantity'
+//   errorMessage:  Error message to append to the form
+function displayFormErrors(errorSelector, errorMessage) {
+  let inputField = document.getElementById(errorSelector); // Get the input field
 
   // If the error message is empty, then mark the input field as valid
   if (errorMessage == "") {
@@ -16,7 +17,7 @@ function displayFormErrors(formType, inputType, errorMessage) {
     inputField.classList.add("is-invalid");
 
     // Add the error message to its container
-    let errorsContainer = document.querySelector(`.${selector}_error`);
+    let errorsContainer = document.querySelector(`.${errorSelector}_error`);
     errorsContainer.innerHTML = errorMessage;
   }
 }

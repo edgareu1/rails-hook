@@ -44,8 +44,8 @@ window.createFlash = function(flashText) {
   createFlash(flashText);
 }
 
-window.displayFormErrors = function(formType, inputType, errorMessage) {
-  displayFormErrors(formType, inputType, errorMessage);
+window.displayFormErrors = function(errorSelector, errorMessage) {
+  displayFormErrors(errorSelector, errorMessage);
 }
 
 window.smoothPagination = function() {
