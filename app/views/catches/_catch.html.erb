@@ -1,11 +1,12 @@
 <tr id="catch_<%= catch.id %>">
   <td>
-    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo-#{catch.fish.id}" } do %>
+    <!-- Fish name -->
+    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo#{catch.fish.id}" } do %>
       <%= catch.fish.name %>
     <% end %>
 
     <!-- Modal Fish Info -->
-    <div class="modal fade" id="ModalFishInfo-<%= catch.fish.id %>" role="dialog">
+    <div class="modal fade" id="ModalFishInfo<%= catch.fish.id %>" role="dialog">
       <%= render "fish/modal-info", catch: catch %>
     </div>
   </td>
@@ -14,6 +15,7 @@
   <td><%= rounded_by_thousand(catch.weight) %></td>
 
   <td>
+    <!-- Delete button -->
     <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
       <i class="far fa-trash-alt"></i>
     <% end %>
