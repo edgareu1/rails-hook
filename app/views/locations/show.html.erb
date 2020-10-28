@@ -30,17 +30,17 @@
   <% end %>
 </div>
 
-<!-- Modal Delete Location Form -->
+<!-- Modal Locations#destroy -->
 <div class="modal modal-delete fade" id="ModalDeleteLocation" role="dialog">
   <%= render "locations/form-delete" %>
 </div>
 
-<!-- Modal Edit Location Form -->
+<!-- Modal Locations#edit -->
 <div class="modal fade" id="ModalEditLocation" role="dialog">
   <%= render "locations/form", location: @location %>
 </div>
 
-<!-- Modal New Location Form -->
+<!-- Modal Locations#new -->
 <div class="modal fade" id="ModalNewLocation" role="dialog">
   <%= render "locations/form", location: Location.new %>
 </div>

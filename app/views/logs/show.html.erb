@@ -23,22 +23,22 @@
   <% end %>
 </div>
 
-<!-- Modal New Catch Form -->
+<!-- Modal Catches#new -->
 <div class="modal fade" id="ModalNewCatch" role="dialog">
   <%= render "catches/form", catch: Catch.new %>
 </div>
 
-<!-- Modal Delete Log Form -->
+<!-- Modal Logs#destroy -->
 <div class="modal modal-delete fade" id="ModalDeleteLog" role="dialog">
   <%= render "logs/form-delete" %>
 </div>
 
-<!-- Modal Edit Log Form -->
+<!-- Modal Logs#edit -->
 <div class="modal fade" id="ModalEditLog" role="dialog">
   <%= render "logs/form", log: @log %>
 </div>
 
-<!-- Modal New Log Form -->
+<!-- Modal Logs#new -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form", log: Log.new %>
 </div>
