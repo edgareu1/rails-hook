@@ -186,15 +186,30 @@
         padding: 0;
       }
 
-      .form-control {
-        font-size: 15.5px;
-        padding: 6px 10px;
+      .form-group {
+        margin-bottom: 0;
+
+        .form-control {
+          font-size: 15.5px;
+          padding: 6px 10px;
+        }
+
+        // Remove the side arrows from the number related input fields
+        input[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
     }
   }
 
   .invalid-feedback {
+    display: none;
     padding: 0 0 0 5px;
     margin: 0 0 6px;
+  }
+
+  .invalid-feedback.catch_new_error {
+    display: block;
   }
 }
