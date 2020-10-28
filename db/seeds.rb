@@ -11,7 +11,7 @@ Fish.destroy_all
 
 puts "Cleaned the existing DB"
 
-# Create the app Fish
+# Create the Fish
 Fish.create(name: 'Yellow Fin Tuna',    good_weight: 25000,  legal_weight: 2700,  legal_size: 0,   picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/YELLOW_FIN_TUNA_wo1dl0.png",     url: 'https://en.wikipedia.org/wiki/Yellowfin_tuna',          description: 'Live in shoals near the surface, however, sometimes make short dives to depths exceeding 500 m, looking for food like squid, crustaceans and a variety of fish. The reproductive peak occurs in the summer.')
 Fish.create(name: 'Bluemouth',          good_weight: 600,    legal_weight: 0,     legal_size: 0,   picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252654/Hook/BLUEMOUTH_vjzvfi.png",           url: 'https://en.wikipedia.org/wiki/Blackbelly_rosefish',     description: 'It dwells on the seabed between 200-1,000 m, often around underwater wrecks. It is a solitary species and aggregate only at the time of reproduction, which occurs in summer. It feeds on fish, crustaceans and some cephalopods.')
 Fish.create(name: 'Horse Mackerel',     good_weight: 450,    legal_weight: 0,     legal_size: 15,  picture_url: "https://res.cloudinary.com/da7rlfd8u/image/upload/v1594252655/Hook/HORSE_MACKEREL_zdrlug.png",      url: 'https://en.wikipedia.org/wiki/Atlantic_horse_mackerel', description: 'It inhabits the water column in the coastal areas, from the surface to the bottom, between 0 to 200 m of depth. Horse mackerels form large schools that migrate for long distances, feeding on small crustaceans, fish and molluscs. It spawns from December to April.')
@@ -111,12 +111,12 @@ end
 def create_catch(log)
   log_power = log_power(log)
 
-  # Randomize the Catch based on the Logs 'power'
+  # Randomize the Catch based on the Log 'power'
   catch_fish =     Fish.where("good_weight <= ?", 1000).sample
   catch_quantity = [(rand(3.5..4.0) * log_power).floor, 1].max
-  catches_weight =   (catch_quantity * 750 * log_power).round
+  catches_weight = (catch_quantity * 750 * log_power).round
 
-  # Create Catch
+  # Create the Catch
   log.catches.create(fish:     catch_fish,
                      quantity: catch_quantity,
                      weight:   catches_weight
@@ -125,9 +125,9 @@ end
 
 # Populate the DB
 ["Edgar", "Julie", "Laure", "Thomas"].each do |username|
-  # Instantiate  a User
+  # Instantiate the User
   new_user = User.new(username: username,
-                      email: "#{username.downcase}@gmail.com",
+                      email:    "#{username.downcase}@gmail.com",
                       password: "123456"
                      )
 
@@ -147,7 +147,7 @@ end
       # Create Log
       new_log = create_log(new_user, new_location, date_step)
 
-      # Create random Catches (the greater the Logs 'power', the more the Catches)
+      # Create random Catches (the greater the Log 'power', the more and better the Catches)
       (rand(3.5..4.0) * log_power(new_log)).floor.times {
         create_catch(new_log)
       }
