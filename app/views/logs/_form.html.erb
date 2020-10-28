@@ -71,29 +71,7 @@
           <p>Rate your session</p>
 
           <!-- Rating input as a dynamic filling image -->
-          <div class="fish-rating-container">
-            <div class="fish-rating">
-              <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png" alt="fish-rating">
-
-              <input type="hidden" name="log[rating]" value="">
-
-              <% (1..10).to_a.reverse.each do |num| %>
-                <input type="radio" value="<%= num %>" name="log[rating]" id="<%= "log_rating_#{log_action}_#{num}" %>"
-                       <%= "checked" if log.rating == num %>>
-                <label for="<%= "log_rating_#{log_action}_#{num}" %>" class="rating<%= num %>"
-                       style="left: <%= (num - 1) * 10 %>%"></label>
-                <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
-              <% end %>
-            </div>
-
-            <div class="fish-rating-bar">
-              <% (1..10).to_a.each do |num| %>
-                <div class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%">
-                  <%= num %>
-                </div>
-              <% end %>
-            </div>
-          </div>
+          <%= render 'logs/rating-input', log: log, log_action: log_action  %>
 
           <!-- Submit Button -->
           <%= f.button :submit, class: "btn btn-flat btn-block" %>
