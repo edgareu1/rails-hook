@@ -16,22 +16,18 @@
             </tr>
 
             <tr>
-              <td>
-                <%= f.input :quantity, label: false, input_html: { value: f.object.quantity || "1" } %>
-              </td>
+              <td><%= f.input :quantity, label: false, input_html: { value: f.object.quantity || "1" } %></td>
 
               <td>
-                <%= f.association :fish, collection: Fish.all.sort_by(&:name), prompt: "Please select",
-                                  label_method: :name, label: false %>
+                <%= f.association :fish, collection: Fish.all.sort_by(&:name), label_method: :name, label: false,
+                                  prompt: "Please select" %>
               </td>
 
-              <td>
-                <%= f.input :weight, label: false, placeholder: "gr" %>
-              </td>
+              <td><%= f.input :weight, label: false, placeholder: "gr" %></td>
             </tr>
           </table>
 
-          <div class="invalid-feedback catch_new_error"></div>
+          <div class="invalid-feedback" id="catch_new_errors"></div>
 
           <%= f.button :submit, class: "btn btn-flat btn-block" %>
         </div>
