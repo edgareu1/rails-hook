@@ -3,7 +3,7 @@
   <%= link_to location_path(location) do %>
     <div class="card">
       <div class="card-headers">
-        <!-- Cards Headers -->
+        <!-- Card Headers -->
         <div class="card-title-container">
           <h3><%= location.spot %></h3>
           <h5 class="location-address"><%= location.address_to_display %></h5>
@@ -16,7 +16,7 @@
 
       <hr>
 
-      <!-- Content of the Location -->
+      <!-- Card Content -->
       <div class="card-content">
         <div>
           <% if location.logs_count.zero? %>
