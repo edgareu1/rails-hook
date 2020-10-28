@@ -87,8 +87,5 @@ gem 'turbolinks_render'
 # Populate fake data
 gem 'faker'
 
-# Handle authorization
-gem "pundit"
-
 # API authentication
 gem 'simple_token_authentication'
