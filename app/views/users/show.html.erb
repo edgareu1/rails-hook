@@ -1,3 +1,4 @@
+<!-- Add the background animation to the document body -->
 <% content_for :content do %>
   <canvas id="fish-tank"></canvas>
 <% end %>
@@ -75,12 +76,12 @@
   </ul>
 <% end %>
 
-<!-- Modal Locations#new -->
-<div class="modal fade" id="ModalNewLocation" role="dialog">
-  <%= render "locations/form", location: Location.new %>
-</div>
-
 <!-- Modal Logs#new -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form", log: Log.new %>
+</div>
+
+<!-- Modal Locations#new -->
+<div class="modal fade" id="ModalNewLocation" role="dialog">
+  <%= render "locations/form", location: Location.new %>
 </div>
