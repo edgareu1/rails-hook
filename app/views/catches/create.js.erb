@@ -4,9 +4,7 @@
   document.getElementById('ModalNewCatch').innerHTML = "<%= j render "catches/form", catch: @catch %>";
 
   // Display the form errors
-  displayFormErrors('catch_weight',   `<%= @catch.errors.full_messages_for(:weight).first %>`);
-  displayFormErrors('catch_fish_id',  `<%= @catch.errors.full_messages_for(:fish).first %>`);
-  displayFormErrors('catch_quantity', `<%= @catch.errors.full_messages_for(:quantity).first %>`);
+  displayFormErrors('catch_new_error', `<%= @catch.errors.full_messages.first %>`);
 
 // Otherwise...
 <% else %>
