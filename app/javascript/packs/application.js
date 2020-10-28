@@ -34,6 +34,7 @@ import { displayFormErrors } from '../components/display-form-errors';
 import { loadingIcon } from '../components/loading-icon';
 import { smoothPagination } from '../components/smooth-pagination';
 import { updateCanvasDimensions } from '../components/update-canvas-dimensions';
+import { validateLogTime } from '../components/validate-log-time';
 
 // Make the following JS functions accessible from HTML files
 window.autoCompleteLocation = function(locationInput) {
@@ -50,6 +51,10 @@ window.displayFormErrors = function(errorSelector, errorMessage) {
 
 window.smoothPagination = function() {
   smoothPagination();
+}
+
+window.validateLogTime = function(action, valid) {
+  validateLogTime(action, valid);
 }
 
 // Upon loading a page load the following JS functions

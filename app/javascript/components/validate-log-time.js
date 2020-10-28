@@ -15,3 +15,5 @@ function validateLogTime(action, valid) {
     }
   }
 }
+
+export { validateLogTime };
