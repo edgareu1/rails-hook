@@ -3,7 +3,7 @@
   <%= render "locations/information", location: @location, location_weather: @location_weather %>
 </div>
 
-<!-- Links for Locations actions: Predict, Logs, Delete, Edit and New -->
+<!-- Buttons for the Location actions: Predict, Logs index, Delete, Edit and New -->
 <div class="card-actions">
   <% unless @location.logs_count < 5 %>
     <div id="location-prediction">
@@ -30,17 +30,17 @@
   <% end %>
 </div>
 
-<!-- Modal New Location Form -->
-<div class="modal fade" id="ModalNewLocation" role="dialog">
-  <%= render "locations/form", location: Location.new %>
+<!-- Modal Locations#destroy -->
+<div class="modal modal-delete fade" id="ModalDeleteLocation" role="dialog">
+  <%= render "locations/form-delete" %>
 </div>
 
-<!-- Modal Edit Location Form -->
+<!-- Modal Locations#edit -->
 <div class="modal fade" id="ModalEditLocation" role="dialog">
   <%= render "locations/form", location: @location %>
 </div>
 
-<!-- Modal Delete Location Form -->
-<div class="modal modal-delete fade" id="ModalDeleteLocation" role="dialog">
-  <%= render "locations/form-delete" %>
+<!-- Modal Locations#new -->
+<div class="modal fade" id="ModalNewLocation" role="dialog">
+  <%= render "locations/form", location: Location.new %>
 </div>

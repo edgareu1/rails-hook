@@ -1,6 +1,5 @@
 <%= link_to location_path(location[:instance]) do %>
   <li>
-    <!-- Location info -->
     <div class="location-info">
       <!-- Location name -->
       <h6>
@@ -21,7 +20,7 @@
       </p>
     </div>
 
-    <!-- Icon of the Location's current weather -->
+    <!-- Location current weather image -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= location[:weather][:weather_icon] %>@2x.png)"
          class="weather-icon">
     </div>

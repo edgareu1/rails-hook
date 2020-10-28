@@ -4,12 +4,12 @@
   <h2 class="location-address" ><%= @location.address_to_display %></h2>
 </div>
 
-<!-- New Log link -->
+<!-- New Log button -->
 <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn-new-instance" do %>
   <i class="fas fa-plus"></i>
 <% end %>
 
-<!-- List of Logs -->
+<!-- Logs list -->
 <% if @logs.empty? %>
   <div class="card no-data">
     <h3>No logs saved yet</h3>
@@ -22,7 +22,7 @@
   </div>
 <% end %>
 
-<!-- Modal New Log Form -->
+<!-- Modal Logs#new -->
 <div class="modal fade" id="ModalNewLog" role="dialog">
   <%= render "logs/form", log: Log.new %>
 </div>

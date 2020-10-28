@@ -1,6 +1,6 @@
 <h1 class="page-title">All Locations</h1>
 
-<!-- New Location link -->
+<!-- New Location button -->
 <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" }, class: "btn-new-instance" do %>
   <i class="fas fa-plus"></i>
 <% end %>
@@ -11,14 +11,14 @@
     <h5>Our predictions will be based on your existing locations</h5>
   </div>
 
-<!-- List of Locations -->
+<!-- Locations list -->
 <% else %>
   <div id="cards-list">
     <%= render 'locations/list', locations: @locations %>
   </div>
 <% end %>
 
-<!-- Modal New Location Form -->
+<!-- Modal Locations#new -->
 <div class="modal fade" id="ModalNewLocation" role="dialog">
   <%= render "locations/form", location: Location.new %>
 </div>

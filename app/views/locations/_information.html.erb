@@ -8,7 +8,7 @@
 <div class="card" style="margin-bottom: 20px">
   <!-- Card Headers  -->
   <div class="card-info-headers">
-    <!-- Image of the Location weather -->
+    <!-- Location current weather image -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:weather_icon] %>@2x.png)"
          class="weather-icon">
     </div>
@@ -86,7 +86,7 @@
         <tr>
           <td>Last Log</td>
           <td></td>
-          <td><%= "#{time_ago_in_words(location.logs.map(&:end_time).sort.last)} ago".truncate(20) %></td>
+          <td><%= "#{time_ago_in_words(location.logs.map(&:end_time).max)} ago".truncate(20) %></td>
         </tr>
 
         <tr>

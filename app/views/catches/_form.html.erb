@@ -16,33 +16,18 @@
             </tr>
 
             <tr>
-              <td>
-                <input class="form-control numeric integer" value="<%= catch.quantity || 1 %>"
-                       name="catch[quantity]" id="catch_quantity">
-              </td>
+              <td><%= f.input :quantity, label: false, input_html: { value: f.object.quantity || "1" } %></td>
 
               <td>
-                <select class="form-control" name="catch[fish_id]" id="catch_fish_id">
-                  <% if catch.fish.nil? %>
-                    <option>Please Select</option>
-                  <% end %>
-
-                  <% Fish.all.sort_by(&:name).each do |fish| %>
-                    <option <%= "selected=selected" if fish == catch.fish %> value="<%= fish.id %>">
-                      <%= fish.name %>
-                    </option>
-                  <% end %>
-                </select>
+                <%= f.association :fish, collection: Fish.all.sort_by(&:name), label_method: :name, label: false,
+                                  prompt: "Please select" %>
               </td>
 
-              <td>
-                <input class="form-control numeric integer" placeholder="gr" value="<%= catch.weight %>"
-                       name="catch[weight]" id="catch_weight">
-              </td>
+              <td><%= f.input :weight, label: false, placeholder: "gr" %></td>
             </tr>
           </table>
 
-          <div class="invalid-feedback catch_quantity_error catch_fish_id_error catch_weight_error"></div>
+          <div class="invalid-feedback" id="catch_new_errors"></div>
 
           <%= f.button :submit, class: "btn btn-flat btn-block" %>
         </div>

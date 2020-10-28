@@ -36,8 +36,9 @@
 
   <p>
     Unhappy?
-    <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" },
-        method: :delete %>
+    <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteAccount" } do %>
+      Delete my account
+    <% end %>
   </p>
 
   <%= link_to "Back", :back %>
@@ -45,4 +46,9 @@
 
 <div class="footer" style="margin-bottom: 30px">
   <div id="jsi-flying-fish-container" class="fish-container"></div>
+</div>
+
+<!-- Modal Devise/registrations#destroy -->
+<div class="modal modal-delete fade" id="ModalDeleteAccount" role="dialog">
+  <%= render "devise/registrations/form-delete" %>
 </div>

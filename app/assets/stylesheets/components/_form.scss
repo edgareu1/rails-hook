@@ -86,44 +86,39 @@
     margin-bottom: 0;
   }
 
-  .form-control.is-invalid {
-    padding: 0 0 0 5px;
+  // The standard error container is not displayed
+  .invalid-feedback {
+    display: none;
   }
 
-  .invalid-feedback {
-    padding-left: 110px;
+  // The 'personalized' error container is the one displayed
+  .invalid-feedback.log_errors {
+    display: block;
+    padding-left: 112px;
     margin: 0 0 10px 0;
   }
 
   .d-flex {
     justify-content: space-between;
     padding-right: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 
     label {
       width: 100px;
       padding-top: 10px;
-    }
 
-    p {
-      font-size: 18px;
-      width: 110px;
-      margin: 7px 5px 0;
+      abbr[title="required"] {
+        display: none;
+      }
     }
   }
 
-  .log_location {
-    margin-bottom: 5px;
-  }
-
-  input[type=datetime-local], #log_new_location_id, #log_edit_location_id {
+  input[type=datetime-local], #log_location_id {
     width: 200px;
     padding: 0 2px 0 5px !important;
   }
 
   .log_temperature, .log_air_pressure, .log_wind_speed {
-    margin-bottom: 5px;
-
     label {
       margin-right: 10px;
     }
@@ -133,24 +128,31 @@
       padding: 6px 5px;
       border-radius: 2px;
     }
+
+    p {
+      font-size: 18px;
+      width: 110px;
+      margin: 7px 5px 0;
+    }
   }
 
   .log_observation {
-    margin: 10px 10px 4px 0;
+    margin: 5px 10px 4px 0;
 
     label {
       margin-bottom: 8px;
     }
   }
 
-  .log_new_observation_error, .log_edit_observation_error {
+  #log_new_observation_errors, #log_edit_observation_errors {
     padding-left: 2px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   p {
     color: #BDEBFF;
     font-size: 1rem;
+    margin-bottom: 12px;
   }
 }
 
@@ -161,6 +163,18 @@
   flex-direction: column;
   color: #BDEBFF;
   opacity: 0.9;
+
+  // The standard error container is not displayed
+  .invalid-feedback {
+    display: none;
+  }
+
+  // The 'personalized' error container is the one displayed
+  #catch_new_errors {
+    display: block;
+    padding: 0 0 0 5px;
+    margin: 0 0 5px;
+  }
 
   table {
     margin-bottom: 5px;
@@ -186,15 +200,20 @@
         padding: 0;
       }
 
-      .form-control {
-        font-size: 15.5px;
-        padding: 6px 10px;
+      .form-group {
+        margin-bottom: 0;
+
+        .form-control {
+          font-size: 15.5px;
+          padding: 6px 10px;
+        }
+
+        // Remove the side arrows from the number related input fields
+        input[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
     }
-  }
-
-  .invalid-feedback {
-    padding: 0 0 0 5px;
-    margin: 0 0 6px;
   }
 }
