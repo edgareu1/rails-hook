@@ -3,7 +3,7 @@
   <%= render "locations/information", location: @location, location_weather: @location_weather %>
 </div>
 
-<!-- Links for the Location actions: Predict, Logs index, Delete, Edit and New -->
+<!-- Buttons for the Location actions: Predict, Logs index, Delete, Edit and New -->
 <div class="card-actions">
   <% unless @location.logs_count < 5 %>
     <div id="location-prediction">

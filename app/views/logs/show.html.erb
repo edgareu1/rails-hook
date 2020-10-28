@@ -3,12 +3,12 @@
   <%= render "logs/information", log: @log %>
 </div>
 
-<!-- List of Catches as a Table -->
+<!-- Catches list -->
 <div id="catches-list">
   <%= render "catches/container", catches: @log.catches %>
 </div>
 
-<!-- Links for Logs Modals: Delete, Edit and New -->
+<!-- Buttons for Log actions: Delete, Edit and New -->
 <div class="card-actions">
   <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
     <i class="far fa-trash-alt"></i>
@@ -28,9 +28,9 @@
   <%= render "catches/form", catch: Catch.new %>
 </div>
 
-<!-- Modal New Log Form -->
-<div class="modal fade" id="ModalNewLog" role="dialog">
-  <%= render "logs/form", log: Log.new %>
+<!-- Modal Delete Log Form -->
+<div class="modal modal-delete fade" id="ModalDeleteLog" role="dialog">
+  <%= render "logs/form-delete" %>
 </div>
 
 <!-- Modal Edit Log Form -->
@@ -38,7 +38,7 @@
   <%= render "logs/form", log: @log %>
 </div>
 
-<!-- Modal Delete Log Form -->
-<div class="modal modal-delete fade" id="ModalDeleteLog" role="dialog">
-  <%= render "logs/form-delete" %>
+<!-- Modal New Log Form -->
+<div class="modal fade" id="ModalNewLog" role="dialog">
+  <%= render "logs/form", log: Log.new %>
 </div>

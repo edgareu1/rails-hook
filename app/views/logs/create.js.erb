@@ -3,9 +3,9 @@
   // Clean the form
   document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
 
-  // Display the form errors
-  displayFormErrors('log_new_start_time', `<%= @time_errors.first %>`);
-  displayFormErrors('log_new_end_time', `<%= @time_errors.first %>`);
+  // Display the validation errors
+  displayFormErrors('log_new_start_time',  `<%= @time_errors.first %>`);
+  displayFormErrors('log_new_end_time',    `<%= @time_errors.first %>`);
   displayFormErrors('log_new_location_id', `<%= @log.errors.full_messages_for(:location).first %>`);
   displayFormErrors('log_new_observation', `<%= @log.errors.full_messages_for(:observation).first %>`);
 <% end %>

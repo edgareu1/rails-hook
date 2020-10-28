@@ -9,7 +9,7 @@
           <h5 class="location-address"><%= log.location.address_to_display %></h5>
         </div>
 
-        <!-- Image of the Log's weather -->
+        <!-- Image of the Log weather -->
         <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
              class="weather-icon">
         </div>
@@ -25,7 +25,7 @@
 
           <% else %>
             <p>
-              <strong>Catches : </strong>
+              <strong>Catches :</strong>
               <%= log.catches_count %>
             </p>
           <% end %>
@@ -35,7 +35,7 @@
 
           <% else %>
             <p>
-              <strong>Rating : </strong>
+              <strong>Rating :</strong>
               <%= log.rating %>
             </p>
           <% end %>
@@ -43,7 +43,7 @@
 
         <div>
           <p>
-            <strong>Moon : </strong>
+            <strong>Moon :</strong>
             <%= (log.moon_phase * 100).round %>%
           </p>
 
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <!-- Card footer displaying the Log's Time -->
+      <!-- Card footer displaying the Log time/duration -->
       <p class="card-footer-time">
         <%= log.start_time.strftime('%b %d') %> | <%= log.duration.ceil %> h
       </p>

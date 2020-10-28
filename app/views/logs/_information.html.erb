@@ -33,11 +33,11 @@
   <% end %>
 </div>
 
-<!-- Log weather info -->
+<!-- Weather info -->
 <div class="card">
   <!-- Card Headers  -->
   <div class="card-info-headers">
-    <!-- Image of the Log's weather -->
+    <!-- Image of the Log weather -->
     <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
          class="weather-icon">
     </div>
@@ -82,7 +82,7 @@
     </table>
 
     <% unless log.observation.blank? %>
-      <p style="margin-top: 8px"><strong>Observations: </strong></p>
+      <p style="font-weight: bolder; margin-top: 8px">Observations:</p>
       <p><span><%= log.observation %></span></p>
     <% end %>
   </div>
