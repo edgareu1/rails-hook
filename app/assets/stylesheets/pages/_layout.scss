@@ -96,3 +96,8 @@ p {
     line-height: 28px;
   }
 }
+
+// Display the text in a single line
+.nowrap {
+  white-space: nowrap;
+}

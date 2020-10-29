@@ -137,7 +137,7 @@
   }
 
   .log_observation {
-    margin: 5px 10px 4px 0;
+    margin: 5px 10px 5px 0;
 
     label {
       margin-bottom: 8px;
@@ -146,13 +146,13 @@
 
   #log_new_observation_errors, #log_edit_observation_errors {
     padding-left: 2px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   p {
     color: #BDEBFF;
     font-size: 1rem;
-    margin-bottom: 12px;
+    margin: 5px 0;
   }
 }
 
