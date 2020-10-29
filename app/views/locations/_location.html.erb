@@ -2,7 +2,7 @@
   <li>
     <div class="location-info">
       <!-- Location name -->
-      <h6>
+      <h6 class="nowrap">
         <span><%= location[:instance].spot %></span>
 
         <% if location[:instance].logs_count.zero? %>
@@ -15,7 +15,7 @@
       </h6>
 
       <!-- Location address -->
-      <p class="location-address">
+      <p class="location-address nowrap">
         <%= location[:instance].address_to_display %>
       </p>
     </div>
