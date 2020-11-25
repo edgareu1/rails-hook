@@ -15,19 +15,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if @user == User.find_by(username: 'Demo')
+      flash[:alert] = "Demo account cannot be edited"
+      render :edit
+    else
+      super
+    end
+  end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    if @user == User.find_by(username: 'Demo')
+      flash[:alert] = "Demo account cannot be deleted"
+      render :edit
+    else
+      super
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
