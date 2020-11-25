@@ -80,8 +80,8 @@ def create_log(user, location, date)
   log_time_period = log_start_time.hour.between?(8, 20) ? "d" : "n"
 
   # Randomize the weather data
-  new_log.update(temperature:         rand(0..400).fdiv(10),
-                 air_pressure:        rand(990..1030),
+  new_log.update(temperature:         rand(100..300).fdiv(10),
+                 air_pressure:        rand(1000..1020),
                  wind_speed:          rand(10..100).fdiv(10),
                  moon_phase:          get_moon_phase(log_start_time),
                  weather_icon:        log_weather[:icon] + log_time_period,
@@ -95,10 +95,10 @@ end
 # This method simulates a linear regression that the prediction feature of this app will try to find
 def log_power(log)
   # The higher the temperature, the better the Log
-  temperature_power = log.temperature.fdiv(40)
+  temperature_power = (log.temperature - 10).fdiv(20)
 
   # The lower the air pressure, the better the Log
-  air_pressure_power = ((log.air_pressure - 990).fdiv(40) - 1).abs
+  air_pressure_power = ((log.air_pressure - 1000).fdiv(20) - 1).abs
 
   # The lower the wind speed, the better the Log
   wind_speed_power = (10 - log.wind_speed).fdiv(10)
