@@ -131,10 +131,6 @@ end
                       password: "123456"
                      )
 
-  # Attach a random avatar image
-  file_avatar = URI.open('https://source.unsplash.com/random/400x400')
-  new_user.avatar.attach(io: file_avatar, filename: 'nes.png', content_type: 'image/png')
-
   # Save the User
   new_user.save
 
