@@ -124,7 +124,7 @@ def create_catch(log)
 end
 
 # Populate the DB
-["Edgar", "Julie", "Laure", "Thomas"].each do |username|
+["Demo", "Edgar", "Julie", "Laure", "Thomas"].each do |username|
   # Create a new User
   new_user = User.create(username: username,
                          email:    "#{username.downcase}@gmail.com",
