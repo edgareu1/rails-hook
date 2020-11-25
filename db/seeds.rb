@@ -60,15 +60,15 @@ def create_location(user)
   user.locations.create(name: location_name, spot: Faker::Address.street_name[0..15].strip)
 end
 
-# Method that creates a random Log for a specific User and Location
-def create_log(user, location, date_step)
-  # A day in the past; also a different hour
-  log_start_time = DateTime.now - date_step + rand(0.0..1.0)
+# Method that creates a random Log for a specific User, Location and date
+def create_log(user, location, date)
+  # Randomize the date hour
+  log_start_time = date.advance(hours: rand(6..14))
 
   # Create Log (weather data is automatically fetched)
   new_log = user.logs.create(location:    location,
                              start_time:  log_start_time,
-                             end_time:    log_start_time + rand(0.05..0.25),
+                             end_time:    log_start_time.advance(hours: rand(2..8)),
                              rating:      Math.sqrt(rand(1..100)).floor,
                              observation: Faker::ChuckNorris.fact.truncate(120),
                              tag_id:      location.logs_count + 1
@@ -125,23 +125,23 @@ end
 
 # Populate the DB
 ["Edgar", "Julie", "Laure", "Thomas"].each do |username|
-  # Instantiate the User
-  new_user = User.new(username: username,
-                      email:    "#{username.downcase}@gmail.com",
-                      password: "123456"
-                     )
-
-  # Save the User
-  new_user.save
+  # Create a new User
+  new_user = User.create(username: username,
+                         email:    "#{username.downcase}@gmail.com",
+                         password: "123456"
+                        )
 
   # Create 10 random Locations
-  10.times {
-    new_location = create_location(new_user)
+  10.times { create_location(new_user) }
 
-    # Create 20 random Logs (different dates)
-    0.step(by: 4, to: 76).to_a.each do |date_step|
-      # Create Log
-      new_log = create_log(new_user, new_location, date_step)
+  locations = new_user.locations                      # Locations array
+  date = DateTime.now.ago(200.days).beginning_of_day  # Date of the Logs (begin 200 days ago)
+
+  # 20 Logs per Locations
+  20.times {
+    locations.shuffle.each do |loc|
+      new_log = create_log(new_user, loc, date) # Create Log
+      date = date.advance(days: 1)              # Have one Log per day
 
       # Create random Catches (the greater the Log 'power', the more and better the Catches)
       (rand(3.5..4.0) * log_power(new_log)).floor.times {
