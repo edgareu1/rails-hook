@@ -3,9 +3,21 @@
 // --------------------//--------------------
 // Locations predicted
 .prediction-location {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+
+  // Vendor prefixes 'align-items'
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+
+  // Vendor prefixes 'justify-content'
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+
   padding: 0 5px;
 
   .d-flex {
@@ -44,8 +56,15 @@
 // --------------------//--------------------
 // Stats predicted
 .prediction-stats {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+
+  // Vendor prefixes 'justify-content'
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+
   background-color: rgba(155, 221, 249, 0.3);
   font-size: 20px;
   padding: 5px 20px;

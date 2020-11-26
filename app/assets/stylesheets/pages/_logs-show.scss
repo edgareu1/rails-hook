@@ -3,9 +3,21 @@
 // --------------------//--------------------
 // Log date
 .log-date {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+
+  // Vendor prefixes 'align-items'
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+
+  // Vendor prefixes 'justify-content'
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+
   margin: 30px 10px 25px;
 
   i {
@@ -42,8 +54,20 @@
   // If the list is empty...
   .catches-list-empty {
     thead > tr > th {
+      // Vendor prefixes 'display'
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: row;
+
+      // Vendor prefixes 'flex-direction'
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+
+      // Vendor prefixes 'justify-content'
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
       justify-content: space-between;
 
       h3 {
