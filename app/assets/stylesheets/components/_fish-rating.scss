@@ -25,9 +25,7 @@
       display: none;
     }
 
-    // This Label appears at the front but its transparent. When selected it will fill the respective
-    // radio box and, at the same time, change the color of the Label2
-    label {
+    label, label2 {
       position: absolute;
 
       // Vendor prefixes 'box-sizing'
@@ -35,28 +33,25 @@
               box-sizing: border-box;
 
       float: right;
+      cursor: pointer;
+    }
+
+    // This Label appears at the front but its transparent. When selected it will fill the respective
+    // radio box and, at the same time, change the color of the Label2
+    label {
       z-index: 10;
       height: 100%;
       width: 10%;
-      cursor: pointer;
     }
 
     // This Label is the one that gives color to the "radio box". If the selected box value is greater than
     // or equal to this label value, it will change its background color
     label2 {
-      position: absolute;
-
-      // Vendor prefixes 'box-sizing'
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-
-      float: right;
       background-color: lightgray;
       z-index: 0;
       height: 95%;
       width: 10.5%;
       margin: 1px 0;
-      cursor: pointer;
     }
 
     input[type=radio]:first-child + label2 {
