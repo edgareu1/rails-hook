@@ -11,7 +11,11 @@
   }
 
   .country-code {
+    // Vendor prefixes 'justify-content'
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+
     width: 60px;
     margin: 0 0 5px 10px;
 
@@ -33,9 +37,21 @@
   // General card
   // Headers
   .card-headers {
+    // Vendor prefixes 'display'
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+
+    // Vendor prefixes 'align-item'
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+
+    // Vendor prefixes 'justify-content'
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+
     padding: 0 5px;
     margin-left: 5px;
 
@@ -65,9 +81,20 @@
 
   // Content
   .card-content {
+    // Vendor prefixes 'display'
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+
+    // Vendor prefixes 'align-items'
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+
+    // Vendor prefixes 'justify-content'
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+
     margin-top: 10px;
 
     p {
@@ -95,8 +122,16 @@
   // Info card
   // Headers
   .card-info-headers {
+    // Vendor prefixes 'display'
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+
+    // Vendor prefixes 'align-items'
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+
     width: 100%;
     margin-bottom: 10px;
 
@@ -185,12 +220,23 @@
   }
 
   .card-fish-img {
+    // Vendor prefixes 'display'
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+
+    // Vendor prefixes 'align-items'
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+
     height: 200px;
 
     img {
-      object-fit: cover;
+      // Vendor prefixes 'object-fit'
+      -o-object-fit: cover;
+         object-fit: cover;
+
       width: 100%;
     }
   }
@@ -228,8 +274,16 @@
 // --------------------//--------------------
 // Actions card
 .card-actions {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+
+  // Vendor prefixes 'justify-content'
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+
   width: 100%;
   padding-right: 15px;
   margin-bottom: 30px;
