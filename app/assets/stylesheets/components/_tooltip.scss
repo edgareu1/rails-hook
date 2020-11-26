@@ -22,7 +22,11 @@
   padding: 10px;
   border-radius: 6px;
   margin-left: -75px;
-  transition: opacity 0.5s;
+
+  // Vendor prefixes 'transition'
+  -webkit-transition: opacity 0.5s;
+       -o-transition: opacity 0.5s;
+          transition: opacity 0.5s;
 }
 
 .tooltip:hover .tooltiptext {

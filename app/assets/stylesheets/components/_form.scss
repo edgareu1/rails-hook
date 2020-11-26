@@ -77,8 +77,17 @@
 // --------------------//--------------------
 // Log forms
 .container-log-form {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+
+  // Vendor prefixes 'flex-direction'
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+      flex-direction: column;
+
   color: #BDEBFF;
   opacity: 0.9;
 
@@ -99,7 +108,11 @@
   }
 
   .d-flex {
+    // Vendor prefixes 'justify-content'
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+
     padding-right: 10px;
     margin-bottom: 5px;
 
@@ -159,8 +172,17 @@
 // --------------------//--------------------
 // Catch form
 .container-catch-form {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+
+  // Vendor prefixes 'flex-direction'
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+      flex-direction: column;
+
   color: #BDEBFF;
   opacity: 0.9;
 

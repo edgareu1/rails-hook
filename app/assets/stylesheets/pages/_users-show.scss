@@ -8,8 +8,16 @@
   margin-bottom: 40px;
 
   .d-flex {
+    // Vendor prefixes 'align-items'
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+
+    // Vendor prefixes 'justify-content'
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+
     padding-bottom: 5px;
 
     img {
@@ -44,9 +52,21 @@
     }
 
     li {
+      // Vendor prefixes 'display'
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+
+      // Vendor prefixes 'align-items'
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+
+      // Vendor prefixes 'justify-content'
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+
       list-style-type: none;
       border-top: 1px solid white;
 
@@ -84,7 +104,11 @@
 // Feed of curiosities
 .feed-container {
   height: 150px;
-  box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+
+  // Vendor prefixes 'box-shadow'
+  -webkit-box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+          box-shadow: 0 0 2px 1px rgba(155, 221, 249, 0.2);
+
   margin-bottom: 40px;
 
   h5 {
@@ -101,8 +125,16 @@
 // --------------------//--------------------
 // User stats
 .stats-container {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+
+  // Vendor prefixes 'justify-content'
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
+
   background-color: $opacity-blue;
   padding: 10px;
   margin-bottom: 40px;
@@ -119,9 +151,22 @@
 // --------------------//--------------------
 // User top fish caught
 .top-fish {
+  // Vendor prefixes 'display'
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+
+  // Vendor prefixes 'flex-direction'
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+      flex-direction: column;
+
+  // Vendor prefixes 'justify-content'
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+
   list-style-type: none;
   width: 250px;
   margin: 0 auto 40px;
