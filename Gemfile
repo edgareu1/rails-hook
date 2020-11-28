@@ -5,6 +5,8 @@ ruby '2.6.6'
 
 # Auto-complete 
 gem "algoliasearch-rails"
+# Make it easy to securely configure Rails applications.
+gem 'figaro'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
