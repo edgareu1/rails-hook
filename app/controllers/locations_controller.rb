@@ -38,8 +38,13 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location.update(location_params)
-    @location_weather = @location.weather_data
+    begin
+      @location.update(location_params)
+      @location_weather = @location.weather_data
+
+    rescue NonExistentNameError => error
+      @location.errors.add(:name, error.message)
+    end
   end
 
   def destroy
