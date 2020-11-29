@@ -1,8 +1,8 @@
+// Refresh the form
+document.getElementById('ModalEditLocation').innerHTML = "<%= j render "locations/form", location: @location %>";
+
 // If there are any errors in the submited form...
 <% if @location.errors.any? %>
-  // Refresh the form to display the validation errors
-  document.getElementById('ModalEditLocation').innerHTML = "<%= j render "locations/form", location: @location %>";
-
   // Enable the autocomplete for the Location name
   var addressInput = document.querySelector('#ModalEditLocation #location_name');
   autoCompleteLocation(addressInput);
