@@ -15,6 +15,8 @@ class Location < ApplicationRecord
       obj.country_code = geo.country_code.upcase
       obj.state = geo.state
       obj.city = geo.city
+    else
+      raise LocationsController::NonExistentNameError, "does not exist"
     end
   end
 

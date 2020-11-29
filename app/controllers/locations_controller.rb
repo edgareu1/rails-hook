@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  class NonExistentNameError < StandardError; end
+
   require 'will_paginate/array'
   include PredictionHelper
 
