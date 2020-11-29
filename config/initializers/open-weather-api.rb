@@ -1,6 +1,6 @@
 OpenWeatherAPI.configure do |config|
   # API key
-  config.api_key = 'feba1c4f716980a3ece2f14bdbf5e432'
+  config.api_key = ENV['WEATHER_KEY']
 
   # Optionals
   config.default_language = 'en'     # 'en' by default
