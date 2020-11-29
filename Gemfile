@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-# Auto-complete 
-gem "algoliasearch-rails"
 # Make it easy to securely configure Rails applications.
 gem 'figaro'
 
