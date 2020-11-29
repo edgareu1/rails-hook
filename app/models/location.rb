@@ -5,16 +5,19 @@ class Location < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :logs, dependent: :destroy
 
-  after_validation :geocode, :reverse_geocode
+  after_validation :geocode, :reverse_geocode, if: Proc.new { |loc| !loc.name.blank? && loc.name_changed? }
 
   geocoded_by :name
 
-  reverse_geocoded_by :latitude, :longitude do |obj, results|
-    if geo = results.first
-      obj.country = geo.country
-      obj.country_code = geo.country_code.upcase
-      obj.state = geo.state
-      obj.city = geo.city
+  reverse_geocoded_by :latitude, :longitude do |loc, results|
+    if !(loc.longitude_changed? || loc.latitude_changed?)
+      raise LocationsController::NonExistentNameError, "does not exist"
+
+    elsif geo = results.first
+      loc.country = geo.country
+      loc.country_code = geo.country_code.upcase
+      loc.state = geo.state
+      loc.city = geo.city
     end
   end
 

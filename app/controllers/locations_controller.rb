@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  class NonExistentNameError < StandardError; end
+
   require 'will_paginate/array'
   include PredictionHelper
 
@@ -25,14 +27,24 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = current_user.locations.new(location_params)
+    begin
+      @location = current_user.locations.new(location_params)
 
-    redirect_to location_path(@location) if @location.save
+      redirect_to location_path(@location) if @location.save
+
+    rescue NonExistentNameError => error
+      @location.errors.add(:name, error.message)
+    end
   end
 
   def update
-    @location.update(location_params)
-    @location_weather = @location.weather_data
+    begin
+      @location.update(location_params)
+      @location_weather = @location.weather_data
+
+    rescue NonExistentNameError => error
+      @location.errors.add(:name, error.message)
+    end
   end
 
   def destroy
