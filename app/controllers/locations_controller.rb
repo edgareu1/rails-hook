@@ -27,9 +27,14 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = current_user.locations.new(location_params)
+    begin
+      @location = current_user.locations.new(location_params)
 
-    redirect_to location_path(@location) if @location.save
+      redirect_to location_path(@location) if @location.save
+
+    rescue NonExistentNameError => error
+      @location.errors.add(:name, error.message)
+    end
   end
 
   def update
