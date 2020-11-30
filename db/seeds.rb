@@ -120,7 +120,7 @@ def create_catch(log)
 
   # Randomize the Catch based on the Log 'power'
   catch_fish =     Fish.where("good_weight <= ?", 1000).sample
-  catch_quantity = [(rand(3.5..4.0) * log_power).floor, 1].max
+  catch_quantity = [(rand(3.5..4) * log_power).floor, 1].max
   catches_weight = (catch_quantity * 750 * log_power).round
 
   # Create the Catch
@@ -151,9 +151,7 @@ Users_list.each do |username|
       date = date.advance(days: 1)              # Have one Log per day
 
       # Create random Catches (the greater the Log 'power', the more and better the Catches)
-      (rand(3.5..4.0) * log_power(new_log)).floor.times {
-        create_catch(new_log)
-      }
+      (3.5 * log_power(new_log)).floor.times { create_catch(new_log) }
     end
   }
 
