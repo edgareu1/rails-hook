@@ -37,10 +37,16 @@ Fish.create(name: 'Spotted Seabass',    good_weight: 1000,   legal_weight: 0,   
 
 puts "Created #{Fish.count} Fish"
 
+# Users list
+Users_list = ["Demo"]
+
 # Locations data (in Lisbon)
 Locations_data = [
-  "Alcochete", "Almada", "Cascais", "Costa de Caparica", "Lisboa", "Loures",
-  "Mafra", "Oeiras", "Seixal", "Sesimbra", "Sintra", "Vila Franca de Xira"
+  { spot: "Blue Rock",    location: "Alcochete" },
+  { spot: "Old Boat",     location: "Almada" },
+  { spot: "Bar Platform", location: "Cascais" },
+  { spot: "Wood Dock",    location: "Costa de Caparica" },
+  { spot: "Rocky Side",   location: "Lisboa" }
 ]
 
 # Weather data
@@ -54,10 +60,11 @@ Weather_data = [
 ]
 
 # Method that creates a random Location for a specific User
-def create_location(user)
-  location_name = Locations_data.sample + ", Área Metropolitana de Lisboa, Portugal"
-
-  user.locations.create(name: location_name, spot: Faker::Address.street_name[0..15].strip)
+def create_location(user, location_data)
+  user.locations.create(
+    name: location_data[:location] + ", Área Metropolitana de Lisboa, Portugal",
+    spot: location_data[:spot]
+  )
 end
 
 # Method that creates a random Log for a specific User, Location and date
@@ -113,7 +120,7 @@ def create_catch(log)
 
   # Randomize the Catch based on the Log 'power'
   catch_fish =     Fish.where("good_weight <= ?", 1000).sample
-  catch_quantity = [(rand(3.5..4.0) * log_power).floor, 1].max
+  catch_quantity = [(rand(3.5..4) * log_power).floor, 1].max
   catches_weight = (catch_quantity * 750 * log_power).round
 
   # Create the Catch
@@ -124,15 +131,15 @@ def create_catch(log)
 end
 
 # Populate the DB
-["Demo", "Edgar", "Julie", "Laure", "Thomas"].each do |username|
+Users_list.each do |username|
   # Create a new User
   new_user = User.create(username: username,
                          email:    "#{username.downcase}@gmail.com",
                          password: "123456"
                         )
 
-  # Create 10 random Locations
-  10.times { create_location(new_user) }
+  # Create Locations
+  Locations_data.each { |location_data| create_location(new_user, location_data) }
 
   locations = new_user.locations                      # Locations array
   date = DateTime.now.ago(200.days).beginning_of_day  # Date of the Logs (begin 200 days ago)
@@ -144,9 +151,7 @@ end
       date = date.advance(days: 1)              # Have one Log per day
 
       # Create random Catches (the greater the Log 'power', the more and better the Catches)
-      (rand(3.5..4.0) * log_power(new_log)).floor.times {
-        create_catch(new_log)
-      }
+      (3.5 * log_power(new_log)).floor.times { create_catch(new_log) }
     end
   }
 
