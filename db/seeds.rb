@@ -117,9 +117,12 @@ end
 # Method that creates a Catch for a specific Log
 def create_catch(log)
   log_power = log_power(log)
+  log_catches = log.catches.map(&:fish)
 
   # Randomize the Catch based on the Log 'power'
-  catch_fish =     Fish.where("good_weight <= ?", 1000).sample
+  catch_fish = Fish.where("good_weight <= ?", 1000)
+                   .reject { |fish| log_catches.include?(fish) }
+                   .sample
   catch_quantity = [(rand(3.5..4) * log_power).ceil, 1].max
   catches_weight = (catch_quantity * 800 * log_power).round
 
