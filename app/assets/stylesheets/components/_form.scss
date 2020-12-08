@@ -31,6 +31,27 @@
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 
+  .demo-account-notification {
+    background-color: rgba(91, 234, 201, 0.35);
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+
+    h3 {
+      color: white;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    p {
+      color: white;
+      font-size: 12px;
+      padding-left: 12px;
+      margin-bottom: 0;
+    }
+  }
+
   img {
     width: 36px;
     padding-bottom: 10px;
