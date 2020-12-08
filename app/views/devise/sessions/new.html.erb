@@ -5,6 +5,13 @@
 
   <h2>Log in</h2>
 
+  <div class="demo-account-notification">
+    <h3>Check the demo account:</h3>
+
+    <p style="margin-bottom: 1px;">username: Demo</p>
+    <p>password: 123456</p>
+  </div>
+
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.error_notification %>
 
