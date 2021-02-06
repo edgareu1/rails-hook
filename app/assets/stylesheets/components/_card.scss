@@ -1,6 +1,6 @@
 // Cards
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Cards list
 #cards-list {
   margin: 10px 0 20px;
@@ -26,14 +26,14 @@
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Standard card
 .card {
   background-color: $opacity-blue;
   padding: 10px;
   margin-top: 20px;
 
-  // --------------------//--------------------
+  // ------------------------------------//------------------------------------
   // General card
   // Headers
   .card-headers {
@@ -104,7 +104,7 @@
     }
 
     strong {
-      color: #9BDDF9;
+      color: #9bddf9;
       font-size: 18px;
     }
   }
@@ -118,7 +118,7 @@
     margin: 0;
   }
 
-  // --------------------//--------------------
+  // ------------------------------------//------------------------------------
   // Info card
   // Headers
   .card-info-headers {
@@ -167,7 +167,7 @@
           // First column
           &:nth-child(1) {
             text-align: end;
-            color: #9BDDF9;
+            color: #9bddf9;
             font-weight: bold;
 
             hr {
@@ -202,7 +202,7 @@
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Fish card
 .fish-card {
   margin: 0;
@@ -235,7 +235,7 @@
     img {
       // Vendor prefixes 'object-fit'
       -o-object-fit: cover;
-         object-fit: cover;
+      object-fit: cover;
 
       width: 100%;
     }
@@ -258,20 +258,20 @@
     }
 
     .fish-more-info {
-      color: #BDEBFF;
+      color: #bdebff;
       font-size: 18px;
       font-style: italic;
       font-weight: bolder;
       padding: 10px 15px 18px !important;
 
       &:hover {
-        color: #BDEBFF;
+        color: #bdebff;
       }
     }
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Actions card
 .card-actions {
   // Vendor prefixes 'display'

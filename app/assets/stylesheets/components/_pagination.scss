@@ -2,7 +2,8 @@
 .pagination {
   margin: 5px 0 0;
 
-  .page-link, .page-item.disabled .page-link {
+  .page-link,
+  .page-item.disabled .page-link {
     color: white;
     background-color: transparent;
     opacity: 0.9;
@@ -11,7 +12,7 @@
   }
 
   .page-item.active .page-link {
-    color: #9BDDF9;
+    color: #9bddf9;
     background-color: $opacity-blue;
     font-size: 18px;
     border: none;

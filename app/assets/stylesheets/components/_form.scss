@@ -1,6 +1,6 @@
 // Forms
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Standard form validations
 .form-control {
   font-family: $body-font;
@@ -22,8 +22,8 @@
   padding: 6px 12px;
 }
 
-// --------------------//--------------------
-// Devise Forms
+// -------------------------------------//-------------------------------------
+// Devise forms
 .devise-container {
   color: rgba(255, 255, 255, 0.9);
   background-color: $opacity-blue;
@@ -65,15 +65,16 @@
     margin-bottom: 20px;
   }
 
-  p, a {
-    color: #BDEBFF;
+  p,
+  a {
+    color: #bdebff;
     font-size: 16px;
     padding-left: 5px;
     margin-bottom: 8px;
   }
 
   a:hover {
-    color: #BDEBFF;
+    color: #bdebff;
     text-decoration: underline !important;
   }
 
@@ -91,11 +92,11 @@
   }
 
   .text-muted {
-    color: #9BDDF9 !important;
+    color: #9bddf9 !important;
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Log forms
 .container-log-form {
   // Vendor prefixes 'display'
@@ -107,9 +108,9 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
 
-  color: #BDEBFF;
+  color: #bdebff;
   opacity: 0.9;
 
   label {
@@ -147,12 +148,15 @@
     }
   }
 
-  input[type=datetime-local], #log_location_id {
+  input[type="datetime-local"],
+  #log_location_id {
     width: 200px;
     padding: 0 2px 0 5px !important;
   }
 
-  .log_temperature, .log_air_pressure, .log_wind_speed {
+  .log_temperature,
+  .log_air_pressure,
+  .log_wind_speed {
     label {
       margin-right: 10px;
     }
@@ -178,20 +182,21 @@
     }
   }
 
-  #log_new_observation_errors, #log_edit_observation_errors {
+  #log_new_observation_errors,
+  #log_edit_observation_errors {
     padding-left: 2px;
     margin-bottom: 10px;
   }
 
   p {
-    color: #BDEBFF;
+    color: #bdebff;
     font-size: 1rem;
     margin: 5px 0;
   }
 }
 
-// --------------------//--------------------
-// Catch form
+// -------------------------------------//-------------------------------------
+// Catch forms
 .container-catch-form {
   // Vendor prefixes 'display'
   display: -webkit-box;
@@ -202,9 +207,9 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
 
-  color: #BDEBFF;
+  color: #bdebff;
   opacity: 0.9;
 
   // The standard error container is not displayed
@@ -252,7 +257,7 @@
         }
 
         // Remove the side arrows from the number related input fields
-        input[type='number']::-webkit-inner-spin-button {
+        input[type="number"]::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
