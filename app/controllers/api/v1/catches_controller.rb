@@ -8,7 +8,7 @@ class Api::V1::CatchesController < Api::V1::BaseController
 
   def create
     @catch = @log.catches.new(catch_params)
-
+    # Render
     if @catch.save
       set_index
       render :index, status: :created
@@ -20,7 +20,6 @@ class Api::V1::CatchesController < Api::V1::BaseController
   def destroy
     catch = @log.catches.find(params[:id])
     catch.destroy
-
     set_index
     render :index
   end
@@ -41,6 +40,6 @@ class Api::V1::CatchesController < Api::V1::BaseController
 
   def render_error
     render json: { errors: @catch.errors.full_messages },
-           status: :unprocessable_entity
+      status: :unprocessable_entity
   end
 end
