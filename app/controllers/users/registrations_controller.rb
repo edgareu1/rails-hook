@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if @user == User.find_by(username: 'Demo')
+    if @user == User.find_by(username: "Demo")
       flash[:alert] = "Demo account cannot be edited"
       render :edit
     else
@@ -31,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    if @user == User.find_by(username: 'Demo')
+    if @user == User.find_by(username: "Demo")
       flash[:alert] = "Demo account cannot be deleted"
       render :edit
     else

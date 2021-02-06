@@ -1,8 +1,9 @@
 // Buttons
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Standard button style
-.btn-flat, .btn-ghost {
+.btn-flat,
+.btn-ghost {
   color: white;
   background-color: rgba(136, 204, 255, 0.5);
   padding: 5px 10px;
@@ -10,17 +11,18 @@
 
   // Vendor prefixes 'transition'
   -webkit-transition: background 0.3s ease;
-       -o-transition: background 0.3s ease;
-          transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
+  transition: background 0.3s ease;
 
   &:hover {
     color: white;
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Buttons for the delete forms
-.btn-delete-confirm, .btn-cancel-confirm {
+.btn-delete-confirm,
+.btn-cancel-confirm {
   text-align: center;
   float: left;
   height: 100%;
@@ -46,7 +48,7 @@
   background-color: lightgray;
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Button for the Logs#create action in the Users#show page
 .btn-ghost {
   // Vendor prefixes 'display'
@@ -80,7 +82,7 @@
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Button to create a new instance (+ symbol)
 .btn-new-instance {
   // Vendor prefixes 'display'

@@ -21,16 +21,17 @@
       width: 100%;
     }
 
-    input[type=radio] {
+    input[type="radio"] {
       display: none;
     }
 
-    label, label2 {
+    label,
+    label2 {
       position: absolute;
 
       // Vendor prefixes 'box-sizing'
       -webkit-box-sizing: border-box;
-              box-sizing: border-box;
+      box-sizing: border-box;
 
       float: right;
       cursor: pointer;
@@ -54,11 +55,11 @@
       margin: 1px 0;
     }
 
-    input[type=radio]:first-child + label2 {
+    input[type="radio"]:first-child + label2 {
       display: none;
     }
 
-    input[type=radio]:checked ~ label2 {
+    input[type="radio"]:checked ~ label2 {
       background-color: #00ff7e;
     }
   }
@@ -74,7 +75,7 @@
     height: 25px;
     width: 100%;
     padding: 5px 20px 0;
-    border-top: 1px solid #BDEBFF;
+    border-top: 1px solid #bdebff;
     margin-top: 5px;
 
     div {

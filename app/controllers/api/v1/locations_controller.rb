@@ -13,6 +13,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def prediction
+    # Get the @prediction variable
     if @location.logs_count < 5
       @prediction = { weather: @location.weather_data, prediction: nil }
     else
@@ -22,7 +23,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def create
     @location = @user.locations.new(location_params)
-
+    # Render
     if @location.save
       set_current_weather
       render :show, status: :created
@@ -32,6 +33,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def update
+    # Render
     if @location.update(location_params)
       set_current_weather
       render :show
@@ -42,7 +44,6 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def destroy
     @location.destroy
-
     set_index
     render :index
   end
@@ -67,6 +68,6 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def render_error
     render json: { errors: @location.errors.full_messages },
-           status: :unprocessable_entity
+      status: :unprocessable_entity
   end
 end

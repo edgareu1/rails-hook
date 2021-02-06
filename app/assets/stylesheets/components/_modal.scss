@@ -1,8 +1,9 @@
 // Modals
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Standard modals
-.modal-header h4, .close {
+.modal-header h4,
+.close {
   color: white;
   opacity: 0.9;
 
@@ -16,7 +17,7 @@
   background-color: #061f35;
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Delete modals
 .modal-delete .modal-content {
   .modal-delete-content {
@@ -29,7 +30,7 @@
     }
 
     p {
-      color: #BDEBFF;
+      color: #bdebff;
       padding: 0;
       border: none !important;
       margin: 0;
@@ -42,7 +43,7 @@
   }
 }
 
-// --------------------//--------------------
+// -------------------------------------//-------------------------------------
 // Center modals
 .modal-dialog-centered {
   min-height: calc(90% - 1rem);

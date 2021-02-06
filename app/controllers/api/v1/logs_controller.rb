@@ -17,11 +17,13 @@ class Api::V1::LogsController < Api::V1::BaseController
   end
 
   def create
-    @log = @user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
-
-    @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id  # Get the tag_id
-    @log.moon_phase = get_moon_phase(@log.start_time)                         # Get the moon_phase
-
+    # Create a new Log, and set the tag_id and moon_phase attributes
+    @log = @user.logs.new(
+      log_params.except(:temperature, :air_pressure, :wind_speed)
+    )
+    @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id
+    @log.moon_phase = get_moon_phase(@log.start_time)
+    # Render
     if @log.save
       render :show, status: :created
     else
@@ -31,23 +33,23 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   def update
     @log.attributes = log_params
-
+    # If the Log Location changed, then get the new tag_id
     if @log.location_id_changed?
-      previous_loc_id = @log.location_id_was                                    # Save the previous Location
-      @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id  # Get the new tag_id
+      previous_loc_id = @log.location_id_was
+      @log.tag_id = @user.locations.find(log_params[:location_id]).next_tag_id
     end
-
-    @log.moon_phase = get_moon_phase(@log.start_time)   # Get the new moon_phase
-
+    @log.moon_phase = get_moon_phase(@log.start_time)
+    # Render
     if @log.save
-      # If the Log Location changes, then update the Location catch counters
+      # If the Log Location changed, then update the Location catch counters
       if previous_loc_id.present?
-        log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
-
+        log_counters = Hash[
+          quantity: @log.catches_count,
+          weight: @log.catches_weight
+        ]
         Location.find(previous_loc_id).decrement_catches_counters(log_counters)
         @log.location.increment_catches_counters(log_counters)
       end
-
       render :show
     else
       render_error
@@ -56,7 +58,6 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   def destroy
     @log.destroy
-
     set_index
     render :index
   end
@@ -64,7 +65,16 @@ class Api::V1::LogsController < Api::V1::BaseController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :temperature, :air_pressure, :wind_speed)
+    params.require(:log).permit(
+      :start_time,
+      :end_time,
+      :location_id,
+      :rating,
+      :observation,
+      :temperature,
+      :air_pressure,
+      :wind_speed
+    )
   end
 
   def set_log
@@ -81,6 +91,6 @@ class Api::V1::LogsController < Api::V1::BaseController
 
   def render_error
     render json: { errors: @log.errors.full_messages },
-           status: :unprocessable_entity
+      status: :unprocessable_entity
   end
 end
