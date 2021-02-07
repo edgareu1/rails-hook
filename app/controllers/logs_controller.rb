@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-  require 'will_paginate/array'
+  require "will_paginate/array"
   include MoonPhaseHelper
 
   before_action :set_location, only: [ :location_index ]
@@ -7,8 +7,8 @@ class LogsController < ApplicationController
 
   def index
     @logs = current_user.logs
-                        .order(start_time: :desc)
-                        .paginate(page: params[:page], per_page: 5)
+      .order(start_time: :desc)
+      .paginate(page: params[:page], per_page: 5)
   end
 
   def location_index
@@ -17,8 +17,8 @@ class LogsController < ApplicationController
       redirect_to locations_path
     else
       @logs = @location.logs
-                       .order(start_time: :desc)
-                       .paginate(page: params[:page], per_page: 5)
+        .order(start_time: :desc)
+        .paginate(page: params[:page], per_page: 5)
     end
   end
 
@@ -30,47 +30,43 @@ class LogsController < ApplicationController
   end
 
   def create
-    @log = current_user.logs.new(log_params.except(:temperature, :air_pressure, :wind_speed))
+    @log = current_user.logs.new(
+      log_params.except(:temperature, :air_pressure, :wind_speed)
+    )
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
-
-    redirect_to log_path(@log) if @log.save
-    set_time_errors
+    @log.save ? redirect_to log_path(@log) : set_time_errors
   end
 
   def update
     @log.attributes = log_params
-
     # Get the new start_time
     if @log.start_time.blank?
       @log.start_time = @log.start_time_was
       start_time_error = true
     end
-
     # Get the new end_time
     if @log.end_time.blank?
       @log.end_time = @log.end_time_was
       end_time_error = true
     end
-
-    @log.moon_phase = get_moon_phase(@log.start_time)   # Get the new moon_phase
-
+    @log.moon_phase = get_moon_phase(@log.start_time)
+    # If the Log Location changed, then get the new tag_id
     if @log.location_id_changed?
-      previous_loc_id = @log.location_id_was    # Save the previous Location
-      @log.tag_id = @log.location.next_tag_id   # Get the new tag_id
+      previous_loc_id = @log.location_id_was
+      @log.tag_id = @log.location.next_tag_id
     end
-
-    # If the Log Location changes, then update the Location catch counters
+    # If the Log Location changed, then update the Location catch counters
     if @log.save && previous_loc_id.present?
-      log_counters = Hash[quantity: @log.catches_count, weight: @log.catches_weight]
-
+      log_counters = Hash[
+        quantity: @log.catches_count,
+        weight: @log.catches_weight
+      ]
       Location.find(previous_loc_id).decrement_catches_counters(log_counters)
       @log.location.increment_catches_counters(log_counters)
     end
-
     # Add Time related errors
     @log.errors.add(:start_time, "must exist") if start_time_error
     @log.errors.add(:end_time, "must exist")   if end_time_error
-
     set_time_errors
   end
 
@@ -82,7 +78,16 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :end_time, :location_id, :rating, :observation, :temperature, :air_pressure, :wind_speed)
+    params.require(:log).permit(
+      :start_time,
+      :end_time,
+      :location_id,
+      :rating,
+      :observation,
+      :temperature,
+      :air_pressure,
+      :wind_speed
+    )
   end
 
   def set_log
@@ -95,7 +100,7 @@ class LogsController < ApplicationController
 
   def set_time_errors
     @time_errors = @log.errors.messages
-                              .slice(:start_time, :end_time, :duration)
-                              .map { |k, v| k.to_s.humanize + " " +  v.first }
+      .slice(:start_time, :end_time, :duration)
+      .map { |k, v| k.to_s.humanize + " " +  v.first }
   end
 end
