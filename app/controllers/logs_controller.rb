@@ -34,7 +34,11 @@ class LogsController < ApplicationController
       log_params.except(:temperature, :air_pressure, :wind_speed)
     )
     @log.tag_id = @log.location.next_tag_id unless @log.location.nil?
-    @log.save ? redirect_to log_path(@log) : set_time_errors
+    if @log.save
+      redirect_to log_path(@log)
+    else
+      set_time_errors
+    end
   end
 
   def update
