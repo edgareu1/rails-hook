@@ -1,15 +1,33 @@
 <div class="fish-rating-container">
   <div class="fish-rating">
-    <img src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png" alt="fish-rating">
+    <img
+      src="https://res.cloudinary.com/da7rlfd8u/image/upload/v1594265095/eel_axssqv.png"
+      alt="fish-rating"
+    >
 
     <input type="hidden" name="log[rating]" value="">
 
     <% (1..10).to_a.reverse.each do |num| %>
-      <input type="radio" value="<%= num %>" name="log[rating]" id="<%= "log_rating_#{log_action}_#{num}" %>"
-             <%= "checked" if log.rating == num %>>
-      <label for="<%= "log_rating_#{log_action}_#{num}" %>" class="rating<%= num %>"
-             style="left: <%= (num - 1) * 10 %>%"></label>
-      <label2 class="rating<%= num %>" style="left: <%= (num - 1) * 10 %>%"></label2>
+      <input
+        type="radio"
+        value="<%= num %>"
+        name="log[rating]"
+        id="<%= "log_rating_#{log_action}_#{num}" %>"
+        <%= "checked" if log.rating == num %>
+      >
+
+      <label
+        for="<%= "log_rating_#{log_action}_#{num}" %>"
+        class="rating<%= num %>"
+        style="left: <%= (num - 1) * 10 %>%"
+      >
+      </label>
+
+      <label2
+        class="rating<%= num %>"
+        style="left: <%= (num - 1) * 10 %>%"
+      >
+      </label2>
     <% end %>
   </div>
 

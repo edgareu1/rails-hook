@@ -1,14 +1,33 @@
 // Refresh the form
-document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", log: @log %>";
+document.getElementById('ModalEditLog').innerHTML =
+  "<%= j render "logs/form", log: @log %>";
 
 // If there are any errors in the submited form, display the validation errors
 <% if @log.errors.any? %>
-  displayFormErrors('log_edit_time_errors',         `<%= @time_errors.first %>`);
-  displayFormErrors('log_edit_location_id_errors',  `<%= @log.errors.full_messages_for(:location).first %>`);
-  displayFormErrors('log_edit_observation_errors',  `<%= @log.errors.full_messages_for(:observation).first %>`);
-  displayFormErrors('log_edit_temperature_errors',  `<%= @log.errors.full_messages_for(:temperature).first %>`);
-  displayFormErrors('log_edit_air_pressure_errors', `<%= @log.errors.full_messages_for(:air_pressure).first %>`);
-  displayFormErrors('log_edit_wind_speed_errors',   `<%= @log.errors.full_messages_for(:wind_speed).first %>`);
+  displayFormErrors(
+    'log_edit_time_errors',
+    `<%= @time_errors.first %>`
+  );
+  displayFormErrors(
+    'log_edit_location_id_errors',
+    `<%= @log.errors.full_messages_for(:location).first %>`
+  );
+  displayFormErrors(
+    'log_edit_observation_errors',
+    `<%= @log.errors.full_messages_for(:observation).first %>`
+  );
+  displayFormErrors(
+    'log_edit_temperature_errors',
+    `<%= @log.errors.full_messages_for(:temperature).first %>`
+  );
+  displayFormErrors(
+    'log_edit_air_pressure_errors',
+    `<%= @log.errors.full_messages_for(:air_pressure).first %>`
+  );
+  displayFormErrors(
+    'log_edit_wind_speed_errors',
+    `<%= @log.errors.full_messages_for(:wind_speed).first %>`
+  );
 
   validateLogTime('edit', <%= @time_errors.empty? %>);
 
@@ -18,5 +37,6 @@ document.getElementById('ModalEditLog').innerHTML = "<%= j render "logs/form", l
   document.querySelector('#ModalEditLog button').click();
 
   // Refresh the information displayed
-  document.getElementById('log-information').innerHTML = "<%= j render "logs/information", log: @log %>";
+  document.getElementById('log-information').innerHTML =
+    "<%= j render "logs/information", log: @log %>";
 <% end %>

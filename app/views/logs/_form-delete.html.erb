@@ -5,9 +5,16 @@
       <p>Are you sure you want to delete the log?</p>
 
       <div class="modal-delete-confirmation">
-        <button type="button" class="btn-cancel-confirm" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-cancel-confirm" data-dismiss="modal">
+          Cancel
+        </button>
 
-        <%= link_to "Delete", log_path(@log), method: :delete, class: "btn-delete-confirm" %>
+        <%=
+          link_to "Delete",
+          log_path(@log),
+          method: :delete,
+          class: "btn-delete-confirm"
+        %>
       </div>
     </div>
   </div>
