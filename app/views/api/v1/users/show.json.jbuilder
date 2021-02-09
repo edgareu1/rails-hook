@@ -1,4 +1,7 @@
-json.extract! @user, :id, :username, :email
+json.extract! @user,
+  :id,
+  :username,
+  :email
 
 json.stats do
   json.num_locations @user.locations_count
@@ -11,7 +14,9 @@ json.stats do
 
   if @more_info
     json.top_fish @top_fish do |fish|
-      json.extract! fish, :id, :name
+      json.extract! fish,
+        :id,
+        :name
 
       json.catches do
         json.num fish[:catches_count]
@@ -20,10 +25,14 @@ json.stats do
     end
 
     json.top_locations @top_locations do |location|
-      json.extract! location, :id, :spot
+      json.extract! location,
+        :id,
+        :spot
 
       json.address do
-        json.extract! location, :city, :country
+        json.extract! location,
+          :city,
+          :country
       end
 
       json.stats do
@@ -39,5 +48,7 @@ json.stats do
 end
 
 json.instance_info do
-  json.extract! @user, :created_at, :updated_at
+  json.extract! @user,
+    :created_at,
+    :updated_at
 end
