@@ -1,10 +1,14 @@
 json.extract! @log, :id
 
 json.location do
-  json.extract! @log.location, :id, :spot
+  json.extract! @log.location,
+    :id,
+    :spot
 
   json.address do
-    json.extract! @log.location, :city, :country
+    json.extract! @log.location,
+      :city,
+      :country
   end
 
   json.extract! @log, :tag_id
@@ -18,7 +22,11 @@ end
 json.weather do
   json.icon @log.weather_icon
   json.description @log.weather_description
-  json.extract! @log, :temperature, :air_pressure, :wind_speed, :moon_phase
+  json.extract! @log,
+    :temperature,
+    :air_pressure,
+    :wind_speed,
+    :moon_phase
 end
 
 json.stats do
@@ -29,9 +37,13 @@ json.stats do
 end
 
 json.user_notes do
-  json.extract! @log, :rating, :observation
+  json.extract! @log,
+    :rating,
+    :observation
 end
 
 json.instance_info do
-  json.extract! @log, :created_at, :updated_at
+  json.extract! @log,
+    :created_at,
+    :updated_at
 end

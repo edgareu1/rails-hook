@@ -10,7 +10,13 @@
 
 <!-- Buttons for Log actions: Delete, Edit and New -->
 <div class="card-actions">
-  <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLog" } do %>
+  <%=
+    link_to "Delete",
+    data: {
+      toggle: "modal",
+      target: "#ModalDeleteLog"
+    } do
+  %>
     <i class="far fa-trash-alt"></i>
   <% end %>
 

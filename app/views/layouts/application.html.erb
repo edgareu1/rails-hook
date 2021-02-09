@@ -6,9 +6,15 @@
 
     <title><%= meta_title %></title>
 
-    <meta name="author" content="Edgar Marques, Julie Mariano, Laure Olivier, Thomas Gibson">
+    <meta
+      name="author"
+      content="Edgar Marques, Julie Mariano, Laure Olivier, Thomas Gibson"
+    >
     <meta name="description" content="<%= meta_description %>">
-    <meta name="keywords" content="fishing application, fisherman application, record fishing trips, predict best fishing location">
+    <meta
+      name="keywords"
+      content="fishing application, fisherman application, record fishing trips, predict best fishing location"
+    >
     <meta name="viewport" content="width=device-width">
 
     <link rel="icon" href="<%= meta_icon %>" type="image/png">
@@ -26,18 +32,33 @@
     <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
     <meta name="twitter:title" content="<%= meta_title %>">
     <meta name="twitter:description" content="<%= meta_description %>">
-    <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta
+      name="twitter:creator"
+      content="<%= DEFAULT_META["twitter_account"] %>"
+    >
     <meta name="twitter:image:src" content="<%= meta_image %>">
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Turbolinks -->
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%=
+      stylesheet_link_tag 'application',
+      media: 'all',
+      'data-turbolinks-track': 'reload'
+    %>
+    <%=
+      javascript_pack_tag 'application',
+      'data-turbolinks-track': 'reload',
+      defer: true
+    %>
 
     <!-- Fontawesome -->
-    <script src="https://kit.fontawesome.com/4b1a9fac52.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/4b1a9fac52.js"
+      crossorigin="anonymous"
+    >
+    </script>
   </head>
 
   <body style="min-height: 100%; min-width: 100%">

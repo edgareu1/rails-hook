@@ -1,7 +1,11 @@
-json.extract! @fish, :id, :name
+json.extract! @fish,
+  :id,
+  :name
 
 json.more_info do
-  json.extract! @fish, :url, :picture_url
+  json.extract! @fish,
+    :url,
+    :picture_url
 end
 
 json.legal_minimum do

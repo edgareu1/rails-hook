@@ -1,12 +1,22 @@
 // If there are any errors in the submited form...
 <% if @log.errors.any? %>
   // Clean the form
-  document.getElementById('ModalNewLog').innerHTML = "<%= j render "logs/form", log: @log %>";
+  document.getElementById('ModalNewLog').innerHTML =
+    "<%= j render "logs/form", log: @log %>";
 
   // Display the validation errors
-  displayFormErrors('log_new_time_errors',        `<%= @time_errors.first %>`);
-  displayFormErrors('log_new_location_id_errors', `<%= @log.errors.full_messages_for(:location).first %>`);
-  displayFormErrors('log_new_observation_errors', `<%= @log.errors.full_messages_for(:observation).first %>`);
+  displayFormErrors(
+    'log_new_time_errors',
+    `<%= @time_errors.first %>`
+  );
+  displayFormErrors(
+    'log_new_location_id_errors',
+    `<%= @log.errors.full_messages_for(:location).first %>`
+  );
+  displayFormErrors(
+    'log_new_observation_errors',
+    `<%= @log.errors.full_messages_for(:observation).first %>`
+  );
 
   validateLogTime('new', <%= @time_errors.empty? %>);
 <% end %>

@@ -1,10 +1,19 @@
 <nav id="bottom-nav">
   <ul id="bottom-list" class="flex-container">
-    <li class="<%= 'active' if (controller_name == 'users' && action_name == 'show') %>">
+    <li
+      class="<%= 'active' if (
+          controller_name == 'users' && action_name == 'show'
+        )
+      %>"
+    >
       <%= link_to root_path do %>
-        <% if (controller_name == 'users' && action_name == 'show') then image_tag "hook-logo-colored.png" %>
-        <% else image_tag "hook-logo.png" %>
-        <% end %>
+        <%
+          if (controller_name == 'users' && action_name == 'show')
+            image_tag "hook-logo-colored.png"
+          else
+            image_tag "hook-logo.png"
+          end
+        %>
       <% end %>
     </li>
 
@@ -17,7 +26,12 @@
       <% end %>
     </li>
 
-    <li class="<%= 'active' if (controller_name == 'users' && action_name == 'prediction') %>">
+    <li
+      class="<%= 'active' if (
+          controller_name == 'users' && action_name == 'prediction'
+        )
+      %>"
+    >
       <%= link_to prediction_path do %>
         <figure>
           <i class="fas fa-calculator"></i>
@@ -36,15 +50,41 @@
     </li>
 
     <li class="navbar-light dropdown">
-      <button class="navbar-toggler" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to "Locations", locations_path, class: "dropdown-item" %>
-        <%= link_to "Profile",   root_path, class: "dropdown-item" %>
-        <%= link_to "Edit",      edit_user_registration_path, class: "dropdown-item" %>
-        <%= link_to "Log out",   destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        <%=
+          link_to "Locations",
+          locations_path,
+          class: "dropdown-item"
+        %>
+
+        <%=
+          link_to "Profile",
+          root_path,
+          class: "dropdown-item"
+        %>
+
+        <%=
+          link_to "Edit",
+          edit_user_registration_path,
+          class: "dropdown-item"
+        %>
+
+        <%=
+          link_to "Log out",
+          destroy_user_session_path,
+          method: :delete,
+          class: "dropdown-item"
+        %>
       </div>
     </li>
   </ul>

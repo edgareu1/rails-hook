@@ -13,7 +13,9 @@
 <!-- Otherwise, display each prediction as a card -->
 <% else %>
   <div class="card" style="text-align: center; padding: 10px">
-    <p style="font-size: 18px; margin: 0">Prediction of weight of fish to be caught in a 5h session</p>
+    <p style="font-size: 18px; margin: 0">
+      Prediction of weight of fish to be caught in a 5h session
+    </p>
   </div>
 
   <% @prediction.each_with_index do |data, index| %>
@@ -25,13 +27,17 @@
 
             <div class="prediction-location-headers">
               <h3 class="nowrap"><%= data[:location].spot %></h3>
-              <h5 class="location-address nowrap"><%= data[:location].address_to_display %></h5>
+              <h5 class="location-address nowrap">
+                <%= data[:location].address_to_display %>
+              </h5>
             </div>
           </div>
 
           <!-- Location current weather image -->
-          <div style="background-image: url(http://openweathermap.org/img/wn/<%= data[:weather][:weather_icon] %>@2x.png)"
-               class="weather-icon">
+          <div
+            style="background-image: url(http://openweathermap.org/img/wn/<%= data[:weather][:weather_icon] %>@2x.png)"
+            class="weather-icon"
+          >
           </div>
         </div>
       <% end %>

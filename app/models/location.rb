@@ -5,14 +5,15 @@ class Location < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :logs, dependent: :destroy
 
-  after_validation :geocode, :reverse_geocode, if: Proc.new { |loc| !loc.name.blank? && loc.name_changed? }
+  after_validation :geocode,
+    :reverse_geocode,
+    if: Proc.new { |loc| !loc.name.blank? && loc.name_changed? }
 
   geocoded_by :name
 
   reverse_geocoded_by :latitude, :longitude do |loc, results|
     if !(loc.longitude_changed? || loc.latitude_changed?)
       raise LocationsController::NonExistentNameError, "does not exist"
-
     elsif geo = results.first
       loc.country = geo.country
       loc.country_code = geo.country_code.upcase
@@ -22,9 +23,10 @@ class Location < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :spot, presence: true,
-                   length: { maximum: 16 },
-                   uniqueness: { case_sensitive: false, scope: :user_id }
+  validates :spot,
+    presence: true,
+    length: { maximum: 16 },
+    uniqueness: { case_sensitive: false, scope: :user_id }
 
   # Method that gets a personalized address to display
   def address_to_display
@@ -36,12 +38,12 @@ class Location < ApplicationRecord
     weather_data = fetch_weather_data
 
     return {
-      weather_icon:         weather_data["weather"].first["icon"],
-      weather_description:  weather_data["weather"].first["description"],
-      temperature:          kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
-      air_pressure:         weather_data["main"]["pressure"].round,
-      wind_speed:           weather_data["wind"]["speed"].round(1),
-      moon_phase:           get_moon_phase(Time.now).round(2)
+      weather_icon: weather_data["weather"].first["icon"],
+      weather_description: weather_data["weather"].first["description"],
+      temperature: kelvin_to_celcius(weather_data["main"]["temp"]).round(1),
+      air_pressure: weather_data["main"]["pressure"].round,
+      wind_speed: weather_data["wind"]["speed"].round(1),
+      moon_phase: get_moon_phase(Time.now).round(2)
     }
   end
 

@@ -12,22 +12,35 @@
     <p>password: 123456</p>
   </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%=
+    simple_form_for(
+      resource,
+      as: resource_name,
+      url: session_path(resource_name)
+    ) do |f|
+  %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :login,
-                  required: false,
-                  autofocus: true,
-                  placeholder: "username or email",
-                  input_html: { autocomplete: "login" } %>
+      <%=
+        f.input :login,
+        required: false,
+        autofocus: true,
+        placeholder: "username or email",
+        input_html: { autocomplete: "login" }
+      %>
 
-      <%= f.input :password,
-                  required: false,
-                  placeholder: "••••••",
-                  input_html: { autocomplete: "current-password" } %>
+      <%=
+        f.input :password,
+        required: false,
+        placeholder: "••••••",
+        input_html: { autocomplete: "current-password" }
+      %>
 
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <%=
+        f.input :remember_me,
+        as: :boolean if devise_mapping.rememberable?
+      %>
     </div>
 
     <div class="form-actions">

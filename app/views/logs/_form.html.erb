@@ -12,66 +12,136 @@
       <%= simple_form_for(log, remote: true) do |f| %>
         <div class="container-log-form">
           <!-- Location input -->
-          <%= f.association :location, collection: current_user.locations.sort_by { |loc| loc.spot.downcase },
-                            label_method: :spot, prompt: "Please select", wrapper_html: { class: 'd-flex' } %>
+          <%=
+            f.association :location,
+            collection: current_user.locations
+              .sort_by { |loc| loc.spot.downcase },
+            label_method: :spot,
+            prompt: "Please select",
+            wrapper_html: { class: 'd-flex' }
+          %>
 
-          <div class="invalid-feedback log_errors" id="log_<%= log_action %>_location_id_errors"></div>
+          <div
+            class="invalid-feedback log_errors"
+            id="log_<%= log_action %>_location_id_errors"
+          >
+          </div>
 
           <!-- Starting Time input -->
           <div class="d-flex" style="margin-bottom: 15px">
             <label for="log_start_time">Starting time</label>
-            <%= f.datetime_local_field :start_time, class: "form-control #{"is-valid" if log_action == 'edit'}",
-                value: "#{(f.object.start_time || Time.now).strftime('%Y-%m-%dT%H:%M')}" %>
+
+            <%=
+              f.datetime_local_field :start_time,
+              class: "form-control #{"is-valid" if log_action == 'edit'}",
+              value: "#{(f.object.start_time || Time.now)
+                .strftime('%Y-%m-%dT%H:%M')}"
+            %>
           </div>
 
           <!-- Ending Time input -->
           <div class="d-flex">
             <label for="log_end_time">Ending time</label>
-            <%= f.datetime_local_field :end_time, class: "form-control #{"is-valid" if log_action == 'edit'}",
-                value: "#{(f.object.end_time || Time.now).strftime('%Y-%m-%dT%H:%M')}" %>
+
+            <%=
+              f.datetime_local_field :end_time,
+              class: "form-control #{"is-valid" if log_action == 'edit'}",
+              value: "#{(f.object.end_time || Time.now)
+                .strftime('%Y-%m-%dT%H:%M')}"
+            %>
           </div>
 
-          <div class="invalid-feedback log_errors" id="log_<%= log_action %>_time_errors"></div>
+          <div
+            class="invalid-feedback log_errors"
+            id="log_<%= log_action %>_time_errors"
+          >
+          </div>
 
           <% unless log.id.nil? %>
             <!-- Temperature input -->
             <div class="form-group float log_temperature d-flex">
               <label for="log_temperature">Temperature</label>
-              <%= f.input :temperature, placeholder: "°C", label: false, wrapper: false %>
+
+              <%=
+                f.input :temperature,
+                placeholder: "°C",
+                label: false,
+                wrapper: false
+              %>
+
               <p>°C</p>
             </div>
 
-            <div class="invalid-feedback log_errors" id="log_edit_temperature_errors"></div>
+            <div
+              class="invalid-feedback log_errors"
+              id="log_edit_temperature_errors"
+            >
+            </div>
 
             <!-- Air Pressure input -->
             <div class="form-group integer log_air_pressure d-flex">
               <label for="log_air_pressure">Air pressure</label>
-              <%= f.input :air_pressure, placeholder: "Pa", label: false, wrapper: false %>
+
+              <%=
+                f.input :air_pressure,
+                placeholder: "Pa",
+                label: false,
+                wrapper: false
+              %>
+
               <p>Pa</p>
             </div>
 
-            <div class="invalid-feedback log_errors" id="log_edit_air_pressure_errors"></div>
+            <div
+              class="invalid-feedback log_errors"
+              id="log_edit_air_pressure_errors"
+            >
+            </div>
 
             <!-- Wind Speed input -->
             <div class="form-group float log_wind_speed d-flex">
               <label for="log_wind_speed">Wind speed</label>
-              <%= f.input :wind_speed, placeholder: "m/s", label: false, wrapper: false %>
+
+              <%=
+                f.input :wind_speed,
+                placeholder: "m/s",
+                label: false,
+                wrapper: false
+              %>
+
               <p>m/s</p>
             </div>
 
-            <div class="invalid-feedback log_errors" id="log_edit_wind_speed_errors"></div>
+            <div
+              class="invalid-feedback log_errors"
+              id="log_edit_wind_speed_errors"
+            >
+            </div>
           <% end %>
 
           <!-- Observation input -->
-          <%= f.input :observation, placeholder: "Leave an observation",
-                      input_html: { value: "#{f.object.observation.nil? ? "" : f.object.observation.strip}" } %>
+          <%=
+            f.input :observation,
+            placeholder: "Leave an observation",
+            input_html: {
+              value: "#{
+                f.object.observation.nil? ?
+                "" :
+                f.object.observation.strip
+              }"
+            }
+          %>
 
-          <div class="invalid-feedback log_errors" id="log_<%= log_action %>_observation_errors"></div>
+          <div
+            class="invalid-feedback log_errors"
+            id="log_<%= log_action %>_observation_errors"
+          >
+          </div>
 
           <p>Rate your session</p>
 
           <!-- Rating input as a dynamic filling image -->
-          <%= render 'logs/rating-input', log: log, log_action: log_action  %>
+          <%= render 'logs/rating-input', log: log, log_action: log_action %>
 
           <!-- Submit Button -->
           <%= f.button :submit, class: "btn btn-flat btn-block" %>

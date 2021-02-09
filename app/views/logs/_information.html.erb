@@ -2,18 +2,29 @@
 <%= link_to location_path(log.location) do %>
   <div class="page-title">
     <h1 class="nowrap"><%= log.label %></h1>
-    <h2 class="location-address nowrap"><%= log.location.address_to_display %></h2>
+    <h2 class="location-address nowrap">
+      <%= log.location.address_to_display %>
+    </h2>
   </div>
 <% end %>
 
 <!-- Date -->
 <div class="log-date">
-  <% if log.start_time.strftime('%Y-%m-%d') == log.end_time.strftime('%Y-%m-%d') %>
+  <%
+    if log.start_time.strftime('%Y-%m-%d') ==
+      log.end_time.strftime('%Y-%m-%d')
+  %>
     <i class="far fa-calendar-alt" style="font-size: 26px"></i>
 
     <p>
       <%= log.start_time.strftime('%b %d, %Y') %>
-      <span><%= log.start_time.strftime('%I:%M %p') + " - " + log.end_time.strftime('%I:%M %p') %></span>
+      <span>
+        <%=
+          log.start_time.strftime('%I:%M %p') +
+          " - " +
+          log.end_time.strftime('%I:%M %p')
+        %>
+      </span>
     </p>
 
   <% else %>
@@ -38,8 +49,10 @@
   <!-- Card Headers  -->
   <div class="card-info-headers">
     <!-- Log weather image -->
-    <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
-         class="weather-icon">
+    <div
+      style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
+      class="weather-icon"
+    >
     </div>
 
     <h3><%= log.weather_description.capitalize %></h3>
@@ -57,7 +70,9 @@
       <tr>
         <td>Air pressure</td>
         <td></td>
-        <td><%= log.air_pressure.blank? ? "--" : "#{log.air_pressure} Pa" %></td>
+        <td>
+          <%= log.air_pressure.blank? ? "--" : "#{log.air_pressure} Pa" %>
+        </td>
       </tr>
 
       <tr>

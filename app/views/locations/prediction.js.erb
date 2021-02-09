@@ -1,5 +1,6 @@
 // Append the prediction to the Location information table
-$('.card-info-content tbody').append("<%= j render "locations/prediction", prediction: @prediction %>");
-
+$('.card-info-content tbody').append(
+  "<%= j render "locations/prediction", prediction: @prediction %>"
+);
 // Remove the prediction link
 document.getElementById('location-prediction').remove();

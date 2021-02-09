@@ -1,10 +1,12 @@
 <%= form_tag(fish_index_path, remote: true, method: :get) do %>
   <div class="fish-search-container">
-    <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        id: "search-input",
-        placeholder: "Fish name",
-        autocomplete: "off" %>
+    <%=
+      text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      id: "search-input",
+      placeholder: "Fish name",
+      autocomplete: "off"
+    %>
   </div>
 <% end %>

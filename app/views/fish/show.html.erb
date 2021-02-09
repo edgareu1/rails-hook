@@ -1,4 +1,9 @@
-<%= link_to 'Back', fish_index_path, class: "btn btn-flat", style:"margin: 10px" %>
+<%=
+  link_to 'Back',
+  fish_index_path,
+  class: "btn btn-flat",
+  style:"margin: 10px"
+%>
 
 <div class="fish-card" style="margin-bottom: 20px">
   <div class="card-fish-img">
@@ -15,6 +20,11 @@
 
     <p style="font-style: normal; padding: 0 15px"><%= @fish.description %></p>
 
-    <%= link_to "Learn more", @fish.url, target: "_blank", class: "fish-more-info" %>
+    <%=
+      link_to "Learn more",
+      @fish.url,
+      target: "_blank",
+      class: "fish-more-info"
+    %>
   </div>
 </div>

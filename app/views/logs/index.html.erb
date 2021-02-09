@@ -1,7 +1,14 @@
 <h1 class="page-title">All Logs</h1>
 
 <!-- New Log button -->
-<%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLog" }, class: "btn-new-instance" do %>
+<%=
+  link_to "Create",
+  data: {
+    toggle: "modal",
+    target: "#ModalNewLog"
+  },
+  class: "btn-new-instance" do
+%>
   <i class="fas fa-plus"></i>
 <% end %>
 
@@ -9,7 +16,9 @@
 <% if @logs.empty? %>
   <div class="card no-data">
     <h3>No logs saved yet</h3>
-    <h5>The more logs you record, the more accurate our predictions will be</h5>
+    <h5>
+      The more logs you record, the more accurate our predictions will be
+    </h5>
   </div>
 
 <% else %>

@@ -6,12 +6,16 @@
         <!-- Card Headers -->
         <div class="card-title-container">
           <h3 class="nowrap"><%= log.label %></h3>
-          <h5 class="location-address nowrap"><%= log.location.address_to_display %></h5>
+          <h5 class="location-address nowrap">
+            <%= log.location.address_to_display %>
+          </h5>
         </div>
 
         <!-- Log weather image -->
-        <div style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
-             class="weather-icon">
+        <div
+          style="background-image: url(http://openweathermap.org/img/wn/<%= log.weather_icon %>@2x.png)"
+          class="weather-icon"
+        >
         </div>
       </div>
 
@@ -22,7 +26,6 @@
         <div>
           <% if log.catches_count.zero? %>
             <p><strong>Nothing caught</strong></p>
-
           <% else %>
             <p>
               <strong>Catches :</strong>
@@ -32,7 +35,6 @@
 
           <% if log.rating.nil? %>
             <p><strong>Not rated</strong></p>
-
           <% else %>
             <p>
               <strong>Rating :</strong>
@@ -60,5 +62,11 @@
 <% end %>
 
 <!-- Pagination to navigate the Logs index -->
-<%= will_paginate logs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
-    previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
+<%=
+  will_paginate logs,
+  renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
+  previous_label: "&laquo;",
+  next_label: "&raquo;",
+  inner_window: 1,
+  outer_window: 0
+%>
