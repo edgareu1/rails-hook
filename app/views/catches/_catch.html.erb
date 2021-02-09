@@ -1,12 +1,22 @@
 <tr id="catch_<%= catch.id %>">
   <td>
     <!-- Fish name -->
-    <%= link_to "Info", data: { toggle: "modal", target: "#ModalFishInfo#{catch.fish.id}" } do %>
+    <%=
+      link_to "Info",
+      data: {
+        toggle: "modal",
+        target: "#ModalFishInfo#{catch.fish.id}"
+      } do
+    %>
       <%= catch.fish.name %>
     <% end %>
 
     <!-- Modal Fish Info -->
-    <div class="modal fade" id="ModalFishInfo<%= catch.fish.id %>" role="dialog">
+    <div
+      class="modal fade"
+      id="ModalFishInfo<%= catch.fish.id %>"
+      role="dialog"
+    >
       <%= render "fish/modal-info", catch: catch %>
     </div>
   </td>
@@ -16,12 +26,22 @@
 
   <td>
     <!-- Delete button -->
-    <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteCatch#{catch.id}" } do %>
+    <%=
+      link_to "Delete",
+      data: {
+        toggle: "modal",
+        target: "#ModalDeleteCatch#{catch.id}"
+      } do
+    %>
       <i class="far fa-trash-alt"></i>
     <% end %>
 
     <!-- Modal Catches#destroy -->
-    <div class="modal modal-delete fade" id="ModalDeleteCatch<%= catch.id %>" role="dialog">
+    <div
+      class="modal modal-delete fade"
+      id="ModalDeleteCatch<%= catch.id %>"
+      role="dialog"
+    >
       <%= render "catches/form-delete", catch: catch %>
     </div>
   </td>

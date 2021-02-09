@@ -11,19 +11,36 @@
           <table>
             <tr>
               <th><%= f.label :quantity, "Qnt" %></th>
-              <th><%= f.label :fish,     "Species name" %></th>
-              <th><%= f.label :weight,   "Weight" %></th>
+              <th><%= f.label :fish, "Species name" %></th>
+              <th><%= f.label :weight, "Weight" %></th>
             </tr>
 
             <tr>
-              <td><%= f.input :quantity, label: false, input_html: { value: f.object.quantity || "1" } %></td>
-
               <td>
-                <%= f.association :fish, collection: Fish.all.sort_by(&:name), label_method: :name, label: false,
-                                  prompt: "Please select" %>
+                <%=
+                  f.input :quantity,
+                  label: false,
+                  input_html: { value: f.object.quantity || "1" }
+                %>
               </td>
 
-              <td><%= f.input :weight, label: false, placeholder: "gr" %></td>
+              <td>
+                <%=
+                  f.association :fish,
+                  collection: Fish.all.sort_by(&:name),
+                  label_method: :name,
+                  label: false,
+                  prompt: "Please select"
+                %>
+              </td>
+
+              <td>
+                <%=
+                  f.input :weight,
+                  label: false,
+                  placeholder: "gr"
+                %>
+              </td>
             </tr>
           </table>
 
