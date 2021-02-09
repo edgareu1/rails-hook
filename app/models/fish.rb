@@ -1,7 +1,8 @@
 class Fish < ApplicationRecord
   include ApplicationHelper
 
-  # Method that gets a string summarizing the Fish legal dimensions (weight and size)
+  # Method that gets a string summarizing the Fish legal dimensions (weight and
+  # size)
   def legal_dimensions
     if legal_weight.zero? && legal_size.zero?
       "NA"

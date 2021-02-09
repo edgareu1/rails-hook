@@ -7,19 +7,41 @@ class Log < ApplicationRecord
 
   validates :location, presence: true
   validates :observation, length: { maximum: 120 }
-  validates :rating, numericality: { greater_than: 0, less_than_or_equal_to: 10, only_integer: true },
-                     allow_nil: true
+  validates :rating,
+    numericality: {
+      greater_than: 0,
+      less_than_or_equal_to: 10,
+      only_integer: true
+    },
+    allow_nil: true
 
-  # The weather attributes intervals take into account their respective lowest/highest records measured on earth
-  validates :temperature,  numericality: { greater_than: -100,          less_than: 100 },  on: :update
-  validates :air_pressure, numericality: { greater_than: 880,           less_than: 1080 }, on: :update
-  validates :wind_speed,   numericality: { greater_than_or_equal_to: 0, less_than: 140 },  on: :update
+  # The weather attributes intervals take into account their respective
+  # lowest/highest records measured on earth
+  validates :temperature,
+    numericality: {
+      greater_than: -100,
+      less_than: 100
+    },
+    on: :update
+  validates :air_pressure,
+    numericality: {
+      greater_than: 880,
+      less_than: 1080
+    },
+    on: :update
+  validates :wind_speed,
+    numericality: {
+      greater_than_or_equal_to: 0,
+      less_than: 140
+    },
+    on: :update
 
   validate :log_duration
 
   after_create :add_weather_data
 
-  # Method that gets a string with the spot followed by its tag_id (padded by zeros)
+  # Method that gets a string with the spot followed by its tag_id (padded by
+  # zeros)
   # Eg: Sargo Rock #009
   def label
     "#{location.spot} \##{sprintf '%03d', (tag_id)}"
@@ -45,7 +67,8 @@ class Log < ApplicationRecord
 
   private
 
-  # Method that updates the weather attributes to the ones registered at the moment in the respective Location
+  # Method that updates the weather attributes to the ones registered at the
+  # moment in the respective Location
   def add_weather_data
     self.update(location.weather_data)
   end
