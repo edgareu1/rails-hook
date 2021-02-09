@@ -9,8 +9,10 @@
   <!-- Card Headers  -->
   <div class="card-info-headers">
     <!-- Location current weather image -->
-    <div style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:weather_icon] %>@2x.png)"
-         class="weather-icon">
+    <div
+      style="background-image: url(http://openweathermap.org/img/wn/<%= location_weather[:weather_icon] %>@2x.png)"
+      class="weather-icon"
+    >
     </div>
 
     <h3><%= location_weather[:weather_description].capitalize %></h3>
@@ -23,13 +25,17 @@
       <tr>
         <td>Country</td>
         <td></td>
-        <td><%= location.country.nil? ? "NA" : location.country.truncate(20) %></td>
+        <td>
+          <%= location.country.nil? ? "NA" : location.country.truncate(20) %>
+        </td>
       </tr>
 
       <tr>
         <td>State</td>
         <td></td>
-        <td><%= location.state.nil? ? "NA" : location.state.truncate(20) %></td>
+        <td>
+          <%= location.state.nil? ? "NA" : location.state.truncate(20) %>
+        </td>
       </tr>
 
       <tr>
@@ -86,7 +92,12 @@
         <tr>
           <td>Last Log</td>
           <td></td>
-          <td><%= "#{time_ago_in_words(location.logs.map(&:end_time).max)} ago".truncate(20) %></td>
+          <td>
+            <%=
+              "#{time_ago_in_words(location.logs.map(&:end_time).max)} ago"
+                .truncate(20)
+            %>
+          </td>
         </tr>
 
         <tr>

@@ -1,17 +1,23 @@
 // Refresh the form
-document.getElementById('ModalEditLocation').innerHTML = "<%= j render "locations/form", location: @location %>";
+document.getElementById('ModalEditLocation').innerHTML =
+  "<%= j render "locations/form", location: @location %>";
 
 // If there are any errors in the submited form...
 <% if @location.errors.any? %>
   // Enable the autocomplete for the Location name
-  var addressInput = document.querySelector('#ModalEditLocation #location_name');
+  var addressInput =
+    document.querySelector('#ModalEditLocation #location_name');
   autoCompleteLocation(addressInput);
 
 // Otherwise...
 <% else %>
   // Close the modal
   document.querySelector('#ModalEditLocation button').click();
-
   // Refresh the information displayed
-  document.getElementById('location-information').innerHTML = "<%= j render "locations/information", location: @location, location_weather: @location_weather %>";
+  document.getElementById('location-information').innerHTML =
+    "<%=
+      j render "locations/information",
+      location: @location,
+      location_weather: @location_weather
+    %>";
 <% end %>

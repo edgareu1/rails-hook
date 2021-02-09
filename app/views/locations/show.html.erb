@@ -1,9 +1,14 @@
 <!-- Location information -->
 <div id="location-information">
-  <%= render "locations/information", location: @location, location_weather: @location_weather %>
+  <%=
+    render "locations/information",
+    location: @location,
+    location_weather: @location_weather
+  %>
 </div>
 
-<!-- Buttons for the Location actions: Predict, Logs index, Delete, Edit and New -->
+<!-- Buttons for the Location actions: Predict, Logs index, Delete, Edit and
+New -->
 <div class="card-actions">
   <% unless @location.logs_count < 5 %>
     <div id="location-prediction">
@@ -17,15 +22,33 @@
     <i class="fas fa-stream"></i>
   <% end %>
 
-  <%= link_to "Delete", data: { toggle: "modal", target: "#ModalDeleteLocation" } do %>
+  <%=
+    link_to "Delete",
+    data: {
+      toggle: "modal",
+      target: "#ModalDeleteLocation"
+    } do
+  %>
     <i class="far fa-trash-alt"></i>
   <% end %>
 
-  <%= link_to "Edit", data: { toggle: "modal", target: "#ModalEditLocation" } do %>
+  <%=
+    link_to "Edit",
+    data: {
+      toggle: "modal",
+      target: "#ModalEditLocation"
+    } do
+  %>
     <i class="far fa-edit"></i>
   <% end %>
 
-  <%= link_to "Create", data: { toggle: "modal", target: "#ModalNewLocation" } do %>
+  <%=
+    link_to "Create",
+    data: {
+      toggle: "modal",
+      target: "#ModalNewLocation"
+    } do
+  %>
     <i class="fas fa-plus"></i>
   <% end %>
 </div>
