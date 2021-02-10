@@ -122,7 +122,12 @@ def log_power(log)
   wind_speed_power = (10 - log.wind_speed).fdiv(10)
 
   # Log total fishing power
-  return (log.moon_phase * 0.45) + (temperature_power * 0.15) + (air_pressure_power * 0.3) + (wind_speed_power * 0.1)
+  log_power = (log.moon_phase * 0.45) + (temperature_power * 0.15) + (air_pressure_power * 0.3) + (wind_speed_power * 0.1)
+
+  # Log power will depend on the Location; half the locations will be biased to
+  # certain weather conditions, and the other half will be biased to the
+  # opposite weather conditions
+  return (log.location.id.odd? ? log_power : (1 - log_power))
 end
 
 # Method that creates a Catch for a specific Log
