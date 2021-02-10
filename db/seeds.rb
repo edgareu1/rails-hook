@@ -40,8 +40,19 @@ puts "Created #{Fish.count} Fish"
 # Users list
 Users_list = ["Demo"]
 
-# Locations data (in Lisbon)
-Locations_data = [
+# Minor locations data (in Lisbon)
+# Will have a few logs
+Minor_locations_data = [
+  { spot: "Fort Rock",     location: "Mafra" },
+  { spot: "Old Harbor",    location: "Oeiras" },
+  { spot: "Beach Dunes",   location: "Seixal" },
+  { spot: "Cliff Rock",    location: "Sesimbra" },
+  { spot: "Wood Walkway",  location: "Sintra" }
+]
+
+# Main locations data (in Lisbon)
+# Will have many logs
+Main_locations_data = [
   { spot: "Blue Rock",    location: "Alcochete" },
   { spot: "Old Boat",     location: "Almada" },
   { spot: "Bar Platform", location: "Cascais" },
@@ -141,15 +152,30 @@ Users_list.each do |username|
                          password: "123456"
                         )
 
-  # Create Locations
-  Locations_data.each { |location_data| create_location(new_user, location_data) }
+  date = DateTime.now.ago(220.days).beginning_of_day  # Date of the Logs (begin 220 days ago)
 
-  locations = new_user.locations                      # Locations array
-  date = DateTime.now.ago(200.days).beginning_of_day  # Date of the Logs (begin 200 days ago)
+  # Create the minor Locations
+  Minor_locations_data.each { |location_data| create_location(new_user, location_data) }
+  minor_locations = new_user.locations
 
-  # 20 Logs per Locations
+  # 2 Logs per minor Location
+  2.times do
+    minor_locations.shuffle.each do |loc|
+      new_log = create_log(new_user, loc, date) # Create Log
+      date = date.advance(days: 2)              # Have one Log per day
+
+      # Create random Catches (the greater the Log 'power', the more and better the Catches)
+      (rand() * 2).floor.times { create_catch(new_log) }
+    end
+  end
+
+  # Create the major Locations
+  Main_locations_data.each { |location_data| create_location(new_user, location_data) }
+  main_locations = new_user.locations.last(Main_locations_data.size)
+
+  # 20 Logs per major Location
   20.times do
-    locations.shuffle.each do |loc|
+    main_locations.shuffle.each do |loc|
       new_log = create_log(new_user, loc, date) # Create Log
       date = date.advance(days: 1)              # Have one Log per day
 
