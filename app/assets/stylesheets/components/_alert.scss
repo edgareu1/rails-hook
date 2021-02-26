@@ -8,6 +8,7 @@
   background-color: rgba(91, 234, 201, 0.5);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  width: 100%;
+  width: calc(100% - 0.5rem);
   border: none;
+  margin: 0.3rem 0.25rem;
 }
