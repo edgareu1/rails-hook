@@ -10,7 +10,7 @@ A web platform for fisherman to record their fishing trips and to get prediction
 
 ## Installation and Setup Instructions
 
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.
+Clone down this repository. You will need `ruby`, `rails`, `node` and `npm` installed globally on your machine.
 
 Installation:
 
