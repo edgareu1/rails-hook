@@ -16,28 +16,48 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true %>
-      <%= f.input :username, required: true %>
+      <%=
+        f.input :email,
+        required: true,
+        autofocus: true,
+        placeholder: "New e-mail",
+        label: false
+      %>
+
+      <%=
+        f.input :username,
+        required: true,
+        placeholder: "New username",
+        label: false
+      %>
+
       <%= f.input :avatar, as: :file %>
 
       <%=
         f.input :password,
         hint: "leave it blank if you don't want to change it",
         required: false,
-        input_html: { autocomplete: "new-password" }
+        placeholder: "New password",
+        input_html: { autocomplete: "new-password" },
+        label: false
       %>
 
       <%=
         f.input :password_confirmation,
+        hint: "no need to confirm if you don't want to change it",
         required: false,
-        input_html: { autocomplete: "new-password" }
+        placeholder: "New password confirmation",
+        input_html: { autocomplete: "new-password" },
+        label: false
       %>
 
       <%=
         f.input :current_password,
-        hint: "we need your current password to confirm your changes",
+        hint: "necessary to confirm your changes",
         required: true,
-        input_html: { autocomplete: "current-password" }
+        placeholder: "Current password",
+        input_html: { autocomplete: "current-password" },
+        label: false
       %>
     </div>
 

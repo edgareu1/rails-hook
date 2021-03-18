@@ -78,6 +78,10 @@
     text-decoration: underline !important;
   }
 
+  label {
+    margin-bottom: 6px;
+  }
+
   .placeholder {
     color: #495057;
   }
@@ -87,12 +91,21 @@
     margin-bottom: 20px;
   }
 
-  .user_avatar > input.file {
-    overflow: hidden;
+  .user_avatar {
+    margin-bottom: 24px;
+
+    input.file {
+      overflow: hidden;
+    }
   }
 
   .text-muted {
     color: #9bddf9 !important;
+    margin-left: 4px;
+  }
+
+  #edit_user .user_password_confirmation {
+    margin-bottom: 24px;
   }
 }
 
