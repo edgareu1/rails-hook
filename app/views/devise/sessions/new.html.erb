@@ -26,15 +26,24 @@
         f.input :login,
         required: false,
         autofocus: true,
-        placeholder: "username or email",
-        input_html: { autocomplete: "login" }
+        placeholder: "Username or e-mail",
+        input_html: {
+          autocomplete: "login",
+          value: "Demo"
+        },
+        label: false
       %>
 
       <%=
         f.input :password,
         required: false,
-        placeholder: "••••••",
-        input_html: { autocomplete: "current-password" }
+        value: "123456",
+        placeholder: "Password",
+        input_html: {
+          autocomplete: "current-password",
+          value: "123456"
+        },
+        label: false
       %>
 
       <%=
