@@ -19,15 +19,17 @@
         f.input :username,
         required: true,
         autofocus: true,
-        placeholder: "username",
-        input_html: { autocomplete: "username" }
+        placeholder: "Username",
+        input_html: { autocomplete: "username" },
+        label: false
       %>
 
       <%=
         f.input :email,
         required: true,
-        placeholder: "email",
-        input_html: { autocomplete: "email" }
+        placeholder: "E-mail",
+        input_html: { autocomplete: "email" },
+        label: false
       %>
 
       <%= f.input :avatar, as: :file %>
@@ -35,20 +37,22 @@
       <%=
         f.input :password,
         required: true,
-        placeholder: "••••••",
+        placeholder: "Password",
         hint: (
           if @minimum_password_length
             "#{@minimum_password_length} characters minimum"
           end
         ),
-        input_html: { autocomplete: "new-password" }
+        input_html: { autocomplete: "new-password" },
+        label: false
       %>
 
       <%=
         f.input :password_confirmation,
         required: true,
-        placeholder: "••••••",
-        input_html: { autocomplete: "new-password" }
+        placeholder: "Password confirmation",
+        input_html: { autocomplete: "new-password" },
+        label: false
       %>
     </div>
 
