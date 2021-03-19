@@ -16,19 +16,19 @@
 
     <div class="form-inputs">
       <%=
-        f.input :username,
+        f.input :email,
         required: true,
         autofocus: true,
-        placeholder: "Username",
-        input_html: { autocomplete: "username" },
+        placeholder: "E-mail",
+        input_html: { autocomplete: "email" },
         label: false
       %>
 
       <%=
-        f.input :email,
+        f.input :username,
         required: true,
-        placeholder: "E-mail",
-        input_html: { autocomplete: "email" },
+        placeholder: "Username",
+        input_html: { autocomplete: "username" },
         label: false
       %>
 
